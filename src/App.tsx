@@ -1,6 +1,7 @@
-
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { FormProvider } from './context/FormContext';
 import { DashboardLayout } from './components/layout/DashboardLayout';
+import { LoginPage } from './pages/LoginPage';
 import { useForm } from './context/FormContext';
 import { Section1_Overview } from './components/sections/Section1_Overview';
 import { Section2_Cost } from './components/sections/Section2_Cost';
@@ -23,17 +24,17 @@ import { Section18_Appraisal } from './components/sections/Section18_Appraisal';
 
 const FormContent = () => {
   const { currentSection } = useForm();
-  
-  switch(currentSection) {
-    case 1: return <Section1_Overview />;
-    case 2: return <Section2_Cost />;
-    case 3: return <Section3_Location />;
-    case 4: return <Section4_Funding />;
-    case 5: return <Section5_Objectives />;
-    case 6: return <Section6_Description />;
-    case 7: return <Section7_CostEstimation />;
-    case 8: return <Section8_OperatingCost />;
-    case 9: return <Section9_DemandSupply />;
+
+  switch (currentSection) {
+    case 1:  return <Section1_Overview />;
+    case 2:  return <Section2_Cost />;
+    case 3:  return <Section3_Location />;
+    case 4:  return <Section4_Funding />;
+    case 5:  return <Section5_Objectives />;
+    case 6:  return <Section6_Description />;
+    case 7:  return <Section7_CostEstimation />;
+    case 8:  return <Section8_OperatingCost />;
+    case 9:  return <Section9_DemandSupply />;
     case 10: return <Section10_FinancialPlan />;
     case 11: return <Section11_Benefits />;
     case 12: return <Section12_Schedule />;
@@ -47,13 +48,27 @@ const FormContent = () => {
   }
 };
 
-function App() {
+const AppContent = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
+
   return (
     <FormProvider>
       <DashboardLayout>
         <FormContent />
       </DashboardLayout>
     </FormProvider>
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
