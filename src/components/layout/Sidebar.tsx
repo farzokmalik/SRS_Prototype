@@ -1,15 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../context/FormContext';
-import { FORM_SECTIONS } from '../../constants';
+import { useFormConfig } from '../../context/FormConfigContext';
 import { 
   CheckCircle2, 
   Circle, 
   ChevronRight,
+  ChevronLeft,
   ShieldCheck
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const { currentSection, setSection, formData, dirtySections, visitedSections } = useForm();
+  const { label, title, sections, totalSections } = useFormConfig();
+  const navigate = useNavigate();
 
   const isCompleted = (id: number) => {
     // Primary: user has actively interacted with the section
@@ -45,9 +49,31 @@ export const Sidebar: React.FC = () => {
           <div style={{ background: 'hsl(var(--accent))', padding: '0.5rem', borderRadius: 'var(--radius-md)' }}>
             <ShieldCheck size={24} color="white" />
           </div>
-          <h1 style={{ color: 'white', fontSize: '1.25rem', fontWeight: 800 }}>PC-1 Portal</h1>
+          <h1 style={{ color: 'white', fontSize: '1.25rem', fontWeight: 800 }}>{label} Form</h1>
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Government Project Mgmt</p>
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{title}</p>
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            marginTop: '1rem',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: 'rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: 'var(--radius-md)',
+            padding: '0.5rem 0.875rem',
+            color: 'rgba(255,255,255,0.7)',
+            fontSize: '0.8rem',
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'all 0.15s',
+            fontFamily: 'inherit',
+            width: '100%',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.14)'; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; }}
+        >
+          <ChevronLeft size={15} /> Back to Dashboard
+        </button>
       </div>
 
       <nav style={{ 
@@ -57,7 +83,7 @@ export const Sidebar: React.FC = () => {
         scrollbarWidth: 'none'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          {FORM_SECTIONS.map((section) => {
+          {sections.map((section) => {
             const active = currentSection === section.id;
             const completed = isCompleted(section.id);
             
@@ -128,11 +154,11 @@ export const Sidebar: React.FC = () => {
       <div style={{ padding: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.1)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem', fontSize: '0.75rem' }}>
           <span style={{ color: 'rgba(255,255,255,0.5)' }}>Overall Progress</span>
-          <span style={{ color: 'white', fontWeight: 600 }}>{Math.round((currentSection / 18) * 100)}%</span>
+          <span style={{ color: 'white', fontWeight: 600 }}>{Math.round((currentSection / totalSections) * 100)}%</span>
         </div>
         <div style={{ height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '10px', overflow: 'hidden' }}>
           <div style={{ 
-            width: `${(currentSection / 18) * 100}%`, 
+            width: `${(currentSection / totalSections) * 100}%`, 
             height: '100%', 
             background: 'linear-gradient(90deg, hsl(var(--accent)), #60A5FA)',
             transition: 'width 0.5s cubic-bezier(0.4, 0, 0.2, 1)'

@@ -58,10 +58,10 @@ export const LoginPage: React.FC = () => {
           </div>
           <div>
             <p style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, lineHeight: 1, letterSpacing: '-0.01em' }}>
-              PC-1 Portal
+              P&D Board Portal
             </p>
             <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.72rem', marginTop: '3px', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-              Govt Project Mgmt
+              Government of Punjab
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export const LoginPage: React.FC = () => {
             letterSpacing: '-0.03em',
             marginBottom: '1.25rem',
           }}>
-            Government<br />Project Planning<br />System
+            Planning &<br />Development<br />Board Portal
           </h1>
 
           <p style={{
@@ -101,7 +101,7 @@ export const LoginPage: React.FC = () => {
             lineHeight: 1.65,
             maxWidth: '380px',
           }}>
-            A centralised platform for submitting, reviewing, and approving PC-1 project proposals across all departments and ministries.
+            A unified platform for submitting, reviewing, and approving PC-I through PC-V project proformas across all departments and ministries.
           </p>
 
           {/* Stats row */}
@@ -114,7 +114,7 @@ export const LoginPage: React.FC = () => {
           }}>
             {[
               { value: '1,200+', label: 'Projects Managed' },
-              { value: '18', label: 'Form Sections' },
+              { value: '5', label: 'PC Proformas' },
               { value: '36+', label: 'Departments' },
             ].map(stat => (
               <div key={stat.label}>
