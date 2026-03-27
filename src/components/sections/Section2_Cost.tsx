@@ -88,9 +88,16 @@ export const Section2_Cost: React.FC = () => {
             />
             <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
             <InputField label="Amount (Million)" type="number" value={share.amount} onChange={(e) => updateBeneficiary(index, { amount: e.target.value })} />
-            <button className="btn btn-secondary" onClick={() => removeBeneficiary(index)} style={{ padding: '0.6rem', color: 'var(--error)' }}>
-              <Trash2 size={18} />
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={{ opacity: 0, fontSize: '0.875rem', fontWeight: 600, pointerEvents: 'none' }}>Action</label>
+              <button 
+                className="btn btn-secondary" 
+                onClick={() => removeBeneficiary(index)} 
+                style={{ height: '42px', padding: '0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--error)' }}
+              >
+                <Trash2 size={18} />
+              </button>
+            </div>
           </div>
         ))}
       </div>
