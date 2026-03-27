@@ -58,17 +58,7 @@ export const PC2Section4_Funding: React.FC = () => {
     }
   };
 
-  const clearSearchResults = () => {
-    handleUpdate({
-      gsNoSearch: '',
-      smdpNo: '',
-      gsNoResult: '',
-      totalAllocation: '',
-      fundsDiverted: '',
-      balanceFunds: '',
-      schemeName: '',
-    });
-  };
+
 
   const handleSourceChange = (value: string) => {
     handleUpdate({

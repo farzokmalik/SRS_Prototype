@@ -212,9 +212,7 @@ export const PC2Section7_CostEstimation: React.FC = () => {
     return sum + (plan.yearData || []).reduce((s: number, yd: any) => s + (parseFloat(yd.localCost || '0') || 0), 0);
   }, 0);
 
-  const totalAllocatedForeign = plans.reduce((sum: number, plan: any) => {
-    return sum + (plan.yearData || []).reduce((s: number, yd: any) => s + (parseFloat(yd.foreignCost || '0') || 0), 0);
-  }, 0);
+
 
   const localCost = localCostFromS2();
   const foreignCost = foreignCostFromS2();

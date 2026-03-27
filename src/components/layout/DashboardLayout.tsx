@@ -75,7 +75,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             <div style={{ height: '32px', width: '1px', background: 'hsl(var(--border))' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
               <div style={{ width: '36px', height: '36px', borderRadius: 'var(--radius-full)', background: 'hsl(var(--primary))', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 600 }}>
-                JD
+                DK
               </div>
               <div style={{ textAlign: 'left' }}>
                 <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--primary))' }}>Dr.Khalid</p>

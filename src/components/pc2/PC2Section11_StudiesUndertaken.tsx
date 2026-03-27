@@ -10,13 +10,7 @@ type Scheme = {
   gsNo: string;
 };
 
-const EXISTING_SCHEMES: Scheme[] = [
-  { schemeId: 'SCH-1001', schemeName: 'District Health Services Upgrade', gsNo: 'GS-2301' },
-  { schemeId: 'SCH-1002', schemeName: 'Rural Water Supply Improvement', gsNo: 'GS-2302' },
-  { schemeId: 'SCH-1003', schemeName: 'School Infrastructure Rehabilitation', gsNo: 'GS-2303' },
-  { schemeId: 'SCH-1004', schemeName: 'Agriculture Research and Extension', gsNo: 'GS-2304' },
-  { schemeId: 'SCH-1005', schemeName: 'Urban Mobility Feasibility Survey', gsNo: 'GS-2305' },
-];
+
 
 const SEARCH_TYPE_OPTIONS = [
   { value: 'gsNo', label: 'GS No.' },
@@ -24,7 +18,6 @@ const SEARCH_TYPE_OPTIONS = [
   { value: 'schemeId', label: 'Scheme ID' },
 ];
 
-const normalize = (value: string) => value.trim().toLowerCase();
 
 export const PC2Section11_StudiesUndertaken: React.FC = () => {
   const { formData, updateSection } = useForm();

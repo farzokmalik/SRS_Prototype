@@ -13,7 +13,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DEMO_USER = {
   email: 'admin@splendidmark.com',
   password: 'srsprototype',
-  name: 'John Doe',
+  name: 'Dr. Khalid',
   role: 'Admin Officer — P&D Board',
 };
 
