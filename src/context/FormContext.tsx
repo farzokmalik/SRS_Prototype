@@ -48,7 +48,7 @@ const initialFormState: FormState = {
     financialComponents: '',
     localCost: '',
     approvalForum: '',
-    beneficiaryShares: [],
+    beneficiaryShares: [{ adminDept: '', name: '', amount: '' }],
     totalCost: '',
     attachments: []
   },
@@ -80,13 +80,17 @@ const initialFormState: FormState = {
     comments: ''
   },
   section5: { objective: '', attachments: [], annexures: [] },
-  section6: { objective: '', sectoralInfo: '', attachments: [], annexures: [] },
+  section6: {
+    objective: '', objectiveAttachments: [], objectiveAnnexures: [],
+    sectoralInfo: '', sectoralInfoAttachments: [], sectoralInfoAnnexures: []
+  },
   section7: {
     localCost: '',
     remainingLocalCost: '',
     foreignCost: '',
     remainingForeignCost: '',
-    plans: []
+    plans: [],
+    objectCodes: []
   },
   section8: {
     grantNo: '',
@@ -94,8 +98,7 @@ const initialFormState: FormState = {
     loNo: '',
     runningCostType: '',
     fundCenter: '',
-    objectCode: '',
-    estimates: []
+    operatingEstimates: []
   },
   section9: { data: '', attachments: [], annexures: [] },
   section10: {
@@ -107,22 +110,18 @@ const initialFormState: FormState = {
     annexures: []
   },
   section11: {
-    social: '',
-    environmental: '',
-    economic: '',
-    financial: '',
-    attachments: [],
-    annexures: []
+    social: '', socialAttachments: [], socialAnnexures: [],
+    environmental: '', environmentalAttachments: [], environmentalAnnexures: [],
+    economic: '', economicAttachments: [], economicAnnexures: [],
+    financial: '', financialAttachments: [], financialAnnexures: []
   },
   section12: {
-    schedule: '',
-    monitoring: '',
-    implementationPlan: '',
-    mePlan: '',
-    riskPlan: '',
-    procurementPlan: '',
-    attachments: [],
-    annexures: []
+    schedule: '', scheduleAttachments: [], scheduleAnnexures: [],
+    monitoring: '', monitoringAttachments: [], monitoringAnnexures: [],
+    implementationPlan: '', implementationPlanAttachments: [], implementationPlanAnnexures: [],
+    mePlan: '', mePlanAttachments: [], mePlanAnnexures: [],
+    riskPlan: '', riskPlanAttachments: [], riskPlanAnnexures: [],
+    procurementPlan: '', procurementPlanAttachments: [], procurementPlanAnnexures: []
   },
   section13: { management: '' },
   section14: { filter: 'New Scheme', gsNo: '', description: '', attachments: [], annexures: [] },

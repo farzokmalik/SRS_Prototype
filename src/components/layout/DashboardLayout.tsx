@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { useForm } from '../../context/FormContext';
-import { FORM_SECTIONS } from '../../constants';
+import { useFormConfig } from '../../context/FormConfigContext';
 import { 
   Bell, 
   Search, 
@@ -12,10 +13,11 @@ import {
 
 export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { currentSection, setSection } = useForm();
-  const activeSection = FORM_SECTIONS.find(s => s.id === currentSection);
+  const { breadcrumb, sections, totalSections } = useFormConfig();
+  const activeSection = sections.find(s => s.id === currentSection);
 
   const nextSection = () => {
-    if (currentSection < 18) setSection(currentSection + 1);
+    if (currentSection < totalSections) setSection(currentSection + 1);
   };
 
   const prevSection = () => {
@@ -46,9 +48,11 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           borderBottom: '1px solid hsl(var(--border))'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'hsl(var(--text-muted))', fontSize: '0.875rem' }}>
-            <span>Dashboard</span>
+            <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Dashboard</Link>
             <ChevronRight size={14} />
-            <span style={{ color: 'hsl(var(--primary))', fontWeight: 600 }}>PC-1 Application</span>
+            <span>Proformas</span>
+            <ChevronRight size={14} />
+            <span style={{ color: 'hsl(var(--primary))', fontWeight: 600 }}>{breadcrumb}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
@@ -71,7 +75,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             <div style={{ height: '32px', width: '1px', background: 'hsl(var(--border))' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
               <div style={{ width: '36px', height: '36px', borderRadius: 'var(--radius-full)', background: 'hsl(var(--primary))', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 600 }}>
-                JD
+                DK
               </div>
               <div style={{ textAlign: 'left' }}>
                 <p style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--primary))' }}>Dr.Khalid</p>
@@ -83,14 +87,22 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
 
         {/* Content Area */}
         <div style={{ padding: '2.5rem', maxWidth: '1200px', margin: '0 auto', width: '100%', flex: 1 }}>
-          <div style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <div>
+          <div
+            style={{
+              marginBottom: '2.5rem',
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1fr) auto',
+              alignItems: 'center',
+              gap: '1rem',
+            }}
+          >
+            <div style={{ minWidth: 0 }}>
               <p style={{ color: 'hsl(var(--accent))', fontWeight: 600, fontSize: '0.8125rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
                 Section {activeSection?.id.toString().padStart(2, '0')}
               </p>
-              <h1 style={{ fontSize: '2rem', fontWeight: 650 }}>{activeSection?.title}</h1>
+              <h1 style={{ fontSize: '2rem', fontWeight: 650, lineHeight: 1.2, margin: 0, overflowWrap: 'anywhere' }}>{activeSection?.title}</h1>
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', whiteSpace: 'nowrap' }}>
               <button className="btn btn-secondary"><Save size={18} /> Save Draft</button>
               <button className="btn btn-primary"><Send size={18} /> Submit Application</button>
             </div>
@@ -124,7 +136,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           </div>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button className="btn btn-secondary" onClick={prevSection} disabled={currentSection === 1}>Previous</button>
-            <button className="btn btn-primary" onClick={nextSection} disabled={currentSection === 18}>Next Section <ChevronRight size={18} /></button>
+            <button className="btn btn-primary" onClick={nextSection} disabled={currentSection === totalSections}>Next Section <ChevronRight size={18} /></button>
           </div>
         </footer>
       </main>

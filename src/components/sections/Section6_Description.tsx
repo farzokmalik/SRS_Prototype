@@ -13,36 +13,52 @@ export const Section6_Description: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <div className="card">
+      {/* Objective Section */}
+      <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <RTEditor 
           label="Project Objective" 
           value={data.objective} 
           onChange={(val) => handleUpdate({ objective: val })} 
         />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', paddingTop: '0.5rem' }}>
+          <FileUpload 
+            label="Objective Attachments"
+            files={data.objectiveAttachments || []}
+            onUpload={(files) => handleUpdate({ objectiveAttachments: files })}
+            onRemove={(idx) => handleUpdate({ objectiveAttachments: (data.objectiveAttachments || []).filter((_: any, i: number) => i !== idx) })}
+            description="Upload objective documents"
+          />
+          <FileUpload 
+            label="Objective Annexures"
+            files={data.objectiveAnnexures || []}
+            onUpload={(files) => handleUpdate({ objectiveAnnexures: files })}
+            onRemove={(idx) => handleUpdate({ objectiveAnnexures: (data.objectiveAnnexures || []).filter((_: any, i: number) => i !== idx) })}
+            description="Add objective annexures"
+          />
+        </div>
+      </div>
+
+      {/* Sectoral Section */}
+      <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <RTEditor 
           label="Sectoral Specific Information" 
           value={data.sectoralInfo} 
           onChange={(val) => handleUpdate({ sectoralInfo: val })} 
         />
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-        <div className="card">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', paddingTop: '0.5rem' }}>
           <FileUpload 
-            label="Attachments"
-            files={data.attachments || []}
-            onUpload={(files) => handleUpdate({ attachments: files })}
-            onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}
-            description="Upload description documents"
+            label="Sectoral Attachments"
+            files={data.sectoralInfoAttachments || []}
+            onUpload={(files) => handleUpdate({ sectoralInfoAttachments: files })}
+            onRemove={(idx) => handleUpdate({ sectoralInfoAttachments: (data.sectoralInfoAttachments || []).filter((_: any, i: number) => i !== idx) })}
+            description="Upload sectoral documents"
           />
-        </div>
-        <div className="card">
           <FileUpload 
-            label="Annexures"
-            files={data.annexures || []}
-            onUpload={(files) => handleUpdate({ annexures: files })}
-            onRemove={(idx) => handleUpdate({ annexures: data.annexures.filter((_: any, i: number) => i !== idx) })}
-            description="Add annexures"
+            label="Sectoral Annexures"
+            files={data.sectoralInfoAnnexures || []}
+            onUpload={(files) => handleUpdate({ sectoralInfoAnnexures: files })}
+            onRemove={(idx) => handleUpdate({ sectoralInfoAnnexures: (data.sectoralInfoAnnexures || []).filter((_: any, i: number) => i !== idx) })}
+            description="Add sectoral annexures"
           />
         </div>
       </div>
