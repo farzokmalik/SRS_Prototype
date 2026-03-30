@@ -21,7 +21,8 @@ export const PC1_SECTIONS: FormSection[] = [
   { id: 15, title: 'Certificate' },
   { id: 16, title: 'Initial Scrutiny Checklist' },
   { id: 17, title: 'Relation With Other Projects' },
-  { id: 18, title: 'Project Appraisal and Documentation' }
+  { id: 18, title: 'Project Appraisal and Documentation' },
+  { id: 19, title: 'Focus on Marginalisation' }
 ];
 
 export const PC2_SECTIONS: FormSection[] = [
