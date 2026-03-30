@@ -19,6 +19,7 @@ export interface FormState {
   section16: any;
   section17: any;
   section18: any;
+  section19: any;
 }
 
 const initialFormState: FormState = {
@@ -142,7 +143,22 @@ const initialFormState: FormState = {
   },
   section16: { checklist: [] },
   section17: { filter: 'New Scheme', gsNo: '', attachments: [], annexures: [] },
-  section18: { category: '', title: '', attachments: [] }
+  section18: { category: '', title: '', attachments: [] },
+  section19: {
+    responses: [
+      { id: '1', category: 'Description & Objectives', criteria: 'Do the description / Objectives of the PC-I specify link / alignment with provincial strategies and sectoral policies?', yesNo: '', action: '', comments: '' },
+      { id: '2', category: 'Use of Gender Disaggregated Data', criteria: 'Was gender disaggregated data used to determine rationale / need of the project for select beneficiaries?', yesNo: '', action: '', comments: '' },
+      { id: '3', category: 'Social Impact', criteria: 'Do project objectives/justification include focus on marginalised groups (women, PWDs, minorities, transgender, poor etc.)?', yesNo: '', action: '', comments: '' },
+      { id: '4', category: 'Social Impact', criteria: 'Have marginalised groups (Women, PWDs, Minorities, Transgender Persons, Poor etc.) been included in project objectives / justification and / or as beneficiaries of the project?', yesNo: '', action: '', comments: '' },
+      { id: '5', category: 'Social Impact', criteria: 'Does the PC-I include specific provisions for capacity building / training of marginalised group (if applicable)?', yesNo: '', action: '', comments: '' },
+      { id: '6', category: 'Results Based Monitoring', criteria: 'Does the PC-I include a Results Based Monitoring Framework (RBMF)/Logical Framework?', yesNo: '', action: '', comments: '' },
+      { id: '7', category: 'Results Based Monitoring', criteria: 'Were SDG indicators used for determining targets included in the PC-I?', yesNo: '', action: '', comments: '' },
+      { id: '8', category: 'Inclusion/Participation', criteria: 'Did the Stakeholder consultation(s) held during ADP Formulation and / or PC-I development include experts and representatives of marginalised groups and CSOs?', yesNo: '', action: '', comments: '' },
+      { id: '9', category: 'Monitoring & Evaluation', criteria: 'Does the project provide a role to communities in project monitoring and/or implementation (if relevant)?', yesNo: '', action: '', comments: '' },
+      { id: '10', category: 'Monitoring & Evaluation', criteria: 'Does the project include formation of a Steering Committee and/or Project Implementation Committees?', yesNo: '', action: '', comments: '' },
+      { id: '11', category: 'Monitoring & Evaluation', criteria: 'Is there a provision to ensure representation of women in these committees?', yesNo: '', action: '', comments: '' }
+    ]
+  }
 };
 
 interface FormContextType {

@@ -26,6 +26,7 @@ import { Section15_Certificate } from './components/sections/Section15_Certifica
 import { Section16_Checklist } from './components/sections/Section16_Checklist';
 import { Section17_Relation } from './components/sections/Section17_Relation';
 import { Section18_Appraisal } from './components/sections/Section18_Appraisal';
+import { Section19_FocusOnMarginalisation } from './components/sections/Section19_FocusOnMarginalisation';
 
 import { PC2Section1_Overview } from './components/pc2/PC2Section1_Overview';
 import { PC2Section2_Cost } from './components/pc2/PC2Section2_Cost';
@@ -62,6 +63,7 @@ const PC1FormContent = () => {
     case 16: return <Section16_Checklist />;
     case 17: return <Section17_Relation />;
     case 18: return <Section18_Appraisal />;
+    case 19: return <Section19_FocusOnMarginalisation />;
     default: return <div className="card">Section {currentSection} is under development.</div>;
   }
 };
