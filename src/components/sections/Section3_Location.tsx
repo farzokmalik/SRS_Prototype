@@ -3,19 +3,37 @@ import { useForm } from '../../context/FormContext';
 import { InputField, SelectField, FileUpload } from '../ui/FormElements';
 import { MapPin } from 'lucide-react';
 
-const DIVISIONS = ['Lahore', 'Gujranwala', 'Faisalabad', 'Multan', 'Rawalpindi', 'Sargodha', 'DG Khan', 'Bahawalpur'];
+const DIVISIONS = ['Bahawalpur', 'Dera Ghazi Khan', 'Faisalabad', 'Gujranwala', 'Gujrat', 'Lahore', 'Multan', 'Rawalpindi', 'Sahiwal', 'Sargodha'];
 const DISTRICTS: Record<string, string[]> = {
-  'Lahore':      ['Lahore'],
-  'Gujranwala':  ['Gujranwala', 'Sialkot', 'Narowal', 'Gujrat', 'Mandi Bahauddin', 'Hafizabad'],
-  'Faisalabad':  ['Faisalabad', 'Jhang', 'Chiniot', 'Toba Tek Singh'],
-  'Multan':      ['Multan', 'Khanewal', 'Lodhran', 'Vehari'],
-  'Rawalpindi':  ['Rawalpindi', 'Attock', 'Chakwal', 'Jhelum'],
-  'Sargodha':    ['Sargodha', 'Khushab', 'Mianwali', 'Bhakkar'],
-  'DG Khan':     ['DG Khan', 'Layyah', 'Muzaffargarh', 'Rajanpur'],
-  'Bahawalpur':  ['Bahawalpur', 'Bahawalnagar', 'Rahim Yar Khan'],
+  'Bahawalpur':       ['Bahawalpur', 'Bahawalnagar', 'Rahim Yar Khan'],
+  'Dera Ghazi Khan':  ['Dera Ghazi Khan', 'Layyah', 'Muzaffargarh', 'Rajanpur', 'Kot Addu', 'Taunsa Sharif'],
+  'Faisalabad':       ['Faisalabad', 'Chiniot', 'Toba Tek Singh', 'Jhang'],
+  'Gujranwala':       ['Gujranwala', 'Hafizabad', 'Mandi Bahauddin', 'Narowal', 'Sialkot'],
+  'Gujrat':           ['Gujrat', 'Mandi Bahauddin', 'Hafizabad', 'Wazirabad'],
+  'Lahore':           ['Lahore', 'Kasur', 'Nankana Sahib', 'Sheikhupura'],
+  'Multan':           ['Multan', 'Lodhran', 'Khanewal', 'Vehari'],
+  'Rawalpindi':       ['Rawalpindi', 'Jhelum', 'Chakwal', 'Attock', 'Murree', 'Talagang'],
+  'Sahiwal':          ['Sahiwal', 'Pakpattan', 'Okara'],
+  'Sargodha':         ['Sargodha', 'Khushab', 'Mianwali', 'Bhakkar'],
 };
 const NA_SEATS = Array.from({ length: 20 }, (_, i) => `NA-${120 + i}`);
 const PP_SEATS = Array.from({ length: 20 }, (_, i) => `PP-${140 + i}`);
+
+const SUB_SECTORS = [
+  'School Education', 'Higher Education', 'Special Education', 'Literacy & Non-Formal Education',
+  'Sports & Youth Affairs', 'Specialized Health Care & Medical Education', 'Health & Population',
+  'Water Supply & Sanitation', 'Social Welfare', 'Women Development', 'LG&CD',
+  'Roads', 'Irrigation', 'Energy', 'Public Buildings', 'Urban Development',
+  'Agriculture', 'Cooperatives', 'Forestry', 'Wildlife', 'Fisheries',
+  'Price Control & Commodities Management', 'Livestock & Dairy Development',
+  'Industries, Commerce & Investment', 'Skill Development & Entrepreneurship',
+  'Mines & Minerals', 'Tourism', 'Governance & Information Technology',
+  'Labour & HR Development', 'Transport', 'Emergency Service (1122)',
+  'Environment & Climate Change', 'Information & Culture', 'Archaeology',
+  'Auqaf & Religious Affairs', 'Human Rights & Minority Affairs',
+  'Planning & Development', 'Special Programme / Initiatives'
+];
+
 
 export const Section3_Location: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -83,7 +101,7 @@ export const Section3_Location: React.FC = () => {
              label="Sponsoring Agency" 
              value={data.sponsoringAgency} 
              onChange={(e) => handleUpdate({ sponsoringAgency: e.target.value })}
-             options={[{ value: 'P&D', label: 'P&D Board' }, { value: 'Finance', label: 'Finance Department' }]}
+             options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
            />
          </div>
       </div>
@@ -95,12 +113,7 @@ export const Section3_Location: React.FC = () => {
              label="Executing Agency" 
              value={data.executingAgencies?.[0] || ''}
              onChange={(e) => handleUpdate({ executingAgencies: [e.target.value] })}
-             options={[
-               { value: 'C&W Department', label: 'C&W Department' },
-               { value: 'HUD & ITD', label: 'HUD & ITD' },
-               { value: 'Local Government', label: 'Local Government' },
-               { value: 'Irrigation', label: 'Irrigation' }
-             ]}
+             options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
            />
            <SelectField 
              label="Federal Ministry" 

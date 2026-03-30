@@ -26,8 +26,19 @@ export const Section14_AdditionalProjects: React.FC = () => {
         
         {data.filter === 'Existing Scheme' && (
           <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-             <InputField label="Search GS No" placeholder="Enter GS No" value={data.gsNo} onChange={(e) => handleUpdate({ gsNo: e.target.value })} />
-             <button className="btn btn-primary" style={{ height: '42px', marginTop: '28px' }}><Search size={18} /></button>
+             <div style={{ flex: 1, maxWidth: '300px' }}>
+               <InputField label="Search GS No" placeholder="Enter GS No" value={data.gsNo} onChange={(e) => handleUpdate({ gsNo: e.target.value })} />
+             </div>
+             <button className="btn btn-primary" style={{ height: '42px', marginTop: '28px' }}><Search size={18} /> Search</button>
+          </div>
+        )}
+
+        {data.filter === 'New Scheme' && (
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
+             <div style={{ flex: 1, maxWidth: '300px' }}>
+               <InputField label="Search Scheme" placeholder="Enter Scheme Name or Keyword" value={data.newSchemeSearch || ''} onChange={(e) => handleUpdate({ newSchemeSearch: e.target.value })} />
+             </div>
+             <button className="btn btn-primary" style={{ height: '42px', marginTop: '28px' }}><Search size={18} /> Search</button>
           </div>
         )}
       </div>

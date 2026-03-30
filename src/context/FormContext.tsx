@@ -123,7 +123,12 @@ const initialFormState: FormState = {
     riskPlan: '', riskPlanAttachments: [], riskPlanAnnexures: [],
     procurementPlan: '', procurementPlanAttachments: [], procurementPlanAnnexures: []
   },
-  section13: { management: '' },
+  section13: { 
+    management: '',
+    adminManpower: [],
+    execManpower: [],
+    postManpower: []
+  },
   section14: { filter: 'New Scheme', gsNo: '', description: '', attachments: [], annexures: [] },
   section15: {
     name: '',

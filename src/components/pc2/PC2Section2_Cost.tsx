@@ -116,7 +116,10 @@ export const PC2Section2_Cost: React.FC = () => {
           <div style={{ marginTop: '1.25rem', padding: '1.25rem', background: 'hsl(var(--bg-main))', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--border))', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="input-group">
-                <label className="label">Foreign Cost (PKR)</label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <label className="label">Foreign Cost (PKR)</label>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                </div>
                 <input
                   className="input"
                   value={computeForeignCost()}
@@ -125,7 +128,7 @@ export const PC2Section2_Cost: React.FC = () => {
                   style={{ background: 'hsl(var(--bg-surface))', cursor: 'default' }}
                 />
                 <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.4rem' }}>
-                  Calculated from foreign cost fields (Million)
+                  Calculated from foreign cost fields
                 </p>
               </div>
             </div>
@@ -133,24 +136,36 @@ export const PC2Section2_Cost: React.FC = () => {
             {data.financialComponents && (
               <div style={{ display: 'grid', gridTemplateColumns: showCapital && showRevenue ? '1fr 1fr' : '1fr', gap: '1rem' }}>
                 {showCapital && (
-                  <InputField
-                    label="Foreign Capital Cost (PKR)"
-                    placeholder="Enter amount in millions"
-                    type="number"
-                    required
-                    value={data.foreignCapitalCost || ''}
-                    onChange={(e) => handleUpdate({ foreignCapitalCost: e.target.value })}
-                  />
+                  <div className="input-group">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                      <label className="label">Foreign Capital Cost (PKR)</label>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                    </div>
+                    <input
+                      className="input"
+                      placeholder="Enter amount"
+                      type="number"
+                      required
+                      value={data.foreignCapitalCost || ''}
+                      onChange={(e) => handleUpdate({ foreignCapitalCost: e.target.value })}
+                    />
+                  </div>
                 )}
                 {showRevenue && (
-                  <InputField
-                    label="Foreign Revenue Cost (PKR)"
-                    placeholder="Enter amount in millions"
-                    type="number"
-                    required
-                    value={data.foreignRevenueCost || ''}
-                    onChange={(e) => handleUpdate({ foreignRevenueCost: e.target.value })}
-                  />
+                  <div className="input-group">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                      <label className="label">Foreign Revenue Cost (PKR)</label>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                    </div>
+                    <input
+                      className="input"
+                      placeholder="Enter amount"
+                      type="number"
+                      required
+                      value={data.foreignRevenueCost || ''}
+                      onChange={(e) => handleUpdate({ foreignRevenueCost: e.target.value })}
+                    />
+                  </div>
                 )}
               </div>
             )}
@@ -207,7 +222,10 @@ export const PC2Section2_Cost: React.FC = () => {
             ]}
           />
           <div className="input-group">
-            <label className="label">Local Cost (PKR)</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+              <label className="label">Local Cost (PKR)</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
             <input
               className="input"
               value={computeLocalCost()}
@@ -224,24 +242,36 @@ export const PC2Section2_Cost: React.FC = () => {
         {data.financialComponents && (
           <div style={costSubgridStyle}>
             {showCapital && (
-              <InputField
-                label="Local Capital Cost (PKR)"
-                placeholder="Enter amount in millions"
-                type="number"
-                required
-                value={data.localCapitalCost || ''}
-                onChange={(e) => handleUpdate({ localCapitalCost: e.target.value })}
-              />
+              <div className="input-group">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <label className="label">Local Capital Cost (PKR)</label>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                </div>
+                <input
+                  className="input"
+                  placeholder="Enter amount"
+                  type="number"
+                  required
+                  value={data.localCapitalCost || ''}
+                  onChange={(e) => handleUpdate({ localCapitalCost: e.target.value })}
+                />
+              </div>
             )}
             {showRevenue && (
-              <InputField
-                label="Local Revenue Cost (PKR)"
-                placeholder="Enter amount in millions"
-                type="number"
-                required
-                value={data.localRevenueCost || ''}
-                onChange={(e) => handleUpdate({ localRevenueCost: e.target.value })}
-              />
+              <div className="input-group">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <label className="label">Local Revenue Cost (PKR)</label>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                </div>
+                <input
+                  className="input"
+                  placeholder="Enter amount"
+                  type="number"
+                  required
+                  value={data.localRevenueCost || ''}
+                  onChange={(e) => handleUpdate({ localRevenueCost: e.target.value })}
+                />
+              </div>
             )}
           </div>
         )}
@@ -262,7 +292,10 @@ export const PC2Section2_Cost: React.FC = () => {
             ]}
           />
           <div className="input-group">
-            <label className="label">Total Cost (PKR)</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+              <label className="label">Total Cost (PKR)</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
             <input
               className="input"
               value={computeTotalCost()}
@@ -271,7 +304,7 @@ export const PC2Section2_Cost: React.FC = () => {
               style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }}
             />
             <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.4rem' }}>
-              Auto-calculated from all cost fields & beneficiaries (Million)
+              Auto-calculated from all cost fields & beneficiaries
             </p>
           </div>
         </div>
@@ -295,7 +328,18 @@ export const PC2Section2_Cost: React.FC = () => {
               options={[{ value: 'Edu', label: 'School Education' }, { value: 'Health', label: 'Health' }]}
             />
             <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
-            <InputField label="Amount (Million)" type="number" value={share.amount} onChange={(e) => updateBeneficiary(index, { amount: e.target.value })} />
+            <div className="input-group">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                <label className="label">Amount</label>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+              </div>
+              <input
+                className="input"
+                type="number"
+                value={share.amount}
+                onChange={(e) => updateBeneficiary(index, { amount: e.target.value })}
+              />
+            </div>
             <button className="btn btn-secondary" onClick={() => removeBeneficiary(index)} style={{ padding: '0.6rem', color: 'var(--error)' }}>
               <Trash2 size={18} />
             </button>

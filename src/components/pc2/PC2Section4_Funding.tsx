@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from '../../context/FormContext';
-import { InputField, SelectField, RadioGroup } from '../ui/FormElements';
+import { SelectField, RadioGroup } from '../ui/FormElements';
 import { RTEditor } from '../ui/RTEditor';
 import { Search } from 'lucide-react';
 
@@ -152,7 +152,10 @@ export const PC2Section4_Funding: React.FC = () => {
                 <input className="input" value={data.gsNoSearch || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
               </div>
               <div className="input-group">
-                <label className="label">Total Allocation</label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <label className="label">Total Allocation</label>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                </div>
                 <input className="input" value={data.totalAllocation || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
                 {data.totalAllocation && (
                   <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.3rem' }}>
@@ -162,7 +165,10 @@ export const PC2Section4_Funding: React.FC = () => {
               </div>
               {showFundsDiverted && (
                 <div className="input-group">
-                  <label className="label">Funds Diverted</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                    <label className="label">Funds Diverted</label>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                  </div>
                   <input className="input" value={data.fundsDiverted || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
                   {data.fundsDiverted && (
                     <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.3rem' }}>
@@ -173,7 +179,10 @@ export const PC2Section4_Funding: React.FC = () => {
               )}
               {showBalanceFunds && (
                 <div className="input-group">
-                  <label className="label">Balance Funds</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                    <label className="label">Balance Funds</label>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                  </div>
                   <input className="input" value={data.balanceFunds || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
                   {data.balanceFunds && (
                     <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.3rem' }}>
@@ -205,14 +214,20 @@ export const PC2Section4_Funding: React.FC = () => {
       {/* Proposed Allocation — for Scheme Proposed for Next ADP */}
       {showProposedAllocation && (
         <div className="card">
-          <InputField
-            label="Proposed Allocation"
-            placeholder="Enter amount in millions"
-            type="number"
-            required
-            value={data.proposedAllocation || ''}
-            onChange={(e) => handleUpdate({ proposedAllocation: e.target.value })}
-          />
+          <div className="input-group">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+              <label className="label">Proposed Allocation</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
+            <input
+              className="input"
+              placeholder="Enter amount"
+              type="number"
+              required
+              value={data.proposedAllocation || ''}
+              onChange={(e) => handleUpdate({ proposedAllocation: e.target.value })}
+            />
+          </div>
         </div>
       )}
 

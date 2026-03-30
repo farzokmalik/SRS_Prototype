@@ -136,7 +136,11 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           </div>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button className="btn btn-secondary" onClick={prevSection} disabled={currentSection === 1}>Previous</button>
-            <button className="btn btn-primary" onClick={nextSection} disabled={currentSection === totalSections}>Next Section <ChevronRight size={18} /></button>
+            {currentSection < totalSections ? (
+              <button className="btn btn-primary" onClick={nextSection}>Next Section <ChevronRight size={18} /></button>
+            ) : (
+              <button className="btn btn-primary" onClick={() => alert("Form saved successfully!")}>Save <Save size={18} /></button>
+            )}
           </div>
         </footer>
       </main>
