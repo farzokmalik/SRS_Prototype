@@ -16,7 +16,7 @@ export const Section6_Description: React.FC = () => {
       {/* Objective Section */}
       <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <RTEditor 
-          label="Project Objective" 
+          label="Project Justification" 
           value={data.objective} 
           onChange={(val) => handleUpdate({ objective: val })} 
         />

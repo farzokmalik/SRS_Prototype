@@ -489,13 +489,19 @@ export const PC2Section7_CostEstimation: React.FC = () => {
                         <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                           Year
                         </span>
-                        <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                          Local Cost (Million)
-                        </span>
-                        {isForeign && (
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            Foreign Cost (Million)
+                            Local Cost
                           </span>
+                          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--accent))' }}>Millions</span>
+                        </div>
+                        {isForeign && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                Foreign Cost
+                              </span>
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--accent))' }}>Millions</span>
+                            </div>
                         )}
                         <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                           Actions

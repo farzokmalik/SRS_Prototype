@@ -3,12 +3,56 @@ import { useForm } from '../../context/FormContext';
 import { InputField, SelectField, MultiCheckGroup, RadioGroup } from '../ui/FormElements';
 
 const SECTOR_OPTIONS = {
-  'Social Sectors': ['School Education', 'Higher Education', 'Health', 'Sports', 'Tourism'],
-  'Infrastructure Development': ['Roads', 'Bridges', 'Water Supply', 'Sanitation'],
-  'Production Sectors': ['Agriculture', 'Livestock', 'Fisheries', 'Industries'],
-  'Services Sectors': ['Transport', 'Communication', 'Governance'],
-  'Others': ['Miscellaneous'],
-  'Special Initiatives': ['CM Package', 'PM Package']
+  'Social Sectors': [
+    'School Education',
+    'Higher Education',
+    'Special Education',
+    'Literacy & Non-Formal Education',
+    'Sports & Youth Affairs',
+    'Specialized Health Care & Medical Education',
+    'Health & Population',
+    'Water Supply & Sanitation',
+    'Social Welfare',
+    'Women Development',
+    'LG&CD'
+  ],
+  'Infrastructure Development': [
+    'Roads',
+    'Irrigation',
+    'Energy',
+    'Public Buildings',
+    'Urban Development'
+  ],
+  'Production Sectors': [
+    'Agriculture',
+    'Cooperatives',
+    'Forestry',
+    'Wildlife',
+    'Fisheries',
+    'Price Control & Commodities Management',
+    'Livestock & Dairy Development',
+    'Industries, Commerce & Investment',
+    'Skill Development & Entrepreneurship',
+    'Mines & Minerals',
+    'Tourism'
+  ],
+  'Services Sectors': [
+    'Governance & Information Technology',
+    'Labour & HR Development',
+    'Transport',
+    'Emergency Service (1122)'
+  ],
+  'Others': [
+    'Environment & Climate Change',
+    'Information & Culture',
+    'Archaeology',
+    'Auqaf & Religious Affairs',
+    'Human Rights & Minority Affairs',
+    'Planning & Development'
+  ],
+  'Special Initiatives': [
+    'Special Programme / Initiatives'
+  ]
 };
 
 export const Section1_Overview: React.FC = () => {

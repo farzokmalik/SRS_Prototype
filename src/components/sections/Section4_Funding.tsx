@@ -37,8 +37,14 @@ export const Section4_Funding: React.FC = () => {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <InputField label="SMDP Scheme No" value={data.smdpNo} readOnly />
-              <InputField label="GS Number" value={data.gsNoResult} readOnly />
-              <InputField label="Total Allocation" value={data.totalAllocation} readOnly />
+              <InputField label="GS No." value={data.gsNoResult} readOnly />
+              <div className="input-group">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <label className="label">Total Allocation</label>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+                </div>
+                <input className="input" value={data.totalAllocation} readOnly />
+              </div>
             </div>
           </div>
         )}
@@ -58,7 +64,13 @@ export const Section4_Funding: React.FC = () => {
 
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', alignItems: 'flex-start' }}>
-           <InputField label="Proposed Allocation" placeholder="Millions" value={data.proposedAllocation} onChange={(e) => handleUpdate({ proposedAllocation: e.target.value })} />
+          <div className="input-group">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label className="label">Proposed Allocation</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
+            <input className="input" placeholder="Millions" value={data.proposedAllocation} onChange={(e) => handleUpdate({ proposedAllocation: e.target.value })} />
+          </div>
            <RadioGroup 
              label="Purpose of Funding" 
              name="purpose"

@@ -3,6 +3,21 @@ import { useForm } from '../../context/FormContext';
 import { InputField, SelectField, RadioGroup, FileUpload } from '../ui/FormElements';
 import { Plus, Trash2 } from 'lucide-react';
 
+const SUB_SECTORS = [
+  'School Education', 'Higher Education', 'Special Education', 'Literacy & Non-Formal Education',
+  'Sports & Youth Affairs', 'Specialized Health Care & Medical Education', 'Health & Population',
+  'Water Supply & Sanitation', 'Social Welfare', 'Women Development', 'LG&CD',
+  'Roads', 'Irrigation', 'Energy', 'Public Buildings', 'Urban Development',
+  'Agriculture', 'Cooperatives', 'Forestry', 'Wildlife', 'Fisheries',
+  'Price Control & Commodities Management', 'Livestock & Dairy Development',
+  'Industries, Commerce & Investment', 'Skill Development & Entrepreneurship',
+  'Mines & Minerals', 'Tourism', 'Governance & Information Technology',
+  'Labour & HR Development', 'Transport', 'Emergency Service (1122)',
+  'Environment & Climate Change', 'Information & Culture', 'Archaeology',
+  'Auqaf & Religious Affairs', 'Human Rights & Minority Affairs',
+  'Planning & Development', 'Special Programme / Initiatives'
+];
+
 export const Section2_Cost: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.section2;
@@ -40,9 +55,27 @@ export const Section2_Cost: React.FC = () => {
         {data.foreignFunding === 'Yes' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem', padding: '1rem', background: '#f8f9fa', borderRadius: 'var(--radius-md)' }}>
             <InputField label="Foreign Exchange Component (FEC)" value={data.fec} onChange={(e) => handleUpdate({ fec: e.target.value })} />
-            <InputField label="Foreign Cost" value={data.foreignCost} onChange={(e) => handleUpdate({ foreignCost: e.target.value })} />
-            <InputField label="Foreign Capital Cost" value={data.foreignCapitalCost} onChange={(e) => handleUpdate({ foreignCapitalCost: e.target.value })} />
-            <InputField label="Foreign Revenue Cost" value={data.foreignRevenueCost} onChange={(e) => handleUpdate({ foreignRevenueCost: e.target.value })} />
+            <div className="input-group">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                <label className="label">Foreign Cost</label>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+              </div>
+              <input className="input" value={data.foreignCost} onChange={(e) => handleUpdate({ foreignCost: e.target.value })} />
+            </div>
+            <div className="input-group">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                <label className="label">Foreign Capital Cost</label>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+              </div>
+              <input className="input" value={data.foreignCapitalCost} onChange={(e) => handleUpdate({ foreignCapitalCost: e.target.value })} />
+            </div>
+            <div className="input-group">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                <label className="label">Foreign Revenue Cost</label>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+              </div>
+              <input className="input" value={data.foreignRevenueCost} onChange={(e) => handleUpdate({ foreignRevenueCost: e.target.value })} />
+            </div>
             <InputField label="Source of Currency" value={data.source} onChange={(e) => handleUpdate({ source: e.target.value })} />
             <InputField label="Exchange Rate" value={data.exchangeRate} onChange={(e) => handleUpdate({ exchangeRate: e.target.value })} />
           </div>
@@ -58,7 +91,13 @@ export const Section2_Cost: React.FC = () => {
             onChange={(e) => handleUpdate({ financialComponents: e.target.value })}
             options={[{ value: 'Capital', label: 'Capital' }, { value: 'Revenue', label: 'Revenue' }, { value: 'Both', label: 'Both' }]}
           />
-          <InputField label="Local Cost (PKR)" placeholder="Millions" value={data.localCost} onChange={(e) => handleUpdate({ localCost: e.target.value })} />
+          <div className="input-group">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label className="label">Local Cost (PKR)</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
+            <input className="input" placeholder="Millions" value={data.localCost} onChange={(e) => handleUpdate({ localCost: e.target.value })} />
+          </div>
           <SelectField 
             label="Approval Forum" 
             required 
@@ -66,7 +105,13 @@ export const Section2_Cost: React.FC = () => {
             onChange={(e) => handleUpdate({ approvalForum: e.target.value })}
             options={[{ value: 'DDSC', label: 'DDSC' }, { value: 'CDWP', label: 'CDWP' }, { value: 'PDWP', label: 'PDWP' }]}
           />
-          <InputField label="Total Cost (PKR)" placeholder="Millions" value={data.totalCost} onChange={(e) => handleUpdate({ totalCost: e.target.value })} />
+          <div className="input-group">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label className="label">Total Cost (PKR)</label>
+              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
+            </div>
+            <input className="input" placeholder="Millions" value={data.totalCost} onChange={(e) => handleUpdate({ totalCost: e.target.value })} />
+          </div>
         </div>
       </div>
 
@@ -84,7 +129,7 @@ export const Section2_Cost: React.FC = () => {
               label="Admin Department" 
               value={share.adminDept}
               onChange={(e) => updateBeneficiary(index, { adminDept: e.target.value })}
-              options={[{ value: 'Edu', label: 'School Education' }, { value: 'Health', label: 'Health' }]}
+              options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
             />
             <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
             <InputField label="Amount (Million)" type="number" value={share.amount} onChange={(e) => updateBeneficiary(index, { amount: e.target.value })} />
