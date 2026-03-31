@@ -41,6 +41,27 @@ import { PC2Section11_StudiesUndertaken } from './components/pc2/PC2Section11_St
 import { PC2Section12_ManagementManpower } from './components/pc2/PC2Section12_ManagementManpower';
 import { PC2Section14_InitialScrutinyChecklist } from './components/pc2/PC2Section14_InitialScrutinyChecklist';
 
+// PC-I Programs Sections
+import { Section1_Overview as PC1P_Section1 } from './components/sections/pc1_programs/Section1_Overview';
+import { Section2_Cost as PC1P_Section2 } from './components/sections/pc1_programs/Section2_Cost';
+import { Section3_Location as PC1P_Section3 } from './components/sections/pc1_programs/Section3_Location';
+import { Section4_Funding as PC1P_Section4 } from './components/sections/pc1_programs/Section4_Funding';
+import { Section5_Objectives as PC1P_Section5 } from './components/sections/pc1_programs/Section5_Objectives';
+import { Section6_Description as PC1P_Section6 } from './components/sections/pc1_programs/Section6_Description';
+import { Section7_CostEstimation as PC1P_Section7 } from './components/sections/pc1_programs/Section7_CostEstimation';
+import { Section8_OperatingCost as PC1P_Section8 } from './components/sections/pc1_programs/Section8_OperatingCost';
+import { Section9_DemandSupply as PC1P_Section9 } from './components/sections/pc1_programs/Section9_DemandSupply';
+import { Section10_FinancialPlan as PC1P_Section10 } from './components/sections/pc1_programs/Section10_FinancialPlan';
+import { Section11_Benefits as PC1P_Section11 } from './components/sections/pc1_programs/Section11_Benefits';
+import { Section12_Schedule as PC1P_Section12 } from './components/sections/pc1_programs/Section12_Schedule';
+import { Section13_Management as PC1P_Section13 } from './components/sections/pc1_programs/Section13_Management';
+import { Section14_AdditionalPrograms as PC1P_Section14 } from './components/sections/pc1_programs/Section14_AdditionalProjects';
+import { Section15_Certificate as PC1P_Section15 } from './components/sections/pc1_programs/Section15_Certificate';
+import { Section16_Checklist as PC1P_Section16 } from './components/sections/pc1_programs/Section16_Checklist';
+import { Section17_Relation as PC1P_Section17 } from './components/sections/pc1_programs/Section17_Relation';
+import { Section18_Appraisal as PC1P_Section18 } from './components/sections/pc1_programs/Section18_Appraisal';
+import { Section19_FocusOnMarginalisation as PC1P_Section19 } from './components/sections/pc1_programs/Section19_FocusOnMarginalisation';
+
 const PC1FormContent = () => {
   const { currentSection } = useForm();
 
@@ -95,6 +116,33 @@ const PC2FormContent = () => {
   }
 };
 
+const PC1ProgramFormContent = () => {
+  const { currentSection } = useForm();
+
+  switch (currentSection) {
+    case 1:  return <PC1P_Section1 />;
+    case 2:  return <PC1P_Section2 />;
+    case 3:  return <PC1P_Section3 />;
+    case 4:  return <PC1P_Section4 />;
+    case 5:  return <PC1P_Section5 />;
+    case 6:  return <PC1P_Section6 />;
+    case 7:  return <PC1P_Section7 />;
+    case 8:  return <PC1P_Section8 />;
+    case 9:  return <PC1P_Section9 />;
+    case 10: return <PC1P_Section10 />;
+    case 11: return <PC1P_Section11 />;
+    case 12: return <PC1P_Section12 />;
+    case 13: return <PC1P_Section13 />;
+    case 14: return <PC1P_Section14 />;
+    case 15: return <PC1P_Section15 />;
+    case 16: return <PC1P_Section16 />;
+    case 17: return <PC1P_Section17 />;
+    case 18: return <PC1P_Section18 />;
+    case 19: return <PC1P_Section19 />;
+    default: return <div className="card">Section {currentSection} is under development.</div>;
+  }
+};
+
 const PC1_CONFIG = {
   label: 'PC-I',
   title: 'Development Project Proposal',
@@ -109,6 +157,14 @@ const PC2_CONFIG = {
   breadcrumb: 'PC-II Application',
   sections: PC2_SECTIONS,
   totalSections: PC2_SECTIONS.length,
+};
+
+const PC1_PROGRAMS_CONFIG = {
+  label: 'PC-I',
+  title: 'Development Program Proposal',
+  breadcrumb: 'PC-I Program Application',
+  sections: PC1_SECTIONS,
+  totalSections: PC1_SECTIONS.length,
 };
 
 const PC1Page = () => (
@@ -126,6 +182,16 @@ const PC2Page = () => (
     <FormProvider>
       <DashboardLayout>
         <PC2FormContent />
+      </DashboardLayout>
+    </FormProvider>
+  </FormConfigProvider>
+);
+
+const PC1ProgramPage = () => (
+  <FormConfigProvider config={PC1_PROGRAMS_CONFIG}>
+    <FormProvider>
+      <DashboardLayout>
+        <PC1ProgramFormContent />
       </DashboardLayout>
     </FormProvider>
   </FormConfigProvider>
@@ -178,6 +244,7 @@ function App() {
 
           <Route path="/" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
           <Route path="/pc-1" element={<ProtectedRoute><PC1Page /></ProtectedRoute>} />
+          <Route path="/pc-1-programs" element={<ProtectedRoute><PC1ProgramPage /></ProtectedRoute>} />
           <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />
           <Route path="/pc-3" element={<ProtectedRoute><ComingSoonPage label="PC-III" title="Quarterly Progress Report" /></ProtectedRoute>} />
           <Route path="/pc-4" element={<ProtectedRoute><ComingSoonPage label="PC-IV" title="Project Completion Report" /></ProtectedRoute>} />

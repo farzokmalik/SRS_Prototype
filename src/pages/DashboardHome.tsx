@@ -11,18 +11,23 @@ import {
   Bell,
   LogOut,
   LayoutGrid,
+  Building2,
+  Boxes,
 } from 'lucide-react';
 
 const PC_FORMS = [
   {
     id: 'pc1',
-    path: '/pc-1',
     label: 'PC-I',
-    title: 'Development Project Proposal',
-    description: 'Prepare and submit new project proposals including cost estimates, objectives, implementation schedule, and project appraisal.',
+    title: 'Development Proposal',
+    description: 'Prepare and submit new project or program proposals including cost estimates, objectives, and implementation schedule.',
     sections: 18,
     icon: FileText,
     available: true,
+    variants: [
+      { label: 'For Projects', path: '/pc-1', icon: Building2 },
+      { label: 'For Programs', path: '/pc-1-programs', icon: Boxes },
+    ]
   },
   {
     id: 'pc2',
@@ -159,21 +164,22 @@ export const DashboardHome: React.FC = () => {
         }}>
           {PC_FORMS.map((pc, idx) => {
             const Icon = pc.icon;
+            const hasVariants = 'variants' in pc && pc.variants;
+
             return (
-              <button
+              <div
                 key={pc.id}
-                onClick={() => navigate(pc.path)}
-                disabled={!pc.available}
                 className="card"
                 style={{
                   position: 'relative',
                   borderRadius: 'var(--radius-lg)',
                   padding: '1.75rem',
                   textAlign: 'left',
-                  cursor: pc.available ? 'pointer' : 'default',
                   opacity: pc.available ? 1 : 0.55,
-                  fontFamily: 'inherit',
                   animation: `fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) ${idx * 0.07}s both`,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={e => {
                   if (!pc.available) return;
@@ -234,26 +240,81 @@ export const DashboardHome: React.FC = () => {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.8125rem', color: 'hsl(var(--text-muted))',
-                  lineHeight: 1.6, marginBottom: '1.25rem',
+                  lineHeight: 1.6, marginBottom: '1.5rem',
+                  flexGrow: 1,
                 }}>
                   {pc.description}
                 </p>
 
-                {/* Footer */}
+                {/* Footer / Actions */}
                 <div style={{
-                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  paddingTop: '1rem', borderTop: '1px solid hsl(var(--border))',
+                  paddingTop: '1.25rem',
+                  borderTop: '1px solid hsl(var(--border))',
                 }}>
-                  <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>
-                    {pc.sections} sections
-                  </span>
-                  {pc.available && (
-                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--accent))', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      Open <ArrowRight size={15} />
-                    </span>
+                  {hasVariants && pc.available ? (
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                      {(pc as any).variants.map((variant: any) => (
+                        <button
+                          key={variant.path}
+                          className="btn btn-secondary"
+                          onClick={() => navigate(variant.path)}
+                          style={{
+                            padding: '0.625rem 0.5rem',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '0.375rem',
+                            borderRadius: 'var(--radius-md)',
+                            background: 'hsl(var(--bg-main))',
+                            border: '1px solid hsl(var(--border))',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.background = 'hsl(var(--accent-soft))';
+                            e.currentTarget.style.borderColor = 'hsl(var(--accent))';
+                            e.currentTarget.style.color = 'hsl(var(--accent))';
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.background = 'hsl(var(--bg-main))';
+                            e.currentTarget.style.borderColor = 'hsl(var(--border))';
+                            e.currentTarget.style.color = 'inherit';
+                          }}
+                        >
+                          <variant.icon size={16} />
+                          {variant.label}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>
+                        {pc.sections} sections
+                      </span>
+                      {pc.available ? (
+                        <button
+                          onClick={() => navigate((pc as any).path)}
+                          className="btn btn-primary"
+                          style={{
+                            padding: '0.4rem 1rem',
+                            fontSize: '0.8125rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                          }}
+                        >
+                          Open <ArrowRight size={15} />
+                        </button>
+                      ) : (
+                        <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--text-muted))', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          Locked
+                        </span>
+                      )}
+                    </div>
                   )}
                 </div>
-              </button>
+              </div>
             );
           })}
         </div>
