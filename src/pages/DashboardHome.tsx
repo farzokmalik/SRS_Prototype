@@ -11,8 +11,6 @@ import {
   Bell,
   LogOut,
   LayoutGrid,
-  Building2,
-  Boxes,
 } from 'lucide-react';
 
 const PC_FORMS = [
@@ -21,12 +19,12 @@ const PC_FORMS = [
     label: 'PC-I',
     title: 'Development Proposal',
     description: 'Prepare and submit new project or program proposals including cost estimates, objectives, and implementation schedule.',
-    sections: 18,
+    sections: 20,
     icon: FileText,
     available: true,
     variants: [
-      { label: 'For Projects', path: '/pc-1', icon: Building2 },
-      { label: 'For Programs', path: '/pc-1-programs', icon: Boxes },
+      { label: 'For Programs', path: '/pc-1-programs' },
+      { label: 'For Projects', path: '/pc-1' },
     ]
   },
   {
@@ -35,7 +33,7 @@ const PC_FORMS = [
     label: 'PC-II',
     title: 'Feasibility Study',
     description: 'Request approval for survey, feasibility study or investigation of projects prior to finalising the PC-I.',
-    sections: 15,
+    sections: 14,
     icon: RefreshCw,
     available: true,
   },
@@ -68,6 +66,16 @@ const PC_FORMS = [
     sections: 6,
     icon: LayoutGrid,
     available: false,
+  },
+  {
+    id: 'pcn',
+    path: '/pc-n',
+    label: 'PC-N',
+    title: 'Project Concept Note',
+    description: 'Specialised intervention concept note for strategic alignment, crop health, and geographical coverage proposals.',
+    sections: 16,
+    icon: FileText,
+    available: true,
   },
 ];
 
@@ -263,8 +271,8 @@ export const DashboardHome: React.FC = () => {
                             fontSize: '0.75rem',
                             fontWeight: 600,
                             display: 'flex',
-                            flexDirection: 'column',
                             alignItems: 'center',
+                            justifyContent: 'center',
                             gap: '0.375rem',
                             borderRadius: 'var(--radius-md)',
                             background: 'hsl(var(--bg-main))',
@@ -282,7 +290,6 @@ export const DashboardHome: React.FC = () => {
                             e.currentTarget.style.color = 'inherit';
                           }}
                         >
-                          <variant.icon size={16} />
                           {variant.label}
                         </button>
                       ))}

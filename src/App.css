@@ -182,3 +182,65 @@
     border-right-color: var(--border);
   }
 }
+
+/* PC-1 Form Tables */
+.form-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.form-table thead tr {
+  background: hsl(var(--secondary) / 0.05);
+  border-bottom: 2px solid hsl(var(--border));
+}
+
+.form-table th {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: hsl(var(--text-main));
+  text-align: left;
+  white-space: nowrap;
+}
+
+.form-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  vertical-align: top;
+  background: white;
+}
+
+.form-table tr:last-child td {
+  border-bottom: none;
+}
+
+.btn-icon-danger {
+  padding: 0;
+  color: hsl(var(--destructive) / 0.7);
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.btn-icon-danger:hover {
+  background: hsl(var(--destructive) / 0.08);
+  color: hsl(var(--destructive));
+  transform: scale(1.05);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+}

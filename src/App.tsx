@@ -6,11 +6,12 @@ import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardHome } from './pages/DashboardHome';
 import { LoginPage } from './pages/LoginPage';
 import { useForm } from './context/FormContext';
-import { PC1_SECTIONS, PC2_SECTIONS } from './constants';
+import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS } from './constants';
 
 import { Section1_Overview } from './components/sections/Section1_Overview';
-import { Section2_Cost } from './components/sections/Section2_Cost';
+import { Section2_RevisionHistory } from './components/sections/Section20_ Addition of Upward Revision of Development Project';
 import { Section3_Location } from './components/sections/Section3_Location';
+import { Section3_Responsibilities } from './components/sections/Section3_Responsibilities';
 import { Section4_Funding } from './components/sections/Section4_Funding';
 import { Section5_Objectives } from './components/sections/Section5_Objectives';
 import { Section6_Description } from './components/sections/Section6_Description';
@@ -29,7 +30,6 @@ import { Section18_Appraisal } from './components/sections/Section18_Appraisal';
 import { Section19_FocusOnMarginalisation } from './components/sections/Section19_FocusOnMarginalisation';
 
 import { PC2Section1_Overview } from './components/pc2/PC2Section1_Overview';
-import { PC2Section2_Cost } from './components/pc2/PC2Section2_Cost';
 import { PC2Section3_Location } from './components/pc2/PC2Section3_Location';
 import { PC2Section4_Funding } from './components/pc2/PC2Section4_Funding';
 import { PC2Section6_Description } from './components/pc2/PC2Section6_Description';
@@ -41,10 +41,29 @@ import { PC2Section11_StudiesUndertaken } from './components/pc2/PC2Section11_St
 import { PC2Section12_ManagementManpower } from './components/pc2/PC2Section12_ManagementManpower';
 import { PC2Section14_InitialScrutinyChecklist } from './components/pc2/PC2Section14_InitialScrutinyChecklist';
 
+// PC-N Sections
+import { SectionA_CostAllocation as PCN_SectionA } from './components/sections/pcn/SectionA_CostAllocation';
+import { Section1_ProjectTitle as PCN_Section1 } from './components/sections/pcn/Section1_ProjectTitle';
+import { Section2_ProponentInfo as PCN_Section2 } from './components/sections/pcn/Section2_ProponentInfo';
+import { Section3_GoalsObjectives as PCN_Section3 } from './components/sections/pcn/Section3_GoalsObjectives';
+import { Section4_FundingRationale as PCN_Section4 } from './components/sections/pcn/Section4_FundingRationale';
+import { Section5_GeographicalCoverage as PCN_Section5 } from './components/sections/pcn/Section5_GeographicalCoverage';
+import { Section6_StrategicAlignment as PCN_Section6 } from './components/sections/pcn/Section6_StrategicAlignment';
+import { Section7_SDGCompliance as PCN_Section7 } from './components/sections/pcn/Section7_SDGCompliance';
+import { Section8_SimilarFacility as PCN_Section8 } from './components/sections/pcn/Section8_SimilarFacility';
+import { Section9_GestationPeriod as PCN_Section9 } from './components/sections/pcn/Section9_GestationPeriod';
+import { Section10_FinancialPhasing as PCN_Section10 } from './components/sections/pcn/Section10_FinancialPhasing';
+import { Section11_OperatingCost as PCN_Section11 } from './components/sections/pcn/Section11_OperatingCost';
+import { Section12_Beneficiaries as PCN_Section12 } from './components/sections/pcn/Section12_Beneficiaries';
+import { Section13_ExpectedOutputs as PCN_Section13 } from './components/sections/pcn/Section13_ExpectedOutputs';
+import { Section14_Priority as PCN_Section14 } from './components/sections/pcn/Section14_Priority';
+import { Section15_GrowthStrategy as PCN_Section15 } from './components/sections/pcn/Section15_GrowthStrategy';
+
 // PC-I Programs Sections
 import { Section1_Overview as PC1P_Section1 } from './components/sections/pc1_programs/Section1_Overview';
-import { Section2_Cost as PC1P_Section2 } from './components/sections/pc1_programs/Section2_Cost';
+import { Section2_RevisionHistory as PC1P_Section2_Rev } from './components/sections/pc1_programs/Section20_ Addition of Upward Revision of Development Project';
 import { Section3_Location as PC1P_Section3 } from './components/sections/pc1_programs/Section3_Location';
+import { Section3_Responsibilities as PC1P_Section3_Resp } from './components/sections/pc1_programs/Section3_Responsibilities';
 import { Section4_Funding as PC1P_Section4 } from './components/sections/pc1_programs/Section4_Funding';
 import { Section5_Objectives as PC1P_Section5 } from './components/sections/pc1_programs/Section5_Objectives';
 import { Section6_Description as PC1P_Section6 } from './components/sections/pc1_programs/Section6_Description';
@@ -67,8 +86,8 @@ const PC1FormContent = () => {
 
   switch (currentSection) {
     case 1:  return <Section1_Overview />;
-    case 2:  return <Section2_Cost />;
-    case 3:  return <Section3_Location />;
+    case 2:  return <Section3_Location />;
+    case 3:  return <Section3_Responsibilities />;
     case 4:  return <Section4_Funding />;
     case 5:  return <Section5_Objectives />;
     case 6:  return <Section6_Description />;
@@ -85,6 +104,7 @@ const PC1FormContent = () => {
     case 17: return <Section17_Relation />;
     case 18: return <Section18_Appraisal />;
     case 19: return <Section19_FocusOnMarginalisation />;
+    case 20: return <Section2_RevisionHistory />;
     default: return <div className="card">Section {currentSection} is under development.</div>;
   }
 };
@@ -94,20 +114,19 @@ const PC2FormContent = () => {
 
   switch (currentSection) {
     case 1:  return <PC2Section1_Overview />;
-    case 2:  return <PC2Section2_Cost />;
-    case 3:  return <PC2Section3_Location />;
-    case 4:  return <PC2Section4_Funding />;
-    case 5:  return <Section5_Objectives />;
-    case 6:  return <PC2Section6_Description />;
-    case 7:  return <PC2Section7_CostEstimation />;
-    case 8:  return <PC2Section8_StudyTORS />;
-    case 9:  return <PC2Section9_StudyTORS2 />;
-    case 10: return <PC2Section10_ActivitiesPlan />;
-    case 11: return <PC2Section11_StudiesUndertaken />;
-    case 12: return <PC2Section12_ManagementManpower />;
-    case 13: return <Section15_Certificate />;
-    case 14: return <PC2Section14_InitialScrutinyChecklist />;
-    case 15: return <Section18_Appraisal />;
+    case 2:  return <PC2Section3_Location />;
+    case 3:  return <PC2Section4_Funding />;
+    case 4:  return <Section5_Objectives />;
+    case 5:  return <PC2Section6_Description />;
+    case 6:  return <PC2Section7_CostEstimation />;
+    case 7:  return <PC2Section8_StudyTORS />;
+    case 8:  return <PC2Section9_StudyTORS2 />;
+    case 9:  return <PC2Section10_ActivitiesPlan />;
+    case 10: return <PC2Section11_StudiesUndertaken />;
+    case 11: return <PC2Section12_ManagementManpower />;
+    case 12: return <Section15_Certificate />;
+    case 13: return <PC2Section14_InitialScrutinyChecklist />;
+    case 14: return <Section18_Appraisal />;
     default: return <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
       <p style={{ color: 'hsl(var(--text-muted))', fontSize: '0.9375rem' }}>
         Section {currentSection} is under development.
@@ -116,13 +135,37 @@ const PC2FormContent = () => {
   }
 };
 
+const PCNFormContent = () => {
+  const { currentSection } = useForm();
+
+  switch (currentSection) {
+    case 1:  return <PCN_SectionA />;
+    case 2:  return <PCN_Section1 />;
+    case 3:  return <PCN_Section2 />;
+    case 4:  return <PCN_Section3 />;
+    case 5:  return <PCN_Section4 />;
+    case 6:  return <PCN_Section5 />;
+    case 7:  return <PCN_Section6 />;
+    case 8:  return <PCN_Section7 />;
+    case 9:  return <PCN_Section8 />;
+    case 10: return <PCN_Section9 />;
+    case 11: return <PCN_Section10 />;
+    case 12: return <PCN_Section11 />;
+    case 13: return <PCN_Section12 />;
+    case 14: return <PCN_Section13 />;
+    case 15: return <PCN_Section14 />;
+    case 16: return <PCN_Section15 />;
+    default: return <div className="card">Section {currentSection} is under development.</div>;
+  }
+};
+
 const PC1ProgramFormContent = () => {
   const { currentSection } = useForm();
 
   switch (currentSection) {
     case 1:  return <PC1P_Section1 />;
-    case 2:  return <PC1P_Section2 />;
-    case 3:  return <PC1P_Section3 />;
+    case 2:  return <PC1P_Section3 />;
+    case 3:  return <PC1P_Section3_Resp />;
     case 4:  return <PC1P_Section4 />;
     case 5:  return <PC1P_Section5 />;
     case 6:  return <PC1P_Section6 />;
@@ -139,6 +182,7 @@ const PC1ProgramFormContent = () => {
     case 17: return <PC1P_Section17 />;
     case 18: return <PC1P_Section18 />;
     case 19: return <PC1P_Section19 />;
+    case 20: return <PC1P_Section2_Rev />;
     default: return <div className="card">Section {currentSection} is under development.</div>;
   }
 };
@@ -167,6 +211,14 @@ const PC1_PROGRAMS_CONFIG = {
   totalSections: PC1_SECTIONS.length,
 };
 
+const PCN_CONFIG = {
+  label: 'PC-N',
+  title: 'Project Concept Note',
+  breadcrumb: 'PC-N Application',
+  sections: PCN_SECTIONS,
+  totalSections: PCN_SECTIONS.length,
+};
+
 const PC1Page = () => (
   <FormConfigProvider config={PC1_CONFIG}>
     <FormProvider>
@@ -192,6 +244,16 @@ const PC1ProgramPage = () => (
     <FormProvider>
       <DashboardLayout>
         <PC1ProgramFormContent />
+      </DashboardLayout>
+    </FormProvider>
+  </FormConfigProvider>
+);
+
+const PCNPage = () => (
+  <FormConfigProvider config={PCN_CONFIG}>
+    <FormProvider>
+      <DashboardLayout>
+        <PCNFormContent />
       </DashboardLayout>
     </FormProvider>
   </FormConfigProvider>
@@ -245,6 +307,7 @@ function App() {
           <Route path="/" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
           <Route path="/pc-1" element={<ProtectedRoute><PC1Page /></ProtectedRoute>} />
           <Route path="/pc-1-programs" element={<ProtectedRoute><PC1ProgramPage /></ProtectedRoute>} />
+          <Route path="/pc-n" element={<ProtectedRoute><PCNPage /></ProtectedRoute>} />
           <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />
           <Route path="/pc-3" element={<ProtectedRoute><ComingSoonPage label="PC-III" title="Quarterly Progress Report" /></ProtectedRoute>} />
           <Route path="/pc-4" element={<ProtectedRoute><ComingSoonPage label="PC-IV" title="Project Completion Report" /></ProtectedRoute>} />

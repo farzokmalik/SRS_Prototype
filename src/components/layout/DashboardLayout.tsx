@@ -98,7 +98,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           >
             <div style={{ minWidth: 0 }}>
               <p style={{ color: 'hsl(var(--accent))', fontWeight: 600, fontSize: '0.8125rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                Section {activeSection?.id.toString().padStart(2, '0')}
+                {breadcrumb === 'PC-N Application' && activeSection?.id === 1 ? 'A' : (breadcrumb === 'PC-N Application' ? ((activeSection?.id || 1) - 1).toString().padStart(2, '0') : activeSection?.id.toString().padStart(2, '0'))}
               </p>
               <h1 style={{ fontSize: '2rem', fontWeight: 650, lineHeight: 1.2, margin: 0, overflowWrap: 'anywhere' }}>{activeSection?.title}</h1>
             </div>

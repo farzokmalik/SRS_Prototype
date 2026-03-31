@@ -20,6 +20,18 @@ export const InputField: React.FC<FieldProps & React.InputHTMLAttributes<HTMLInp
   </div>
 );
 
+export const TextAreaField: React.FC<FieldProps & React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({ 
+  label, description, error, required, ...props 
+}) => (
+  <div className="input-group">
+    <label className="label">
+      {label} {required && <span style={{ color: 'hsl(var(--error))' }}>*</span>}
+    </label>
+    <textarea className="textarea" {...props} />
+    {description && <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '0.4rem' }}>{description}</p>}
+  </div>
+);
+
 export const SelectField: React.FC<FieldProps & React.SelectHTMLAttributes<HTMLSelectElement> & { options: (string | { value: string, label: string })[] }> = ({ 
   label, description, error, required, options, ...props 
 }) => (

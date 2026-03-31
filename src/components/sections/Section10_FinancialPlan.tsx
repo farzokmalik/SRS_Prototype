@@ -11,35 +11,38 @@ export const Section10_FinancialPlan: React.FC = () => {
     updateSection('section10', { ...data, ...updates });
   };
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <div className="card">
-        <RTEditor label="Equity Information" value={data.equity} onChange={(val) => handleUpdate({ equity: val })} />
-        <RTEditor label="Debt Information" value={data.debt} onChange={(val) => handleUpdate({ debt: val })} />
-        <RTEditor label="Grant Information" value={data.grant} onChange={(val) => handleUpdate({ grant: val })} />
-        <RTEditor label="Weighted Cost of Capital" value={data.weightCost} onChange={(val) => handleUpdate({ weightCost: val })} />
-      </div>
-
+  const renderCategory = (label: string, field: string, attachmentsField: string, annexuresField: string) => (
+    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <RTEditor 
+        label={label} 
+        value={(data as any)[field]} 
+        onChange={(val) => handleUpdate({ [field]: val })} 
+      />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-        <div className="card">
-          <FileUpload 
-            label="Attachments"
-            files={data.attachments || []}
-            onUpload={(files) => handleUpdate({ attachments: files })}
-            onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}
-            description="Upload financial plan documents"
-          />
-        </div>
-        <div className="card">
-          <FileUpload 
-            label="Annexures"
-            files={data.annexures || []}
-            onUpload={(files) => handleUpdate({ annexures: files })}
-            onRemove={(idx) => handleUpdate({ annexures: data.annexures.filter((_: any, i: number) => i !== idx) })}
-            description="Add annexures"
-          />
-        </div>
+        <FileUpload 
+          label={`${label} - Attachments`}
+          files={(data as any)[attachmentsField] || []}
+          onUpload={(files) => handleUpdate({ [attachmentsField]: files })}
+          onRemove={(idx) => handleUpdate({ [attachmentsField]: (data as any)[attachmentsField].filter((_: any, i: number) => i !== idx) })}
+          description="Upload category-specific documents"
+        />
+        <FileUpload 
+          label={`${label} - Annexures`}
+          files={(data as any)[annexuresField] || []}
+          onUpload={(files) => handleUpdate({ [annexuresField]: files })}
+          onRemove={(idx) => handleUpdate({ [annexuresField]: (data as any)[annexuresField].filter((_: any, i: number) => i !== idx) })}
+          description="Add category-specific annexures"
+        />
       </div>
+    </div>
+  );
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {renderCategory("Financial Plan Equity Information", "equity", "equityAttachments", "equityAnnexures")}
+      {renderCategory("Financial Plan Debt Information", "debt", "debtAttachments", "debtAnnexures")}
+      {renderCategory("Financial Plan Grant Information", "grant", "grantAttachments", "grantAnnexures")}
+      {renderCategory("Financial Plan Weighted Cost of Capital", "weightCost", "weightCostAttachments", "weightCostAnnexures")}
     </div>
   );
 };
