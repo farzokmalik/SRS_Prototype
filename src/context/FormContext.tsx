@@ -20,6 +20,7 @@ export interface FormState {
   section17: any;
   section18: any;
   section19: any;
+  sectionA: any;
 }
 
 const initialFormState: FormState = {
@@ -104,11 +105,17 @@ const initialFormState: FormState = {
   section9: { data: '', attachments: [], annexures: [] },
   section10: {
     equity: '',
+    equityAttachments: [],
+    equityAnnexures: [],
     debt: '',
+    debtAttachments: [],
+    debtAnnexures: [],
     grant: '',
+    grantAttachments: [],
+    grantAnnexures: [],
     weightCost: '',
-    attachments: [],
-    annexures: []
+    weightCostAttachments: [],
+    weightCostAnnexures: [],
   },
   section11: {
     social: '', socialAttachments: [], socialAnnexures: [],
@@ -158,6 +165,10 @@ const initialFormState: FormState = {
       { id: '10', category: 'Monitoring & Evaluation', criteria: 'Does the project include formation of a Steering Committee and/or Project Implementation Committees?', yesNo: '', action: '', comments: '' },
       { id: '11', category: 'Monitoring & Evaluation', criteria: 'Is there a provision to ensure representation of women in these committees?', yesNo: '', action: '', comments: '' }
     ]
+  },
+  sectionA: {
+    local: '', foreign: '', cap: '', rev: '', total: '',
+    tf27_28: '', tf28_29: '', tfBeyond: ''
   }
 };
 

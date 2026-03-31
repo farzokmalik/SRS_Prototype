@@ -141,7 +141,7 @@ export const Sidebar: React.FC = () => {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
                 }}>
-                  {section.title}
+                  {label === 'PC-N' && section.id === 1 ? 'A' : (label === 'PC-N' ? section.id - 1 : section.id)}. {section.title}
                 </span>
                 
                 {active && <ChevronRight size={16} color="rgba(255,255,255,0.3)" />}
