@@ -73,6 +73,14 @@ export const Section1_Overview: React.FC = () => {
           value={data.projectTitle}
           onChange={(e) => handleUpdate({ projectTitle: e.target.value })}
         />
+        <div style={{ marginTop: '1.25rem' }}>
+          <InputField 
+            label="Meta Tags" 
+            placeholder="Enter keywords or tags for easier project discovery (e.g. Infrastructure, Health, CM-Initiative)" 
+            value={data.metaTags}
+            onChange={(e) => handleUpdate({ metaTags: e.target.value })}
+          />
+        </div>
       </div>
 
       <div className="card">

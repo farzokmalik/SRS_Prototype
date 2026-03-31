@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { InputField, SelectField, MultiCheckGroup, RadioGroup } from '../ui/FormElements';
+import { useForm } from '../../../context/FormContext';
+import { InputField, SelectField, MultiCheckGroup, RadioGroup } from '../../ui/FormElements';
 
 const SECTOR_OPTIONS = {
   'Social Sectors': [
@@ -55,7 +55,7 @@ const SECTOR_OPTIONS = {
   ]
 };
 
-export const PC2Section1_Overview: React.FC = () => {
+export const Section1_Overview: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.section1;
 
@@ -67,7 +67,7 @@ export const PC2Section1_Overview: React.FC = () => {
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
       <div className="card" style={{ gridColumn: 'span 2' }}>
         <InputField 
-          label="Project Title" 
+          label="Program Title" 
           placeholder="Enter the full formal name of the project" 
           required 
           value={data.projectTitle}
@@ -76,7 +76,7 @@ export const PC2Section1_Overview: React.FC = () => {
         <div style={{ marginTop: '1.25rem' }}>
           <InputField 
             label="Meta Tags" 
-            placeholder="Enter keywords or tags (e.g. Feasibility, Survey, Research)" 
+            placeholder="Enter keywords or tags for easier project discovery (e.g. Infrastructure, Health, CM-Initiative)" 
             value={data.metaTags}
             onChange={(e) => handleUpdate({ metaTags: e.target.value })}
           />
@@ -85,7 +85,7 @@ export const PC2Section1_Overview: React.FC = () => {
 
       <div className="card">
         <SelectField 
-          label="Project Start Year" 
+          label="Program Start Year" 
           required 
           value={data.startYear}
           onChange={(e) => handleUpdate({ startYear: e.target.value })}
@@ -118,6 +118,7 @@ export const PC2Section1_Overview: React.FC = () => {
         <InputField 
           label="GS No." 
           placeholder="e.g. GS-2024-X10" 
+          required 
           value={data.gsNo}
           onChange={(e) => handleUpdate({ gsNo: e.target.value })}
         />
@@ -158,6 +159,7 @@ export const PC2Section1_Overview: React.FC = () => {
       <div className="card">
         <RadioGroup 
           label="Location Type" 
+          required 
           name="locationType"
           value={data.locationType}
           onChange={(val) => handleUpdate({ locationType: val })}
@@ -169,7 +171,8 @@ export const PC2Section1_Overview: React.FC = () => {
         />
         
         <SelectField 
-          label="Project Status" 
+          label="Program Status" 
+          required 
           value={data.projectStatus}
           onChange={(e) => handleUpdate({ projectStatus: e.target.value })}
           options={[
@@ -182,7 +185,8 @@ export const PC2Section1_Overview: React.FC = () => {
 
       <div className="card">
         <MultiCheckGroup 
-          label="Project Status Type" 
+          label="Program Status Type" 
+          required 
           options={['Programme', 'Flagship/Mega Project', 'PPP', 'PM Package', 'CM Package', 'Block']}
           value={data.statusType}
           onChange={(vals) => handleUpdate({ statusType: vals })}
