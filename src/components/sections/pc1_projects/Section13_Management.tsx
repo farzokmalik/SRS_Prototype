@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { RTEditor } from '../ui/RTEditor';
+import { useForm } from '../../../context/FormContext';
+import { RTEditor } from '../../ui/RTEditor';
 import { Plus, Trash2 } from 'lucide-react';
 
 export const Section13_Management: React.FC = () => {

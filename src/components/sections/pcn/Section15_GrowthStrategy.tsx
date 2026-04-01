@@ -20,7 +20,7 @@ export const Section15_GrowthStrategy: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div className="space-y-8" style={{ maxWidth: '800px' }}>
+        <div className="space-y-8" style={{ maxWidth: '1200px' }}>
           <MultiCheckGroup 
             label="Applicable Growth Strategy Areas"
             options={GROWTH_AREAS}

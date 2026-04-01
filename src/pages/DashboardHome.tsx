@@ -14,6 +14,16 @@ import {
 } from 'lucide-react';
 
 const PC_FORMS = [
+   {
+    id: 'pcn',
+    path: '/pc-n',
+    label: 'PC-N',
+    title: 'Project Concept Note',
+    description: 'Specialised intervention concept note for strategic alignment, crop health, and geographical coverage proposals.',
+    sections: 16,
+    icon: FileText,
+    available: true,
+  },
   {
     id: 'pc1',
     label: 'PC-I',
@@ -23,8 +33,8 @@ const PC_FORMS = [
     icon: FileText,
     available: true,
     variants: [
-      { label: 'For Programs', path: '/pc-1-programs' },
-      { label: 'For Projects', path: '/pc-1' },
+      { label: 'Programs', path: '/pc-1-programs' },
+      { label: 'Projects', path: '/pc-1' },
     ]
   },
   {
@@ -39,13 +49,16 @@ const PC_FORMS = [
   },
   {
     id: 'pc3',
-    path: '/pc-3',
     label: 'PC-III',
     title: 'Quarterly Progress Report',
     description: 'Submit quarterly monitoring reports on physical and financial progress of ongoing development projects.',
     sections: 10,
     icon: ClipboardCheck,
-    available: false,
+    available: true,
+    variants: [
+      { label: 'Form A', path: '/pc-3-a' },
+      { label: 'Form B', path: '/pc-3-b' },
+    ]
   },
   {
     id: 'pc4',
@@ -56,6 +69,10 @@ const PC_FORMS = [
     sections: 8,
     icon: ShieldCheck,
     available: false,
+    variants: [
+      { label: 'Programs', path: '/pc-1-programs' },
+      { label: 'Projects', path: '/pc-1' },
+    ]
   },
   {
     id: 'pc5',
@@ -66,17 +83,12 @@ const PC_FORMS = [
     sections: 6,
     icon: LayoutGrid,
     available: false,
+    variants: [
+      { label: 'Programs', path: '/pc-1-programs' },
+      { label: 'Projects', path: '/pc-1' },
+    ]
   },
-  {
-    id: 'pcn',
-    path: '/pc-n',
-    label: 'PC-N',
-    title: 'Project Concept Note',
-    description: 'Specialised intervention concept note for strategic alignment, crop health, and geographical coverage proposals.',
-    sections: 16,
-    icon: FileText,
-    available: true,
-  },
+ 
 ];
 
 export const DashboardHome: React.FC = () => {
@@ -264,41 +276,23 @@ export const DashboardHome: React.FC = () => {
                       {(pc as any).variants.map((variant: any) => (
                         <button
                           key={variant.path}
-                          className="btn btn-secondary"
+                          className="btn btn-primary"
                           onClick={() => navigate(variant.path)}
                           style={{
-                            padding: '0.625rem 0.5rem',
-                            fontSize: '0.75rem',
-                            fontWeight: 600,
+                            padding: '0.5rem 0.5rem',
+                            fontSize: '0.8125rem',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '0.375rem',
-                            borderRadius: 'var(--radius-md)',
-                            background: 'hsl(var(--bg-main))',
-                            border: '1px solid hsl(var(--border))',
-                            transition: 'all 0.2s ease',
-                          }}
-                          onMouseEnter={e => {
-                            e.currentTarget.style.background = 'hsl(var(--accent-soft))';
-                            e.currentTarget.style.borderColor = 'hsl(var(--accent))';
-                            e.currentTarget.style.color = 'hsl(var(--accent))';
-                          }}
-                          onMouseLeave={e => {
-                            e.currentTarget.style.background = 'hsl(var(--bg-main))';
-                            e.currentTarget.style.borderColor = 'hsl(var(--border))';
-                            e.currentTarget.style.color = 'inherit';
+                            gap: '6px',
                           }}
                         >
-                          {variant.label}
+                          {variant.label} <ArrowRight size={15} />
                         </button>
                       ))}
                     </div>
                   ) : (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>
-                        {pc.sections} sections
-                      </span>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                       {pc.available ? (
                         <button
                           onClick={() => navigate((pc as any).path)}

@@ -14,7 +14,7 @@ export const Section8_SimilarFacility: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div className="space-y-6" style={{ maxWidth: '800px' }}>
+        <div className="space-y-6" style={{ maxWidth: '1200px' }}>
           <RadioGroup 
             label="Is there a nearest similar facility?"
             name="hasFacility"

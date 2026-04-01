@@ -44,22 +44,40 @@ export const PC2_SECTIONS: FormSection[] = [
 ];
 
 export const PCN_SECTIONS: FormSection[] = [
-  { id: 1, title: 'Cost & Allocation Table' },
-  { id: 2, title: 'Project Title' },
-  { id: 3, title: 'Proponent Information' },
-  { id: 4, title: 'Goals & Objectives' },
-  { id: 5, title: 'ADP Funding Rationale' },
-  { id: 6, title: 'Geographical Coverage' },
-  { id: 7, title: 'Strategic Alignment' },
-  { id: 8, title: 'SDG Compliance' },
-  { id: 9, title: 'Nearest Similar Facility' },
-  { id: 10, title: 'Gestation Period' },
-  { id: 11, title: 'Financial Phasing' },
-  { id: 12, title: 'Post-Completion AOM&R Cost' },
-  { id: 13, title: 'Beneficiaries' },
-  { id: 14, title: 'Expected Outputs' },
-  { id: 15, title: 'Priority' },
-  { id: 16, title: 'Growth Strategy Alignment' }
+  { id: 1, title: 'Project Title' },
+  { id: 2, title: 'Proponent Information' },
+  { id: 3, title: 'Goals & Objectives' },
+  { id: 4, title: 'ADP Funding Rationale' },
+  { id: 5, title: 'Geographical Coverage' },
+  { id: 6, title: 'Strategic Alignment' },
+  { id: 7, title: 'SDG Compliance' },
+  { id: 8, title: 'Nearest Similar Facility' },
+  { id: 9, title: 'Gestation Period' },
+  { id: 10, title: 'Financial Phasing' },
+  { id: 11, title: 'Post-Completion AOM&R Cost' },
+  { id: 12, title: 'Beneficiaries' },
+  { id: 13, title: 'Expected Outputs' },
+  { id: 14, title: 'Priority' },
+  { id: 15, title: 'Growth Strategy Alignment' }
+];
+
+export const PC3A_SECTIONS: FormSection[] = [
+  { id: 1, title: 'Project Name' },
+  { id: 2, title: 'Approved Capital Cost' },
+  { id: 3, title: 'Expenditure Status' },
+  { id: 4, title: 'PSDP Allocation' },
+  { id: 5, title: 'Annual Work Plan' },
+  { id: 6, title: 'Quarterly Work Plan' },
+  { id: 7, title: 'Cash Plan' },
+  { id: 8, title: 'Output Indicators' }
+];
+
+export const PC3B_SECTIONS: FormSection[] = [
+  { id: 1, title: 'Monthly Context' },
+  { id: 2, title: 'Financial Status' },
+  { id: 3, title: 'Physical Status' },
+  { id: 4, title: 'Monthly Output Indicators' },
+  { id: 5, title: 'Bottlenecks & Problems' }
 ];
 
 export const FORM_SECTIONS = PC1_SECTIONS;

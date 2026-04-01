@@ -14,7 +14,7 @@ export const Section3_GoalsObjectives: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div style={{ maxWidth: '900px' }}>
+        <div style={{ maxWidth: '1200px' }}>
           <TextAreaField 
             label="Objectives Statement" 
             rows={10}

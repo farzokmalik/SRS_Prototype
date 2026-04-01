@@ -14,7 +14,7 @@ export const Section14_Priority: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '800px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
           <SelectField 
             label="Project Priority Level" 
             options={[

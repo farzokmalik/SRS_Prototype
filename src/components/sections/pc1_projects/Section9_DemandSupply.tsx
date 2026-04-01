@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { RTEditor } from '../ui/RTEditor';
-import { FileUpload } from '../ui/FormElements';
+import { useForm } from '../../../context/FormContext';
+import { RTEditor } from '../../ui/RTEditor';
+import { FileUpload } from '../../ui/FormElements';
 
 export const Section9_DemandSupply: React.FC = () => {
   const { formData, updateSection } = useForm();

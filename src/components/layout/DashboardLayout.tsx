@@ -98,13 +98,13 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           >
             <div style={{ minWidth: 0 }}>
               <p style={{ color: 'hsl(var(--accent))', fontWeight: 600, fontSize: '0.8125rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                {breadcrumb === 'PC-N Application' && activeSection?.id === 1 ? 'A' : (breadcrumb === 'PC-N Application' ? ((activeSection?.id || 1) - 1).toString().padStart(2, '0') : activeSection?.id.toString().padStart(2, '0'))}
+                {activeSection?.id.toString().padStart(2, '0')}
               </p>
               <h1 style={{ fontSize: '2rem', fontWeight: 650, lineHeight: 1.2, margin: 0, overflowWrap: 'anywhere' }}>{activeSection?.title}</h1>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', whiteSpace: 'nowrap' }}>
-              <button className="btn btn-secondary"><Save size={18} /> Save Draft</button>
-              <button className="btn btn-primary"><Send size={18} /> Submit Application</button>
+              {/* <button className="btn btn-secondary"><Save size={18} /> Save Draft</button>
+              <button className="btn btn-primary"><Send size={18} /> Submit Application</button> */}
             </div>
           </div>
 
@@ -118,28 +118,46 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           padding: '1.25rem 2.5rem', 
           borderTop: '1px solid hsl(var(--border))', 
           display: 'flex', 
-          justifyContent: 'space-between', 
+          justifyContent: 'flex-end', 
           alignItems: 'center',
           position: 'sticky',
           bottom: 0,
           zIndex: 90
         }}>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            <div style={{ textAlign: 'left' }}>
-              <p style={{ fontSize: '0.6875rem', textTransform: 'uppercase', color: 'hsl(var(--text-muted))', fontWeight: 600 }}>Status</p>
-              <p style={{ fontSize: '0.875rem', fontWeight: 700 }}>In Progress</p>
-            </div>
-            <div style={{ textAlign: 'left' }}>
-              <p style={{ fontSize: '0.6875rem', textTransform: 'uppercase', color: 'hsl(var(--text-muted))', fontWeight: 600 }}>Phase</p>
-              <p style={{ fontSize: '0.875rem', fontWeight: 700 }}>{currentSection <= 7 ? 'Initial Assessment' : currentSection <= 13 ? 'Technical Planning' : 'Final Submission'}</p>
-            </div>
-          </div>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <button className="btn btn-secondary" onClick={prevSection} disabled={currentSection === 1}>Previous</button>
+            <button 
+              className="btn btn-secondary" 
+              onClick={prevSection} 
+              disabled={currentSection === 1}
+              style={{ padding: '0.625rem 1.25rem' }}
+            >
+              Previous
+            </button>
+            
+            <button 
+              className="btn btn-secondary" 
+              onClick={() => alert("Draft saved successfully!")}
+              style={{ padding: '0.625rem 1.25rem' }}
+            >
+              <Save size={18} /> Save as draft
+            </button>
+
             {currentSection < totalSections ? (
-              <button className="btn btn-primary" onClick={nextSection}>Next Section <ChevronRight size={18} /></button>
+              <button 
+                className="btn btn-primary" 
+                onClick={nextSection}
+                style={{ padding: '0.625rem 1.5rem' }}
+              >
+                Next Section <ChevronRight size={18} />
+              </button>
             ) : (
-              <button className="btn btn-primary" onClick={() => alert("Form saved successfully!")}>Save <Save size={18} /></button>
+              <button 
+                className="btn btn-primary" 
+                onClick={() => alert("Application submitted successfully!")}
+                style={{ padding: '0.625rem 1.5rem', background: 'hsl(var(--accent))' }}
+              >
+                Submit Application <Send size={18} />
+              </button>
             )}
           </div>
         </footer>

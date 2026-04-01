@@ -16,7 +16,7 @@ export const Section13_ExpectedOutputs: React.FC = () => {
     <div className="space-y-8">
       <div className="card shadow-sm">
         
-        <div className="space-y-8" style={{ maxWidth: '1000px' }}>
+        <div className="space-y-8" style={{ maxWidth: '1200px' }}>
           {/* Sub-section: Impact */}
           <section className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)' }}>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'hsl(var(--primary))' }}>Impact</h4>

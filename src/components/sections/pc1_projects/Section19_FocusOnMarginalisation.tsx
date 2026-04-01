@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
+import { useForm } from '../../../context/FormContext';
 
 export const Section19_FocusOnMarginalisation: React.FC = () => {
   const { formData, updateSection } = useForm();

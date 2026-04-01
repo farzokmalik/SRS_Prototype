@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from '../../../context/FormContext';
-import { TextAreaField, FileUpload } from '../../ui/FormElements';
+import { TextAreaField, FileUpload, InputField } from '../../ui/FormElements';
+import { Trash2, Plus } from 'lucide-react';
 
 export const Section2_ProponentInfo: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -22,56 +23,112 @@ export const Section2_ProponentInfo: React.FC = () => {
     handleChange('nutritionalData', [...(data.nutritionalData || []), { nutrient: '', value: '', unit: '' }]);
   };
 
+  const removeRow = (idx: number) => {
+    const list = [...(data.nutritionalData || [])];
+    list.splice(idx, 1);
+    handleChange('nutritionalData', list);
+  };
+
   return (
     <div className="space-y-6">
       <div className="card shadow-sm">
-        
-        <div className="space-y-6" style={{ maxWidth: '1000px' }}>
-          <TextAreaField 
-            label="Background & Rationale" 
-            rows={6}
-            placeholder="Provide context and high-level reasoning for the proposal..."
-            value={data.background}
-            onChange={(e: any) => handleChange('background', e.target.value)}
-          />
+        <div className="space-y-8" style={{ maxWidth: '1000px' }}>
+          {/* Main Context Area */}
+          <div className="grid grid-cols-1 gap-6">
+            <TextAreaField 
+              label="Background & Rationale" 
+              rows={5}
+              placeholder="Provide strategic context and justification for this intervention..."
+              value={data.background}
+              onChange={(e: any) => handleChange('background', e.target.value)}
+            />
 
-          <TextAreaField 
-            label="Specific Crop Health Benefits" 
-            rows={4}
-            placeholder="Explain the impact on agricultural health and yield..."
-            value={data.cropHealth}
-            onChange={(e: any) => handleChange('cropHealth', e.target.value)}
-          />
-
-          {/* Nutritional Data Table */}
-          <div className="card" style={{ background: 'hsl(var(--bg-main) / 0.2)', border: '1px solid hsl(var(--border) / 0.5)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.7)' }}>Nutritional Data Analysis</h4>
-              <button type="button" onClick={addRow} className="btn btn-secondary btn-sm">Add Row</button>
-            </div>
-            <table className="form-table">
-              <thead>
-                <tr>
-                  <th>Nutrient / Parameter</th>
-                  <th>Value</th>
-                  <th>Unit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(data.nutritionalData || []).map((row: any, idx: number) => (
-                  <tr key={idx}>
-                    <td><input className="input-clean" value={row.nutrient} onChange={(e) => updateNutritionalRow(idx, 'nutrient', e.target.value)} placeholder="e.g. Protein" /></td>
-                    <td><input className="input-clean" value={row.value} onChange={(e) => updateNutritionalRow(idx, 'value', e.target.value)} placeholder="e.g. 15.5" /></td>
-                    <td><input className="input-clean" value={row.unit} onChange={(e) => updateNutritionalRow(idx, 'unit', e.target.value)} placeholder="e.g. %" /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <TextAreaField 
+              label="Specific Crop Health Benefits" 
+              rows={4}
+              placeholder="Explain how this project directly impacts agricultural productivity..."
+              value={data.cropHealth}
+              onChange={(e: any) => handleChange('cropHealth', e.target.value)}
+            />
           </div>
 
+          <div style={{ height: '1px', background: 'hsl(var(--border) / 0.5)', margin: '1rem 0' }} />
+
+          {/* Nutritional Data Analysis */}
+          <section>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'hsl(var(--primary))' }}>Nutritional Data Analysis</h4>
+                <p style={{ fontSize: '0.8125rem', color: 'hsl(var(--text-muted))' }}>Quantitative breakdown of nutritional parameters.</p>
+              </div>
+              <button 
+                type="button" 
+                onClick={addRow} 
+                className="btn btn-secondary btn-sm"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}
+              >
+                <Plus size={16} /> Add Row
+              </button>
+            </div>
+
+            <div className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', borderColor: 'hsl(var(--border) / 0.6)' }}>
+              {/* Header Row */}
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: '2fr 1fr 1fr 48px', 
+                gap: '1rem', 
+                padding: '0.75rem 1rem',
+                borderBottom: '1px solid hsl(var(--border))',
+                background: 'hsl(var(--bg-main) / 0.2)'
+              }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Nutrient / Parameter</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Value</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Unit</div>
+                <div></div>
+              </div>
+
+              {/* Data Rows */}
+              <div className="divide-y divide-border">
+                {(!data.nutritionalData || data.nutritionalData?.length === 0) ? (
+                  <div style={{ padding: '2rem', textAlign: 'center', color: 'hsl(var(--text-muted))', fontSize: '0.875rem' }}>
+                    No nutritional data entries yet. Click "Add Row" to begin.
+                  </div>
+                ) : (
+                  (data.nutritionalData || []).map((row: any, idx: number) => (
+                    <div 
+                      key={idx} 
+                      style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: '2fr 1fr 1fr 48px', 
+                        gap: '1rem', 
+                        padding: '1rem',
+                        alignItems: 'center',
+                        animation: 'fadeIn 0.2s ease-out'
+                      }}
+                    >
+                      <InputField label="" placeholder="e.g. Protein Content" value={row.nutrient} onChange={(e: any) => updateNutritionalRow(idx, 'nutrient', e.target.value)} />
+                      <InputField label="" placeholder="e.g. 18.5" value={row.value} onChange={(e: any) => updateNutritionalRow(idx, 'value', e.target.value)} />
+                      <InputField label="" placeholder="e.g. %" value={row.unit} onChange={(e: any) => updateNutritionalRow(idx, 'unit', e.target.value)} />
+                      <button 
+                        type="button" 
+                        onClick={() => removeRow(idx)} 
+style={{ background: 'none', border: 'none', color: 'hsl(var(--error))', cursor: 'pointer', padding: '0.5rem' }}                        title="Delete Row"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </section>
+
+          <div style={{ height: '1px', background: 'hsl(var(--border) / 0.5)', margin: '1rem 0' }} />
+
+          {/* Attachments Area */}
           <FileUpload 
             label="Image / Figure Upload" 
-            description="Upload technical diagrams or proponent figures"
+            description="Attach technical diagrams, proponent charts, or geographical figures (Max 10MB per file)"
             files={data.attachments || []}
             onUpload={(files) => handleChange('attachments', files)}
             onRemove={(idx) => {

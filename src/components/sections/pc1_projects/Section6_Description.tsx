@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { RTEditor } from '../ui/RTEditor';
-import { FileUpload } from '../ui/FormElements';
+import { useForm } from '../../../context/FormContext';
+import { RTEditor } from '../../ui/RTEditor';
+import { FileUpload } from '../../ui/FormElements';
 
 export const Section6_Description: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -16,7 +16,7 @@ export const Section6_Description: React.FC = () => {
       {/* Objective Section */}
       <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <RTEditor 
-          label="Project Justification" 
+          label="Justification of Project" 
           value={data.objective} 
           onChange={(val) => handleUpdate({ objective: val })} 
         />

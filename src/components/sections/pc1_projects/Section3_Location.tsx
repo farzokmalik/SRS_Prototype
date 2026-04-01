@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { InputField, SelectField, FileUpload } from '../ui/FormElements';
+import { useForm } from '../../../context/FormContext';
+import { InputField, SelectField, FileUpload } from '../../ui/FormElements';
 import { MapPin } from 'lucide-react';
 
 const DIVISIONS = ['Bahawalpur', 'Dera Ghazi Khan', 'Faisalabad', 'Gujranwala', 'Gujrat', 'Lahore', 'Multan', 'Rawalpindi', 'Sahiwal', 'Sargodha'];

@@ -57,7 +57,7 @@ export const Section10_FinancialPhasing: React.FC = () => {
                 <InputField label="" type="number" value={row.foreign} onChange={(e: any) => updateRow(idx, 'foreign', e.target.value)} />
                 <InputField label="" type="number" value={row.total} onChange={(e: any) => updateRow(idx, 'total', e.target.value)} />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <button type="button" onClick={() => removeRow(idx)} className="btn-icon-danger">
+                  <button type="button" onClick={() => removeRow(idx)} style={{ background: 'none', border: 'none', color: 'hsl(var(--error))', cursor: 'pointer', padding: '0.5rem' }}>
                     <Trash2 size={18} />
                   </button>
                 </div>
