@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { InputField, SelectField, RadioGroup, FileUpload } from '../ui/FormElements';
+import { useForm } from '../../../context/FormContext';
+import { InputField, SelectField, RadioGroup, FileUpload } from '../../ui/FormElements';
 import { Plus, Trash2 } from 'lucide-react';
 
 const SUB_SECTORS = [

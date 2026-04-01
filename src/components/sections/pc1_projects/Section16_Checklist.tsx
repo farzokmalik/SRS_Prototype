@@ -1,6 +1,5 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { CheckSquare } from 'lucide-react';
+import { useForm } from '../../../context/FormContext';
 
 const CHECKLIST_ITEMS = [
   'Signature of the Administrative Secretary',
@@ -32,7 +31,7 @@ export const Section16_Checklist: React.FC = () => {
   return (
     <div className="card">
        <h3 style={{ fontSize: '1.1rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <CheckSquare size={20} color="var(--primary)" /> Initial Scrutiny Checklist
+          Initial Scrutiny Checklist
        </h3>
        
        <table style={{ width: '100%', borderCollapse: 'collapse' }}>

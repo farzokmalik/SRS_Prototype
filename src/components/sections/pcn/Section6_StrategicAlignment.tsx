@@ -14,7 +14,7 @@ export const Section6_StrategicAlignment: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div style={{ maxWidth: '800px' }}>
+        <div style={{ maxWidth: '1200px' }}>
           <TextAreaField 
             label="Sector Plan Alignment" 
             rows={5}

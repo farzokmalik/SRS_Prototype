@@ -1,7 +1,6 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { SelectField, InputField, FileUpload } from '../ui/FormElements';
-import { FileText, Save } from 'lucide-react';
+import { useForm } from '../../../context/FormContext';
+import { SelectField, InputField, FileUpload } from '../../ui/FormElements';
 
 export const Section18_Appraisal: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -14,8 +13,8 @@ export const Section18_Appraisal: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-           <FileText size={20} color="var(--primary)" /> Appraisal Documentation
+        <h3 style={{ fontSize: '1.1rem', marginTop: 0, marginBottom: '1.5rem' }}>
+           Appraisal Documentation
         </h3>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
@@ -43,15 +42,6 @@ export const Section18_Appraisal: React.FC = () => {
             description="Choose or drop the final appraisal document"
           />
         </div>
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem' }}>
-         <button className="btn btn-primary" style={{ padding: '0.75rem 3rem', fontSize: '1rem' }}>
-            <Save size={18} /> Finalize Appraisal
-         </button>
-         <button className="btn btn-secondary" style={{ padding: '0.75rem 3rem', fontSize: '1rem' }}>
-            Cancel
-         </button>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export const Section11_OperatingCost: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '800px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
           <InputField label="Maintenance Cost" type="number" value={data.maintenance} onChange={(e: any) => handleChange('maintenance', e.target.value)} />
           <InputField label="HR Cost" type="number" value={data.hr} onChange={(e: any) => handleChange('hr', e.target.value)} />
           <InputField label="Operational Cost" type="number" value={data.operation} onChange={(e: any) => handleChange('operation', e.target.value)} />

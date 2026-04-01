@@ -21,6 +21,8 @@ export interface FormState {
   section18: any;
   section19: any;
   sectionA: any;
+  pc3a: any;
+  pc3b: any;
 }
 
 const initialFormState: FormState = {
@@ -169,6 +171,23 @@ const initialFormState: FormState = {
   sectionA: {
     local: '', foreign: '', cap: '', rev: '', total: '',
     tf27_28: '', tf28_29: '', tfBeyond: ''
+  },
+  pc3a: {
+    s1: { projectName: '' },
+    s2: { capitalCost: '' },
+    s3: { actual: '', accrued: '', total: '' },
+    s4: { total: '', local: '', fec: '' },
+    s5: { workPlan: [] },
+    s6: { quarterlyWorkPlan: [] },
+    s7: { q1: '', q2: '', q3: '', q4: '', annualTotal: '' },
+    s8: { indicators: [] }
+  },
+  pc3b: {
+    s1: { projectName: '', month: '', year: '' },
+    s2: { psdpFunding: '', cashPlanReq: '', releases: '', expenditure: '' },
+    s3: { physicalStatus: [], narrative: '' },
+    s4: { indicators: [] },
+    s5: { bottlenecks: [], otherBottleneck: '', remarks: '' }
   }
 };
 

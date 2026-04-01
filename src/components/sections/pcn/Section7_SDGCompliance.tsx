@@ -29,7 +29,7 @@ export const Section7_SDGCompliance: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div className="space-y-6" style={{ maxWidth: '800px' }}>
+        <div className="space-y-6" style={{ maxWidth: '1200px' }}>
           <SelectField 
             label="Primary SDG Goal Alignment"
             options={SDG_GOALS}

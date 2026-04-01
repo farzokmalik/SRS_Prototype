@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from '../../context/FormContext';
-import { RadioGroup, InputField, FileUpload } from '../ui/FormElements';
-import { Search, Link } from 'lucide-react';
+import { useForm } from '../../../context/FormContext';
+import { RadioGroup, InputField, FileUpload } from '../../ui/FormElements';
+import { Search } from 'lucide-react';
 
 export const Section17_Relation: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -14,8 +14,8 @@ export const Section17_Relation: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-           <Link size={20} color="var(--primary)" /> Project Relations
+        <h3 style={{ fontSize: '1.1rem', marginTop: 0, marginBottom: '1.5rem' }}>
+           Project Relations
         </h3>
         <RadioGroup 
           label="Scheme Filter" 
