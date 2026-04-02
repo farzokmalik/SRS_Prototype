@@ -79,8 +79,16 @@ export const RadioGroup: React.FC<{ label: string, options: { value: string, lab
   </div>
 );
 
-export const MultiCheckGroup: React.FC<{ label: string, options: string[], selected?: string[], value?: string[], onChange: (val: string[]) => void, required?: boolean }> = ({ 
-  label, options, selected, value, onChange, required 
+export const MultiCheckGroup: React.FC<{ 
+  label: string, 
+  options: string[], 
+  selected?: string[], 
+  value?: string[], 
+  onChange: (val: string[]) => void, 
+  required?: boolean,
+  columns?: number
+}> = ({ 
+  label, options, selected, value, onChange, required, columns 
 }) => {
   const currentSelected = selected || value || [];
   const toggle = (opt: string) => {
@@ -88,19 +96,23 @@ export const MultiCheckGroup: React.FC<{ label: string, options: string[], selec
     else onChange([...currentSelected, opt]);
   };
 
+  const gridStyle = columns 
+    ? { gridTemplateColumns: `repeat(${columns}, 1fr)`} 
+    : { gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'};
+
   return (
     <div className="input-group">
       <label className="label">
         {label} {required && <span style={{ color: 'hsl(var(--error))' }}>*</span>}
       </label>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '0.75rem', marginTop: '0.5rem' }}>
+      <div style={{ display: 'grid', gap: '1rem', marginTop: '0.6rem', ...gridStyle }}>
         {(options || []).map((opt, i) => (
-          <label key={`${opt}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', fontSize: '0.9rem' }}>
+          <label key={`${opt}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', fontSize: '0.9375rem', color: 'hsl(var(--text-main))' }}>
             <input 
               type="checkbox" 
               checked={currentSelected.includes(opt)} 
               onChange={() => toggle(opt)} 
-              style={{ width: '16px', height: '16px', accentColor: 'hsl(var(--accent))' }}
+              style={{ width: '18px', height: '18px', accentColor: 'hsl(var(--accent))', cursor: 'pointer' }}
             />
             {opt}
           </label>

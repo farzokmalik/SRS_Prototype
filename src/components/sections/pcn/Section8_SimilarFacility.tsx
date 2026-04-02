@@ -4,7 +4,7 @@ import { InputField, RadioGroup } from '../../ui/FormElements';
 
 export const Section8_SimilarFacility: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.section8 || { hasFacility: 'No', facilityTitle: '' };
+  const data = formData.section8 || { hasFacility: 'No', facilityTitle: '', facilityLocation: '' };
 
   const handleChange = (field: string, value: string) => {
     updateSection('section8', { [field]: value });
@@ -20,19 +20,26 @@ export const Section8_SimilarFacility: React.FC = () => {
             name="hasFacility"
             options={[
               { label: 'Yes', value: 'Yes' },
-              { label: 'No / N/A', value: 'No' }
+              { label: 'No', value: 'No' }
             ]}
             value={data.hasFacility}
             onChange={(val) => handleChange('hasFacility', val)}
           />
 
           {data.hasFacility === 'Yes' && (
-            <div className="animate-fade-in">
+            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-6">
               <InputField 
-                label="Facility Title & Location" 
-                placeholder="Enter the name and proximity of the facility..."
-                value={data.facilityTitle}
+                label="Facility Title" 
+                placeholder="e.g. District General Hospital"
+                value={data.facilityTitle || ''}
                 onChange={(e: any) => handleChange('facilityTitle', e.target.value)}
+                required
+              />
+              <InputField 
+                label="Facility Location" 
+                placeholder="e.g. 5km North of Project Site"
+                value={data.facilityLocation || ''}
+                onChange={(e: any) => handleChange('facilityLocation', e.target.value)}
                 required
               />
             </div>
