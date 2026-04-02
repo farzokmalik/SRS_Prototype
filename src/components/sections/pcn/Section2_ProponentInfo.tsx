@@ -5,28 +5,29 @@ import { Trash2, Plus } from 'lucide-react';
 
 export const Section2_ProponentInfo: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.section2 || {
-    background: '', cropHealth: '', nutritionalData: [], attachments: []
-  };
+  const sectionData = formData.section2 || {};
+  const nutritionalData = (Array.isArray(sectionData.nutritionalData) && sectionData.nutritionalData.length > 0)
+    ? sectionData.nutritionalData
+    : [{ nutrient: '', value: '', unit: '' }];
 
   const handleChange = (field: string, value: any) => {
     updateSection('section2', { [field]: value });
   };
 
   const updateNutritionalRow = (idx: number, field: string, val: string) => {
-    const list = [...(data.nutritionalData || [])];
+    const list = [...nutritionalData];
     list[idx] = { ...list[idx], [field]: val };
     handleChange('nutritionalData', list);
   };
 
   const addRow = () => {
-    handleChange('nutritionalData', [...(data.nutritionalData || []), { nutrient: '', value: '', unit: '' }]);
+    handleChange('nutritionalData', [...nutritionalData, { nutrient: '', value: '', unit: '' }]);
   };
 
   const removeRow = (idx: number) => {
-    const list = [...(data.nutritionalData || [])];
+    const list = [...nutritionalData];
     list.splice(idx, 1);
-    handleChange('nutritionalData', list);
+    handleChange('nutritionalData', list.length > 0 ? list : [{ nutrient: '', value: '', unit: '' }]);
   };
 
   return (
@@ -39,7 +40,7 @@ export const Section2_ProponentInfo: React.FC = () => {
               label="Background & Rationale" 
               rows={5}
               placeholder="Provide strategic context and justification for this intervention..."
-              value={data.background}
+              value={sectionData.background || ''}
               onChange={(e: any) => handleChange('background', e.target.value)}
             />
 
@@ -47,7 +48,7 @@ export const Section2_ProponentInfo: React.FC = () => {
               label="Specific Crop Health Benefits" 
               rows={4}
               placeholder="Explain how this project directly impacts agricultural productivity..."
-              value={data.cropHealth}
+              value={sectionData.cropHealth || ''}
               onChange={(e: any) => handleChange('cropHealth', e.target.value)}
             />
           </div>
@@ -89,36 +90,31 @@ export const Section2_ProponentInfo: React.FC = () => {
 
               {/* Data Rows */}
               <div className="divide-y divide-border">
-                {(!data.nutritionalData || data.nutritionalData?.length === 0) ? (
-                  <div style={{ padding: '2rem', textAlign: 'center', color: 'hsl(var(--text-muted))', fontSize: '0.875rem' }}>
-                    No nutritional data entries yet. Click "Add Row" to begin.
-                  </div>
-                ) : (
-                  (data.nutritionalData || []).map((row: any, idx: number) => (
-                    <div 
-                      key={idx} 
-                      style={{ 
-                        display: 'grid', 
-                        gridTemplateColumns: '2fr 1fr 1fr 48px', 
-                        gap: '1rem', 
-                        padding: '1rem',
-                        alignItems: 'center',
-                        animation: 'fadeIn 0.2s ease-out'
-                      }}
+                {nutritionalData.map((row: any, idx: number) => (
+                  <div 
+                    key={idx} 
+                    style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: '2fr 1fr 1fr 48px', 
+                      gap: '1rem', 
+                      padding: '1rem',
+                      alignItems: 'center',
+                      animation: 'fadeIn 0.2s ease-out'
+                    }}
+                  >
+                    <InputField label="" placeholder="e.g. Protein Content" value={row.nutrient} onChange={(e: any) => updateNutritionalRow(idx, 'nutrient', e.target.value)} />
+                    <InputField label="" placeholder="e.g. 18.5" value={row.value} onChange={(e: any) => updateNutritionalRow(idx, 'value', e.target.value)} />
+                    <InputField label="" placeholder="e.g. %" value={row.unit} onChange={(e: any) => updateNutritionalRow(idx, 'unit', e.target.value)} />
+                    <button 
+                      type="button" 
+                      onClick={() => removeRow(idx)} 
+                      style={{ background: 'none', border: 'none', color: 'hsl(var(--error))', cursor: 'pointer', padding: '0.5rem' }} 
+                      title="Delete Row"
                     >
-                      <InputField label="" placeholder="e.g. Protein Content" value={row.nutrient} onChange={(e: any) => updateNutritionalRow(idx, 'nutrient', e.target.value)} />
-                      <InputField label="" placeholder="e.g. 18.5" value={row.value} onChange={(e: any) => updateNutritionalRow(idx, 'value', e.target.value)} />
-                      <InputField label="" placeholder="e.g. %" value={row.unit} onChange={(e: any) => updateNutritionalRow(idx, 'unit', e.target.value)} />
-                      <button 
-                        type="button" 
-                        onClick={() => removeRow(idx)} 
-style={{ background: 'none', border: 'none', color: 'hsl(var(--error))', cursor: 'pointer', padding: '0.5rem' }}                        title="Delete Row"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  ))
-                )}
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -129,10 +125,10 @@ style={{ background: 'none', border: 'none', color: 'hsl(var(--error))', cursor:
           <FileUpload 
             label="Image / Figure Upload" 
             description="Attach technical diagrams, proponent charts, or geographical figures (Max 10MB per file)"
-            files={data.attachments || []}
+            files={sectionData.attachments || []}
             onUpload={(files) => handleChange('attachments', files)}
             onRemove={(idx) => {
-              const newList = [...(data.attachments || [])];
+              const newList = [...(sectionData.attachments || [])];
               newList.splice(idx, 1);
               handleChange('attachments', newList);
             }}

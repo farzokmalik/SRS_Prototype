@@ -5,32 +5,36 @@ import { Trash2 } from 'lucide-react';
 
 export const Section12_Beneficiaries: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.section12 || { beneficiaries: [] };
+  const sectionData = formData.section12 || {};
+  const beneficiaries = (sectionData.beneficiaries && sectionData.beneficiaries.length > 0)
+    ? sectionData.beneficiaries
+    : [{ type: '', count: '' }];
 
   const handleChange = (list: any[]) => {
     updateSection('section12', { beneficiaries: list });
   };
 
   const addRow = () => {
-    handleChange([...(data.beneficiaries || []), { type: '', count: '' }]);
+    handleChange([...beneficiaries, { type: '', count: '' }]);
   };
 
   const updateRow = (idx: number, field: string, val: string) => {
-    const list = [...(data.beneficiaries || [])];
+    const list = [...beneficiaries];
     list[idx] = { ...list[idx], [field]: val };
     handleChange(list);
   };
 
   const removeRow = (idx: number) => {
-    const list = [...(data.beneficiaries || [])];
+    const list = [...beneficiaries];
     list.splice(idx, 1);
-    handleChange(list);
+    handleChange(list.length > 0 ? list : [{ type: '', count: '' }]);
   };
 
   return (
     <div className="space-y-6">
       <div className="card shadow-sm">
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid hsl(var(--border))', paddingBottom: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid hsl(var(--border))', paddingBottom: '1rem' }}>
+          <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'hsl(var(--primary))', margin: 0 }}>Beneficiaries Breakdown</h4>
           <button type="button" onClick={addRow} className="btn btn-secondary btn-sm shadow-sm" style={{ padding: '0.6rem 1.25rem', borderRadius: 'var(--radius-lg)' }}>
             Add Beneficiary Type
           </button>
@@ -46,7 +50,7 @@ export const Section12_Beneficiaries: React.FC = () => {
 
           {/* Rows */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {(data.beneficiaries || []).map((row: any, idx: number) => (
+            {beneficiaries.map((row: any, idx: number) => (
               <div key={idx} style={{ display: 'grid', gridTemplateColumns: 'minmax(250px, 1fr) 1fr 48px', gap: '1.5rem', alignItems: 'center' }}>
                 <InputField label="" value={row.type} onChange={(e: any) => updateRow(idx, 'type', e.target.value)} placeholder="e.g. Small Farmers" />
                 <InputField label="" type="number" value={row.count} onChange={(e: any) => updateRow(idx, 'count', e.target.value)} placeholder="e.g. 5000" />

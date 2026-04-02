@@ -26,6 +26,7 @@ export const Section15_GrowthStrategy: React.FC = () => {
             options={GROWTH_AREAS}
             value={data.applicableAreas}
             onChange={(val) => handleChange('applicableAreas', val)}
+            columns={3}
           />
 
           <TextAreaField 

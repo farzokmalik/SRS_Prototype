@@ -14,7 +14,7 @@ export const Section9_GestationPeriod: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '800px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
           <InputField 
             label="Start Date" 
             type="date"

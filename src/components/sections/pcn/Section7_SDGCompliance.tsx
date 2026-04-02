@@ -50,6 +50,7 @@ export const Section7_SDGCompliance: React.FC = () => {
             options={GROWTH_PILLARS}
             value={data.pillars}
             onChange={(val) => handleChange('pillars', val)}
+            columns={3}
           />
 
           <TextAreaField 
