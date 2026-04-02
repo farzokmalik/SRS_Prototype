@@ -66,13 +66,9 @@ const PC_FORMS = [
     label: 'PC-IV',
     title: 'Project Completion Report',
     description: 'File the completion report upon finishing a development project, covering final costs, outcomes and lessons learned.',
-    sections: 8,
+    sections: 27,
     icon: ShieldCheck,
-    available: false,
-    variants: [
-      { label: 'Programs', path: '/pc-1-programs' },
-      { label: 'Projects', path: '/pc-1' },
-    ]
+    available: true,
   },
   {
     id: 'pc5',

@@ -76,4 +76,34 @@ export const PC3B_SECTIONS: FormSection[] = [
   { id: 4, title: 'Bottlenecks & Problems' }
 ];
 
+export const PC4_SECTIONS: FormSection[] = [
+  { id: 1, title: 'Project Identification' },
+  { id: 2, title: 'Sector and Sub-sector' },
+  { id: 3, title: 'Sponsoring Ministry' },
+  { id: 4, title: 'Executing Agency' },
+  { id: 5, title: 'O&M Agency' },
+  { id: 6, title: 'Approval Details' },
+  { id: 7, title: 'Implementation Schedule & Extensions' },
+  { id: 8, title: 'Capital Cost' },
+  { id: 9, title: 'Financing' },
+  { id: 10, title: 'Project Accounts' },
+  { id: 11, title: 'Financial Phasing & Expenditure' },
+  { id: 12, title: 'Physical Achievements' },
+  { id: 13, title: 'Item-wise Expenditure' },
+  { id: 14, title: 'Recurring Costs' },
+  { id: 15, title: 'Objectives Achievement' },
+  { id: 16, title: 'Climate Co-benefits' },
+  { id: 17, title: 'Project Income' },
+  { id: 18, title: 'RBM&E Indicators' },
+  { id: 19, title: 'PD History' },
+  { id: 20, title: 'Assets & Ownership' },
+  { id: 21, title: 'Multi-Dimensional Impact' },
+  { id: 22, title: 'Project Impact Analysis' },
+  { id: 23, title: 'Economic & Financial Analysis' },
+  { id: 24, title: 'Issues & Bottlenecks' },
+  { id: 25, title: 'Lessons Learned' },
+  { id: 26, title: 'Additional Information' },
+  { id: 27, title: 'Submission' }
+];
+
 export const FORM_SECTIONS = PC1_SECTIONS;

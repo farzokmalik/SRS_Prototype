@@ -23,6 +23,7 @@ export interface FormState {
   sectionA: any;
   pc3a: any;
   pc3b: any;
+  pc4: any;
 }
 
 const initialFormState: FormState = {
@@ -188,6 +189,57 @@ const initialFormState: FormState = {
     s3: { physicalStatus: [], narrative: '' },
     s4: { indicators: [] },
     s5: { bottlenecks: [], otherBottleneck: '', remarks: '' }
+  },
+  pc4: {
+    s1: { projectName: '', locations: '' },
+    s2: { sector: '', subSector: '' },
+    s3: { name: '', address: '' },
+    s4: { name: '', address: '' },
+    s5: { name: '', address: '' },
+    s6: { approvalForum: '', originalDate: '', revisedDate: '', decisionCopy: [] },
+    s7: { plannedCommencement: '', actualCommencement: '', plannedCompletion: '', actualCompletion: '', duration: '', extensions: [{ date: '', months: '', days: '', authority: '' }] },
+    s8: { 
+      capitalCost: { 
+        original: { local: '', fe: '', total: '' }, 
+        revised: { local: '', fe: '', total: '' }, 
+        actual: { local: '', fe: '', total: '' } 
+      }, 
+      climateCoBenefits: { adaptation: '', mitigation: '' } 
+    },
+    s9: { 
+      financing: { 
+        federal: { local: '', fe: '', total: '' }, 
+        provincial: { local: '', fe: '', total: '' }, 
+        donors: { local: '', fe: '', total: '' } 
+      }, 
+      exchangeRateNote: '' 
+    },
+    s10: { accounts: [], closureStatus: '', closureDate: '', closureReasons: '' },
+    s11: { annualPhasing: [{ year: '', pciPhasing: { total: '', fe: '' }, psdpAllocation: { total: '', fe: '' }, releases: { total: '', fe: '' }, expenditure: { total: '', fe: '' } }] },
+    s12: { physicalAchievements: [{ item: '', unit: '', planned: '', actual: '' }] },
+    s13: { itemWiseExpenditure: [{ item: '', pciEstimate: { local: '', fec: '', total: '' }, actual: { local: '', fec: '', total: '' } }], climateSubTable: [] },
+    s14: { recurringCosts: [{ item: '', pciEstimate: '', actual: '', source: '' }] },
+    s15: { objectives: [{ objective: '', status: 'Achieved', reasons: '' }] },
+    s16: { adaptation: [{ description: '', cost: '' }], mitigation: [{ description: '', cost: '' }] },
+    s17: { income: [{ year: '', estimated: '', actual: '' }] },
+    s18: { indicators: [{ input: '', output: '', outputIndicator: '', outcomeIndicator: '', baseline: '', target: '', targetedImpact: '', impactIndicator: '' }] },
+    s19: { pdHistory: [{ name: '', fromDate: '', toDate: '' }] },
+    s20: { assetOwnershipAgency: '', assets: [{ name: '', type: 'Moveable' }] },
+    s21: { social: '', economic: '', environmental: '', technological: '', regional: '', sectoral: '', employment: '' },
+    s22: { impactAnalysis: '' },
+    s23: { 
+      npvFinancial: { pci: '', completion: '' }, 
+      bcrFinancial: { pci: '', completion: '' }, 
+      ifrr: { pci: '', completion: '' }, 
+      npvEconomic: { pci: '', completion: '' }, 
+      bcrEconomic: { pci: '', completion: '' }, 
+      ierr: { pci: '', completion: '' }, 
+      unitCost: { pci: '', completion: '' } 
+    },
+    s24: { a: '', b: '', c: '', d: '', e: '' },
+    s25: { a: '', b: '', c: '', d: '', e: '', f: '' },
+    s26: { additionalInfo: '' },
+    s27: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
   }
 };
 
