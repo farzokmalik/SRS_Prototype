@@ -34,71 +34,110 @@ export const Section13_Management: React.FC = () => {
     };
 
     return (
-      <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-        <div style={{ padding: '1.25rem 1.5rem 1rem', display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', borderBottom: '1px solid hsl(var(--border))' }}>
-          <div /> {/* Spacer for centering */}
-          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.01em', textAlign: 'center', margin: 0 }}>{title}</h3>
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <button onClick={handleAdd} className="btn btn-secondary" style={{ padding: '0.4rem 0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', fontWeight: 600 }}>
-               <Plus size={14} /> Add Row
-            </button>
-          </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'hsl(var(--primary))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{title}</h3>
+          <button onClick={handleAdd} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8125rem' }}>
+             <Plus size={16} /> Add Personnel
+          </button>
         </div>
         
-        <div style={{ overflowX: 'auto' }}>
-          {/* Table Header */}
-          <div style={{ padding: '0.85rem 1rem', background: 'rgba(23,107,210,0.08)', borderBottom: '1px solid hsl(var(--border))' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '60px 80px 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 80px 110px 110px 40px', gap: '0.75rem', color: 'hsl(var(--primary))', fontSize: '0.7rem', fontWeight: 800, minWidth: '1200px' }}>
-              <div style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>SR. NO.</div>
-              <div style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>POSTS</div>
-              <div>DESIGNATION</div>
-              <div>JOB DESCRIPTION</div>
-              <div>QUALIFICATIONS</div>
-              <div>SKILLS</div>
-              <div>EXPERIENCE</div>
-              <div>AGE</div>
-              <div>SALARY</div>
-              <div>EMP. TYPE</div>
-            </div>
-          </div>
-          
-          {/* Rows */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {items.length === 0 ? (
-            <p style={{ padding: '2rem', textAlign: 'center', fontSize: '0.875rem', color: 'hsl(var(--text-muted))' }}>No manpower details defined. Click "Add Row" to start.</p>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ minWidth: '1200px' }}>
-              {items.map((item: any, idx: number) => (
-                <div key={item.id} style={{ display: 'grid', gridTemplateColumns: '60px 80px 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 80px 110px 110px 40px', gap: '0.75rem', padding: '0.75rem 1rem', borderBottom: '1px solid hsl(var(--border) / 0.5)', alignItems: 'center' }}>
-                <div style={{ textAlign: 'center', fontSize: '0.875rem', fontWeight: 600, color: 'hsl(var(--text-main))' }}>{idx + 1}</div>
-                <input type="number" className="input" placeholder="0" value={item.noOfPosts} onChange={(e) => handleUpdateItem(idx, { noOfPosts: e.target.value })} style={{ textAlign: 'center', padding: '0.625rem 0.5rem' }} />
-                <input className="input" placeholder="Designation" value={item.designation} onChange={(e) => handleUpdateItem(idx, { designation: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input className="input" placeholder="Description" value={item.jobDescription} onChange={(e) => handleUpdateItem(idx, { jobDescription: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input className="input" placeholder="Qualifications" value={item.qualifications} onChange={(e) => handleUpdateItem(idx, { qualifications: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input className="input" placeholder="Skills" value={item.skills || ''} onChange={(e) => handleUpdateItem(idx, { skills: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input className="input" placeholder="Experience" value={item.experience || ''} onChange={(e) => handleUpdateItem(idx, { experience: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input type="number" className="input" placeholder="Age" value={item.age || ''} onChange={(e) => handleUpdateItem(idx, { age: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                <input type="number" className="input" placeholder="Salary" value={item.salary || ''} onChange={(e) => handleUpdateItem(idx, { salary: e.target.value })} style={{ padding: '0.625rem 0.75rem' }} />
-                
-                <select className="input" value={item.employmentType || ''} onChange={(e) => handleUpdateItem(idx, { employmentType: e.target.value })} style={{ padding: '0.625rem 0.75rem' }}>
-                  <option value="">Select...</option>
-                  <option value="Permanent">Permanent</option>
-                  <option value="Contract">Contract</option>
-                  <option value="Daily Wages">Daily Wages</option>
-                </select>
-
-                <button 
-                  className="btn btn-secondary" 
-                  style={{ height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'hsl(var(--error) / 0.1)', color: 'hsl(var(--error))', border: 'none', padding: 0 }} 
-                  onClick={() => handleRemove(idx)}
-                  title="Remove Row"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </div>
-            ))}
-              </div>
+            <div style={{ textAlign: 'center', padding: '4rem', border: '1px dashed hsl(var(--border))', borderRadius: 'var(--radius-lg)', background: 'hsl(var(--bg-main) / 0.3)', color: 'hsl(var(--text-muted))' }}>
+              <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>No manpower details defined. Click "Add Personnel" to start.</p>
             </div>
+          ) : (
+            items.map((item: any, idx: number) => (
+              <div key={item.id} style={{ 
+                padding: '1.75rem', 
+                background: '#fff', 
+                borderRadius: 'var(--radius-lg)', 
+                border: '1px solid hsl(var(--border))',
+                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.05)',
+                animation: 'fadeIn 0.3s ease'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px dashed hsl(var(--border))' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'hsl(var(--primary))', background: 'hsl(var(--primary) / 0.1)', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+                      #{idx + 1}
+                    </span>
+                    <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'hsl(var(--text-main))' }}>
+                      {item.designation || 'New Personnel'}
+                    </span>
+                  </div>
+                  <button 
+                    className="btn btn-secondary" 
+                    onClick={() => handleRemove(idx)}
+                    style={{ 
+                      color: 'hsl(var(--error))', 
+                      borderColor: 'hsl(var(--error) / 0.2)',
+                      background: 'hsl(var(--error) / 0.02)',
+                      fontSize: '0.75rem',
+                      padding: '0.4rem 0.8rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem'
+                    }}
+                  >
+                    <Trash2 size={14} /> Remove
+                  </button>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
+                  {/* Row 1: Basic Post Info */}
+                  <div style={{ gridColumn: 'span 2' }}>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Designation</label>
+                    <input className="input" placeholder="e.g. Project Manager" value={item.designation} onChange={(e) => handleUpdateItem(idx, { designation: e.target.value })} style={{ background: '#fff' }} />
+                  </div>
+                  <div>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>No. of Posts</label>
+                    <input type="number" className="input" placeholder="0" value={item.noOfPosts} onChange={(e) => handleUpdateItem(idx, { noOfPosts: e.target.value })} style={{ background: '#fff' }} />
+                  </div>
+
+                  {/* Row 2: Description */}
+                  <div style={{ gridColumn: 'span 3' }}>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Job Description</label>
+                    <textarea className="input" placeholder="Key responsibilities and duties..." value={item.jobDescription} onChange={(e) => handleUpdateItem(idx, { jobDescription: e.target.value })} style={{ minHeight: '80px', paddingTop: '0.75rem', background: '#fff' }} />
+                  </div>
+
+                  {/* Row 3: Qualifications & Skills */}
+                  <div style={{ gridColumn: 'span 1.5' }}>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Qualifications</label>
+                    <textarea className="input" placeholder="Required education..." value={item.qualifications} onChange={(e) => handleUpdateItem(idx, { qualifications: e.target.value })} style={{ minHeight: '80px', paddingTop: '0.75rem', background: '#fff' }} />
+                  </div>
+                  <div style={{ gridColumn: 'span 1.5' }}>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Skills</label>
+                    <textarea className="input" placeholder="Technical/Soft skills..." value={item.skills || ''} onChange={(e) => handleUpdateItem(idx, { skills: e.target.value })} style={{ minHeight: '80px', paddingTop: '0.75rem', background: '#fff' }} />
+                  </div>
+
+                  {/* Row 4: Professional Specs */}
+                  <div>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Experience</label>
+                    <input className="input" placeholder="e.g. 5 Years" value={item.experience || ''} onChange={(e) => handleUpdateItem(idx, { experience: e.target.value })} style={{ background: '#fff' }} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                    <div>
+                      <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Age</label>
+                      <input type="number" className="input" placeholder="Limit" value={item.age || ''} onChange={(e) => handleUpdateItem(idx, { age: e.target.value })} style={{ background: '#fff' }} />
+                    </div>
+                    <div>
+                      <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Salary</label>
+                      <input type="number" className="input" placeholder="PKR" value={item.salary || ''} onChange={(e) => handleUpdateItem(idx, { salary: e.target.value })} style={{ background: '#fff' }} />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Employment Type</label>
+                    <select className="input" value={item.employmentType || ''} onChange={(e) => handleUpdateItem(idx, { employmentType: e.target.value })} style={{ background: '#fff' }}>
+                      <option value="">Select...</option>
+                      <option value="Permanent">Permanent</option>
+                      <option value="Contract">Contract</option>
+                      <option value="Daily Wages">Daily Wages</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            ))
           )}
         </div>
       </div>
