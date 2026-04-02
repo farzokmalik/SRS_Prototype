@@ -62,14 +62,11 @@ export const PCN_SECTIONS: FormSection[] = [
 ];
 
 export const PC3A_SECTIONS: FormSection[] = [
-  { id: 1, title: 'Project Name' },
-  { id: 2, title: 'Approved Capital Cost' },
-  { id: 3, title: 'Expenditure Status' },
-  { id: 4, title: 'PSDP Allocation' },
-  { id: 5, title: 'Annual Work Plan' },
-  { id: 6, title: 'Quarterly Work Plan' },
-  { id: 7, title: 'Cash Plan' },
-  { id: 8, title: 'Output Indicators' }
+  { id: 1, title: 'Project Overview & Status' },
+  { id: 2, title: 'Annual Work Plan' },
+  { id: 3, title: 'Quarterly Work Plan' },
+  { id: 4, title: 'Cash Plan' },
+  { id: 5, title: 'Output Indicators' }
 ];
 
 export const PC3B_SECTIONS: FormSection[] = [
