@@ -59,14 +59,11 @@ import { Section14_Priority as PCN_Section14 } from './components/sections/pcn/S
 import { Section15_GrowthStrategy as PCN_Section15 } from './components/sections/pcn/Section15_GrowthStrategy';
 
 // PC-III Form A Sections
-import { Section1_ProjectName as PC3A_Section1 } from './components/sections/pc3/a/Section1_ProjectName';
-import { Section2_CapitalCost as PC3A_Section2 } from './components/sections/pc3/a/Section2_CapitalCost';
-import { Section3_Expenditure as PC3A_Section3 } from './components/sections/pc3/a/Section3_Expenditure';
-import { Section4_Allocation as PC3A_Section4 } from './components/sections/pc3/a/Section4_Allocation';
-import { Section5_AnnualWorkPlan as PC3A_Section5 } from './components/sections/pc3/a/Section5_AnnualWorkPlan';
-import { Section6_QuarterlyWorkPlan as PC3A_Section6 } from './components/sections/pc3/a/Section6_QuarterlyWorkPlan';
-import { Section7_CashPlan as PC3A_Section7 } from './components/sections/pc3/a/Section7_CashPlan';
-import { Section8_Indicators as PC3A_Section8 } from './components/sections/pc3/a/Section8_Indicators';
+import { Section1_Overview as PC3A_Section1 } from './components/sections/pc3/a/Section1_Overview';
+import { Section5_AnnualWorkPlan as PC3A_Section2 } from './components/sections/pc3/a/Section5_AnnualWorkPlan';
+import { Section6_QuarterlyWorkPlan as PC3A_Section3 } from './components/sections/pc3/a/Section6_QuarterlyWorkPlan';
+import { Section7_CashPlan as PC3A_Section4 } from './components/sections/pc3/a/Section7_CashPlan';
+import { Section8_Indicators as PC3A_Section5 } from './components/sections/pc3/a/Section8_Indicators';
 
 // PC-III Form B Sections
 import { Section1_MonthlyContext as PC3B_Section1 } from './components/sections/pc3/b/Section1_MonthlyContext';
@@ -182,9 +179,6 @@ const PC3AFormContent = () => {
     case 3: return <PC3A_Section3 />;
     case 4: return <PC3A_Section4 />;
     case 5: return <PC3A_Section5 />;
-    case 6: return <PC3A_Section6 />;
-    case 7: return <PC3A_Section7 />;
-    case 8: return <PC3A_Section8 />;
     default: return <div className="card">Section {currentSection} is under development.</div>;
   }
 };
