@@ -70,11 +70,10 @@ export const PC3A_SECTIONS: FormSection[] = [
 ];
 
 export const PC3B_SECTIONS: FormSection[] = [
-  { id: 1, title: 'Monthly Context' },
-  { id: 2, title: 'Financial Status' },
-  { id: 3, title: 'Physical Status' },
-  { id: 4, title: 'Monthly Output Indicators' },
-  { id: 5, title: 'Bottlenecks & Problems' }
+  { id: 1, title: 'Monthly Overview' },
+  { id: 2, title: 'Physical Status' },
+  { id: 3, title: 'Monthly Output Indicators' },
+  { id: 4, title: 'Bottlenecks & Problems' }
 ];
 
 export const FORM_SECTIONS = PC1_SECTIONS;

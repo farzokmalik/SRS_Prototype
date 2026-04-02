@@ -66,11 +66,10 @@ import { Section7_CashPlan as PC3A_Section4 } from './components/sections/pc3/a/
 import { Section8_Indicators as PC3A_Section5 } from './components/sections/pc3/a/Section8_Indicators';
 
 // PC-III Form B Sections
-import { Section1_MonthlyContext as PC3B_Section1 } from './components/sections/pc3/b/Section1_MonthlyContext';
-import { Section2_FinancialStatus as PC3B_Section2 } from './components/sections/pc3/b/Section2_FinancialStatus';
-import { Section3_PhysicalStatus as PC3B_Section3 } from './components/sections/pc3/b/Section3_PhysicalStatus';
-import { Section4_MonthlyIndicators as PC3B_Section4 } from './components/sections/pc3/b/Section4_MonthlyIndicators';
-import { Section5_Bottlenecks as PC3B_Section5 } from './components/sections/pc3/b/Section5_Bottlenecks';
+import { Section1_MonthlyOverview as PC3B_Section1 } from './components/sections/pc3/b/Section1_MonthlyOverview';
+import { Section3_PhysicalStatus as PC3B_Section2 } from './components/sections/pc3/b/Section3_PhysicalStatus';
+import { Section4_MonthlyIndicators as PC3B_Section3 } from './components/sections/pc3/b/Section4_MonthlyIndicators';
+import { Section5_Bottlenecks as PC3B_Section4 } from './components/sections/pc3/b/Section5_Bottlenecks';
 
 // PC-I Programs Sections
 import { Section1_Overview as PC1P_Section1 } from './components/sections/pc1_programs/Section1_Overview';
@@ -190,7 +189,6 @@ const PC3BFormContent = () => {
     case 2: return <PC3B_Section2 />;
     case 3: return <PC3B_Section3 />;
     case 4: return <PC3B_Section4 />;
-    case 5: return <PC3B_Section5 />;
     default: return <div className="card">Section {currentSection} is under development.</div>;
   }
 };
