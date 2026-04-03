@@ -6,7 +6,7 @@ import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardHome } from './pages/DashboardHome';
 import { LoginPage } from './pages/LoginPage';
 import { useForm } from './context/FormContext';
-import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS } from './constants';
+import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS, PC4_SECTIONS, PC5_SECTIONS } from './constants';
 
 import { Section1_Overview } from './components/sections/pc1_projects/Section1_Overview';
 import { Section2_RevisionHistory } from './components/sections/pc1_projects/Section20_ Addition of Upward Revision of Development Project';
@@ -110,7 +110,15 @@ import { Section19_PDHistory as PC4_Section19, Section20_Assets as PC4_Section20
 import { Section21_ImpactEvaluation as PC4_Section21, Section22_ImpactAnalysis as PC4_Section22, Section23_EconomicAnalysis as PC4_Section23 } from './components/sections/pc4/Section21_23_Impact';
 import { Section24_Issues as PC4_Section24, Section25_Lessons as PC4_Section25 } from './components/sections/pc4/Section24_25_IssuesLessons';
 import { Section26_AdditionalInfo as PC4_Section26, Section27_Submission as PC4_Section27 } from './components/sections/pc4/Section26_27_Submission';
-import { PC4_SECTIONS } from './constants';
+// Constants
+
+// PC-5 Sections
+import { Section1_Identification as PC5_Section1, Section2_Objectives as PC5_Section2 } from './components/sections/pc5/Section1_2_Identification';
+import { Section3_RecurringCost as PC5_Section3, Section4_Manpower as PC5_Section4 } from './components/sections/pc5/Section3_4_Performance';
+import { Section5_PhysicalOutput as PC5_Section5, Section6_ProjectIncome as PC5_Section6, Section7_EconomicBenefits as PC5_Section7 } from './components/sections/pc5/Section5_7_OutputIncome';
+import { Section8_SocialBenefits as PC5_Section8, Section9_ClimateResilience as PC5_Section9, Section10_CostPerUnit as PC5_Section10 } from './components/sections/pc5/Section8_10_CostSocial';
+import { Section11_Marketing as PC5_Section11, Section12_Maintenance as PC5_Section12, Section13_OutputTargets as PC5_Section13 } from './components/sections/pc5/Section11_13_Operations';
+import { Section14_LessonsLearned as PC5_Section14, Section15_ManagementChanges as PC5_Section15, Section16_Suggestions as PC5_Section16, Section17_Submission as PC5_Section17 } from './components/sections/pc5/Section14_17_Submission';
 
 const PC1FormContent = () => {
   const { currentSection } = useForm();
@@ -279,6 +287,35 @@ const PC4FormContent = () => {
   }
 };
 
+const PC5FormContent = () => {
+  const { currentSection } = useForm();
+
+  switch (currentSection) {
+    case 1:  return <PC5_Section1 />;
+    case 2:  return <PC5_Section2 />;
+    case 3:  return <PC5_Section3 />;
+    case 4:  return <PC5_Section4 />;
+    case 5:  return <PC5_Section5 />;
+    case 6:  return <PC5_Section6 />;
+    case 7:  return <PC5_Section7 />;
+    case 8:  return <PC5_Section8 />;
+    case 9:  return <PC5_Section9 />;
+    case 10: return <PC5_Section10 />;
+    case 11: return <PC5_Section11 />;
+    case 12: return <PC5_Section12 />;
+    case 13: return <PC5_Section13 />;
+    case 14: return <PC5_Section14 />;
+    case 15: return <PC5_Section15 />;
+    case 16: return <PC5_Section16 />;
+    case 17: return <PC5_Section17 />;
+    default: return <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
+      <p style={{ color: 'hsl(var(--text-muted))', fontSize: '0.9375rem' }}>
+        Section {currentSection} is under development.
+      </p>
+    </div>;
+  }
+};
+
 const PC1_CONFIG = {
   label: 'PC-I',
   title: 'Development Project Proposal',
@@ -335,73 +372,75 @@ const PC4_CONFIG = {
   totalSections: PC4_SECTIONS.length,
 };
 
+const PC5_CONFIG = {
+  label: 'PC-V',
+  title: 'Post-Completion Evaluation',
+  breadcrumb: 'PC-V Application',
+  sections: PC5_SECTIONS,
+  totalSections: PC5_SECTIONS.length,
+};
+
 const PC1Page = () => (
   <FormConfigProvider config={PC1_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC1FormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC1FormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PC2Page = () => (
   <FormConfigProvider config={PC2_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC2FormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC2FormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PC1ProgramPage = () => (
   <FormConfigProvider config={PC1_PROGRAMS_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC1ProgramFormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC1ProgramFormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PCNPage = () => (
   <FormConfigProvider config={PCN_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PCNFormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PCNFormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PC3APage = () => (
   <FormConfigProvider config={PC3A_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC3AFormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC3AFormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PC3BPage = () => (
   <FormConfigProvider config={PC3B_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC3BFormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC3BFormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
 const PC4Page = () => (
   <FormConfigProvider config={PC4_CONFIG}>
-    <FormProvider>
-      <DashboardLayout>
-        <PC4FormContent />
-      </DashboardLayout>
-    </FormProvider>
+    <DashboardLayout>
+      <PC4FormContent />
+    </DashboardLayout>
+  </FormConfigProvider>
+);
+
+const PC5Page = () => (
+  <FormConfigProvider config={PC5_CONFIG}>
+    <DashboardLayout>
+      <PC5FormContent />
+    </DashboardLayout>
   </FormConfigProvider>
 );
 
@@ -447,22 +486,24 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+        <FormProvider>
+          <Routes>
+            <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
 
-          <Route path="/" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
-          <Route path="/pc-1" element={<ProtectedRoute><PC1Page /></ProtectedRoute>} />
-          <Route path="/pc-1-programs" element={<ProtectedRoute><PC1ProgramPage /></ProtectedRoute>} />
-          <Route path="/pc-n" element={<ProtectedRoute><PCNPage /></ProtectedRoute>} />
-          <Route path="/pc-3-a" element={<ProtectedRoute><PC3APage /></ProtectedRoute>} />
-          <Route path="/pc-3-b" element={<ProtectedRoute><PC3BPage /></ProtectedRoute>} />
-          <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />
-          <Route path="/pc-3" element={<ProtectedRoute><ComingSoonPage label="PC-III" title="Quarterly Progress Report" /></ProtectedRoute>} />
-          <Route path="/pc-4" element={<ProtectedRoute><PC4Page /></ProtectedRoute>} />
-          <Route path="/pc-5" element={<ProtectedRoute><ComingSoonPage label="PC-V" title="Post-Completion Evaluation" /></ProtectedRoute>} />
+            <Route path="/" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
+            <Route path="/pc-1" element={<ProtectedRoute><PC1Page /></ProtectedRoute>} />
+            <Route path="/pc-1-programs" element={<ProtectedRoute><PC1ProgramPage /></ProtectedRoute>} />
+            <Route path="/pc-n" element={<ProtectedRoute><PCNPage /></ProtectedRoute>} />
+            <Route path="/pc-3-a" element={<ProtectedRoute><PC3APage /></ProtectedRoute>} />
+            <Route path="/pc-3-b" element={<ProtectedRoute><PC3BPage /></ProtectedRoute>} />
+            <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />
+            <Route path="/pc-3" element={<ProtectedRoute><ComingSoonPage label="PC-III" title="Quarterly Progress Report" /></ProtectedRoute>} />
+            <Route path="/pc-4" element={<ProtectedRoute><PC4Page /></ProtectedRoute>} />
+            <Route path="/pc-5" element={<ProtectedRoute><PC5Page /></ProtectedRoute>} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </FormProvider>
       </AuthProvider>
     </BrowserRouter>
   );
