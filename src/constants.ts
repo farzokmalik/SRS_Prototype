@@ -106,4 +106,24 @@ export const PC4_SECTIONS: FormSection[] = [
   { id: 27, title: 'Submission' }
 ];
 
+export const PC5_SECTIONS: FormSection[] = [
+  { id: 1, title: 'Project Identification' },
+  { id: 2, title: 'Objectives & Scope' },
+  { id: 3, title: 'Recurring Cost Performance' },
+  { id: 4, title: 'Manpower Performance' },
+  { id: 5, title: 'Physical Output' },
+  { id: 6, title: 'Project Income' },
+  { id: 7, title: 'Economic Benefits' },
+  { id: 8, title: 'Social Benefits' },
+  { id: 9, title: 'Climate Resilience' },
+  { id: 10, title: 'Cost per Unit' },
+  { id: 11, title: 'Marketing' },
+  { id: 12, title: 'Operations & Maintenance' },
+  { id: 13, title: 'Output Targets' },
+  { id: 14, title: 'Lessons Learned' },
+  { id: 15, title: 'Management Changes' },
+  { id: 16, title: 'Suggestions for Improvement' },
+  { id: 17, title: 'Submission' }
+];
+
 export const FORM_SECTIONS = PC1_SECTIONS;

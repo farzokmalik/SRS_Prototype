@@ -24,6 +24,7 @@ export interface FormState {
   pc3a: any;
   pc3b: any;
   pc4: any;
+  pc5: any;
 }
 
 const initialFormState: FormState = {
@@ -178,7 +179,7 @@ const initialFormState: FormState = {
     s2: { capitalCost: '' },
     s3: { actual: '', accrued: '', total: '' },
     s4: { total: '', local: '', fec: '' },
-    s5: { workPlan: [] },
+    s5: { workPlan: [], nodeData: {} },
     s6: { quarterlyWorkPlan: [] },
     s7: { q1: '', q2: '', q3: '', q4: '', annualTotal: '' },
     s8: { indicators: [] }
@@ -240,6 +241,30 @@ const initialFormState: FormState = {
     s25: { a: '', b: '', c: '', d: '', e: '', f: '' },
     s26: { additionalInfo: '' },
     s27: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
+  },
+  pc5: {
+    s1: { projectName: '', reportingYear: '', yearAfterCompletion: 1 },
+    s2: { objectives: '', extentMet: '', status: 'Fully met' },
+    s3: { plannedCost: '', actualCost: '', components: [{ name: '', planned: '', actual: '' }] },
+    s4: [{ category: 'Administrative', designation: '', planned: '', actual: '' }],
+    s5: [{ item: '', unit: '', planned: '', actual: '' }],
+    s6: [{ type: '', planned: '', assumptions: '', actual: '' }],
+    s7: [{ description: '', unit: '', planned: '', actual: '' }],
+    s8: [{ description: '', targetGroup: '', planned: '', actual: '', extentMet: '' }],
+    s9: { 
+      adaptation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      mitigation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      disasterOccurred: false, 
+      disasterDetails: '' 
+    },
+    s10: { unitType: '', plannedCost: '', actualCost: '', wacc: '' },
+    s11: { marketingPCI: '', differsFromPCI: false, details: '' },
+    s12: { arrangements: '', annualMaintenance: false, reasons: '' },
+    s13: { status: 'Yes', reasons: '' },
+    s14: { operation: '', maintenance: '', marketing: '', management: '', climate: '' },
+    s15: { managementChange: false, changes: [{ name: '', designation: '', date: '' }], justification: '' },
+    s16: { suggestions: '' },
+    submission: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
   }
 };
 

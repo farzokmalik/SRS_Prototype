@@ -76,13 +76,9 @@ const PC_FORMS = [
     label: 'PC-V',
     title: 'Post-Completion Evaluation',
     description: 'Evaluate the impact and effectiveness of a completed project against its original objectives and projected benefits.',
-    sections: 6,
+    sections: 17,
     icon: LayoutGrid,
-    available: false,
-    variants: [
-      { label: 'Programs', path: '/pc-1-programs' },
-      { label: 'Projects', path: '/pc-1' },
-    ]
+    available: true,
   },
  
 ];
