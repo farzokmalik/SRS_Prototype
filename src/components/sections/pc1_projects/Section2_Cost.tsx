@@ -45,7 +45,6 @@ export const Section2_Cost: React.FC = () => {
       <div className="card">
         <RadioGroup 
           label="Foreign Funding" 
-          required 
           name="foreignFunding"
           value={data.foreignFunding}
           onChange={(val) => handleUpdate({ foreignFunding: val })}
@@ -86,7 +85,6 @@ export const Section2_Cost: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField 
             label="Project Financial Components" 
-            required 
             value={data.financialComponents}
             onChange={(e) => handleUpdate({ financialComponents: e.target.value })}
             options={[{ value: 'Capital', label: 'Capital' }, { value: 'Revenue', label: 'Revenue' }, { value: 'Both', label: 'Both' }]}
@@ -100,7 +98,6 @@ export const Section2_Cost: React.FC = () => {
           </div>
           <SelectField 
             label="Approval Forum" 
-            required 
             value={data.approvalForum}
             onChange={(e) => handleUpdate({ approvalForum: e.target.value })}
             options={[{ value: 'DDSC', label: 'DDSC' }, { value: 'CDWP', label: 'CDWP' }, { value: 'PDWP', label: 'PDWP' }]}

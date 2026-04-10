@@ -108,6 +108,19 @@ h1, h2, h3, h4, .font-heading {
   background: #fff;
 }
 
+/* Custom chevron on native <select> only — buttons using .select (e.g. multi-select) add their own icon */
+select.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.75rem;
+  background-color: hsl(var(--bg-card));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.15rem 1.15rem;
+}
+
 .input::placeholder {
   color: hsl(var(--text-muted));
   opacity: 0.6;

@@ -1,21 +1,39 @@
 import React from 'react';
 import { Plus, Trash2 } from 'lucide-react';
 import { useForm } from '../../../context/FormContext';
-import { FileUpload, InputField } from '../../ui/FormElements';
+import { FileUpload, InputField, SelectField } from '../../ui/FormElements';
 
-type ScheduleRow = {
-  actualStart: string;
-  actualEnd: string;
-  extensionStart: string;
-  extensionEnd: string;
-};
+const FINANCIAL_YEAR_OPTIONS = ['2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025', '2025-2026', '2026-2027'].map(
+  (y) => ({ value: y, label: y }),
+);
 
-const emptyRow = (): ScheduleRow => ({
-  actualStart: '',
-  actualEnd: '',
-  extensionStart: '',
-  extensionEnd: '',
+const PCI_FORM_OPTIONS = [
+  { value: 'Original', label: 'Original' },
+  { value: 'Revised', label: 'Revised' },
+  { value: 'Supplementary', label: 'Supplementary' },
+];
+
+const FORUM_OPTIONS = [
+  { value: 'DDSC', label: 'DDSC' },
+  { value: 'DDWP', label: 'DDWP' },
+  { value: 'CDWP', label: 'CDWP' },
+  { value: 'ECNEC', label: 'ECNEC' },
+  { value: 'PDWP', label: 'PDWP' },
+  { value: 'Other', label: 'Other' },
+];
+
+const emptyApprovalRow = () => ({
+  pcIForm: '',
+  approvedDate: '',
+  financialYear: '',
+  gestationStart: '',
+  gestationEnd: '',
+  forum: '',
+  totalCost: '',
+  totalCostMillions: '',
 });
+
+type ApprovalRow = ReturnType<typeof emptyApprovalRow>;
 
 type FileMeta = { name: string; size: string; type: string; date: string };
 
@@ -36,67 +54,35 @@ const addRowButtonStyle: React.CSSProperties = {
   border: '1px solid hsl(var(--border))',
 };
 
-export const Section7_Schedule: React.FC = () => {
+export const Section4_DateOfApprovalForum: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.pc4.s5;
+  const data = formData.pc4.s4;
 
   const handleUpdate = (updates: Record<string, unknown>) => {
-    updateSection('pc4', { s5: { ...data, ...updates } });
+    updateSection('pc4', { s4: { ...data, ...updates } });
   };
 
   const rows = (
-    data.scheduleRows && data.scheduleRows.length > 0 ? data.scheduleRows : [emptyRow()]
-  ) as ScheduleRow[];
+    data.approvalRows && data.approvalRows.length > 0 ? data.approvalRows : [emptyApprovalRow()]
+  ) as ApprovalRow[];
 
   const annexures = normalizeFileList(data.annexures);
 
-  const setRows = (next: ScheduleRow[]) => handleUpdate({ scheduleRows: next });
+  const setRows = (next: ApprovalRow[]) => handleUpdate({ approvalRows: next });
 
-  const addRow = () => setRows([...rows, emptyRow()]);
+  const addRow = () => setRows([...rows, emptyApprovalRow()]);
   const removeRow = (i: number) => {
     if (rows.length <= 1) return;
-    setRows(rows.filter((_: ScheduleRow, idx: number) => idx !== i));
+    setRows(rows.filter((_: unknown, idx: number) => idx !== i));
   };
-  const patchRow = (i: number, patch: Partial<ScheduleRow>) => {
+  const patchRow = (i: number, patch: Partial<ApprovalRow>) => {
     const next = [...rows];
-    next[i] = { ...emptyRow(), ...next[i], ...patch };
+    next[i] = { ...emptyApprovalRow(), ...next[i], ...patch };
     setRows(next);
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <div className="card">
-        <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '0.75rem' }}>
-          PC start and end date
-        </h3>
-        <p
-          style={{
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            color: 'hsl(var(--accent))',
-            marginBottom: '1rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.04em',
-          }}
-        >
-          As per PC I
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <InputField
-            label="Start date"
-            type="date"
-            value={data.pciStartDate ?? ''}
-            onChange={(e) => handleUpdate({ pciStartDate: e.target.value })}
-          />
-          <InputField
-            label="End date"
-            type="date"
-            value={data.pciEndDate ?? ''}
-            onChange={(e) => handleUpdate({ pciEndDate: e.target.value })}
-          />
-        </div>
-      </div>
-
       <div>
         <div
           style={{
@@ -109,9 +95,15 @@ export const Section7_Schedule: React.FC = () => {
           }}
         >
           <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: 0, color: 'hsl(var(--text-main))' }}>
-            Actual and extension date
+            Date of approval & forum
           </h3>
-          <button type="button" className="btn btn-secondary" title="Add row" onClick={addRow} style={addRowButtonStyle}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            title="Add row"
+            onClick={addRow}
+            style={addRowButtonStyle}
+          >
             <Plus size={16} />
             Add row
           </button>
@@ -152,30 +144,30 @@ export const Section7_Schedule: React.FC = () => {
                 )}
               </div>
 
-            <p
-              style={{
-                fontSize: '0.7rem',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-                color: 'hsl(var(--text-muted))',
-                margin: '0 0 0.75rem',
-              }}
-            >
-              Actual
-            </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-              <InputField
-                label="Start date"
-                type="date"
-                value={row.actualStart}
-                onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
+              <SelectField
+                label="PC-I"
+                value={row.pcIForm}
+                onChange={(e) => patchRow(idx, { pcIForm: e.target.value })}
+                options={PCI_FORM_OPTIONS}
               />
               <InputField
-                label="End date"
+                label="Approved date"
                 type="date"
-                value={row.actualEnd}
-                onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
+                value={row.approvedDate}
+                onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
+              />
+              <SelectField
+                label="Financial year"
+                value={row.financialYear}
+                onChange={(e) => patchRow(idx, { financialYear: e.target.value })}
+                options={FINANCIAL_YEAR_OPTIONS}
+              />
+              <SelectField
+                label="Forum"
+                value={row.forum}
+                onChange={(e) => patchRow(idx, { forum: e.target.value })}
+                options={FORUM_OPTIONS}
               />
             </div>
 
@@ -189,24 +181,51 @@ export const Section7_Schedule: React.FC = () => {
                 margin: '1.25rem 0 0.75rem',
               }}
             >
-              Extensions
+              Gestation
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <InputField
                 label="Start date"
                 type="date"
-                value={row.extensionStart}
-                onChange={(e) => patchRow(idx, { extensionStart: e.target.value })}
+                value={row.gestationStart}
+                onChange={(e) => patchRow(idx, { gestationStart: e.target.value })}
               />
               <InputField
                 label="End date"
                 type="date"
-                value={row.extensionEnd}
-                onChange={(e) => patchRow(idx, { extensionEnd: e.target.value })}
+                value={row.gestationEnd}
+                onChange={(e) => patchRow(idx, { gestationEnd: e.target.value })}
               />
             </div>
-          </div>
-        ))}
+
+            <p
+              style={{
+                fontSize: '0.7rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                color: 'hsl(var(--text-muted))',
+                margin: '1.25rem 0 0.75rem',
+              }}
+            >
+              Total cost
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+              <InputField
+                label="Amount"
+                placeholder="e.g. 55422096"
+                value={row.totalCost}
+                onChange={(e) => patchRow(idx, { totalCost: e.target.value })}
+              />
+              <InputField
+                label="Amount (millions)"
+                placeholder="e.g. 55.422096"
+                value={row.totalCostMillions}
+                onChange={(e) => patchRow(idx, { totalCostMillions: e.target.value })}
+              />
+            </div>
+            </div>
+          ))}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Upload, X, File as FileIcon } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Upload, X, File as FileIcon } from 'lucide-react';
 
 interface FieldProps {
   label: string;
@@ -118,6 +118,104 @@ export const MultiCheckGroup: React.FC<{
           </label>
         ))}
       </div>
+    </div>
+  );
+};
+
+export const MultiSelectDropdown: React.FC<{
+  label: string;
+  options: string[];
+  value: string[];
+  onChange: (next: string[]) => void;
+  required?: boolean;
+  emptyLabel?: string;
+}> = ({ label, options, value, onChange, required, emptyLabel = 'None Selected' }) => {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, [open]);
+
+  const toggle = (opt: string) => {
+    if (value.includes(opt)) onChange(value.filter((s) => s !== opt));
+    else onChange([...value, opt]);
+  };
+
+  const summary = value.length === 0 ? emptyLabel : `${value.length} selected`;
+
+  return (
+    <div className="input-group" ref={rootRef} style={{ position: 'relative' }}>
+      <label className="label">
+        {label} {required && <span style={{ color: 'hsl(var(--error))' }}>*</span>}
+      </label>
+      <button
+        type="button"
+        className="select"
+        onClick={() => setOpen((o) => !o)}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.5rem',
+          cursor: 'pointer',
+          textAlign: 'left',
+          width: '100%',
+        }}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+      >
+        <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{summary}</span>
+        <ChevronDown size={18} color="hsl(var(--text-muted))" style={{ flexShrink: 0 }} />
+      </button>
+      {open && (
+        <div
+          role="listbox"
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '100%',
+            marginTop: '0.25rem',
+            maxHeight: 'min(240px, 40vh)',
+            overflowY: 'auto',
+            background: '#fff',
+            border: '1.5px solid hsl(var(--border))',
+            borderRadius: 'var(--radius-md)',
+            boxShadow: '0 8px 24px hsl(var(--neutral-900) / 0.12)',
+            zIndex: 40,
+            padding: '0.35rem 0',
+          }}
+        >
+          {(options || []).map((opt, i) => (
+            <label
+              key={`${opt}-${i}`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.65rem',
+                padding: '0.45rem 0.85rem',
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                color: 'hsl(var(--text-main))',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={value.includes(opt)}
+                onChange={() => toggle(opt)}
+                style={{ width: '16px', height: '16px', accentColor: 'hsl(var(--accent))', cursor: 'pointer', flexShrink: 0 }}
+              />
+              <span style={{ flex: 1 }}>{opt}</span>
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -14,15 +14,9 @@ const SECTOR_OPTIONS = {
     'Water Supply & Sanitation',
     'Social Welfare',
     'Women Development',
-    'LG&CD'
+    'LG&CD',
   ],
-  'Infrastructure Development': [
-    'Roads',
-    'Irrigation',
-    'Energy',
-    'Public Buildings',
-    'Urban Development'
-  ],
+  'Infrastructure Development': ['Roads', 'Irrigation', 'Energy', 'Public Buildings', 'Urban Development'],
   'Production Sectors': [
     'Agriculture',
     'Cooperatives',
@@ -34,53 +28,54 @@ const SECTOR_OPTIONS = {
     'Industries, Commerce & Investment',
     'Skill Development & Entrepreneurship',
     'Mines & Minerals',
-    'Tourism'
+    'Tourism',
   ],
   'Services Sectors': [
     'Governance & Information Technology',
     'Labour & HR Development',
     'Transport',
-    'Emergency Service (1122)'
+    'Emergency Service (1122)',
   ],
-  'Others': [
+  Others: [
     'Environment & Climate Change',
     'Information & Culture',
     'Archaeology',
     'Auqaf & Religious Affairs',
     'Human Rights & Minority Affairs',
-    'Planning & Development'
+    'Planning & Development',
   ],
-  'Special Initiatives': [
-    'Special Programme / Initiatives'
-  ]
+  'Special Initiatives': ['Special Programme / Initiatives'],
 };
 
 export const Section2_Sector: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc4.s2;
 
-  const handleUpdate = (updates: any) => {
+  const handleUpdate = (updates: Record<string, unknown>) => {
     updateSection('pc4', { s2: { ...data, ...updates } });
   };
 
   return (
     <div className="card">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-        <SelectField 
-          label="Sector" 
-          required 
-          value={data.sector}
-          onChange={(e) => handleUpdate({ sector: e.target.value, subSector: '' })}
-          options={Object.keys(SECTOR_OPTIONS).map(s => ({ value: s, label: s }))}
-        />
-        <SelectField 
-          label="Sub-sector" 
-          required 
-          disabled={!data.sector}
-          value={data.subSector}
-          onChange={(e) => handleUpdate({ subSector: e.target.value })}
-          options={(SECTOR_OPTIONS[data.sector as keyof typeof SECTOR_OPTIONS] || []).map(s => ({ value: s, label: s }))}
-        />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <SelectField
+            label="Sector"
+            value={data.sector ?? ''}
+            onChange={(e) => handleUpdate({ sector: e.target.value, subSector: '' })}
+            options={Object.keys(SECTOR_OPTIONS).map((s) => ({ value: s, label: s }))}
+          />
+          <SelectField
+            label="Sub-Sector"
+            disabled={!data.sector}
+            value={data.subSector ?? ''}
+            onChange={(e) => handleUpdate({ subSector: e.target.value })}
+            options={(SECTOR_OPTIONS[data.sector as keyof typeof SECTOR_OPTIONS] || []).map((s) => ({
+              value: s,
+              label: s,
+            }))}
+          />
+        </div>
       </div>
     </div>
   );

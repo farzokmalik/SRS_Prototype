@@ -192,55 +192,255 @@ const initialFormState: FormState = {
     s5: { bottlenecks: [], otherBottleneck: '', remarks: '' }
   },
   pc4: {
-    s1: { projectName: '', locations: '' },
+    s1: { projectTitle: '', administrativeDepartment: '', locationType: '' },
     s2: { sector: '', subSector: '' },
-    s3: { name: '', address: '' },
-    s4: { name: '', address: '' },
-    s5: { name: '', address: '' },
-    s6: { approvalForum: '', originalDate: '', revisedDate: '', decisionCopy: [] },
-    s7: { plannedCommencement: '', actualCommencement: '', plannedCompletion: '', actualCompletion: '', duration: '', extensions: [{ date: '', months: '', days: '', authority: '' }] },
-    s8: { 
-      capitalCost: { 
-        original: { local: '', fe: '', total: '' }, 
-        revised: { local: '', fe: '', total: '' }, 
-        actual: { local: '', fe: '', total: '' } 
-      }, 
-      climateCoBenefits: { adaptation: '', mitigation: '' } 
+    s3: {
+      executingAgency: '',
+      sponsoringAgency: '',
+      federalMinistry: '',
+      omAgency: '',
     },
-    s9: { 
-      financing: { 
-        federal: { local: '', fe: '', total: '' }, 
-        provincial: { local: '', fe: '', total: '' }, 
-        donors: { local: '', fe: '', total: '' } 
-      }, 
-      exchangeRateNote: '' 
+    s4: {
+      approvalRows: [
+        {
+          pcIForm: '',
+          approvedDate: '',
+          financialYear: '',
+          gestationStart: '',
+          gestationEnd: '',
+          forum: '',
+          totalCost: '',
+          totalCostMillions: '',
+        },
+      ],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
     },
-    s10: { accounts: [], closureStatus: '', closureDate: '', closureReasons: '' },
-    s11: { annualPhasing: [{ year: '', pciPhasing: { total: '', fe: '' }, psdpAllocation: { total: '', fe: '' }, releases: { total: '', fe: '' }, expenditure: { total: '', fe: '' } }] },
-    s12: { physicalAchievements: [{ item: '', unit: '', planned: '', actual: '' }] },
-    s13: { itemWiseExpenditure: [{ item: '', pciEstimate: { local: '', fec: '', total: '' }, actual: { local: '', fec: '', total: '' } }], climateSubTable: [] },
-    s14: { recurringCosts: [{ item: '', pciEstimate: '', actual: '', source: '' }] },
-    s15: { objectives: [{ objective: '', status: 'Achieved', reasons: '' }] },
-    s16: { adaptation: [{ description: '', cost: '' }], mitigation: [{ description: '', cost: '' }] },
-    s17: { income: [{ year: '', estimated: '', actual: '' }] },
-    s18: { indicators: [{ input: '', output: '', outputIndicator: '', outcomeIndicator: '', baseline: '', target: '', targetedImpact: '', impactIndicator: '' }] },
-    s19: { pdHistory: [{ name: '', fromDate: '', toDate: '' }] },
-    s20: { assetOwnershipAgency: '', assets: [{ name: '', type: 'Moveable' }] },
-    s21: { social: '', economic: '', environmental: '', technological: '', regional: '', sectoral: '', employment: '' },
-    s22: { impactAnalysis: '' },
-    s23: { 
-      npvFinancial: { pci: '', completion: '' }, 
-      bcrFinancial: { pci: '', completion: '' }, 
-      ifrr: { pci: '', completion: '' }, 
-      npvEconomic: { pci: '', completion: '' }, 
-      bcrEconomic: { pci: '', completion: '' }, 
-      ierr: { pci: '', completion: '' }, 
-      unitCost: { pci: '', completion: '' } 
+    s5: {
+      pciStartDate: '',
+      pciEndDate: '',
+      scheduleRows: [
+        {
+          actualStart: '',
+          actualEnd: '',
+          extensionStart: '',
+          extensionEnd: '',
+        },
+      ],
+      annexures: [] as { title: string; name: string; size: string; type: string; date: string }[],
     },
-    s24: { a: '', b: '', c: '', d: '', e: '' },
-    s25: { a: '', b: '', c: '', d: '', e: '', f: '' },
-    s26: { additionalInfo: '' },
-    s27: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
+    s6: {
+      costRows: [
+        {
+          pciApproved: {
+            costKind: 'original',
+            localCapital: '',
+            localRevenue: '',
+            foreignCapital: '',
+            foreignRevenue: '',
+          },
+          actualExpenditure: {
+            totalRupee: '',
+            totalMillionDisplay: '',
+            localCapital: '',
+            localRevenue: '',
+            foreignCapital: '',
+            foreignRevenue: '',
+            lineTotal: '',
+          },
+        },
+      ],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s7: {
+      financingRows: [{ source: '', local: '', foreign: '' }],
+    },
+    s8: {
+      natureAccounts: {
+        pla: { dateOpened: '', lapsable: '' },
+        assignment: { dateOpened: '', lapsable: '' },
+        current: { dateOpened: '', lapsable: '' },
+        saving: { dateOpened: '', lapsable: '' },
+        other: { dateOpened: '', lapsable: '' },
+      },
+      closedDate: '',
+      notClosedReasonsTentativeDate: '',
+    },
+    s9: {
+      phasingRows: [
+        {
+          yearPhase: '',
+          objectCode: '',
+          pciPhasing: { local: '', foreign: '' },
+          adpAllocation: { local: '', foreign: '' },
+          pdReleases: { local: '', foreign: '' },
+          controllingReleases: { local: '', foreign: '' },
+          expenditure: { local: '', foreign: '' },
+          lapsableFunds: { local: '', foreign: '' },
+        },
+      ],
+    },
+    s10: {
+      targetRows: [
+        {
+          item: '',
+          unit: '',
+          quantity: '0',
+          actualAchievement: '',
+          remarks: '',
+        },
+      ],
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s11: {
+      itemWiseRows: [
+        {
+          item: '',
+          objectCode: '',
+          pciLocal: '',
+          pciFec: '',
+          actualLocal: '',
+          actualFec: '',
+        },
+      ],
+    },
+    s12: {
+      managementManpowerHtml: '',
+      recurringComponentRows: [
+        { component: '', pciLocal: '', pciFec: '', actualLocal: '', actualFec: '' },
+      ],
+    },
+    location: {
+      districts: [] as string[],
+      tehsils: [] as string[],
+      na: [] as string[],
+      pp: [] as string[],
+      unionCouncils: [] as string[],
+      latitude: '',
+      longitude: '',
+    },
+    s13: {
+      objectiveAchievementRows: [
+        { asContainedInPci: '', actualAchievement: '' },
+      ],
+    },
+    capitalCostSection: {
+      capitalCost: {
+        original: { local: '', fe: '', total: '' },
+        revised: { local: '', fe: '', total: '' },
+        actual: { local: '', fe: '', total: '' },
+      },
+      climateCoBenefits: { adaptation: '', mitigation: '' },
+    },
+    s14: {
+      yearWiseIncomeRows: [{ asEstimatedInPci: '', actual: '' }],
+    },
+    objectivesAchievement: {
+      objectives: [{ objective: '', status: 'Achieved', reasons: '' }],
+    },
+    s15: {
+      rbmRows: [
+        {
+          input: '',
+          output: '',
+          baselineIndicators: '',
+          targetsAfterCompletion: '',
+          targetImpact: '',
+        },
+      ],
+      rbmAttachments: [] as { title: string; name: string; size: string; type: string; date: string }[],
+    },
+    climateCoBenefitsSection: {
+      adaptation: [{ description: '', cost: '' }],
+      mitigation: [{ description: '', cost: '' }],
+    },
+    s16: {
+      pdRows: [
+        {
+          nameDesignation: '',
+          fromDate: '',
+          toDate: '',
+          present: false,
+        },
+      ],
+    },
+    projectIncomeSection: {
+      income: [{ year: '', estimated: '', actual: '' }],
+    },
+    s17: {
+      handingOverAgency: '',
+      assetRows: [
+        {
+          agency: '',
+          item: '',
+          description: '',
+          specification: '',
+          location: '',
+          unit: '0',
+          quantity: '',
+          costRupee: '',
+        },
+      ],
+    },
+    s18: {
+      financialHtml: '',
+      economicHtml: '',
+      socialHtml: '',
+      environmentHtml: '',
+      technologicalHtml: '',
+      anyOtherHtml: '',
+      impactAttachments: [] as { title: string; name: string; size: string; type: string; date: string }[],
+    },
+    s19: {
+      sustainabilityHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s20: {},
+    s21: {
+      organizationalManagementHtml: '',
+      capacityDepartmentHtml: '',
+      decisionMakingProcessHtml: '',
+      anyOtherHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s22: {
+      projectIdentificationHtml: '',
+      projectPreparationHtml: '',
+      projectApprovalHtml: '',
+      projectFinancingHtml: '',
+      projectImplementationHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    suggestions: {
+      suggestionsHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s23: {
+      npvFinancial: { pci: '', completion: '' },
+      bcrFinancial: { pci: '', completion: '' },
+      ifrr: { pci: '', completion: '' },
+      npvEconomic: { pci: '', completion: '' },
+      bcrEconomic: { pci: '', completion: '' },
+      ierr: { pci: '', completion: '' },
+      unitCost: { pci: '', completion: '' },
+    },
+    s24: {
+      focalPersonName: '',
+      designation: '',
+      email: '',
+      tel: '',
+      fax: '',
+      address: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s25: {
+      momsForumTitle: '',
+      momsForumAttachments: [] as { name: string; size: string; type: string; date: string }[],
+      administrativeApprovalTitle: '',
+      administrativeApprovalAttachments: [] as { name: string; size: string; type: string; date: string }[],
+      issuanceTitle: '',
+      issuanceAttachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
   },
   pc5: {
     s1: { projectName: '', reportingYear: '', yearAfterCompletion: 1 },

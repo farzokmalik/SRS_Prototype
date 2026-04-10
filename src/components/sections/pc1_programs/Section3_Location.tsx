@@ -42,14 +42,12 @@ export const Section3_Location: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
           <SelectField
             label="Division"
-            required
             value={selectedDivision}
             onChange={e => handleUpdate({ division: e.target.value, district: '' })}
             options={DIVISIONS.map(d => ({ value: d, label: d }))}
           />
           <SelectField
             label="District"
-            required
             value={data.district || ''}
             onChange={e => handleUpdate({ district: e.target.value })}
             options={districtOptions.map(d => ({ value: d, label: d }))}
