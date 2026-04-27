@@ -101,19 +101,36 @@ export const Section1_Overview: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+       
       {/* Project Overview Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div className="card" style={{ gridColumn: 'span 2' }}>
-          <InputField 
-            label="Project Title" 
-            placeholder="Enter the full formal name of the project" 
+           <div style={{ marginTop: '1.25rem' }}>
+            <InputField 
+              label="[PC-I-1.1] Project Title" 
+              placeholder="Enter the full formal name of the project" 
+              required 
+              value={data1.projectTitle}
+              onChange={(e) => handleUpdate1({ projectTitle: e.target.value })}
+            />
+          </div>
+          <SelectField 
+            label="[PC-I-1.2] Project ID" 
             required 
-            value={data1.projectTitle}
-            onChange={(e) => handleUpdate1({ projectTitle: e.target.value })}
+            value={data1.projectId}
+            onChange={(e) => handleUpdate1({ projectId: e.target.value })}
+            options={[
+              { value: 'PRJ-001', label: 'PRJ-001' },
+              { value: 'PRJ-002', label: 'PRJ-002' },
+              { value: 'PRJ-003', label: 'PRJ-003' },
+              { value: 'PRJ-004', label: 'PRJ-004' },
+              { value: 'PRJ-005', label: 'PRJ-005' }
+            ]}
           />
+        
           <div style={{ marginTop: '1.25rem' }}>
             <InputField 
-              label="Meta Tags" 
+              label="[PC-I-1.3] Meta Tags" 
               placeholder="Enter keywords or tags for easier project discovery (e.g. Infrastructure, Health, CM-Initiative)" 
               value={data1.metaTags}
               onChange={(e) => handleUpdate1({ metaTags: e.target.value })}
@@ -123,7 +140,7 @@ export const Section1_Overview: React.FC = () => {
 
         <div className="card">
           <SelectField 
-            label="Project Start Year" 
+            label="[PC-I-1.4] Project Start Year" 
             required 
             value={data1.startYear}
             onChange={(e) => handleUpdate1({ startYear: e.target.value })}
@@ -136,14 +153,14 @@ export const Section1_Overview: React.FC = () => {
           
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <InputField 
-              label="Start Date" 
+              label="[PC-I-1.5] Start Date" 
               type="date" 
               required 
               value={data1.startDate}
               onChange={(e) => handleUpdate1({ startDate: e.target.value })}
             />
             <InputField 
-              label="End Date" 
+              label="[PC-I-1.6] End Date" 
               type="date" 
               required 
               value={data1.endDate}
@@ -154,7 +171,7 @@ export const Section1_Overview: React.FC = () => {
 
         <div className="card">
           <InputField 
-            label="GS No." 
+            label="[PC-I-1.7] GS No." 
             placeholder="e.g. GS-2024-X10" 
             required 
             value={data1.gsNo}
@@ -162,7 +179,7 @@ export const Section1_Overview: React.FC = () => {
           />
           
           <SelectField 
-            label="Administrative Department" 
+            label="[PC-I-1.8] Administrative Department" 
             required 
             value={data1.adminDept}
             onChange={(e) => handleUpdate1({ adminDept: e.target.value })}
@@ -177,14 +194,14 @@ export const Section1_Overview: React.FC = () => {
         <div className="card" style={{ gridColumn: 'span 2' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <SelectField 
-              label="Main Sector" 
+              label="[PC-I-1.9] Main Sector" 
               required 
               value={data1.mainSector}
               onChange={(e) => handleUpdate1({ mainSector: e.target.value, sector: '' })}
               options={Object.keys(SECTOR_OPTIONS).map(s => ({ value: s, label: s }))}
             />
             <SelectField 
-              label="Sector" 
+              label="[PC-I-1.10] Sector" 
               required 
               disabled={!data1.mainSector}
               value={data1.sector}
@@ -196,7 +213,7 @@ export const Section1_Overview: React.FC = () => {
 
         <div className="card">
           <RadioGroup 
-            label="Location Type" 
+            label="[PC-I-1.11] Location Type" 
             required 
             name="locationType"
             value={data1.locationType}
@@ -209,7 +226,7 @@ export const Section1_Overview: React.FC = () => {
           />
           
           <SelectField 
-            label="Project Status" 
+            label="[PC-I-1.12] Project Status" 
             required 
             value={data1.projectStatus}
             onChange={(e) => handleUpdate1({ projectStatus: e.target.value })}
@@ -223,7 +240,7 @@ export const Section1_Overview: React.FC = () => {
 
         <div className="card">
           <MultiCheckGroup 
-            label="Project Status Type" 
+            label="[PC-I-1.13] Project Status Type" 
             required 
             options={['Programme', 'Flagship/Mega Project', 'PPP', 'PM Package', 'CM Package', 'Block']}
             value={data1.statusType}
@@ -248,7 +265,7 @@ export const Section1_Overview: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div className="card">
           <RadioGroup 
-            label="Foreign Funding" 
+            label="[PC-I-1.14] Foreign Funding" 
             required 
             name="foreignFunding"
             value={data2.foreignFunding}
@@ -258,30 +275,30 @@ export const Section1_Overview: React.FC = () => {
           
           {data2.foreignFunding === 'Yes' && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem', padding: '1rem', background: '#f8f9fa', borderRadius: 'var(--radius-md)' }}>
-              <InputField label="Foreign Exchange Component (FEC)" value={data2.fec} onChange={(e) => handleUpdate2({ fec: e.target.value })} />
+              <InputField label="[PC-I-1.15] Foreign Exchange Component (FEC)" value={data2.fec} onChange={(e) => handleUpdate2({ fec: e.target.value })} />
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Foreign Cost</label>
+                  <label className="label">[PC-I-1.16] Foreign Cost</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input className="input" value={data2.foreignCost} onChange={(e) => handleUpdate2({ foreignCost: e.target.value })} />
               </div>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Foreign Capital Cost</label>
+                  <label className="label">[PC-I-1.17] Foreign Capital Cost</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input className="input" value={data2.foreignCapitalCost} onChange={(e) => handleUpdate2({ foreignCapitalCost: e.target.value })} />
               </div>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Foreign Revenue Cost</label>
+                  <label className="label">[PC-I-1.18] Foreign Revenue Cost</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input className="input" value={data2.foreignRevenueCost} onChange={(e) => handleUpdate2({ foreignRevenueCost: e.target.value })} />
               </div>
-              <InputField label="Source of Currency" value={data2.source} onChange={(e) => handleUpdate2({ source: e.target.value })} />
-              <InputField label="Exchange Rate" value={data2.exchangeRate} onChange={(e) => handleUpdate2({ exchangeRate: e.target.value })} />
+              <InputField label="[PC-I-1.19] Source of Currency" value={data2.source} onChange={(e) => handleUpdate2({ source: e.target.value })} />
+              <InputField label="[PC-I-1.20] Exchange Rate" value={data2.exchangeRate} onChange={(e) => handleUpdate2({ exchangeRate: e.target.value })} />
             </div>
           )}
         </div>
@@ -289,7 +306,7 @@ export const Section1_Overview: React.FC = () => {
         <div className="card">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <SelectField 
-              label="Project Financial Components" 
+              label="[PC-I-1.21] Project Financial Components" 
               required 
               value={data2.financialComponents}
               onChange={(e) => handleUpdate2({ financialComponents: e.target.value })}
@@ -297,13 +314,13 @@ export const Section1_Overview: React.FC = () => {
             />
             <div className="input-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <label className="label">Local Cost (PKR)</label>
+                <label className="label">[PC-I-1.22] Local Cost (PKR)</label>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
               </div>
               <input className="input" placeholder="Millions" value={data2.localCost} onChange={(e) => handleUpdate2({ localCost: e.target.value })} />
             </div>
             <SelectField 
-              label="Approval Forum" 
+              label="[PC-I-1.23] Approval Forum" 
               required 
               value={data2.approvalForum}
               onChange={(e) => handleUpdate2({ approvalForum: e.target.value })}
@@ -311,7 +328,7 @@ export const Section1_Overview: React.FC = () => {
             />
             <div className="input-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <label className="label">Total Cost (PKR)</label>
+                <label className="label">[PC-I-1.24] Total Cost (PKR)</label>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
               </div>
               <input className="input" placeholder="Millions" value={data2.totalCost} onChange={(e) => handleUpdate2({ totalCost: e.target.value })} />
@@ -330,13 +347,13 @@ export const Section1_Overview: React.FC = () => {
           {data2.beneficiaryShares.map((share: any, index: number) => (
             <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 50px', gap: '1rem', alignItems: 'flex-end', marginBottom: '1rem', padding: '1rem', background: '#f8f9fa', borderRadius: 'var(--radius-md)' }}>
               <SelectField 
-                label="Admin Department" 
+                label="[PC-I-1.26] Admin Department" 
                 value={share.adminDept}
                 onChange={(e) => updateBeneficiary(index, { adminDept: e.target.value })}
                 options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
               />
-              <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
-              <InputField label="Amount (Million)" type="number" value={share.amount} onChange={(e) => updateBeneficiary(index, { amount: e.target.value })} />
+              <InputField label="[PC-I-1.27] Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
+              <InputField label="[PC-I-1.28] Amount (Million)" type="number" value={share.amount} onChange={(e) => updateBeneficiary(index, { amount: e.target.value })} />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ opacity: 0, fontSize: '0.875rem', fontWeight: 600, pointerEvents: 'none' }}>Action</label>
                 <button 
@@ -353,7 +370,7 @@ export const Section1_Overview: React.FC = () => {
 
         <div className="card">
            <FileUpload 
-             label="Financial Attachments"
+             label="[PC-I-1.25] Financial Attachments"
              files={data2.attachments || []}
              onUpload={(files) => handleUpdate2({ attachments: files })}
              onRemove={(idx) => handleUpdate2({ attachments: data2.attachments.filter((_: any, i: number) => i !== idx) })}

@@ -94,7 +94,7 @@ export const PC2Section4_Funding: React.FC = () => {
       {/* Source of Funding */}
       <div className="card">
         <SelectField
-          label="Source of Funding"
+          label="[PC-II-3.1] Source of Funding"
           required
           value={src}
           onChange={(e) => handleSourceChange(e.target.value)}
@@ -111,7 +111,7 @@ export const PC2Section4_Funding: React.FC = () => {
       {/* GS No. Search — for ADP CFY, Programme, Reapp Intra, Reapp Inter */}
       {showGsSearch && (
         <div className="card">
-          <label className="label">Search for GS No. <span style={{ color: 'hsl(var(--error))' }}>*</span></label>
+          <label className="label">[PC-II-3.2] Search for GS No. <span style={{ color: 'hsl(var(--error))' }}>*</span></label>
           <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.4rem' }}>
             <input
               className="input"
@@ -144,7 +144,7 @@ export const PC2Section4_Funding: React.FC = () => {
               }}
             >
               <div className="input-group">
-                <label className="label">SMDP Scheme No.</label>
+                <label className="label">[PC-II-3.3] SMDP Scheme No.</label>
                 <input className="input" value={data.smdpNo || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
               </div>
               <div className="input-group">
@@ -153,7 +153,7 @@ export const PC2Section4_Funding: React.FC = () => {
               </div>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Total Allocation</label>
+                  <label className="label">[PC-II-3.4] Total Allocation</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input className="input" value={data.totalAllocation || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
@@ -166,7 +166,7 @@ export const PC2Section4_Funding: React.FC = () => {
               {showFundsDiverted && (
                 <div className="input-group">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                    <label className="label">Funds Diverted</label>
+                    <label className="label">[PC-II-3.5] Funds Diverted</label>
                     <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                   </div>
                   <input className="input" value={data.fundsDiverted || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
@@ -180,7 +180,7 @@ export const PC2Section4_Funding: React.FC = () => {
               {showBalanceFunds && (
                 <div className="input-group">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                    <label className="label">Balance Funds</label>
+                    <label className="label">[PC-II-3.6] Balance Funds</label>
                     <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                   </div>
                   <input className="input" value={data.balanceFunds || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
@@ -193,13 +193,13 @@ export const PC2Section4_Funding: React.FC = () => {
               )}
               {showSchemeName && (
                 <div className="input-group">
-                  <label className="label">Scheme Name</label>
+                  <label className="label">[PC-II-3.7] Scheme Name</label>
                   <input className="input" value={data.schemeName || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default' }} />
                 </div>
               )}
               {showSector && (
                 <SelectField
-                  label="Sector"
+                  label="[PC-II-3.8] Sector"
                   required
                   value={data.sector || ''}
                   onChange={(e) => handleUpdate({ sector: e.target.value })}
@@ -216,7 +216,7 @@ export const PC2Section4_Funding: React.FC = () => {
         <div className="card">
           <div className="input-group">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-              <label className="label">Proposed Allocation</label>
+              <label className="label">[PC-II-3.9] Proposed Allocation</label>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
             </div>
             <input
@@ -235,7 +235,7 @@ export const PC2Section4_Funding: React.FC = () => {
       {showPurpose && (
         <div className="card">
           <RadioGroup
-            label="Purpose of Funding"
+            label="[PC-II-3.10] Purpose of Funding"
             required
             name="purposeOfFunding"
             value={data.purpose || ''}
@@ -249,7 +249,7 @@ export const PC2Section4_Funding: React.FC = () => {
       {showComments && (
         <div className="card">
           <RTEditor
-            label="Comments"
+            label="[PC-II-3.11] Comments"
             value={data.comments || ''}
             onChange={(val) => handleUpdate({ comments: val })}
           />

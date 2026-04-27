@@ -41,14 +41,14 @@ export const Section3_Responsibilities: React.FC = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           <SelectField 
-            label="Sponsoring Agency" 
+            label="[PC-I-3.1] Sponsoring Agency" 
             required
             value={data.sponsoringAgency || ''} 
             onChange={(e) => handleUpdate({ sponsoringAgency: e.target.value })}
             options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
           />
           <SelectField 
-            label="Executing Agency" 
+            label="[PC-I-3.2] Executing Agency" 
             required
             value={data.executingAgencies?.[0] || ''}
             onChange={(e) => handleUpdate({ executingAgencies: [e.target.value] })}
@@ -60,7 +60,7 @@ export const Section3_Responsibilities: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
            <SelectField 
-             label="Federal Ministry (if any)" 
+             label="[PC-I-3.3] Federal Ministry (if any)" 
              value={data.federalMinistry || ''}
              onChange={(e) => handleUpdate({ federalMinistry: e.target.value })}
              options={[
@@ -71,7 +71,7 @@ export const Section3_Responsibilities: React.FC = () => {
              ]}
            />
            <SelectField 
-             label="Operation & Maintenance Agency" 
+             label="[PC-I-3.4] Operation & Maintenance Agency" 
              required
              value={data.omAgency || ''}
              onChange={(e) => handleUpdate({ omAgency: e.target.value })}
@@ -86,7 +86,7 @@ export const Section3_Responsibilities: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Agency Attachments"
+          label="[PC-I-3.5] Agency Attachments"
           files={data.respAttachments || []}
           onUpload={(files) => handleUpdate({ respAttachments: files })}
           onRemove={(idx) => handleUpdate({ respAttachments: (data.respAttachments || []).filter((_: any, i: number) => i !== idx) })}

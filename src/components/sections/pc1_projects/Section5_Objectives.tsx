@@ -15,7 +15,7 @@ export const Section5_Objectives: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
         <RTEditor 
-          label="Project Objective" 
+          label="[PC-I-5.1] Project Objective" 
           value={data.objective} 
           onChange={(val) => handleUpdate({ objective: val })} 
           required 
@@ -25,7 +25,7 @@ export const Section5_Objectives: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload 
-            label="Attachments"
+            label="[PC-I-5.2] Attachments"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}
@@ -34,7 +34,7 @@ export const Section5_Objectives: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload 
-            label="Annexures"
+            label="[PC-I-5.3] Annexures"
             files={data.annexures || []}
             onUpload={(files) => handleUpdate({ annexures: files })}
             onRemove={(idx) => handleUpdate({ annexures: data.annexures.filter((_: any, i: number) => i !== idx) })}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from '../../../context/FormContext';
-import { InputField } from '../../ui/FormElements';
+import { InputField, SelectField } from '../../ui/FormElements';
 
 export const Section1_Identification: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -13,6 +13,19 @@ export const Section1_Identification: React.FC = () => {
   return (
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <SelectField 
+          label="Project ID" 
+          required 
+          value={data.projectId}
+          onChange={(e) => handleUpdate({ projectId: e.target.value })}
+          options={[
+            { value: 'PRJ-001', label: 'PRJ-001' },
+            { value: 'PRJ-002', label: 'PRJ-002' },
+            { value: 'PRJ-003', label: 'PRJ-003' },
+            { value: 'PRJ-004', label: 'PRJ-004' },
+            { value: 'PRJ-005', label: 'PRJ-005' }
+          ]}
+        />
         <InputField 
           label="Project Name (Must match PC-I)" 
           placeholder="Enter the full name of the project" 

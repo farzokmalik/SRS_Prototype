@@ -24,10 +24,10 @@ export const Section19_FocusOnMarginalisation: React.FC = () => {
             <thead>
               <tr style={{ background: 'hsl(var(--bg-main))', borderBottom: '2px solid hsl(var(--border))', textAlign: 'left' }}>
                 <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '80px' }}>SR. NO.</th>
-                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>CRITERIA</th>
-                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '120px', textAlign: 'center' }}>YES / NO</th>
-                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '200px' }}>ACTION</th>
-                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '250px' }}>COMMENTS <span style={{ color: 'hsl(var(--error))' }}>*</span></th>
+                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>[PC-I-19.1] CRITERIA</th>
+                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '120px', textAlign: 'center' }}>[PC-I-19.2] YES / NO</th>
+                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '200px' }}>[PC-I-19.3] ACTION</th>
+                <th style={{ padding: '1rem', fontWeight: 700, color: 'hsl(var(--text-muted))', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '250px' }}>[PC-I-19.4] COMMENTS <span style={{ color: 'hsl(var(--error))' }}>*</span></th>
               </tr>
             </thead>
             <tbody>

@@ -16,7 +16,7 @@ export const Section3_GoalsObjectives: React.FC = () => {
         
         <div style={{ maxWidth: '1200px' }}>
           <TextAreaField 
-            label="Objectives Statement" 
+            label="[PC-N-3.1] Objectives Statement" 
             rows={10}
             placeholder="Clearly state the primary and secondary goals of the project..."
             value={data.objectives}

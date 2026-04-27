@@ -10,20 +10,20 @@ type ChecklistItem = {
 };
 
 const CHECKLIST_ITEMS: ChecklistItem[] = [
-  { key: 'signatureAdministrativeSecretary', srNo: '1', label: 'Signature of the Administrative Secretary' },
-  { key: 'studyTorsHeader', srNo: '2', label: 'The Study (TORs of the Consultant)', isGroupHeader: true },
-  { key: 'briefBackgroundProject', srNo: '2(i)', label: 'Brief background of The Project' },
-  { key: 'objectiveConsultancy', srNo: '2(ii)', label: 'Objective of Consultancy' },
-  { key: 'scopeDutiesResponsibilities', srNo: '2(iii)', label: 'Scope, Duties & Responsibilities of Consultants' },
-  { key: 'deliverablesTimelines', srNo: '2(iv)', label: 'Deliverables with Timelines' },
-  { key: 'timeDurationConsultancy', srNo: '2(v)', label: 'Time Duration of Proposed Consultancy' },
-  { key: 'roleClientAgency', srNo: '2(vi)', label: 'Role of Client Agency' },
-  { key: 'professionalLiabilities', srNo: '2(vii)', label: 'Professional Liabilities of Consultants' },
-  { key: 'coreTeamRequirements', srNo: '2(viii)', label: 'Core Team of Experts along with Qualification, Experience and Man Months Requirements' },
-  { key: 'managementStructureManpower', srNo: '3', label: 'Management Structure And Manpower Requirements' },
-  { key: 'implementationPlan', srNo: '4', label: 'Implementation Plan (Gantt Chart or Line Chart / Bar Chart)' },
-  { key: 'riskAnalysisMitigation', srNo: '5', label: 'Risk Analysis And Proposed Mitigation Measures' },
-  { key: 'yearWiseFinancialPhasing', srNo: '6', label: 'Year Wise Financial Phasing' },
+  { key: 'signatureAdministrativeSecretary', srNo: '1', label: '[PC-II-13.1] Signature of the Administrative Secretary' },
+  { key: 'studyTorsHeader', srNo: '2', label: '[PC-II-13.2] The Study (TORs of the Consultant)', isGroupHeader: true },
+  { key: 'briefBackgroundProject', srNo: '2(i)', label: '[PC-II-13.2] Brief background of The Project' },
+  { key: 'objectiveConsultancy', srNo: '2(ii)', label: '[PC-II-13.2] Objective of Consultancy' },
+  { key: 'scopeDutiesResponsibilities', srNo: '2(iii)', label: '[PC-II-13.2] Scope, Duties & Responsibilities of Consultants' },
+  { key: 'deliverablesTimelines', srNo: '2(iv)', label: '[PC-II-13.2] Deliverables with Timelines' },
+  { key: 'timeDurationConsultancy', srNo: '2(v)', label: '[PC-II-13.2] Time Duration of Proposed Consultancy' },
+  { key: 'roleClientAgency', srNo: '2(vi)', label: '[PC-II-13.2] Role of Client Agency' },
+  { key: 'professionalLiabilities', srNo: '2(vii)', label: '[PC-II-13.2] Professional Liabilities of Consultants' },
+  { key: 'coreTeamRequirements', srNo: '2(viii)', label: '[PC-II-13.2] Core Team of Experts along with Qualification, Experience and Man Months Requirements' },
+  { key: 'managementStructureManpower', srNo: '3', label: '[PC-II-13.3] Management Structure And Manpower Requirements' },
+  { key: 'implementationPlan', srNo: '4', label: '[PC-II-13.3] Implementation Plan (Gantt Chart or Line Chart / Bar Chart)' },
+  { key: 'riskAnalysisMitigation', srNo: '5', label: '[PC-II-13.3] Risk Analysis And Proposed Mitigation Measures' },
+  { key: 'yearWiseFinancialPhasing', srNo: '6', label: '[PC-II-13.3] Year Wise Financial Phasing' },
 ];
 
 export const PC2Section14_InitialScrutinyChecklist: React.FC = () => {

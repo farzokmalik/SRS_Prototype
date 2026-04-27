@@ -21,9 +21,9 @@ const TAB_KEYS = ['oneTime', 'hrRecurring', 'generalRecurring'] as const;
 type TabKey = typeof TAB_KEYS[number];
 
 const TAB_LABELS: Record<TabKey, string> = {
-  oneTime: 'One Time Cost Estimation',
-  hrRecurring: 'HR Recurring Cost Estimates',
-  generalRecurring: 'General Recurring Cost Estimates',
+  oneTime: '[PC-II-6.1] One Time Cost Estimation',
+  hrRecurring: '[PC-II-6.1] HR Recurring Cost Estimates',
+  generalRecurring: '[PC-II-6.1] General Recurring Cost Estimates',
 };
 
 const emptyOneTimeRow = () => ({ item: '', description: '', specification: '', location: '', unitCost: '', quantity: '', subTotal: '' });
@@ -356,16 +356,16 @@ export const CostEstimationDetail: React.FC<Props> = ({ context, onBack }) => {
                   <div key={i} className="card" style={{ margin: 0, border: '1px solid hsl(var(--border))', background: 'hsl(var(--bg-main) / 0.35)' }}>
                     {renderCardHeader('One Time Cost Entry', i)}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
-                      <input className="input" value={row.item || ''} onChange={(e) => updateRow(i, { item: e.target.value })} placeholder="Item" />
+                      <input className="input" value={row.item || ''} onChange={(e) => updateRow(i, { item: e.target.value })} placeholder="[PC-II-6.1] Item" />
                       <input className="input" value={row.description || ''} onChange={(e) => updateRow(i, { description: e.target.value })} placeholder="Description" />
                       <input className="input" value={row.specification || ''} onChange={(e) => updateRow(i, { specification: e.target.value })} placeholder="Specification" />
                       <select className="select" value={row.location || ''} onChange={(e) => updateRow(i, { location: e.target.value })}>
                         <option value="">Select District</option>
                         {DISTRICTS.map((d) => <option key={d} value={d}>{d}</option>)}
                       </select>
-                      <input className="input" type="number" value={row.unitCost || ''} onChange={(e) => updateRow(i, { unitCost: e.target.value })} placeholder="Unit Cost" />
-                      <input className="input" type="number" value={row.quantity || ''} onChange={(e) => updateRow(i, { quantity: e.target.value })} placeholder="Quantity" />
-                      <input className="input" value={row.subTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="Sub-Total" />
+                      <input className="input" type="number" value={row.unitCost || ''} onChange={(e) => updateRow(i, { unitCost: e.target.value })} placeholder="[PC-II-6.4] Rate (Unit Cost)" />
+                      <input className="input" type="number" value={row.quantity || ''} onChange={(e) => updateRow(i, { quantity: e.target.value })} placeholder="[PC-II-6.3] Quantity" />
+                      <input className="input" value={row.subTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="[PC-II-6.5] Sub-Total" />
                     </div>
                   </div>
                 ))}
@@ -382,12 +382,12 @@ export const CostEstimationDetail: React.FC<Props> = ({ context, onBack }) => {
                   <div key={i} className="card" style={{ margin: 0, border: '1px solid hsl(var(--border))', background: 'hsl(var(--bg-main) / 0.35)' }}>
                     {renderCardHeader('HR Recurring Cost Entry', i)}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
-                      <input className="input" value={row.designation || ''} onChange={(e) => updateRow(i, { designation: e.target.value })} placeholder="Designation" />
-                      <input className="input" type="number" value={row.numPosts || ''} onChange={(e) => updateRow(i, { numPosts: e.target.value })} placeholder="No. of Posts" />
+                      <input className="input" value={row.designation || ''} onChange={(e) => updateRow(i, { designation: e.target.value })} placeholder="[PC-II-6.1] Designation" />
+                      <input className="input" type="number" value={row.numPosts || ''} onChange={(e) => updateRow(i, { numPosts: e.target.value })} placeholder="[PC-II-6.3] No. of Posts" />
                       <input className="input" value={context.objectCode + ' - ' + context.objectName} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', color: 'hsl(var(--text-muted))' }} />
-                      <input className="input" type="number" value={row.monthlySalary || ''} onChange={(e) => updateRow(i, { monthlySalary: e.target.value })} placeholder="Monthly Salary" />
+                      <input className="input" type="number" value={row.monthlySalary || ''} onChange={(e) => updateRow(i, { monthlySalary: e.target.value })} placeholder="[PC-II-6.4] Monthly Salary" />
                       <input className="input" type="number" value={row.numMonths || ''} onChange={(e) => updateRow(i, { numMonths: e.target.value })} placeholder="Months" />
-                      <input className="input" value={row.annualTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="Annual Total" />
+                      <input className="input" value={row.annualTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="[PC-II-6.5] Annual Total" />
                     </div>
                   </div>
                 ))}
@@ -404,17 +404,17 @@ export const CostEstimationDetail: React.FC<Props> = ({ context, onBack }) => {
                   <div key={i} className="card" style={{ margin: 0, border: '1px solid hsl(var(--border))', background: 'hsl(var(--bg-main) / 0.35)' }}>
                     {renderCardHeader('General Recurring Cost Entry', i)}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
-                      <input className="input" value={row.item || ''} onChange={(e) => updateRow(i, { item: e.target.value })} placeholder="Item" />
+                      <input className="input" value={row.item || ''} onChange={(e) => updateRow(i, { item: e.target.value })} placeholder="[PC-II-6.1] Item" />
                       <input className="input" value={row.description || ''} onChange={(e) => updateRow(i, { description: e.target.value })} placeholder="Description" />
                       <input className="input" value={row.specification || ''} onChange={(e) => updateRow(i, { specification: e.target.value })} placeholder="Specification" />
                       <select className="select" value={row.location || ''} onChange={(e) => updateRow(i, { location: e.target.value })}>
                         <option value="">Select District</option>
                         {DISTRICTS.map((d) => <option key={d} value={d}>{d}</option>)}
                       </select>
-                      <input className="input" type="number" value={row.unitCost || ''} onChange={(e) => updateRow(i, { unitCost: e.target.value })} placeholder="Unit Cost" />
-                      <input className="input" type="number" value={row.quantity || ''} onChange={(e) => updateRow(i, { quantity: e.target.value })} placeholder="Quantity" />
+                      <input className="input" type="number" value={row.unitCost || ''} onChange={(e) => updateRow(i, { unitCost: e.target.value })} placeholder="[PC-II-6.4] Rate (Unit Cost)" />
+                      <input className="input" type="number" value={row.quantity || ''} onChange={(e) => updateRow(i, { quantity: e.target.value })} placeholder="[PC-II-6.3] Quantity" />
                       <input className="input" type="number" value={row.numMonths || ''} onChange={(e) => updateRow(i, { numMonths: e.target.value })} placeholder="No. of Months" />
-                      <input className="input" value={row.subTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="Sub-Total" />
+                      <input className="input" value={row.subTotal || ''} readOnly style={{ background: 'hsl(var(--bg-main))', cursor: 'default', fontWeight: 600 }} placeholder="[PC-II-6.5] Sub-Total" />
                     </div>
                   </div>
                 ))}

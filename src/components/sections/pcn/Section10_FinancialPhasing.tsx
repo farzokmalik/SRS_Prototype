@@ -45,10 +45,10 @@ export const Section10_FinancialPhasing: React.FC = () => {
         <div style={{ padding: '0 1rem' }}>
           {/* Headers */}
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(180px, 1fr) 1fr 1fr 1fr 48px', gap: '1.5rem', marginBottom: '0.75rem' }}>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Year</div>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Local Amount</div>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Foreign Amount</div>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Total Amount</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-10.1] Year</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-10.2] Local Amount</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-10.3] Foreign Amount</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-10.4] Total Amount</div>
             <div></div>
           </div>
 

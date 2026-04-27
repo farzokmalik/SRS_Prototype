@@ -10,19 +10,19 @@ type TorField = {
 };
 
 const TORS_FIELDS: TorField[] = [
-  { key: 'briefBackground', label: 'Brief Background of the Project', required: true },
-  { key: 'consultancyObjectives', label: 'Objectives of Consultancy', required: true },
-  { key: 'consultancyScope', label: 'Scope of Consultancy', required: true },
-  { key: 'dutiesResponsibilities', label: 'Duties and Responsibilities of Consultants', required: true },
-  { key: 'deliverablesTimelines', label: 'Deliverables with Timelines', required: true },
-  { key: 'durationOfConsultancy', label: 'Time Duration of Proposed Consultancy', required: true },
-  { key: 'rolesOfClientAgency', label: 'Roles of Client Agency', required: true },
-  { key: 'professionalLiabilities', label: 'Professional Liabilities of Consultants', required: true },
-  { key: 'coreTeamExperts', label: 'Core Team of Experts Along with Qualification, Experience and Man-Months Requirements', required: true },
-  { key: 'projectFinancingModes', label: 'Possibility of Prospective Project Financing and Implementation through Different Modes', required: true },
-  { key: 'riskSensitivityMitigation', label: 'Risk and Sensitivity Analysis and Proposed Mitigation Measures', required: true },
-  { key: 'forwardBackwardLinkages', label: 'Forward Backward Linkages of the Proposed Study / Survey', required: true },
-  { key: 'expectedOutput', label: 'Expected Output of the Proposed Feasibility Study / Survey', required: true },
+  { key: 'briefBackground', label: '[PC-II-7.1] Brief Background of the Project', required: true },
+  { key: 'consultancyObjectives', label: '[PC-II-7.2] Objectives of Consultancy', required: true },
+  { key: 'consultancyScope', label: '[PC-II-7.8] Scope of Consultancy', required: true },
+  { key: 'dutiesResponsibilities', label: '[PC-II-7.8] Duties and Responsibilities of Consultants', required: true },
+  { key: 'deliverablesTimelines', label: '[PC-II-7.8] Deliverables with Timelines', required: true },
+  { key: 'durationOfConsultancy', label: '[PC-II-7.3] Time Duration of Proposed Consultancy', required: true },
+  { key: 'rolesOfClientAgency', label: '[PC-II-7.8] Roles of Client Agency', required: true },
+  { key: 'professionalLiabilities', label: '[PC-II-7.8] Professional Liabilities of Consultants', required: true },
+  { key: 'coreTeamExperts', label: '[PC-II-7.8] Core Team of Experts Along with Qualification, Experience and Man-Months Requirements', required: true },
+  { key: 'projectFinancingModes', label: '[PC-II-7.8] Possibility of Prospective Project Financing and Implementation through Different Modes', required: true },
+  { key: 'riskSensitivityMitigation', label: '[PC-II-7.8] Risk and Sensitivity Analysis and Proposed Mitigation Measures', required: true },
+  { key: 'forwardBackwardLinkages', label: '[PC-II-7.8] Forward Backward Linkages of the Proposed Study / Survey', required: true },
+  { key: 'expectedOutput', label: '[PC-II-7.8] Expected Output of the Proposed Feasibility Study / Survey', required: true },
 ];
 
 export const PC2Section8_StudyTORS: React.FC = () => {

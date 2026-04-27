@@ -10,12 +10,12 @@ type TorField = {
 };
 
 const TORS_FIELDS_2: TorField[] = [
-  { key: 'deliverablesTimelines', label: 'Deliverables with Timelines', required: true },
-  { key: 'coreTeamExperts', label: 'Core Team of Experts Along with Qualification, Experience and Man-Months Requirements', required: true },
-  { key: 'projectFinancingModes', label: 'Possibility of Prospective Project Financing and Implementation through Different Modes', required: true },
-  { key: 'riskSensitivityMitigation', label: 'Risk and Sensitivity Analysis and Proposed Mitigation Measures', required: true },
-  { key: 'forwardBackwardLinkages', label: 'Forward Backward Linkages of the Proposed Study / Survey', required: true },
-  { key: 'expectedOutput', label: 'Expected Output of the Proposed Feasibility Study / Survey', required: true },
+  { key: 'deliverablesTimelines', label: '[PC-II-7.8] Deliverables with Timelines', required: true },
+  { key: 'coreTeamExperts', label: '[PC-II-7.8] Core Team of Experts Along with Qualification, Experience and Man-Months Requirements', required: true },
+  { key: 'projectFinancingModes', label: '[PC-II-7.8] Possibility of Prospective Project Financing and Implementation through Different Modes', required: true },
+  { key: 'riskSensitivityMitigation', label: '[PC-II-7.8] Risk and Sensitivity Analysis and Proposed Mitigation Measures', required: true },
+  { key: 'forwardBackwardLinkages', label: '[PC-II-7.8] Forward Backward Linkages of the Proposed Study / Survey', required: true },
+  { key: 'expectedOutput', label: '[PC-II-7.8] Expected Output of the Proposed Feasibility Study / Survey', required: true },
 ];
 
 export const PC2Section9_StudyTORS2: React.FC = () => {

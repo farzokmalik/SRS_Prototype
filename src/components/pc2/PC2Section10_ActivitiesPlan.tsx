@@ -15,7 +15,7 @@ export const PC2Section10_ActivitiesPlan: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
         <RTEditor
-          label="Activities / Implementation Plan of Scheme / Survey / Feasibility Study"
+          label="[PC-II-9.2] Activities / Implementation Plan of Scheme / Survey / Feasibility Study"
           value={data.activitiesImplementationPlan || ''}
           onChange={(val) => handleUpdate({ activitiesImplementationPlan: val })}
           required
@@ -25,7 +25,7 @@ export const PC2Section10_ActivitiesPlan: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-9.3] Attachments"
             files={data.activitiesImplementationPlanAttachments || []}
             onUpload={(files) => handleUpdate({ activitiesImplementationPlanAttachments: files })}
             onRemove={(idx) =>
@@ -40,7 +40,7 @@ export const PC2Section10_ActivitiesPlan: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-9.3] Annexures"
             files={data.activitiesImplementationPlanAnnexures || []}
             onUpload={(files) => handleUpdate({ activitiesImplementationPlanAnnexures: files })}
             onRemove={(idx) =>

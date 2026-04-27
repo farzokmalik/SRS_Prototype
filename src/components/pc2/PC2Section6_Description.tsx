@@ -18,7 +18,7 @@ export const PC2Section6_Description: React.FC = () => {
       {/* Justification of Project */}
       <div className="card">
         <RTEditor
-          label="Justification of Project"
+          label="[PC-II-5.1] Justification of Project"
           required
           value={data.justification || ''}
           onChange={(val) => handleUpdate({ justification: val })}
@@ -27,7 +27,7 @@ export const PC2Section6_Description: React.FC = () => {
       <div style={fileGrid}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-5.2] Attachments"
             files={data.justificationAttachments || []}
             onUpload={(files) => handleUpdate({ justificationAttachments: files })}
             onRemove={(idx) => handleUpdate({ justificationAttachments: (data.justificationAttachments || []).filter((_: any, i: number) => i !== idx) })}
@@ -36,7 +36,7 @@ export const PC2Section6_Description: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-5.3] Annexures"
             files={data.justificationAnnexures || []}
             onUpload={(files) => handleUpdate({ justificationAnnexures: files })}
             onRemove={(idx) => handleUpdate({ justificationAnnexures: (data.justificationAnnexures || []).filter((_: any, i: number) => i !== idx) })}
@@ -48,7 +48,7 @@ export const PC2Section6_Description: React.FC = () => {
       {/* Scope of the Project */}
       <div className="card">
         <RTEditor
-          label="Scope of the Project"
+          label="[PC-II-5.4] Scope of the Project"
           required
           value={data.scope || ''}
           onChange={(val) => handleUpdate({ scope: val })}
@@ -57,7 +57,7 @@ export const PC2Section6_Description: React.FC = () => {
       <div style={fileGrid}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-5.5] Attachments"
             files={data.scopeAttachments || []}
             onUpload={(files) => handleUpdate({ scopeAttachments: files })}
             onRemove={(idx) => handleUpdate({ scopeAttachments: (data.scopeAttachments || []).filter((_: any, i: number) => i !== idx) })}
@@ -66,7 +66,7 @@ export const PC2Section6_Description: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-5.5] Annexures"
             files={data.scopeAnnexures || []}
             onUpload={(files) => handleUpdate({ scopeAnnexures: files })}
             onRemove={(idx) => handleUpdate({ scopeAnnexures: (data.scopeAnnexures || []).filter((_: any, i: number) => i !== idx) })}
@@ -78,7 +78,7 @@ export const PC2Section6_Description: React.FC = () => {
       {/* Sectoral Specific Information */}
       <div className="card">
         <RTEditor
-          label="Sectoral Specific Information"
+          label="[PC-II-5.6] Sectoral Specific Information"
           required
           value={data.sectoralInfo || ''}
           onChange={(val) => handleUpdate({ sectoralInfo: val })}
@@ -87,7 +87,7 @@ export const PC2Section6_Description: React.FC = () => {
       <div style={fileGrid}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-5.7] Attachments"
             files={data.sectoralAttachments || []}
             onUpload={(files) => handleUpdate({ sectoralAttachments: files })}
             onRemove={(idx) => handleUpdate({ sectoralAttachments: (data.sectoralAttachments || []).filter((_: any, i: number) => i !== idx) })}
@@ -96,7 +96,7 @@ export const PC2Section6_Description: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-5.7] Annexures"
             files={data.sectoralAnnexures || []}
             onUpload={(files) => handleUpdate({ sectoralAnnexures: files })}
             onRemove={(idx) => handleUpdate({ sectoralAnnexures: (data.sectoralAnnexures || []).filter((_: any, i: number) => i !== idx) })}

@@ -74,11 +74,11 @@ export const Section2_RevisionHistory: React.FC = () => {
           <table className="form-table">
             <thead>
               <tr>
-                <th style={{ width: '20%' }}>Approval Status</th>
-                <th style={{ width: '15%' }}>Cost (M)</th>
-                <th style={{ width: '15%' }}>Date</th>
-                <th style={{ width: '20%' }}>Forum</th>
-                <th>Remarks</th>
+                <th style={{ width: '20%' }}>[PC-I-20.1] Approval Status</th>
+                <th style={{ width: '15%' }}>[PC-I-20.2] Cost (M)</th>
+                <th style={{ width: '15%' }}>[PC-I-20.3] Date</th>
+                <th style={{ width: '20%' }}>[PC-I-20.4] Forum</th>
+                <th>[PC-I-20.5] Remarks</th>
                 <th style={{ width: '50px' }}></th>
               </tr>
             </thead>
@@ -118,14 +118,14 @@ export const Section2_RevisionHistory: React.FC = () => {
           <table className="form-table">
             <thead>
               <tr>
-                <th style={{ width: '12%' }}>Year</th>
-                <th style={{ width: '12%' }}>GS No</th>
-                <th>Orig. Alloc</th>
-                <th>Rev. Alloc</th>
-                <th>P&D Rel.</th>
-                <th>FD Rel.</th>
-                <th>Utilization</th>
-                <th style={{ width: '8%' }}>% Exp.</th>
+                <th style={{ width: '12%' }}>[PC-I-20.6] Year</th>
+                <th style={{ width: '12%' }}>[PC-I-20.7] GS No</th>
+                <th>[PC-I-20.8] Orig. Alloc</th>
+                <th>[PC-I-20.9] Rev. Alloc</th>
+                <th>[PC-I-20.10] P&D Rel.</th>
+                <th>[PC-I-20.11] FD Rel.</th>
+                <th>[PC-I-20.12] Utilization</th>
+                <th style={{ width: '8%' }}>[PC-I-20.13] % Exp.</th>
                 <th style={{ width: '40px' }}></th>
               </tr>
             </thead>
@@ -163,20 +163,20 @@ export const Section2_RevisionHistory: React.FC = () => {
           </h3>
         </div>
         <p style={{ fontSize: '0.875rem', color: 'hsl(var(--text-muted))', marginBottom: '1rem' }}>
-          Proposed Revised Cost: <strong>{currentProposal.proposedRevisedCost} (Million)</strong>
+          [PC-I-20.14] Proposed Revised Cost: <strong>{currentProposal.proposedRevisedCost} (Million)</strong>
         </p>
         <div style={{ overflowX: 'auto', padding: '0 1rem' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
                 <th style={{ padding: '1rem', borderBottom: '1px solid hsl(var(--border))', textAlign: 'left', fontSize: '0.9rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>
-                  Whether Revision is Required Due To
+                  [PC-I-20.15] Whether Revision is Required Due To
                 </th>
                 <th style={{ width: '300px', padding: '1rem', borderBottom: '1px solid hsl(var(--border))', textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>
-                  YES/NO
+                  [PC-I-20.16] YES/NO
                 </th>
                 <th style={{ width: '220px', padding: '1rem', borderBottom: '1px solid hsl(var(--border))', textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>
-                  Cost Impact
+                  [PC-I-20.17] Cost Impact
                 </th>
               </tr>
             </thead>
@@ -238,10 +238,10 @@ export const Section2_RevisionHistory: React.FC = () => {
         <div style={{ padding: '0 1rem' }}>
           {/* Headers */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1.2fr 48px', gap: '1.5rem', marginBottom: '1rem', paddingRight: '48px' }}>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Approved Scope</div>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Proposed Revised Scope</div>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Increase in Scope</div>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Justification</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.18] Approved Scope</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.19] Proposed Revised Scope</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.20] Increase in Scope</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.21] Justification</div>
             <div></div>
           </div>
 
@@ -267,7 +267,7 @@ export const Section2_RevisionHistory: React.FC = () => {
 
       {/* 5. Quantitative Details */}
       <div className="card shadow-sm">
-        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '1.25rem' }}>Details in Quantitative / Physical Terms</h3>
+        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '1.25rem' }}>[PC-I-20.22] Details in Quantitative / Physical Terms</h3>
         <RTEditor 
           label="" 
           value={data.quantitativeDetails} 
@@ -277,7 +277,7 @@ export const Section2_RevisionHistory: React.FC = () => {
 
       <div className="card shadow-sm">
         <FileUpload 
-          label="Site Map Attachment(s)" 
+          label="[PC-I-20.23] Site Map Attachment(s)" 
           files={data.siteMapAttachments || []} 
           onUpload={(files) => handleUpdate({ siteMapAttachments: files })} 
           onRemove={(idx) => handleUpdate({ siteMapAttachments: data.siteMapAttachments.filter((_: any, i: number) => i !== idx) })} 
@@ -299,8 +299,8 @@ export const Section2_RevisionHistory: React.FC = () => {
         <div style={{ padding: '0 1rem' }}>
           {/* Headers */}
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 1fr) 48px', gap: '1.5rem', marginBottom: '0.75rem', maxWidth: '800px' }}>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Year</div>
-            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Allocation (Million)</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.24] Year</div>
+            <div style={{ textAlign: 'center', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-I-20.25] Allocation (Million)</div>
             <div></div>
           </div>
 
@@ -326,12 +326,12 @@ export const Section2_RevisionHistory: React.FC = () => {
       <div className="card shadow-sm">
         <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '1.25rem' }}>Period of Implementation</h3>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <InputField label="Approved (Months)" type="number" value={data.implementationApproved} onChange={(e: any) => handleUpdate({ implementationApproved: e.target.value })} />
-          <InputField label="Revised (Months)" type="number" value={data.implementationRevised} onChange={(e: any) => handleUpdate({ implementationRevised: e.target.value })} />
+          <InputField label="[PC-I-20.26] Approved (Months)" type="number" value={data.implementationApproved} onChange={(e: any) => handleUpdate({ implementationApproved: e.target.value })} />
+          <InputField label="[PC-I-20.27] Revised (Months)" type="number" value={data.implementationRevised} onChange={(e: any) => handleUpdate({ implementationRevised: e.target.value })} />
         </div>
         <div style={{ marginTop: '1.5rem' }}>
           <TextAreaField 
-            label="Operation & Maintenance after completion of the project" 
+            label="[PC-I-20.28] Operation & Maintenance after completion of the project" 
             value={data.omPostCompletion} 
             onChange={(e: any) => handleUpdate({ omPostCompletion: e.target.value })} 
           />
@@ -340,7 +340,7 @@ export const Section2_RevisionHistory: React.FC = () => {
 
       {/* 8. Annual Income */}
       <div className="card shadow-sm">
-        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '1.25rem' }}>Annual Income after completion</h3>
+        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '1.25rem' }}>[PC-I-20.29] Annual Income after completion</h3>
         <RTEditor 
           label="" 
           value={data.annualIncome} 
@@ -354,13 +354,13 @@ export const Section2_RevisionHistory: React.FC = () => {
           Recommendation
         </h3>
         <RTEditor 
-          label="Proposed Recommendation / Approval Notes" 
+          label="[PC-I-20.30] Proposed Recommendation / Approval Notes" 
           value={data.recommendation} 
           onChange={(val) => handleUpdate({ recommendation: val })} 
         />
         <div style={{ marginTop: '2rem' }}>
           <FileUpload 
-            label="General Revision Attachments" 
+            label="[PC-I-20.31] General Revision Attachments" 
             files={data.generalAttachments || []} 
             onUpload={(files) => handleUpdate({ generalAttachments: files })} 
             onRemove={(idx) => handleUpdate({ generalAttachments: (data.generalAttachments || []).filter((_: any, i: number) => i !== idx) })} 

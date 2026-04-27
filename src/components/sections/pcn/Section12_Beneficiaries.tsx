@@ -43,8 +43,8 @@ export const Section12_Beneficiaries: React.FC = () => {
         <div style={{ padding: '0 1rem', maxWidth: '1200px' }}>
           {/* Headers */}
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(250px, 1fr) 1fr 48px', gap: '1.5rem', marginBottom: '0.75rem' }}>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Beneficiary Type</div>
-            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>Number of Beneficiaries</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-12.1] Beneficiary Type</div>
+            <div style={{ textAlign: 'left', fontSize: '0.94rem', fontWeight: 700, color: 'hsl(var(--text-main) / 0.8)' }}>[PC-N-12.2] Number of Beneficiaries</div>
             <div></div>
           </div>
 

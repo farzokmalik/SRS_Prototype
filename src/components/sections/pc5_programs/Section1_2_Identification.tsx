@@ -1,25 +1,39 @@
 import React from 'react';
 import { useForm } from '../../../context/FormContext';
+import { SelectField } from '../../ui/FormElements';
 
 export const Section1_Identification: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.pc5.s1;
+  const data = formData.pc5p.s1;
 
   const handleUpdate = (updates: any) => {
-    updateSection('pc5', { s1: { ...data, ...updates } });
+    updateSection('pc5p', { s1: { ...data, ...updates } });
   };
 
   return (
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <SelectField 
+          label="Project ID" 
+          required 
+          value={data.projectId}
+          onChange={(e) => handleUpdate({ projectId: e.target.value })}
+          options={[
+            { value: 'PRJ-001', label: 'PRJ-001' },
+            { value: 'PRJ-002', label: 'PRJ-002' },
+            { value: 'PRJ-003', label: 'PRJ-003' },
+            { value: 'PRJ-004', label: 'PRJ-004' },
+            { value: 'PRJ-005', label: 'PRJ-005' }
+          ]}
+        />
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Project Name</label>
+          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Program Name</label>
           <input 
             className="input" 
             style={{ background: '#fff' }}
-            placeholder="Enter the official project title..."
-            value={data.projectName}
-            onChange={(e) => handleUpdate({ projectName: e.target.value })}
+            placeholder="Enter the official program title..."
+            value={data.programName}
+            onChange={(e) => handleUpdate({ programName: e.target.value })}
           />
         </div>
 
@@ -74,10 +88,10 @@ export const Section1_Identification: React.FC = () => {
 
 export const Section2_Objectives: React.FC = () => {
   const { formData, updateSection } = useForm();
-  const data = formData.pc5.s2;
+  const data = formData.pc5p.s2;
 
   const handleUpdate = (updates: any) => {
-    updateSection('pc5', { s2: { ...data, ...updates } });
+    updateSection('pc5p', { s2: { ...data, ...updates } });
   };
 
   return (
@@ -88,7 +102,7 @@ export const Section2_Objectives: React.FC = () => {
           <textarea 
             className="input" 
             style={{ background: 'hsl(var(--bg-main) / 0.3)', minHeight: '120px', paddingTop: '0.75rem' }}
-            placeholder="Pre-filled objectives from PC-I..."
+            placeholder="Pre-filled objectives from Program..."
             value={data.objectives}
             onChange={(e) => handleUpdate({ objectives: e.target.value })}
           />

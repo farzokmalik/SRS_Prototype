@@ -31,14 +31,14 @@ export const Section7_SDGCompliance: React.FC = () => {
         
         <div className="space-y-6" style={{ maxWidth: '1200px' }}>
           <SelectField 
-            label="Primary SDG Goal Alignment"
+            label="[PC-N-7.1] Primary SDG Goal Alignment"
             options={SDG_GOALS}
             value={data.sdgGoal}
             onChange={(e: any) => handleChange('sdgGoal', e.target.value)}
           />
 
           <TextAreaField 
-            label="Compliance Explanation" 
+            label="[PC-N-7.2] Compliance Explanation" 
             rows={4}
             placeholder="Describe how the project targets and indicators align with the selected SDG..."
             value={data.explanation}
@@ -46,7 +46,7 @@ export const Section7_SDGCompliance: React.FC = () => {
           />
 
           <MultiCheckGroup 
-            label="Growth Pillars Alignment"
+            label="[PC-N-7.3] Growth Pillars Alignment"
             options={GROWTH_PILLARS}
             value={data.pillars}
             onChange={(val) => handleChange('pillars', val)}
@@ -54,7 +54,7 @@ export const Section7_SDGCompliance: React.FC = () => {
           />
 
           <TextAreaField 
-            label="Pillars Justification" 
+            label="[PC-N-7.4] Pillars Justification" 
             rows={4}
             placeholder="Detailed reasoning for alignment with selected growth pillars..."
             value={data.pillarExplanation}

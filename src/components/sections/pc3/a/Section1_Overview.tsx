@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useForm } from '../../../../context/FormContext';
-import { InputField } from '../../../ui/FormElements';
+import { InputField, SelectField } from '../../../ui/FormElements';
 
 export const Section1_Overview: React.FC = () => {
   const { formData, updateSection } = useForm();
   
   // Data for all consolidated parts
-  const s1 = formData.pc3a?.s1 || { projectName: '' };
+  const s1 = formData.pc3a?.s1 || { projectId: '', projectName: '' };
   const s2 = formData.pc3a?.s2 || { capitalCost: '' };
   const s3 = formData.pc3a?.s3 || { actual: '', accrued: '', total: '' };
   const s4 = formData.pc3a?.s4 || { total: '', local: '', fec: '' };
@@ -27,6 +27,23 @@ export const Section1_Overview: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+      {/* Project ID Selection */}
+      <div className="card shadow-sm">
+        <SelectField 
+          label="Project ID" 
+          required 
+          value={s1.projectId}
+          onChange={(e: any) => handleUpdate('s1', { projectId: e.target.value })}
+          options={[
+            { value: 'PRJ-001', label: 'PRJ-001' },
+            { value: 'PRJ-002', label: 'PRJ-002' },
+            { value: 'PRJ-003', label: 'PRJ-003' },
+            { value: 'PRJ-004', label: 'PRJ-004' },
+            { value: 'PRJ-005', label: 'PRJ-005' }
+          ]}
+        />
+      </div>
+
       {/* Project Basic Info */}
       <div className="card shadow-sm">
         <InputField 

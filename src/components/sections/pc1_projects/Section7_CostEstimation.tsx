@@ -354,8 +354,9 @@ export const Section7_CostEstimation: React.FC = () => {
             <span style={{
               fontSize: '0.7rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
               background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
-            }}>{node.level}</span>
+            }}>[PC-I-7.1] {node.level}</span>
 
+            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--text-muted))' }}>[PC-I-7.2]</span>
             <EditableTitle
               value={node.title}
               onChange={v => patchNode(node.id, { title: v })}
@@ -374,7 +375,7 @@ export const Section7_CostEstimation: React.FC = () => {
                 fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
                 background: 'hsl(220,80%,93%)', color: 'hsl(220,80%,45%)',
                 padding: '1px 5px', borderRadius: 3, flexShrink: 0
-              }}>Dict</span>
+              }}>[PC-I-7.3] Dict</span>
             )}
           </div>
 
@@ -705,47 +706,47 @@ export const Section7_CostEstimation: React.FC = () => {
                   </h3>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
                     <SelectField
-                      label="Financial Component"
+                      label="[PC-I-7.4] Financial Component"
                       value={selectedNode.planData.finComponent}
                       onChange={e => patchPlan(selectedNode.id, { finComponent: e.target.value })}
                       options={['Capital', 'Revenue']}
                     />
                     <SelectField
-                      label="Grant Number"
+                      label="[PC-I-7.5] Grant Number"
                       value={selectedNode.planData.grantNo}
                       onChange={e => patchPlan(selectedNode.id, { grantNo: e.target.value })}
                       options={['PC21015 - Education', 'PC21021 - Health', 'PC21033 - Infrastructure']}
                     />
                     <SelectField
-                      label="Cost Center"
+                      label="[PC-I-7.6] Cost Center"
                       value={selectedNode.planData.costCenter}
                       onChange={e => patchPlan(selectedNode.id, { costCenter: e.target.value })}
                       options={['LH4001 - Lahore Central', 'LH4002 - Lahore East', 'GW5001 - Gujranwala']}
                     />
                     <InputField
-                      label="LO No."
+                      label="[PC-I-7.7] LO No."
                       value={selectedNode.planData.loNo}
                       onChange={e => patchPlan(selectedNode.id, { loNo: e.target.value })}
                     />
                     <SelectField
-                      label="Funding Cost Type"
+                      label="[PC-I-7.8] Funding Cost Type"
                       value={selectedNode.planData.fundingType}
                       onChange={e => patchPlan(selectedNode.id, { fundingType: e.target.value })}
                       options={['Local Cost', 'Foreign Cost', 'Mixed']}
                     />
                     <InputField
-                      label="Fund Center"
+                      label="[PC-I-7.9] Fund Center"
                       value={selectedNode.planData.fundCenter}
                       onChange={e => patchPlan(selectedNode.id, { fundCenter: e.target.value })}
                     />
                     <SelectField
-                      label="A/C To Be Credited"
+                      label="[PC-I-7.10] A/C To Be Credited"
                       value={selectedNode.planData.acToCredit}
                       onChange={e => patchPlan(selectedNode.id, { acToCredit: e.target.value })}
                       options={['Cash in Hand', 'Bank Account']}
                     />
                     <InputField
-                      label="Function Code"
+                      label="[PC-I-7.11] Function Code"
                       value={selectedNode.planData.functionCode}
                       onChange={e => patchPlan(selectedNode.id, { functionCode: e.target.value })}
                     />
@@ -766,7 +767,7 @@ export const Section7_CostEstimation: React.FC = () => {
                       <Search size={15} style={{ position: 'absolute', left: '0.875rem', top: '50%', transform: 'translateY(-50%)', color: 'hsl(var(--text-muted))', pointerEvents: 'none' }} />
                       <input
                         type="text"
-                        placeholder="Search and add object code (e.g. A01101, Basic Pay...)"
+                        placeholder="[PC-I-7.12] Search and add object code (e.g. A01101, Basic Pay...)"
                         value={activeSearchPlan === selectedNode.id ? searchQuery : ''}
                         onFocus={() => setActiveSearchPlan(selectedNode.id)}
                         onChange={e => { setSearchQuery(e.target.value); setActiveSearchPlan(selectedNode.id); }}
@@ -877,9 +878,9 @@ export const Section7_CostEstimation: React.FC = () => {
                                     fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase',
                                     color: 'hsl(var(--text-muted))',
                                   }}>
-                                    <div>Financial Year</div>
-                                    <div>Local Estimate (M)</div>
-                                    <div>Foreign Estimate (M)</div>
+                                    <div>[PC-I-7.13] Financial Year</div>
+                                    <div>[PC-I-7.14] Local Estimate (M)</div>
+                                    <div>[PC-I-7.15] Foreign Estimate (M)</div>
                                     <div style={{ textAlign: 'center' }}>Local Details</div>
                                     <div style={{ textAlign: 'center' }}>Foreign Details</div>
                                     <div />

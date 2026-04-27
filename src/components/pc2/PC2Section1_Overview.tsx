@@ -163,16 +163,32 @@ export const PC2Section1_Overview: React.FC = () => {
       {/* Project Overview Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div className="card" style={{ gridColumn: 'span 2' }}>
-          <InputField 
-            label="Project Title" 
-            placeholder="Enter the full formal name of the project" 
+           <div style={{ marginTop: '1.25rem' }}>
+            <InputField 
+              label="[PC-II-1.1] Project Title" 
+              placeholder="Enter the full formal name of the project" 
+              required 
+              value={data1.projectTitle}
+              onChange={(e) => handleUpdate1({ projectTitle: e.target.value })}
+            />
+          </div>
+          <SelectField 
+            label="[PC-II-1.2] Project ID" 
             required 
-            value={data1.projectTitle}
-            onChange={(e) => handleUpdate1({ projectTitle: e.target.value })}
+            value={data1.projectId}
+            onChange={(e) => handleUpdate1({ projectId: e.target.value })}
+            options={[
+              { value: 'PRJ-001', label: 'PRJ-001' },
+              { value: 'PRJ-002', label: 'PRJ-002' },
+              { value: 'PRJ-003', label: 'PRJ-003' },
+              { value: 'PRJ-004', label: 'PRJ-004' },
+              { value: 'PRJ-005', label: 'PRJ-005' }
+            ]}
           />
+         
           <div style={{ marginTop: '1.25rem' }}>
             <InputField 
-              label="Meta Tags" 
+              label="[PC-II-1.3] Meta Tags" 
               placeholder="Enter keywords or tags (e.g. Feasibility, Survey, Research)" 
               value={data1.metaTags}
               onChange={(e) => handleUpdate1({ metaTags: e.target.value })}
@@ -182,7 +198,7 @@ export const PC2Section1_Overview: React.FC = () => {
 
         <div className="card">
           <SelectField 
-            label="Project Start Year" 
+            label="[PC-II-1.4] Project Start Year" 
             required 
             value={data1.startYear}
             onChange={(e) => handleUpdate1({ startYear: e.target.value })}
@@ -195,14 +211,14 @@ export const PC2Section1_Overview: React.FC = () => {
           
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <InputField 
-              label="Start Date" 
+              label="[PC-II-1.5] Start Date" 
               type="date" 
               required 
               value={data1.startDate}
               onChange={(e) => handleUpdate1({ startDate: e.target.value })}
             />
             <InputField 
-              label="End Date" 
+              label="[PC-II-1.6] End Date" 
               type="date" 
               required 
               value={data1.endDate}
@@ -213,14 +229,14 @@ export const PC2Section1_Overview: React.FC = () => {
 
         <div className="card">
           <InputField 
-            label="GS No." 
+            label="[PC-II-1.7] GS No." 
             placeholder="e.g. GS-2024-X10" 
             value={data1.gsNo}
             onChange={(e) => handleUpdate1({ gsNo: e.target.value })}
           />
           
           <SelectField 
-            label="Administrative Department" 
+            label="[PC-II-1.8] Administrative Department" 
             required 
             value={data1.adminDept}
             onChange={(e) => handleUpdate1({ adminDept: e.target.value })}
@@ -235,14 +251,14 @@ export const PC2Section1_Overview: React.FC = () => {
         <div className="card" style={{ gridColumn: 'span 2' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <SelectField 
-              label="Main Sector" 
+              label="[PC-II-1.9] Main Sector" 
               required 
               value={data1.mainSector}
               onChange={(e) => handleUpdate1({ mainSector: e.target.value, sector: '' })}
               options={Object.keys(SECTOR_OPTIONS).map(s => ({ value: s, label: s }))}
             />
             <SelectField 
-              label="Sector" 
+              label="[PC-II-1.10] Sector" 
               required 
               disabled={!data1.mainSector}
               value={data1.sector}
@@ -254,7 +270,7 @@ export const PC2Section1_Overview: React.FC = () => {
 
         <div className="card">
           <RadioGroup 
-            label="Location Type" 
+            label="[PC-II-1.11] Location Type" 
             name="locationType"
             value={data1.locationType}
             onChange={(val) => handleUpdate1({ locationType: val })}
@@ -266,7 +282,7 @@ export const PC2Section1_Overview: React.FC = () => {
           />
           
           <SelectField 
-            label="Project Status" 
+            label="[PC-II-1.12] Project Status" 
             value={data1.projectStatus}
             onChange={(e) => handleUpdate1({ projectStatus: e.target.value })}
             options={[
@@ -279,7 +295,7 @@ export const PC2Section1_Overview: React.FC = () => {
 
         <div className="card">
           <MultiCheckGroup 
-            label="Project Status Type" 
+            label="[PC-II-1.13] Project Status Type" 
             options={['Programme', 'Flagship/Mega Project', 'PPP', 'PM Package', 'CM Package', 'Block']}
             value={data1.statusType}
             onChange={(vals) => handleUpdate1({ statusType: vals })}
@@ -303,7 +319,7 @@ export const PC2Section1_Overview: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div className="card">
           <RadioGroup
-            label="Foreign Funding"
+            label="[PC-II-1.14] Foreign Funding"
             required
             name="foreignFunding"
             value={data2.foreignFunding}
@@ -316,7 +332,7 @@ export const PC2Section1_Overview: React.FC = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div className="input-group">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                    <label className="label">Foreign Cost (PKR)</label>
+                    <label className="label">[PC-II-1.15] Foreign Cost (PKR)</label>
                     <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                   </div>
                   <input
@@ -337,7 +353,7 @@ export const PC2Section1_Overview: React.FC = () => {
                   {showCapital && (
                     <div className="input-group">
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                        <label className="label">Foreign Capital Cost (PKR)</label>
+                        <label className="label">[PC-II-1.16] Foreign Capital Cost (PKR)</label>
                         <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                       </div>
                       <input
@@ -353,7 +369,7 @@ export const PC2Section1_Overview: React.FC = () => {
                   {showRevenue && (
                     <div className="input-group">
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                        <label className="label">Foreign Revenue Cost (PKR)</label>
+                        <label className="label">[PC-II-1.17] Foreign Revenue Cost (PKR)</label>
                         <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                       </div>
                       <input
@@ -371,21 +387,21 @@ export const PC2Section1_Overview: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <InputField
-                  label="Source of Foreign Funding"
+                  label="[PC-II-1.18] Source of Foreign Funding"
                   placeholder="Source of Foreign Funding"
                   required
                   value={data2.source}
                   onChange={(e) => handleUpdate2({ source: e.target.value })}
                 />
                 <InputField
-                  label="Currency"
+                  label="[PC-II-1.19] Currency"
                   placeholder="Foreign Currency"
                   required
                   value={data2.currency}
                   onChange={(e) => handleUpdate2({ currency: e.target.value })}
                 />
                 <InputField
-                  label="Percentage"
+                  label="[PC-II-1.20] Percentage"
                   placeholder="0"
                   type="number"
                   description="%"
@@ -394,7 +410,7 @@ export const PC2Section1_Overview: React.FC = () => {
                   onChange={(e) => handleUpdate2({ percentage: e.target.value })}
                 />
                 <InputField
-                  label="Exchange Rate"
+                  label="[PC-II-1.21] Exchange Rate"
                   placeholder="0"
                   type="number"
                   required
@@ -409,7 +425,7 @@ export const PC2Section1_Overview: React.FC = () => {
         <div className="card">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <SelectField
-              label="Project Financial Components"
+              label="[PC-II-1.22] Project Financial Components"
               required
               value={data2.financialComponents}
               onChange={(e) => handleComponentChange(e.target.value)}
@@ -421,7 +437,7 @@ export const PC2Section1_Overview: React.FC = () => {
             />
             <div className="input-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                <label className="label">Local Cost (PKR)</label>
+                <label className="label">[PC-II-1.23] Local Cost (PKR)</label>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
               </div>
               <input
@@ -442,7 +458,7 @@ export const PC2Section1_Overview: React.FC = () => {
               {showCapital && (
                 <div className="input-group">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                    <label className="label">Local Capital Cost (PKR)</label>
+                    <label className="label">[PC-II-1.24] Local Capital Cost (PKR)</label>
                     <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                   </div>
                   <input
@@ -458,7 +474,7 @@ export const PC2Section1_Overview: React.FC = () => {
               {showRevenue && (
                 <div className="input-group">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                    <label className="label">Local Revenue Cost (PKR)</label>
+                    <label className="label">[PC-II-1.25] Local Revenue Cost (PKR)</label>
                     <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                   </div>
                   <input
@@ -478,7 +494,7 @@ export const PC2Section1_Overview: React.FC = () => {
         <div className="card">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <SelectField
-              label="Approval Forum"
+              label="[PC-II-1.26] Approval Forum"
               required
               value={data2.approvalForum}
               onChange={(e) => handleUpdate2({ approvalForum: e.target.value })}
@@ -490,7 +506,7 @@ export const PC2Section1_Overview: React.FC = () => {
             />
             <div className="input-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                <label className="label">Total Cost (PKR)</label>
+                <label className="label">[PC-II-1.27] Total Cost (PKR)</label>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
               </div>
               <input
@@ -518,15 +534,15 @@ export const PC2Section1_Overview: React.FC = () => {
           {(data2.beneficiaryShares || []).map((share: any, index: number) => (
             <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 50px', gap: '1rem', alignItems: 'flex-end', marginBottom: '1rem', padding: '1rem', background: 'hsl(var(--bg-main))', borderRadius: 'var(--radius-md)' }}>
               <SelectField
-                label="Admin Department"
+                label="[PC-II-1.28] Admin Department"
                 value={share.adminDept}
                 onChange={(e) => updateBeneficiary(index, { adminDept: e.target.value })}
                 options={[{ value: 'Edu', label: 'School Education' }, { value: 'Health', label: 'Health' }]}
               />
-              <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
+              <InputField label="[PC-II-1.29] Beneficiary Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Amount</label>
+                  <label className="label">[PC-II-1.30] Amount</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input
@@ -545,7 +561,7 @@ export const PC2Section1_Overview: React.FC = () => {
 
         <div className="card">
           <FileUpload
-            label="Financial Attachments"
+            label="[PC-II-1.31] Financial Attachments"
             files={data2.attachments || []}
             onUpload={(files) => handleUpdate2({ attachments: files })}
             onRemove={(idx) => handleUpdate2({ attachments: (data2.attachments || []).filter((_: any, i: number) => i !== idx) })}

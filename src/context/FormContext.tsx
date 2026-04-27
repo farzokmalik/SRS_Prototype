@@ -24,11 +24,14 @@ export interface FormState {
   pc3a: any;
   pc3b: any;
   pc4: any;
+  pc4p: any;
   pc5: any;
+  pc5p: any;
 }
 
 const initialFormState: FormState = {
   section1: {
+    projectId: '',
     projectTitle: '',
     startYear: '',
     gsNo: '',
@@ -175,7 +178,7 @@ const initialFormState: FormState = {
     tf27_28: '', tf28_29: '', tfBeyond: ''
   },
   pc3a: {
-    s1: { projectName: '' },
+    s1: { projectId: '', projectName: '' },
     s2: { capitalCost: '' },
     s3: { actual: '', accrued: '', total: '' },
     s4: { total: '', local: '', fec: '' },
@@ -192,7 +195,7 @@ const initialFormState: FormState = {
     s5: { bottlenecks: [], otherBottleneck: '', remarks: '' }
   },
   pc4: {
-    s1: { projectName: '', locations: '' },
+    s1: { projectId: '', projectName: '', locations: '' },
     s2: { sector: '', subSector: '' },
     s3: { name: '', address: '' },
     s4: { name: '', address: '' },
@@ -243,7 +246,82 @@ const initialFormState: FormState = {
     s27: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
   },
   pc5: {
-    s1: { projectName: '', reportingYear: '', yearAfterCompletion: 1 },
+    s1: { projectId: '', projectName: '', reportingYear: '', yearAfterCompletion: 1 },
+    s2: { objectives: '', extentMet: '', status: 'Fully met' },
+    s3: { plannedCost: '', actualCost: '', components: [{ name: '', planned: '', actual: '' }] },
+    s4: [{ category: 'Administrative', designation: '', planned: '', actual: '' }],
+    s5: [{ item: '', unit: '', planned: '', actual: '' }],
+    s6: [{ type: '', planned: '', assumptions: '', actual: '' }],
+    s7: [{ description: '', unit: '', planned: '', actual: '' }],
+    s8: [{ description: '', targetGroup: '', planned: '', actual: '', extentMet: '' }],
+    s9: { 
+      adaptation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      mitigation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      disasterOccurred: false, 
+      disasterDetails: '' 
+    },
+    s10: { unitType: '', plannedCost: '', actualCost: '', wacc: '' },
+    s11: { marketingPCI: '', differsFromPCI: false, details: '' },
+    s12: { arrangements: '', annualMaintenance: false, reasons: '' },
+    s13: { status: 'Yes', reasons: '' },
+    s14: { operation: '', maintenance: '', marketing: '', management: '', climate: '' },
+    s15: { managementChange: false, changes: [{ name: '', designation: '', date: '' }], justification: '' },
+    s16: { suggestions: '' },
+    submission: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
+  },
+  pc4p: {
+    s1: { projectId: '', programName: '', locations: '' },
+    s2: { sector: '', subSector: '' },
+    s3: { name: '', address: '' },
+    s4: { name: '', address: '' },
+    s5: { name: '', address: '' },
+    s6: { approvalForum: '', originalDate: '', revisedDate: '', decisionCopy: [] },
+    s7: { plannedCommencement: '', actualCommencement: '', plannedCompletion: '', actualCompletion: '', duration: '', extensions: [{ date: '', months: '', days: '', authority: '' }] },
+    s8: { 
+      capitalCost: { 
+        original: { local: '', fe: '', total: '' }, 
+        revised: { local: '', fe: '', total: '' }, 
+        actual: { local: '', fe: '', total: '' } 
+      }, 
+      climateCoBenefits: { adaptation: '', mitigation: '' } 
+    },
+    s9: { 
+      financing: { 
+        federal: { local: '', fe: '', total: '' }, 
+        provincial: { local: '', fe: '', total: '' }, 
+        donors: { local: '', fe: '', total: '' } 
+      }, 
+      exchangeRateNote: '' 
+    },
+    s10: { accounts: [], closureStatus: '', closureDate: '', closureReasons: '' },
+    s11: { annualPhasing: [{ year: '', pciPhasing: { total: '', fe: '' }, psdpAllocation: { total: '', fe: '' }, releases: { total: '', fe: '' }, expenditure: { total: '', fe: '' } }] },
+    s12: { physicalAchievements: [{ item: '', unit: '', planned: '', actual: '' }] },
+    s13: { itemWiseExpenditure: [{ item: '', pciEstimate: { local: '', fec: '', total: '' }, actual: { local: '', fec: '', total: '' } }], climateSubTable: [] },
+    s14: { recurringCosts: [{ item: '', pciEstimate: '', actual: '', source: '' }] },
+    s15: { objectives: [{ objective: '', status: 'Achieved', reasons: '' }] },
+    s16: { adaptation: [{ description: '', cost: '' }], mitigation: [{ description: '', cost: '' }] },
+    s17: { income: [{ year: '', estimated: '', actual: '' }] },
+    s18: { indicators: [{ input: '', output: '', outputIndicator: '', outcomeIndicator: '', baseline: '', target: '', targetedImpact: '', impactIndicator: '' }] },
+    s19: { pdHistory: [{ name: '', fromDate: '', toDate: '' }] },
+    s20: { assetOwnershipAgency: '', assets: [{ name: '', type: 'Moveable' }] },
+    s21: { social: '', economic: '', environmental: '', technological: '', regional: '', sectoral: '', employment: '' },
+    s22: { impactAnalysis: '' },
+    s23: { 
+      npvFinancial: { pci: '', completion: '' }, 
+      bcrFinancial: { pci: '', completion: '' }, 
+      ifrr: { pci: '', completion: '' }, 
+      npvEconomic: { pci: '', completion: '' }, 
+      bcrEconomic: { pci: '', completion: '' }, 
+      ierr: { pci: '', completion: '' }, 
+      unitCost: { pci: '', completion: '' } 
+    },
+    s24: { a: '', b: '', c: '', d: '', e: '' },
+    s25: { a: '', b: '', c: '', d: '', e: '', f: '' },
+    s26: { additionalInfo: '' },
+    s27: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
+  },
+  pc5p: {
+    s1: { projectId: '', programName: '', reportingYear: '', yearAfterCompletion: 1 },
     s2: { objectives: '', extentMet: '', status: 'Fully met' },
     s3: { plannedCost: '', actualCost: '', components: [{ name: '', planned: '', actual: '' }] },
     s4: [{ category: 'Administrative', designation: '', planned: '', actual: '' }],

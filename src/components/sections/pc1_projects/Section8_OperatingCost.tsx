@@ -69,25 +69,25 @@ export const Section8_OperatingCost: React.FC = () => {
       {/* Top Header Information */}
       <div className="card" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
         <SelectField 
-          label="Grant Number" 
+          label="[PC-I-8.1] Grant Number" 
           value={data.grantNo} 
           onChange={(e) => handleUpdate({ grantNo: e.target.value })}
           options={[{ value: 'PC21015', label: 'PC21015' }]}
         />
         <SelectField 
-          label="Cost Center" 
+          label="[PC-I-8.2] Cost Center" 
           value={data.costCenter} 
           onChange={(e) => handleUpdate({ costCenter: e.target.value })}
           options={[{ value: 'LH4001', label: 'LH4001' }]}
         />
-        <InputField label="LO No." value={data.loNo} onChange={(e) => handleUpdate({ loNo: e.target.value })} />
+        <InputField label="[PC-I-8.3] LO No." value={data.loNo} onChange={(e) => handleUpdate({ loNo: e.target.value })} />
         <SelectField 
-          label="Running Cost Type" 
+          label="[PC-I-8.4] Running Cost Type" 
           value={data.runningCostType} 
           onChange={(e) => handleUpdate({ runningCostType: e.target.value })}
           options={[{ value: 'Local', label: 'Local Cost' }, { value: 'Foreign', label: 'Foreign Cost' }]}
         />
-        <InputField label="Fund Center (Controlling)" value={data.fundCenter} onChange={(e) => handleUpdate({ fundCenter: e.target.value })} />
+        <InputField label="[PC-I-8.5] Fund Center (Controlling)" value={data.fundCenter} onChange={(e) => handleUpdate({ fundCenter: e.target.value })} />
       </div>
 
       {uniqueObjectCodes.length === 0 && (
@@ -123,9 +123,9 @@ export const Section8_OperatingCost: React.FC = () => {
               <div style={{ background: 'hsl(var(--bg-main))', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--border))' }}>
                 {/* Headers */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr 2fr 40px', gap: '0.75rem', marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid hsl(var(--border))', color: 'hsl(var(--text-muted))', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>
-                  <div>Target Year</div>
-                  <div><span style={{ color: 'hsl(var(--accent))' }}>Local Cost</span> Est. (M)</div>
-                  <div><span style={{ color: 'hsl(var(--warning))' }}>Foreign Cost</span> Est. (M)</div>
+                  <div>[PC-I-8.6] Target Year</div>
+                  <div><span style={{ color: 'hsl(var(--accent))' }}>[PC-I-8.7] Local Cost</span> Est. (M)</div>
+                  <div><span style={{ color: 'hsl(var(--warning))' }}>[PC-I-8.8] Foreign Cost</span> Est. (M)</div>
                   <div></div>
                 </div>
 
