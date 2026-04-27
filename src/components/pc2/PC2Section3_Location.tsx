@@ -63,33 +63,33 @@ export const PC2Section3_Location: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField
-            label="Division"
+            label="[PC-II-2.1] Division"
             required
             value={selectedDivision}
             onChange={(e) => handleUpdate({ division: e.target.value, district: '' })}
             options={DIVISIONS.map(d => ({ value: d, label: d }))}
           />
           <SelectField
-            label="District"
+            label="[PC-II-2.2] District"
             required
             value={data.district || ''}
             onChange={(e) => handleUpdate({ district: e.target.value })}
             options={districtOptions.map(d => ({ value: d, label: d }))}
           />
           <SelectField
-            label="National Assembly (NA)"
+            label="[PC-II-2.3] National Assembly (NA)"
             value={data.na?.[0] || ''}
             onChange={(e) => handleUpdate({ na: [e.target.value] })}
             options={NA_SEATS.map(s => ({ value: s, label: s }))}
           />
           <SelectField
-            label="Provincial Assembly (PP)"
+            label="[PC-II-2.4] Provincial Assembly (PP)"
             value={data.pp?.[0] || ''}
             onChange={(e) => handleUpdate({ pp: [e.target.value] })}
             options={PP_SEATS.map(s => ({ value: s, label: s }))}
           />
           <SelectField
-            label="Union Council"
+            label="[PC-II-2.5] Union Council"
             value={data.unionCouncil || ''}
             onChange={(e) => handleUpdate({ unionCouncil: e.target.value })}
             options={UNION_COUNCILS.map(u => ({ value: u, label: u }))}
@@ -101,14 +101,14 @@ export const PC2Section3_Location: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <InputField
-            label="Latitude"
+            label="[PC-II-2.6] Latitude"
             placeholder="Enter Latitude (1.00-10.00)"
             type="number"
             value={data.lat}
             onChange={(e) => handleUpdate({ lat: e.target.value })}
           />
           <InputField
-            label="Longitude"
+            label="[PC-II-2.7] Longitude"
             placeholder="Enter Longitude (1.00-10.00)"
             type="number"
             value={data.long}
@@ -117,7 +117,7 @@ export const PC2Section3_Location: React.FC = () => {
         </div>
         <div style={{ marginTop: '1rem' }}>
           <InputField
-            label="Map URL"
+            label="[PC-II-2.8] Map URL"
             placeholder="https://google.com/maps/..."
             value={data.mapUrl}
             onChange={(e) => handleUpdate({ mapUrl: e.target.value })}
@@ -128,7 +128,7 @@ export const PC2Section3_Location: React.FC = () => {
       {/* Location Attachments */}
       <div className="card">
         <FileUpload
-          label="Location Attachment(s)"
+          label="[PC-II-2.9] Location Attachment(s)"
           files={data.attachments || []}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(idx) => handleUpdate({ attachments: (data.attachments || []).filter((_: any, i: number) => i !== idx) })}
@@ -144,14 +144,14 @@ export const PC2Section3_Location: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField
-            label="Executing Agency"
+            label="[PC-II-2.10] Executing Agency"
             required
             value={data.executingAgencies?.[0] || ''}
             onChange={(e) => handleUpdate({ executingAgencies: [e.target.value] })}
             options={EXECUTING_AGENCIES.map(a => ({ value: a, label: a }))}
           />
           <SelectField
-            label="Sponsoring Agency"
+            label="[PC-II-2.11] Sponsoring Agency"
             required
             value={data.sponsoringAgency || ''}
             onChange={(e) => handleUpdate({ sponsoringAgency: e.target.value })}
@@ -163,7 +163,7 @@ export const PC2Section3_Location: React.FC = () => {
       {/* Agency Attachments */}
       <div className="card">
         <FileUpload
-          label="Agency Attachment(s)"
+          label="[PC-II-2.12] Agency Attachment(s)"
           files={data.agencyAttachments || []}
           onUpload={(files) => handleUpdate({ agencyAttachments: files })}
           onRemove={(idx) => handleUpdate({ agencyAttachments: (data.agencyAttachments || []).filter((_: any, i: number) => i !== idx) })}

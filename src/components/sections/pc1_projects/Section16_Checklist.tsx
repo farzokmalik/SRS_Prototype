@@ -37,9 +37,9 @@ export const Section16_Checklist: React.FC = () => {
        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ textAlign: 'left', borderBottom: '2px solid var(--border)' }}>
-              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>Item Description</th>
-              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>Yes / No</th>
-              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>Paging</th>
+              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>[PC-I-16.1] Item Description</th>
+              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>[PC-I-16.2] Yes / No</th>
+              <th style={{ padding: '1rem', fontSize: '0.875rem' }}>[PC-I-16.3] Paging</th>
             </tr>
           </thead>
           <tbody>

@@ -19,7 +19,7 @@ export const Section18_Appraisal: React.FC = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
            <SelectField 
-             label="Category" 
+             label="[PC-I-18.1] Category" 
              value={data.category}
              onChange={(e) => handleUpdate({ category: e.target.value })}
              options={[
@@ -30,12 +30,12 @@ export const Section18_Appraisal: React.FC = () => {
                { value: 'Others', label: 'Others' }
              ]}
            />
-           <InputField label="Document Title" value={data.title} onChange={(e) => handleUpdate({ title: e.target.value })} />
+           <InputField label="[PC-I-18.2] Document Title" value={data.title} onChange={(e) => handleUpdate({ title: e.target.value })} />
         </div>
 
         <div style={{ marginTop: '1.5rem' }}>
           <FileUpload 
-            label="Appraisal Document"
+            label="[PC-I-18.3] Appraisal Document"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}

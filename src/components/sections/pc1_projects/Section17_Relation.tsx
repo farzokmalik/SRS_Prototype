@@ -18,7 +18,7 @@ export const Section17_Relation: React.FC = () => {
            Project Relations
         </h3>
         <RadioGroup 
-          label="Scheme Filter" 
+          label="[PC-I-17.1] Scheme Filter" 
           name="schemeFilterRelation"
           value={data.filter}
           onChange={(val) => handleUpdate({ filter: val })}
@@ -27,7 +27,7 @@ export const Section17_Relation: React.FC = () => {
         
         {data.filter === 'Existing Scheme' && (
           <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-             <InputField label="Search GS No" placeholder="Enter GS No" value={data.gsNo} onChange={(e) => handleUpdate({ gsNo: e.target.value })} />
+             <InputField label="[PC-I-17.2] Search GS No" placeholder="Enter GS No" value={data.gsNo} onChange={(e) => handleUpdate({ gsNo: e.target.value })} />
              <button className="btn btn-primary" style={{ height: '42px', marginTop: '28px' }}><Search size={18} /></button>
           </div>
         )}
@@ -36,7 +36,7 @@ export const Section17_Relation: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload 
-            label="Attachments"
+            label="[PC-I-17.3] Attachments"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}
@@ -45,7 +45,7 @@ export const Section17_Relation: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload 
-            label="Annexures"
+            label="[PC-I-17.4] Annexures"
             files={data.annexures || []}
             onUpload={(files) => handleUpdate({ annexures: files })}
             onRemove={(idx) => handleUpdate({ annexures: data.annexures.filter((_: any, i: number) => i !== idx) })}

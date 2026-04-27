@@ -37,7 +37,7 @@ export const Section2_ProponentInfo: React.FC = () => {
           {/* Main Context Area */}
           <div className="grid grid-cols-1 gap-6">
             <TextAreaField 
-              label="Background & Rationale" 
+              label="[PC-N-2.1] Background & Rationale" 
               rows={5}
               placeholder="Provide strategic context and justification for this intervention..."
               value={sectionData.background || ''}
@@ -45,13 +45,28 @@ export const Section2_ProponentInfo: React.FC = () => {
             />
 
             <TextAreaField 
-              label="Specific Crop Health Benefits" 
+              label="[PC-N-2.2] Specific Crop Health Benefits" 
               rows={4}
               placeholder="Explain how this project directly impacts agricultural productivity..."
               value={sectionData.cropHealth || ''}
               onChange={(e: any) => handleChange('cropHealth', e.target.value)}
             />
           </div>
+
+          <div style={{ height: '1px', background: 'hsl(var(--border) / 0.5)', margin: '1rem 0' }} />
+
+          {/* Attachments Area */}
+          <FileUpload 
+            label="[PC-N-2.3] Image / Figure Upload" 
+            description="Attach technical diagrams, proponent charts, or geographical figures (Max 10MB per file)"
+            files={sectionData.attachments || []}
+            onUpload={(files) => handleChange('attachments', files)}
+            onRemove={(idx) => {
+              const newList = [...(sectionData.attachments || [])];
+              newList.splice(idx, 1);
+              handleChange('attachments', newList);
+            }}
+          />
 
           <div style={{ height: '1px', background: 'hsl(var(--border) / 0.5)', margin: '1rem 0' }} />
 
@@ -82,9 +97,9 @@ export const Section2_ProponentInfo: React.FC = () => {
                 borderBottom: '1px solid hsl(var(--border))',
                 background: 'hsl(var(--bg-main) / 0.2)'
               }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Nutrient / Parameter</div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Value</div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Unit</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.4] Nutrient / Parameter</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.5] Value</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.6] Unit</div>
                 <div></div>
               </div>
 
@@ -118,21 +133,6 @@ export const Section2_ProponentInfo: React.FC = () => {
               </div>
             </div>
           </section>
-
-          <div style={{ height: '1px', background: 'hsl(var(--border) / 0.5)', margin: '1rem 0' }} />
-
-          {/* Attachments Area */}
-          <FileUpload 
-            label="Image / Figure Upload" 
-            description="Attach technical diagrams, proponent charts, or geographical figures (Max 10MB per file)"
-            files={sectionData.attachments || []}
-            onUpload={(files) => handleChange('attachments', files)}
-            onRemove={(idx) => {
-              const newList = [...(sectionData.attachments || [])];
-              newList.splice(idx, 1);
-              handleChange('attachments', newList);
-            }}
-          />
         </div>
       </div>
     </div>

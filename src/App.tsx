@@ -6,7 +6,7 @@ import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardHome } from './pages/DashboardHome';
 import { LoginPage } from './pages/LoginPage';
 import { useForm } from './context/FormContext';
-import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS, PC4_SECTIONS, PC5_SECTIONS } from './constants';
+import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS, PC4_SECTIONS, PC5_SECTIONS, PC4_PROGRAMS_SECTIONS, PC5_PROGRAMS_SECTIONS } from './constants';
 
 import { Section1_Overview } from './components/sections/pc1_projects/Section1_Overview';
 import { Section2_RevisionHistory } from './components/sections/pc1_projects/Section20_ Addition of Upward Revision of Development Project';
@@ -93,41 +93,68 @@ import { Section17_Relation as PC1P_Section17 } from './components/sections/pc1_
 import { Section18_Appraisal as PC1P_Section18 } from './components/sections/pc1_programs/Section18_Appraisal';
 import { Section19_FocusOnMarginalisation as PC1P_Section19 } from './components/sections/pc1_programs/Section19_FocusOnMarginalisation';
 // PC-4 Sections
-import { Section1_Identification as PC4_Section1 } from './components/sections/pc4/Section1_Identification';
-import { Section2_Sector as PC4_Section2 } from './components/sections/pc4/Section2_Sector';
-import { Section3_AuthoritiesResponsible as PC4_Section3 } from './components/sections/pc4/Section3_AuthoritiesResponsible';
-import { Section4_DateOfApprovalForum as PC4_Section4 } from './components/sections/pc4/Section4_DateOfApprovalForum';
-import { Section7_Schedule as PC4_Section5 } from './components/sections/pc4/Section7_Schedule';
-import { Section6_TotalCost as PC4_Section6 } from './components/sections/pc4/Section6_TotalCost';
-import { Section7_FinancingOfProject as PC4_Section7 } from './components/sections/pc4/Section7_FinancingOfProject';
-import { Section8_ProjectAccounts as PC4_Section8 } from './components/sections/pc4/Section8_ProjectAccounts';
-import { Section9_FinancialPhasing as PC4_Section9 } from './components/sections/pc4/Section9_FinancialPhasing';
-import { Section10_PhysicalTargets as PC4_Section10 } from './components/sections/pc4/Section10_PhysicalTargets';
-import { Section11_ItemWisePlannedActual as PC4_Section11 } from './components/sections/pc4/Section11_ItemWisePlannedActual';
-import { Section12_RecurringCostAfterCompletion as PC4_Section12 } from './components/sections/pc4/Section12_RecurringCostAfterCompletion';
-import { Section13_AchievementOfObjectives as PC4_Section13 } from './components/sections/pc4/Section13_AchievementOfObjectives';
-import { Section14_YearWiseIncome as PC4_Section14 } from './components/sections/pc4/Section14_YearWiseIncome';
-import { Section15_ResultBasedMonitoring as PC4_Section15 } from './components/sections/pc4/Section15_ResultBasedMonitoring';
-import { Section16_ProjectDirectors as PC4_Section16 } from './components/sections/pc4/Section16_ProjectDirectors';
-import { Section17_AssetsResponsibility as PC4_Section17 } from './components/sections/pc4/Section17_AssetsResponsibility';
-import { Section18_ImpactAfterCompletion as PC4_Section18 } from './components/sections/pc4/Section18_ImpactAfterCompletion';
-import { Section19_SustainabilityMechanism as PC4_Section19 } from './components/sections/pc4/Section19_20_Assets';
+import { Section1_Identification as PC4_Section1 } from './components/sections/pc4_projects/Section1_Identification';
+import { Section2_Sector as PC4_Section2 } from './components/sections/pc4_projects/Section2_Sector';
+import { Section3_AuthoritiesResponsible as PC4_Section3 } from './components/sections/pc4_projects/Section3_AuthoritiesResponsible';
+import { Section4_DateOfApprovalForum as PC4_Section4 } from './components/sections/pc4_projects/Section4_DateOfApprovalForum';
+import { Section7_Schedule as PC4_Section5 } from './components/sections/pc4_projects/Section7_Schedule';
+import { Section6_TotalCost as PC4_Section6 } from './components/sections/pc4_projects/Section6_TotalCost';
+import { Section7_FinancingOfProject as PC4_Section7 } from './components/sections/pc4_projects/Section7_FinancingOfProject';
+import { Section8_ProjectAccounts as PC4_Section8 } from './components/sections/pc4_projects/Section8_ProjectAccounts';
+import { Section9_FinancialPhasing as PC4_Section9 } from './components/sections/pc4_projects/Section9_FinancialPhasing';
+import { Section10_PhysicalTargets as PC4_Section10 } from './components/sections/pc4_projects/Section10_PhysicalTargets';
+import { Section11_ItemWisePlannedActual as PC4_Section11 } from './components/sections/pc4_projects/Section11_ItemWisePlannedActual';
+import { Section12_RecurringCostAfterCompletion as PC4_Section12 } from './components/sections/pc4_projects/Section12_RecurringCostAfterCompletion';
+import { Section13_AchievementOfObjectives as PC4_Section13 } from './components/sections/pc4_projects/Section13_AchievementOfObjectives';
+import { Section14_YearWiseIncome as PC4_Section14 } from './components/sections/pc4_projects/Section14_YearWiseIncome';
+import { Section15_ResultBasedMonitoring as PC4_Section15 } from './components/sections/pc4_projects/Section15_ResultBasedMonitoring';
+import { Section16_ProjectDirectors as PC4_Section16 } from './components/sections/pc4_projects/Section16_ProjectDirectors';
+import { Section17_AssetsResponsibility as PC4_Section17 } from './components/sections/pc4_projects/Section17_AssetsResponsibility';
+import { Section18_ImpactAfterCompletion as PC4_Section18 } from './components/sections/pc4_projects/Section18_ImpactAfterCompletion';
+import { Section19_SustainabilityMechanism as PC4_Section19 } from './components/sections/pc4_projects/Section19_20_Assets';
 import {
   Section21_ImpactEvaluation as PC4_Section21,
   Section22_ImpactAnalysis as PC4_Section22,
   Section23_Suggestions as PC4_Section23Nav,
   Section23_EconomicAnalysis as PC4_Section23,
-} from './components/sections/pc4/Section21_23_Impact';
-import { Section24_Certificate as PC4_Section24, Section25_ProjectAppraisalDocumentation as PC4_Section25 } from './components/sections/pc4/Section24_25_IssuesLessons';
+} from './components/sections/pc4_projects/Section21_23_Impact';
+import { Section24_Certificate as PC4_Section24, Section25_ProjectAppraisalDocumentation as PC4_Section25 } from './components/sections/pc4_projects/Section24_25_IssuesLessons';
+
+// PC-4 Programs
+import { Section1_Identification as PC4P_Section1 } from './components/sections/pc4_programs/Section1_Identification';
+import { Section2_Sector as PC4P_Section2 } from './components/sections/pc4_programs/Section2_Sector';
+import { Section3_Sponsoring as PC4P_Section3, Section4_Executing as PC4P_Section4, Section5_OM as PC4P_Section5 } from './components/sections/pc4_programs/Section3_5_Agencies';
+import { Section6_Approval as PC4P_Section6 } from './components/sections/pc4_programs/Section6_Approval';
+import { Section7_Schedule as PC4P_Section7 } from './components/sections/pc4_programs/Section7_Schedule';
+import { Section8_CapitalCost as PC4P_Section8 } from './components/sections/pc4_programs/Section8_CapitalCost';
+import { Section9_Financing as PC4P_Section9, Section10_Accounts as PC4P_Section10 } from './components/sections/pc4_programs/Section9_10_Accounts';
+import { Section11_PhasingExpenditure as PC4P_Section11 } from './components/sections/pc4_programs/Section11_PhasingExpenditure';
+import { Section12_PhysicalAchievements as PC4P_Section12 } from './components/sections/pc4_programs/Section12_PhysicalAchievements';
+import { Section13_ItemWiseExpenditure as PC4P_Section13 } from './components/sections/pc4_programs/Section13_ItemWiseExpenditure';
+import { Section14_RecurringCosts as PC4P_Section14, Section15_ObjectivesAchievement as PC4P_Section15 } from './components/sections/pc4_programs/Section14_15_Objectives';
+import { Section16_ClimateCoBenefits as PC4P_Section16, Section17_ProjectIncome as PC4P_Section17 } from './components/sections/pc4_programs/Section16_17_Income';
+import { Section18_RBMIndicators as PC4P_Section18 } from './components/sections/pc4_programs/Section18_RBMIndicators';
+import { Section19_PDHistory as PC4P_Section19, Section20_Assets as PC4P_Section20 } from './components/sections/pc4_programs/Section19_20_Assets';
+import { Section21_ImpactEvaluation as PC4P_Section21, Section22_ImpactAnalysis as PC4P_Section22, Section23_EconomicAnalysis as PC4P_Section23 } from './components/sections/pc4_programs/Section21_23_Impact';
+import { Section24_Issues as PC4P_Section24, Section25_Lessons as PC4P_Section25 } from './components/sections/pc4_programs/Section24_25_IssuesLessons';
+import { Section26_AdditionalInfo as PC4P_Section26, Section27_Submission as PC4P_Section27 } from './components/sections/pc4_programs/Section26_27_Submission';
 // Constants
 
 // PC-5 Sections
-import { Section1_Identification as PC5_Section1, Section2_Objectives as PC5_Section2 } from './components/sections/pc5/Section1_2_Identification';
-import { Section3_RecurringCost as PC5_Section3, Section4_Manpower as PC5_Section4 } from './components/sections/pc5/Section3_4_Performance';
-import { Section5_PhysicalOutput as PC5_Section5, Section6_ProjectIncome as PC5_Section6, Section7_EconomicBenefits as PC5_Section7 } from './components/sections/pc5/Section5_7_OutputIncome';
-import { Section8_SocialBenefits as PC5_Section8, Section9_ClimateResilience as PC5_Section9, Section10_CostPerUnit as PC5_Section10 } from './components/sections/pc5/Section8_10_CostSocial';
-import { Section11_Marketing as PC5_Section11, Section12_Maintenance as PC5_Section12, Section13_OutputTargets as PC5_Section13 } from './components/sections/pc5/Section11_13_Operations';
-import { Section14_LessonsLearned as PC5_Section14, Section15_ManagementChanges as PC5_Section15, Section16_Suggestions as PC5_Section16, Section17_Submission as PC5_Section17 } from './components/sections/pc5/Section14_17_Submission';
+import { Section1_Identification as PC5_Section1, Section2_Objectives as PC5_Section2 } from './components/sections/pc5_projects/Section1_2_Identification';
+import { Section3_RecurringCost as PC5_Section3, Section4_Manpower as PC5_Section4 } from './components/sections/pc5_projects/Section3_4_Performance';
+import { Section5_PhysicalOutput as PC5_Section5, Section6_ProjectIncome as PC5_Section6, Section7_EconomicBenefits as PC5_Section7 } from './components/sections/pc5_projects/Section5_7_OutputIncome';
+import { Section8_SocialBenefits as PC5_Section8, Section9_ClimateResilience as PC5_Section9, Section10_CostPerUnit as PC5_Section10 } from './components/sections/pc5_projects/Section8_10_CostSocial';
+import { Section11_Marketing as PC5_Section11, Section12_Maintenance as PC5_Section12, Section13_OutputTargets as PC5_Section13 } from './components/sections/pc5_projects/Section11_13_Operations';
+import { Section14_LessonsLearned as PC5_Section14, Section15_ManagementChanges as PC5_Section15, Section16_Suggestions as PC5_Section16, Section17_Submission as PC5_Section17 } from './components/sections/pc5_projects/Section14_17_Submission';
+
+// PC-5 Programs
+import { Section1_Identification as PC5P_Section1, Section2_Objectives as PC5P_Section2 } from './components/sections/pc5_programs/Section1_2_Identification';
+import { Section3_RecurringCost as PC5P_Section3, Section4_Manpower as PC5P_Section4 } from './components/sections/pc5_programs/Section3_4_Performance';
+import { Section5_PhysicalOutput as PC5P_Section5, Section6_ProjectIncome as PC5P_Section6, Section7_EconomicBenefits as PC5P_Section7 } from './components/sections/pc5_programs/Section5_7_OutputIncome';
+import { Section8_SocialBenefits as PC5P_Section8, Section9_ClimateResilience as PC5P_Section9, Section10_CostPerUnit as PC5P_Section10 } from './components/sections/pc5_programs/Section8_10_CostSocial';
+import { Section11_Marketing as PC5P_Section11, Section12_Maintenance as PC5P_Section12, Section13_OutputTargets as PC5P_Section13 } from './components/sections/pc5_programs/Section11_13_Operations';
+import { Section14_LessonsLearned as PC5P_Section14, Section15_ManagementChanges as PC5P_Section15, Section16_Suggestions as PC5P_Section16, Section17_Submission as PC5P_Section17 } from './components/sections/pc5_programs/Section14_17_Submission';
 
 const PC1FormContent = () => {
   const { currentSection } = useForm();
@@ -323,6 +350,74 @@ const PC5FormContent = () => {
   }
 };
 
+const PC4ProgramFormContent = () => {
+  const { currentSection } = useForm();
+
+  switch (currentSection) {
+    case 1:  return <PC4P_Section1 />;
+    case 2:  return <PC4P_Section2 />;
+    case 3:  return <PC4P_Section3 />;
+    case 4:  return <PC4P_Section4 />;
+    case 5:  return <PC4P_Section5 />;
+    case 6:  return <PC4P_Section6 />;
+    case 7:  return <PC4P_Section7 />;
+    case 8:  return <PC4P_Section8 />;
+    case 9:  return <PC4P_Section9 />;
+    case 10: return <PC4P_Section10 />;
+    case 11: return <PC4P_Section11 />;
+    case 12: return <PC4P_Section12 />;
+    case 13: return <PC4P_Section13 />;
+    case 14: return <PC4P_Section14 />;
+    case 15: return <PC4P_Section15 />;
+    case 16: return <PC4P_Section16 />;
+    case 17: return <PC4P_Section17 />;
+    case 18: return <PC4P_Section18 />;
+    case 19: return <PC4P_Section19 />;
+    case 20: return <PC4P_Section20 />;
+    case 21: return <PC4P_Section21 />;
+    case 22: return <PC4P_Section22 />;
+    case 23: return <PC4P_Section23 />;
+    case 24: return <PC4P_Section24 />;
+    case 25: return <PC4P_Section25 />;
+    case 26: return <PC4P_Section26 />;
+    case 27: return <PC4P_Section27 />;
+    default: return <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
+      <p style={{ color: 'hsl(var(--text-muted))', fontSize: '0.9375rem' }}>
+        Section {currentSection} is under development.
+      </p>
+    </div>;
+  }
+};
+
+const PC5ProgramFormContent = () => {
+  const { currentSection } = useForm();
+
+  switch (currentSection) {
+    case 1:  return <PC5P_Section1 />;
+    case 2:  return <PC5P_Section2 />;
+    case 3:  return <PC5P_Section3 />;
+    case 4:  return <PC5P_Section4 />;
+    case 5:  return <PC5P_Section5 />;
+    case 6:  return <PC5P_Section6 />;
+    case 7:  return <PC5P_Section7 />;
+    case 8:  return <PC5P_Section8 />;
+    case 9:  return <PC5P_Section9 />;
+    case 10: return <PC5P_Section10 />;
+    case 11: return <PC5P_Section11 />;
+    case 12: return <PC5P_Section12 />;
+    case 13: return <PC5P_Section13 />;
+    case 14: return <PC5P_Section14 />;
+    case 15: return <PC5P_Section15 />;
+    case 16: return <PC5P_Section16 />;
+    case 17: return <PC5P_Section17 />;
+    default: return <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
+      <p style={{ color: 'hsl(var(--text-muted))', fontSize: '0.9375rem' }}>
+        Section {currentSection} is under development.
+      </p>
+    </div>;
+  }
+};
+
 const PC1_CONFIG = {
   label: 'PC-I',
   title: 'Development Project Proposal',
@@ -385,6 +480,22 @@ const PC5_CONFIG = {
   breadcrumb: 'PC-V Application',
   sections: PC5_SECTIONS,
   totalSections: PC5_SECTIONS.length,
+};
+
+const PC4_PROGRAMS_CONFIG = {
+  label: 'PC-IV',
+  title: 'Program Completion Report',
+  breadcrumb: 'PC-IV Program Application',
+  sections: PC4_PROGRAMS_SECTIONS,
+  totalSections: PC4_PROGRAMS_SECTIONS.length,
+};
+
+const PC5_PROGRAMS_CONFIG = {
+  label: 'PC-V',
+  title: 'Post-Completion Evaluation',
+  breadcrumb: 'PC-V Program Application',
+  sections: PC5_PROGRAMS_SECTIONS,
+  totalSections: PC5_PROGRAMS_SECTIONS.length,
 };
 
 const PC1Page = () => (
@@ -451,6 +562,22 @@ const PC5Page = () => (
   </FormConfigProvider>
 );
 
+const PC4ProgramPage = () => (
+  <FormConfigProvider config={PC4_PROGRAMS_CONFIG}>
+    <DashboardLayout>
+      <PC4ProgramFormContent />
+    </DashboardLayout>
+  </FormConfigProvider>
+);
+
+const PC5ProgramPage = () => (
+  <FormConfigProvider config={PC5_PROGRAMS_CONFIG}>
+    <DashboardLayout>
+      <PC5ProgramFormContent />
+    </DashboardLayout>
+  </FormConfigProvider>
+);
+
 const ComingSoonPage = ({ label, title }: { label: string; title: string }) => (
   <div style={{
     minHeight: '100vh',
@@ -506,7 +633,9 @@ function App() {
             <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />
             <Route path="/pc-3" element={<ProtectedRoute><ComingSoonPage label="PC-III" title="Quarterly Progress Report" /></ProtectedRoute>} />
             <Route path="/pc-4" element={<ProtectedRoute><PC4Page /></ProtectedRoute>} />
+            <Route path="/pc-4-programs" element={<ProtectedRoute><PC4ProgramPage /></ProtectedRoute>} />
             <Route path="/pc-5" element={<ProtectedRoute><PC5Page /></ProtectedRoute>} />
+            <Route path="/pc-5-programs" element={<ProtectedRoute><PC5ProgramPage /></ProtectedRoute>} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

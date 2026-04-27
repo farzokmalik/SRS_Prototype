@@ -16,7 +16,7 @@ export const Section8_SimilarFacility: React.FC = () => {
         
         <div className="space-y-6" style={{ maxWidth: '1200px' }}>
           <RadioGroup 
-            label="Is there a nearest similar facility?"
+            label="[PC-N-8.1] Is there a nearest similar facility?"
             name="hasFacility"
             options={[
               { label: 'Yes', value: 'Yes' },
@@ -29,14 +29,14 @@ export const Section8_SimilarFacility: React.FC = () => {
           {data.hasFacility === 'Yes' && (
             <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-6">
               <InputField 
-                label="Facility Title" 
+                label="[PC-N-8.2] Facility Title" 
                 placeholder="e.g. District General Hospital"
                 value={data.facilityTitle || ''}
                 onChange={(e: any) => handleChange('facilityTitle', e.target.value)}
                 required
               />
               <InputField 
-                label="Facility Location" 
+                label="[PC-N-8.3] Facility Location" 
                 placeholder="e.g. 5km North of Project Site"
                 value={data.facilityLocation || ''}
                 onChange={(e: any) => handleChange('facilityLocation', e.target.value)}

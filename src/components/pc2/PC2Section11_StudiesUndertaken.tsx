@@ -73,7 +73,7 @@ export const PC2Section11_StudiesUndertaken: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
         <RadioGroup
-          label="Schemes Filter"
+          label="[PC-II-10.1] Schemes Filter"
           name="schemesFilter"
           value={schemeFilter}
           onChange={(val) => handleUpdate({ schemeFilter: val, searchResults: [] })}
@@ -174,7 +174,7 @@ export const PC2Section11_StudiesUndertaken: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Indicate Studies / Surveys Already Undertaken On The Subject"
+          label="[PC-II-10.2] Indicate Studies / Surveys Already Undertaken On The Subject"
           value={data.studiesUndertakenText || ''}
           onChange={(val) => handleUpdate({ studiesUndertakenText: val })}
           required
@@ -184,7 +184,7 @@ export const PC2Section11_StudiesUndertaken: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-10.4] Attachments"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) =>
@@ -197,7 +197,7 @@ export const PC2Section11_StudiesUndertaken: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-10.4] Annexures"
             files={data.annexures || []}
             onUpload={(files) => handleUpdate({ annexures: files })}
             onRemove={(idx) =>

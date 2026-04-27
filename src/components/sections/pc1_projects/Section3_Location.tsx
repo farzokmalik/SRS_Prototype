@@ -40,25 +40,27 @@ export const Section3_Location: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
           <SelectField
-            label="Division"
+            label="[PC-I-2.1] Division"
+            required
             value={selectedDivision}
             onChange={e => handleUpdate({ division: e.target.value, district: '' })}
             options={DIVISIONS.map(d => ({ value: d, label: d }))}
           />
           <SelectField
-            label="District"
+            label="[PC-I-2.2] District"
+            required
             value={data.district || ''}
             onChange={e => handleUpdate({ district: e.target.value })}
             options={districtOptions.map(d => ({ value: d, label: d }))}
           />
           <SelectField
-            label="National Assembly (NA)"
+            label="[PC-I-2.3] National Assembly (NA)"
             value={data.na?.[0] || ''}
             onChange={e => handleUpdate({ na: [e.target.value] })}
             options={NA_SEATS.map(s => ({ value: s, label: s }))}
           />
           <SelectField
-            label="Provincial Assembly (PP)"
+            label="[PC-I-2.4] Provincial Assembly (PP)"
             value={data.pp?.[0] || ''}
             onChange={e => handleUpdate({ pp: [e.target.value] })}
             options={PP_SEATS.map(s => ({ value: s, label: s }))}
@@ -70,17 +72,17 @@ export const Section3_Location: React.FC = () => {
         <div className="card">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem' }}>GPS Coordinates</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <InputField label="Latitude" type="number" step="0.000001" value={data.lat} onChange={(e) => handleUpdate({ lat: e.target.value })} />
-            <InputField label="Longitude" type="number" step="0.000001" value={data.long} onChange={(e) => handleUpdate({ long: e.target.value })} />
+            <InputField label="[PC-I-2.5] Latitude" type="number" step="0.000001" value={data.lat} onChange={(e) => handleUpdate({ lat: e.target.value })} />
+            <InputField label="[PC-I-2.6] Longitude" type="number" step="0.000001" value={data.long} onChange={(e) => handleUpdate({ long: e.target.value })} />
           </div>
           <div style={{ marginTop: '1rem' }}>
-            <InputField label="Map URL" placeholder="https://google.com/maps/..." value={data.mapUrl} onChange={(e) => handleUpdate({ mapUrl: e.target.value })} />
+            <InputField label="[PC-I-2.7] Map URL" placeholder="https://google.com/maps/..." value={data.mapUrl} onChange={(e) => handleUpdate({ mapUrl: e.target.value })} />
           </div>
         </div>
 
         <div className="card">
            <FileUpload 
-             label="Location Attachment"
+             label="[PC-I-2.8] Location Attachment"
              files={data.attachments || []}
              onUpload={(files) => handleUpdate({ attachments: files })}
              onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}

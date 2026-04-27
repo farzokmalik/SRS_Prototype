@@ -308,7 +308,7 @@ export const PC2Section7_CostEstimation: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField
-            label="Financial Components"
+            label="[PC-II-6.1] Financial Components"
             required
             value={data.finComponent || ''}
             onChange={(e) => handleUpdate({ finComponent: e.target.value })}
@@ -318,7 +318,7 @@ export const PC2Section7_CostEstimation: React.FC = () => {
             ]}
           />
           <SelectField
-            label="Grant Number"
+            label="[PC-II-6.2] Grant Number"
             required
             value={data.grantNo || ''}
             onChange={(e) => handleUpdate({ grantNo: e.target.value })}
@@ -332,7 +332,7 @@ export const PC2Section7_CostEstimation: React.FC = () => {
             ]}
           />
           <SelectField
-            label="Cost Center"
+            label="[PC-II-6.3] Cost Center"
             value={data.costCenter || ''}
             onChange={(e) => handleUpdate({ costCenter: e.target.value })}
             options={[
@@ -344,13 +344,13 @@ export const PC2Section7_CostEstimation: React.FC = () => {
             ]}
           />
           <InputField
-            label="LO No."
+            label="[PC-II-6.4] LO No."
             placeholder="e.g. LO00000890"
             value={data.loNo || ''}
             onChange={(e) => handleUpdate({ loNo: e.target.value })}
           />
           <SelectField
-            label="Funding Cost Type"
+            label="[PC-II-6.5] Funding Cost Type"
             required
             value={data.fundingType || ''}
             onChange={(e) => handleUpdate({ fundingType: e.target.value })}
@@ -360,13 +360,13 @@ export const PC2Section7_CostEstimation: React.FC = () => {
             ]}
           />
           <InputField
-            label="Fund Center (Controlling)"
+            label="[PC-II-6.6] Fund Center (Controlling)"
             placeholder="e.g. LE0987"
             value={data.fundCenter || ''}
             onChange={(e) => handleUpdate({ fundCenter: e.target.value })}
           />
           <SelectField
-            label="A/C To be Credited"
+            label="[PC-II-6.7] A/C To be Credited"
             value={data.acToCredit || ''}
             onChange={(e) => handleUpdate({ acToCredit: e.target.value })}
             options={[
@@ -377,7 +377,7 @@ export const PC2Section7_CostEstimation: React.FC = () => {
             ]}
           />
           <InputField
-            label="Function Code"
+            label="[PC-II-6.8] Function Code"
             placeholder="Enter function code"
             value={data.functionCode || ''}
             onChange={(e) => handleUpdate({ functionCode: e.target.value })}

@@ -104,7 +104,7 @@ export const PC2Section2_Cost: React.FC = () => {
       {/* Foreign Funding Toggle + Foreign fields when Yes */}
       <div className="card">
         <RadioGroup
-          label="Foreign Funding"
+          label="[PC-II-1.14] Foreign Funding"
           required
           name="foreignFunding"
           value={data.foreignFunding}
@@ -117,7 +117,7 @@ export const PC2Section2_Cost: React.FC = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Foreign Cost (PKR)</label>
+                  <label className="label">[PC-II-1.15] Foreign Cost (PKR)</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input
@@ -138,7 +138,7 @@ export const PC2Section2_Cost: React.FC = () => {
                 {showCapital && (
                   <div className="input-group">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                      <label className="label">Foreign Capital Cost (PKR)</label>
+                      <label className="label">[PC-II-1.16] Foreign Capital Cost (PKR)</label>
                       <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                     </div>
                     <input
@@ -154,7 +154,7 @@ export const PC2Section2_Cost: React.FC = () => {
                 {showRevenue && (
                   <div className="input-group">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                      <label className="label">Foreign Revenue Cost (PKR)</label>
+                      <label className="label">[PC-II-1.17] Foreign Revenue Cost (PKR)</label>
                       <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                     </div>
                     <input
@@ -172,21 +172,21 @@ export const PC2Section2_Cost: React.FC = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <InputField
-                label="Source of Foreign Funding"
+                label="[PC-II-1.18] Source of Foreign Funding"
                 placeholder="Source of Foreign Funding"
                 required
                 value={data.source}
                 onChange={(e) => handleUpdate({ source: e.target.value })}
               />
               <InputField
-                label="Currency"
+                label="[PC-II-1.19] Currency"
                 placeholder="Foreign Currency"
                 required
                 value={data.currency}
                 onChange={(e) => handleUpdate({ currency: e.target.value })}
               />
               <InputField
-                label="Percentage"
+                label="[PC-II-1.20] Percentage"
                 placeholder="0"
                 type="number"
                 description="%"
@@ -195,7 +195,7 @@ export const PC2Section2_Cost: React.FC = () => {
                 onChange={(e) => handleUpdate({ percentage: e.target.value })}
               />
               <InputField
-                label="Exchange Rate"
+                label="[PC-II-1.21] Exchange Rate"
                 placeholder="0"
                 type="number"
                 required
@@ -211,7 +211,7 @@ export const PC2Section2_Cost: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField
-            label="Project Financial Components"
+            label="[PC-II-1.22] Project Financial Components"
             required
             value={data.financialComponents}
             onChange={(e) => handleComponentChange(e.target.value)}
@@ -223,7 +223,7 @@ export const PC2Section2_Cost: React.FC = () => {
           />
           <div className="input-group">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-              <label className="label">Local Cost (PKR)</label>
+              <label className="label">[PC-II-1.23] Local Cost (PKR)</label>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
             </div>
             <input
@@ -244,7 +244,7 @@ export const PC2Section2_Cost: React.FC = () => {
             {showCapital && (
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Local Capital Cost (PKR)</label>
+                  <label className="label">[PC-II-1.24] Local Capital Cost (PKR)</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input
@@ -260,7 +260,7 @@ export const PC2Section2_Cost: React.FC = () => {
             {showRevenue && (
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="label">Local Revenue Cost (PKR)</label>
+                  <label className="label">[PC-II-1.25] Local Revenue Cost (PKR)</label>
                   <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
                 </div>
                 <input
@@ -281,7 +281,7 @@ export const PC2Section2_Cost: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField
-            label="Approval Forum"
+            label="[PC-II-1.26] Approval Forum"
             required
             value={data.approvalForum}
             onChange={(e) => handleUpdate({ approvalForum: e.target.value })}
@@ -293,7 +293,7 @@ export const PC2Section2_Cost: React.FC = () => {
           />
           <div className="input-group">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-              <label className="label">Total Cost (PKR)</label>
+              <label className="label">[PC-II-1.27] Total Cost (PKR)</label>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
             </div>
             <input
@@ -322,15 +322,15 @@ export const PC2Section2_Cost: React.FC = () => {
         {(data.beneficiaryShares || []).map((share: any, index: number) => (
           <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 50px', gap: '1rem', alignItems: 'flex-end', marginBottom: '1rem', padding: '1rem', background: 'hsl(var(--bg-main))', borderRadius: 'var(--radius-md)' }}>
             <SelectField
-              label="Admin Department"
+              label="[PC-II-1.28] Admin Department"
               value={share.adminDept}
               onChange={(e) => updateBeneficiary(index, { adminDept: e.target.value })}
               options={[{ value: 'Edu', label: 'School Education' }, { value: 'Health', label: 'Health' }]}
             />
-            <InputField label="Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
+            <InputField label="[PC-II-1.29] Beneficiary Name" value={share.name} onChange={(e) => updateBeneficiary(index, { name: e.target.value })} />
             <div className="input-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                <label className="label">Amount</label>
+                <label className="label">[PC-II-1.30] Amount</label>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--accent))' }}>Millions</span>
               </div>
               <input
@@ -350,7 +350,7 @@ export const PC2Section2_Cost: React.FC = () => {
       {/* Attachments */}
       <div className="card">
         <FileUpload
-          label="Financial Attachments"
+          label="[PC-II-1.31] Financial Attachments"
           files={data.attachments || []}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(idx) => handleUpdate({ attachments: (data.attachments || []).filter((_: any, i: number) => i !== idx) })}

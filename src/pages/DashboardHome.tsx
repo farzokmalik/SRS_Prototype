@@ -62,23 +62,29 @@ const PC_FORMS = [
   },
   {
     id: 'pc4',
-    path: '/pc-4',
     label: 'PC-IV',
     title: 'Project Completion Report',
     description: 'File the completion report upon finishing a development project, covering final costs, outcomes and lessons learned.',
     sections: 27,
     icon: ShieldCheck,
     available: true,
+    variants: [
+      { label: 'Programs', path: '/pc-4-programs' },
+      { label: 'Projects', path: '/pc-4' },
+    ]
   },
   {
     id: 'pc5',
-    path: '/pc-5',
     label: 'PC-V',
     title: 'Post-Completion Evaluation',
     description: 'Evaluate the impact and effectiveness of a completed project against its original objectives and projected benefits.',
     sections: 17,
     icon: LayoutGrid,
     available: true,
+    variants: [
+      { label: 'Programs', path: '/pc-5-programs' },
+      { label: 'Projects', path: '/pc-5' },
+    ]
   },
  
 ];

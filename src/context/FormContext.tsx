@@ -24,11 +24,14 @@ export interface FormState {
   pc3a: any;
   pc3b: any;
   pc4: any;
+  pc4p: any;
   pc5: any;
+  pc5p: any;
 }
 
 const initialFormState: FormState = {
   section1: {
+    projectId: '',
     projectTitle: '',
     startYear: '',
     gsNo: '',
@@ -175,7 +178,7 @@ const initialFormState: FormState = {
     tf27_28: '', tf28_29: '', tfBeyond: ''
   },
   pc3a: {
-    s1: { projectName: '' },
+    s1: { projectId: '', projectName: '' },
     s2: { capitalCost: '' },
     s3: { actual: '', accrued: '', total: '' },
     s4: { total: '', local: '', fec: '' },
@@ -192,7 +195,7 @@ const initialFormState: FormState = {
     s5: { bottlenecks: [], otherBottleneck: '', remarks: '' }
   },
   pc4: {
-    s1: { projectTitle: '', administrativeDepartment: '', locationType: '' },
+    s1: { projectId: '', projectTitle: '', administrativeDepartment: '', locationType: '' },
     s2: { sector: '', subSector: '' },
     s3: {
       executingAgency: '',
@@ -443,7 +446,272 @@ const initialFormState: FormState = {
     },
   },
   pc5: {
-    s1: { projectName: '', reportingYear: '', yearAfterCompletion: 1 },
+    s1: { projectId: '', projectName: '', reportingYear: '', yearAfterCompletion: 1 },
+    s2: { objectives: '', extentMet: '', status: 'Fully met' },
+    s3: { plannedCost: '', actualCost: '', components: [{ name: '', planned: '', actual: '' }] },
+    s4: [{ category: 'Administrative', designation: '', planned: '', actual: '' }],
+    s5: [{ item: '', unit: '', planned: '', actual: '' }],
+    s6: [{ type: '', planned: '', assumptions: '', actual: '' }],
+    s7: [{ description: '', unit: '', planned: '', actual: '' }],
+    s8: [{ description: '', targetGroup: '', planned: '', actual: '', extentMet: '' }],
+    s9: { 
+      adaptation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      mitigation: [{ activity: '', planned: '', actual: '', extentMet: '' }], 
+      disasterOccurred: false, 
+      disasterDetails: '' 
+    },
+    s10: { unitType: '', plannedCost: '', actualCost: '', wacc: '' },
+    s11: { marketingPCI: '', differsFromPCI: false, details: '' },
+    s12: { arrangements: '', annualMaintenance: false, reasons: '' },
+    s13: { status: 'Yes', reasons: '' },
+    s14: { operation: '', maintenance: '', marketing: '', management: '', climate: '' },
+    s15: { managementChange: false, changes: [{ name: '', designation: '', date: '' }], justification: '' },
+    s16: { suggestions: '' },
+    submission: { name: '', designation: '', telephone: '', email: '', date: '', signature: [] }
+  },
+  pc4p: {
+    s1: { projectId: '', programName: '', locations: '' },
+    s2: { sector: '', subSector: '' },
+    s3: {
+      executingAgency: '',
+      sponsoringAgency: '',
+      federalMinistry: '',
+      omAgency: '',
+    },
+    s4: {
+      approvalRows: [
+        {
+          pcIForm: '',
+          approvedDate: '',
+          financialYear: '',
+          gestationStart: '',
+          gestationEnd: '',
+          forum: '',
+          totalCost: '',
+          totalCostMillions: '',
+        },
+      ],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s5: {
+      pciStartDate: '',
+      pciEndDate: '',
+      scheduleRows: [
+        {
+          actualStart: '',
+          actualEnd: '',
+          extensionStart: '',
+          extensionEnd: '',
+        },
+      ],
+      annexures: [] as { title: string; name: string; size: string; type: string; date: string }[],
+    },
+    s6: {
+      costRows: [
+        {
+          pciApproved: {
+            costKind: 'original',
+            localCapital: '',
+            localRevenue: '',
+            foreignCapital: '',
+            foreignRevenue: '',
+          },
+          actualExpenditure: {
+            totalRupee: '',
+            totalMillionDisplay: '',
+            localCapital: '',
+            localRevenue: '',
+            foreignCapital: '',
+            foreignRevenue: '',
+            lineTotal: '',
+          },
+        },
+      ],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s7: {
+      financingRows: [{ source: '', local: '', foreign: '' }],
+    },
+    s8: {
+      natureAccounts: {
+        pla: { dateOpened: '', lapsable: '' },
+        assignment: { dateOpened: '', lapsable: '' },
+        current: { dateOpened: '', lapsable: '' },
+        saving: { dateOpened: '', lapsable: '' },
+        other: { dateOpened: '', lapsable: '' },
+      },
+      closedDate: '',
+      notClosedReasonsTentativeDate: '',
+    },
+    s9: {
+      phasingRows: [
+        {
+          yearPhase: '',
+          objectCode: '',
+          pciPhasing: { local: '', foreign: '' },
+          adpAllocation: { local: '', foreign: '' },
+          pdReleases: { local: '', foreign: '' },
+          controllingReleases: { local: '', foreign: '' },
+          expenditure: { local: '', foreign: '' },
+          lapsableFunds: { local: '', foreign: '' },
+        },
+      ],
+    },
+    s10: {
+      targetRows: [
+        {
+          item: '',
+          unit: '',
+          quantity: '0',
+          actualAchievement: '',
+          remarks: '',
+        },
+      ],
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s11: {
+      itemWiseRows: [
+        {
+          item: '',
+          objectCode: '',
+          pciLocal: '',
+          pciFec: '',
+          actualLocal: '',
+          actualFec: '',
+        },
+      ],
+    },
+    s12: {
+      managementManpowerHtml: '',
+      recurringComponentRows: [
+        { component: '', pciLocal: '', pciFec: '', actualLocal: '', actualFec: '' },
+      ],
+    },
+    location: {
+      districts: [] as string[],
+      tehsils: [] as string[],
+      na: [] as string[],
+      pp: [] as string[],
+      unionCouncils: [] as string[],
+      latitude: '',
+      longitude: '',
+    },
+    s13: {
+      objectiveAchievementRows: [
+        { asContainedInPci: '', actualAchievement: '' },
+      ],
+    },
+    capitalCostSection: {
+      capitalCost: {
+        original: { local: '', fe: '', total: '' },
+        revised: { local: '', fe: '', total: '' },
+        actual: { local: '', fe: '', total: '' },
+      },
+      climateCoBenefits: { adaptation: '', mitigation: '' },
+    },
+    s14: {
+      yearWiseIncomeRows: [{ asEstimatedInPci: '', actual: '' }],
+    },
+    s15: {
+      rbmRows: [
+        {
+          input: '',
+          output: '',
+          baselineIndicators: '',
+          targetsAfterCompletion: '',
+          targetImpact: '',
+        },
+      ],
+      rbmAttachments: [] as { title: string; name: string; size: string; type: string; date: string }[],
+    },
+    s16: {
+      pdRows: [
+        {
+          nameDesignation: '',
+          fromDate: '',
+          toDate: '',
+          present: false,
+        },
+      ],
+    },
+    s17: {
+      handingOverAgency: '',
+      assetRows: [
+        {
+          agency: '',
+          item: '',
+          description: '',
+          specification: '',
+          location: '',
+          unit: '0',
+          quantity: '',
+          costRupee: '',
+        },
+      ],
+    },
+    s18: {
+      financialHtml: '',
+      economicHtml: '',
+      socialHtml: '',
+      environmentHtml: '',
+      technologicalHtml: '',
+      anyOtherHtml: '',
+      impactAttachments: [] as { title: string; name: string; size: string; type: string; date: string }[],
+    },
+    s19: {
+      sustainabilityHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s20: {},
+    s21: {
+      organizationalManagementHtml: '',
+      capacityDepartmentHtml: '',
+      decisionMakingProcessHtml: '',
+      anyOtherHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s22: {
+      projectIdentificationHtml: '',
+      projectPreparationHtml: '',
+      projectApprovalHtml: '',
+      projectFinancingHtml: '',
+      projectImplementationHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    suggestions: {
+      suggestionsHtml: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s23: {
+      npvFinancial: { pci: '', completion: '' },
+      bcrFinancial: { pci: '', completion: '' },
+      ifrr: { pci: '', completion: '' },
+      npvEconomic: { pci: '', completion: '' },
+      bcrEconomic: { pci: '', completion: '' },
+      ierr: { pci: '', completion: '' },
+      unitCost: { pci: '', completion: '' },
+    },
+    s24: {
+      focalPersonName: '',
+      designation: '',
+      email: '',
+      tel: '',
+      fax: '',
+      address: '',
+      attachments: [] as { name: string; size: string; type: string; date: string }[],
+      annexures: [] as { name: string; size: string; type: string; date: string }[],
+    },
+    s25: {
+      momsForumTitle: '',
+      momsForumAttachments: [] as { name: string; size: string; type: string; date: string }[],
+      administrativeApprovalTitle: '',
+      administrativeApprovalAttachments: [] as { name: string; size: string; type: string; date: string }[],
+      issuanceTitle: '',
+      issuanceAttachments: [] as { name: string; size: string; type: string; date: string }[],
+    },
+  },
+  pc5p: {
+    s1: { projectId: '', programName: '', reportingYear: '', yearAfterCompletion: 1 },
     s2: { objectives: '', extentMet: '', status: 'Fully met' },
     s3: { plannedCost: '', actualCost: '', components: [{ name: '', planned: '', actual: '' }] },
     s4: [{ category: 'Administrative', designation: '', planned: '', actual: '' }],

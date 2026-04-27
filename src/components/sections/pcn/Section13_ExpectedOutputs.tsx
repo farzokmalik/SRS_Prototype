@@ -21,7 +21,7 @@ export const Section13_ExpectedOutputs: React.FC = () => {
           <section className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)' }}>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'hsl(var(--primary))' }}>Impact</h4>
             <TextAreaField 
-              label="Impact Details" 
+              label="[PC-N-13.1] Impact Details" 
               description="poverty reduction, socio-economic improvement, quality of life enhancements"
               rows={4}
               placeholder="Describe the long-term impact..."
@@ -34,7 +34,7 @@ export const Section13_ExpectedOutputs: React.FC = () => {
           <section className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)' }}>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'hsl(var(--primary))' }}>Outcome</h4>
             <TextAreaField 
-              label="Outcome Details" 
+              label="[PC-N-13.2] Outcome Details" 
               description="revenue generation, value addition, increase in agricultural yield"
               rows={4}
               placeholder="Describe the intermediate outcomes..."
@@ -47,7 +47,7 @@ export const Section13_ExpectedOutputs: React.FC = () => {
           <section className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)' }}>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'hsl(var(--primary))' }}>Outputs</h4>
             <TextAreaField 
-              label="Output Details" 
+              label="[PC-N-13.3] Output Details" 
               description="nursery plants production, farm income increase, capacity building of farmers"
               rows={4}
               placeholder="Describe the tangible outputs..."
@@ -58,14 +58,14 @@ export const Section13_ExpectedOutputs: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <TextAreaField 
-              label="Data Sources" 
+              label="[PC-N-13.4] Data Sources" 
               rows={3}
               placeholder="Specify the sources of data for monitoring..."
               value={data.dataSources}
               onChange={(e: any) => handleChange('dataSources', e.target.value)}
             />
             <TextAreaField 
-              label="Risks & Assumptions" 
+              label="[PC-N-13.5] Risks & Assumptions" 
               rows={3}
               placeholder="What are the key risks and underlying assumptions..."
               value={data.risks}

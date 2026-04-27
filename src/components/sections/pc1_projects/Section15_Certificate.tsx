@@ -17,18 +17,18 @@ export const Section15_Certificate: React.FC = () => {
           Focal Person Information
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-          <InputField label="Focal Person Name" value={data.name} onChange={(e) => handleUpdate({ name: e.target.value })} />
-          <InputField label="Designation" value={data.designation} onChange={(e) => handleUpdate({ designation: e.target.value })} />
-          <InputField label="Email" type="email" value={data.email} onChange={(e) => handleUpdate({ email: e.target.value })} />
-          <InputField label="Tel No." value={data.tel} onChange={(e) => handleUpdate({ tel: e.target.value })} />
-          <InputField label="Fax No." value={data.fax} onChange={(e) => handleUpdate({ fax: e.target.value })} />
-          <InputField label="Address" value={data.address} onChange={(e) => handleUpdate({ address: e.target.value })} />
+          <InputField label="[PC-I-15.1] Focal Person Name" value={data.name} onChange={(e) => handleUpdate({ name: e.target.value })} />
+          <InputField label="[PC-I-15.2] Designation" value={data.designation} onChange={(e) => handleUpdate({ designation: e.target.value })} />
+          <InputField label="[PC-I-15.3] Email" type="email" value={data.email} onChange={(e) => handleUpdate({ email: e.target.value })} />
+          <InputField label="[PC-I-15.4] Tel No." value={data.tel} onChange={(e) => handleUpdate({ tel: e.target.value })} />
+          <InputField label="[PC-I-15.5] Fax No." value={data.fax} onChange={(e) => handleUpdate({ fax: e.target.value })} />
+          <InputField label="[PC-I-15.6] Address" value={data.address} onChange={(e) => handleUpdate({ address: e.target.value })} />
         </div>
       </div>
 
       <div className="card">
          <FileUpload 
-           label="Official Certificate"
+           label="[PC-I-15.7] Official Certificate"
            files={data.attachments || []}
            onUpload={(files) => handleUpdate({ attachments: files })}
            onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}

@@ -74,7 +74,7 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
         <RTEditor
-          label="Management Structure / Manpower Requirement Information"
+          label="[PC-II-11.1] Management Structure / Manpower Requirement Information"
           value={data.managementManpowerInfo || ''}
           onChange={(val) => handleUpdate({ managementManpowerInfo: val })}
           required
@@ -93,7 +93,7 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload
-            label="Attachments"
+            label="[PC-II-11.9] Attachments"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) =>
@@ -106,7 +106,7 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload
-            label="Annexures"
+            label="[PC-II-11.9] Annexures"
             files={data.annexures || []}
             onUpload={(files) => handleUpdate({ annexures: files })}
             onRemove={(idx) =>
@@ -154,7 +154,7 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
                     onChange={(e) => updateMember(index, { noOfPosts: e.target.value })}
                   />
                   <InputField
-                    label="Designation"
+                    label="[PC-II-11.1] Designation"
                     value={member.designation || ''}
                     onChange={(e) => updateMember(index, { designation: e.target.value })}
                   />
@@ -164,7 +164,7 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
                     onChange={(e) => updateMember(index, { jobDescription: e.target.value })}
                   />
                   <InputField
-                    label="Qualifications"
+                    label="[PC-II-11.3] Qualifications"
                     value={member.qualifications || ''}
                     onChange={(e) => updateMember(index, { qualifications: e.target.value })}
                   />
@@ -174,18 +174,18 @@ export const PC2Section12_ManagementManpower: React.FC = () => {
                     onChange={(e) => updateMember(index, { skills: e.target.value })}
                   />
                   <InputField
-                    label="Experience"
+                    label="[PC-II-11.4] Experience"
                     value={member.experience || ''}
                     onChange={(e) => updateMember(index, { experience: e.target.value })}
                   />
                   <InputField
-                    label="Man Month"
+                    label="[PC-II-11.5] Man Month"
                     type="number"
                     value={member.manMonth || ''}
                     onChange={(e) => updateMember(index, { manMonth: e.target.value })}
                   />
                   <InputField
-                    label="Salary"
+                    label="[PC-II-11.6] Salary"
                     type="number"
                     value={member.salary || ''}
                     onChange={(e) => updateMember(index, { salary: e.target.value })}

@@ -15,7 +15,7 @@ export const Section9_DemandSupply: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div className="card">
         <RTEditor 
-          label="Demand and Supply Analysis" 
+          label="[PC-I-9.1] Demand and Supply Analysis" 
           value={data.data} 
           onChange={(val) => handleUpdate({ data: val })} 
         />
@@ -24,7 +24,7 @@ export const Section9_DemandSupply: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <div className="card">
           <FileUpload 
-            label="Attachments"
+            label="[PC-I-9.2] Attachments"
             files={data.attachments || []}
             onUpload={(files) => handleUpdate({ attachments: files })}
             onRemove={(idx) => handleUpdate({ attachments: data.attachments.filter((_: any, i: number) => i !== idx) })}
@@ -33,7 +33,7 @@ export const Section9_DemandSupply: React.FC = () => {
         </div>
         <div className="card">
           <FileUpload 
-            label="Annexures"
+            label="[PC-I-9.3] Annexures"
             files={data.annexures || []}
             onUpload={(files) => handleUpdate({ annexures: files })}
             onRemove={(idx) => handleUpdate({ annexures: data.annexures.filter((_: any, i: number) => i !== idx) })}
