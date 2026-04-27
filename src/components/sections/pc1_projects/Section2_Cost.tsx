@@ -45,7 +45,6 @@ export const Section2_Cost: React.FC = () => {
       <div className="card">
         <RadioGroup 
           label="[PC-I-1.14] Foreign Funding" 
-          required 
           name="foreignFunding"
           value={data.foreignFunding}
           onChange={(val) => handleUpdate({ foreignFunding: val })}
@@ -85,7 +84,7 @@ export const Section2_Cost: React.FC = () => {
       <div className="card">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <SelectField 
-            label="[PC-I-1.21] Project Financial Components" 
+            label="Project Financial Components" 
             required 
             value={data.financialComponents}
             onChange={(e) => handleUpdate({ financialComponents: e.target.value })}
@@ -99,7 +98,7 @@ export const Section2_Cost: React.FC = () => {
             <input className="input" placeholder="Millions" value={data.localCost} onChange={(e) => handleUpdate({ localCost: e.target.value })} />
           </div>
           <SelectField 
-            label="[PC-I-1.23] Approval Forum" 
+            label="Approval Forum" 
             required 
             value={data.approvalForum}
             onChange={(e) => handleUpdate({ approvalForum: e.target.value })}

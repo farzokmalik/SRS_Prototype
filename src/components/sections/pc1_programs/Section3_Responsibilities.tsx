@@ -36,14 +36,12 @@ export const Section3_Responsibilities: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           <SelectField 
             label="Sponsoring Agency" 
-            required
             value={data.sponsoringAgency || ''} 
             onChange={(e) => handleUpdate({ sponsoringAgency: e.target.value })}
             options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
           />
           <SelectField 
             label="Executing Agency" 
-            required
             value={data.executingAgencies?.[0] || ''}
             onChange={(e) => handleUpdate({ executingAgencies: [e.target.value] })}
             options={SUB_SECTORS.map(s => ({ value: s, label: s }))}
@@ -66,7 +64,6 @@ export const Section3_Responsibilities: React.FC = () => {
            />
            <SelectField 
              label="Operation & Maintenance Agency" 
-             required
              value={data.omAgency || ''}
              onChange={(e) => handleUpdate({ omAgency: e.target.value })}
              options={[

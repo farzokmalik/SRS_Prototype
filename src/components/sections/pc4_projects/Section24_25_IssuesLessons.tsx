@@ -1,85 +1,183 @@
 import React from 'react';
 import { useForm } from '../../../context/FormContext';
+import { FileUpload, InputField, TextAreaField } from '../../ui/FormElements';
 
-export const Section24_Issues: React.FC = () => {
+type FileMeta = { name: string; size: string; type: string; date: string };
+
+const normalizeFileList = (list: unknown): FileMeta[] =>
+  ((list as (FileMeta & { title?: string })[]) || []).map((f) => ({
+    name: f.name || f.title || 'File',
+    size: f.size ?? '',
+    type: f.type ?? '',
+    date: f.date ?? '',
+  }));
+
+export const Section24_Certificate: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc4.s24;
 
-  const handleUpdate = (updates: any) => {
+  const handleUpdate = (updates: Record<string, unknown>) => {
     updateSection('pc4', { s24: { ...data, ...updates } });
   };
 
-  const fields = [
-    { id: 'a', label: 'Organizational Management' },
-    { id: 'b', label: 'Capacity of the department concerned' },
-    { id: 'c', label: 'Decision making process' },
-    { id: 'd', label: 'Climate and disaster risk' },
-    { id: 'e', label: 'Any other' }
-  ];
+  const attachments = normalizeFileList(data.attachments);
+  const annexures = normalizeFileList(data.annexures);
 
   return (
-    <div className="card">
-      <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'hsl(var(--primary))', marginBottom: '2rem' }}>
-        Issues Faced during Implementation
-      </h3>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {fields.map((f) => (
-          <div key={f.id}>
-            <label className="label" style={{ marginBottom: '0.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>
-              • {f.label}
-            </label>
-            <textarea 
-              className="input" 
-              style={{ minHeight: '120px', paddingTop: '0.75rem', background: '#fff', lineHeight: '1.6' }} 
-              placeholder={`Enter details about ${f.label.toLowerCase()}...`}
-              value={data[f.id as keyof typeof data]}
-              onChange={(e) => handleUpdate({ [f.id]: e.target.value })}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <div className="card">
+        <label className="label" style={{ marginBottom: '1rem', display: 'block' }}>
+          Focal Person
+        </label>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+          <InputField
+            label="Focal Person Name"
+            placeholder="Full name"
+            value={data.focalPersonName}
+            onChange={(e) => handleUpdate({ focalPersonName: e.target.value })}
+          />
+          <InputField
+            label="Designation"
+            placeholder="Designation"
+            value={data.designation}
+            onChange={(e) => handleUpdate({ designation: e.target.value })}
+          />
+          <div style={{ gridColumn: '1 / -1' }}>
+            <InputField
+              label="Email"
+              type="email"
+              placeholder="email@example.com"
+              value={data.email}
+              onChange={(e) => handleUpdate({ email: e.target.value })}
             />
           </div>
-        ))}
+          <InputField
+            label="Tel. No."
+            placeholder="Telephone"
+            value={data.tel}
+            onChange={(e) => handleUpdate({ tel: e.target.value })}
+          />
+          <InputField
+            label="Fax No."
+            placeholder="Fax"
+            value={data.fax}
+            onChange={(e) => handleUpdate({ fax: e.target.value })}
+          />
+          <div style={{ gridColumn: '1 / -1' }}>
+            <TextAreaField
+              label="Address"
+              placeholder="Postal address"
+              rows={4}
+              value={data.address}
+              onChange={(e) => handleUpdate({ address: e.target.value })}
+              style={{ minHeight: '100px', paddingTop: '0.5rem', background: '#fff' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="card">
+        <FileUpload
+          label="Attachment(s)"
+          files={attachments}
+          onUpload={(files) => handleUpdate({ attachments: files })}
+          onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload supporting documents"
+        />
+      </div>
+
+      <div className="card">
+        <FileUpload
+          label="Annexure(s)"
+          files={annexures}
+          onUpload={(files) => handleUpdate({ annexures: files })}
+          onRemove={(i) => handleUpdate({ annexures: annexures.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload annexures"
+        />
       </div>
     </div>
   );
 };
 
-export const Section25_Lessons: React.FC = () => {
-  const { formData, updateSection } = useForm();
-  const data = formData.pc4.s25;
+function titleFromLegacyAttachmentRows(raw: unknown): string {
+  const list = raw as { title?: string }[] | undefined;
+  if (!Array.isArray(list)) return '';
+  return list.map((x) => (x?.title ?? '').trim()).find(Boolean) ?? '';
+}
 
-  const handleUpdate = (updates: any) => {
+function resolveBlockTitle(
+  data: Record<string, unknown>,
+  titleKey: string,
+  attachmentsKey: string,
+  legacyCovering?: boolean,
+): string {
+  const direct = String(data[titleKey] ?? '').trim();
+  if (direct) return direct;
+  if (legacyCovering) {
+    const c = String(data.covering ?? '').trim();
+    if (c) return c;
+  }
+  return titleFromLegacyAttachmentRows(data[attachmentsKey]);
+}
+
+export const Section25_ProjectAppraisalDocumentation: React.FC = () => {
+  const { formData, updateSection } = useForm();
+  const data = formData.pc4.s25 as Record<string, unknown>;
+
+  const handleUpdate = (updates: Record<string, unknown>) => {
     updateSection('pc4', { s25: { ...data, ...updates } });
   };
 
-  const fields = [
-    { id: 'a', label: 'Project identification' },
-    { id: 'b', label: 'Project preparation' },
-    { id: 'c', label: 'Project approval' },
-    { id: 'd', label: 'Project financing' },
-    { id: 'e', label: 'Project implementation' },
-    { id: 'f', label: 'Project vulnerability to climate change' }
-  ];
+  const momsForumTitle = resolveBlockTitle(data, 'momsForumTitle', 'momsForumAttachments');
+  const adminTitle = resolveBlockTitle(data, 'administrativeApprovalTitle', 'administrativeApprovalAttachments');
+  const issuanceTitle = resolveBlockTitle(data, 'issuanceTitle', 'issuanceAttachments', true);
+
+  const momsForumFiles = normalizeFileList(data.momsForumAttachments);
+  const adminFiles = normalizeFileList(data.administrativeApprovalAttachments);
+  const issuanceFiles = normalizeFileList(
+    (data.issuanceAttachments as unknown) ?? (data.attachments as unknown),
+  );
+
+  const block = (
+    sectionLabel: string,
+    titleValue: string,
+    titleKey: string,
+    files: FileMeta[],
+    filesKey: string,
+  ) => (
+    <div className="card">
+      <label className="label" style={{ marginBottom: '1rem', display: 'block' }}>
+        {sectionLabel}
+      </label>
+      <InputField
+        label="Title"
+        placeholder="Enter a title for this item"
+        value={titleValue}
+        onChange={(e) => handleUpdate({ [titleKey]: e.target.value })}
+      />
+      <div style={{ marginTop: '1.25rem' }}>
+        <FileUpload
+          label="Attachment(s)"
+          files={files}
+          onUpload={(next) => handleUpdate({ [filesKey]: next })}
+          onRemove={(i) => handleUpdate({ [filesKey]: files.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload supporting documents"
+        />
+      </div>
+    </div>
+  );
 
   return (
-    <div className="card">
-      <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'hsl(var(--primary))', marginBottom: '2rem' }}>
-        Lessons Learned
-      </h3>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {fields.map((f, idx) => (
-          <div key={f.id}>
-            <label className="label" style={{ marginBottom: '0.75rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>
-              {String.fromCharCode(97 + idx)}) {f.label}
-            </label>
-            <textarea 
-              className="input" 
-              style={{ minHeight: '120px', paddingTop: '0.75rem', background: '#fff', lineHeight: '1.6' }} 
-              placeholder={`Enter lessons related to ${f.label.toLowerCase()}...`}
-              value={data[f.id as keyof typeof data]}
-              onChange={(e) => handleUpdate({ [f.id]: e.target.value })}
-            />
-          </div>
-        ))}
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      {block('A. MoMs of approval forum', momsForumTitle, 'momsForumTitle', momsForumFiles, 'momsForumAttachments')}
+      {block(
+        'B. Administrative approval',
+        adminTitle,
+        'administrativeApprovalTitle',
+        adminFiles,
+        'administrativeApprovalAttachments',
+      )}
+      {block('C. Issuance letter', issuanceTitle, 'issuanceTitle', issuanceFiles, 'issuanceAttachments')}
     </div>
   );
 };

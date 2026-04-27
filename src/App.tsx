@@ -95,21 +95,30 @@ import { Section19_FocusOnMarginalisation as PC1P_Section19 } from './components
 // PC-4 Sections
 import { Section1_Identification as PC4_Section1 } from './components/sections/pc4_projects/Section1_Identification';
 import { Section2_Sector as PC4_Section2 } from './components/sections/pc4_projects/Section2_Sector';
-import { Section3_Sponsoring as PC4_Section3, Section4_Executing as PC4_Section4, Section5_OM as PC4_Section5 } from './components/sections/pc4_projects/Section3_5_Agencies';
-import { Section6_Approval as PC4_Section6 } from './components/sections/pc4_projects/Section6_Approval';
-import { Section7_Schedule as PC4_Section7 } from './components/sections/pc4_projects/Section7_Schedule';
-import { Section8_CapitalCost as PC4_Section8 } from './components/sections/pc4_projects/Section8_CapitalCost';
-import { Section9_Financing as PC4_Section9, Section10_Accounts as PC4_Section10 } from './components/sections/pc4_projects/Section9_10_Accounts';
-import { Section11_PhasingExpenditure as PC4_Section11 } from './components/sections/pc4_projects/Section11_PhasingExpenditure';
-import { Section12_PhysicalAchievements as PC4_Section12 } from './components/sections/pc4_projects/Section12_PhysicalAchievements';
-import { Section13_ItemWiseExpenditure as PC4_Section13 } from './components/sections/pc4_projects/Section13_ItemWiseExpenditure';
-import { Section14_RecurringCosts as PC4_Section14, Section15_ObjectivesAchievement as PC4_Section15 } from './components/sections/pc4_projects/Section14_15_Objectives';
-import { Section16_ClimateCoBenefits as PC4_Section16, Section17_ProjectIncome as PC4_Section17 } from './components/sections/pc4_projects/Section16_17_Income';
-import { Section18_RBMIndicators as PC4_Section18 } from './components/sections/pc4_projects/Section18_RBMIndicators';
-import { Section19_PDHistory as PC4_Section19, Section20_Assets as PC4_Section20 } from './components/sections/pc4_projects/Section19_20_Assets';
-import { Section21_ImpactEvaluation as PC4_Section21, Section22_ImpactAnalysis as PC4_Section22, Section23_EconomicAnalysis as PC4_Section23 } from './components/sections/pc4_projects/Section21_23_Impact';
-import { Section24_Issues as PC4_Section24, Section25_Lessons as PC4_Section25 } from './components/sections/pc4_projects/Section24_25_IssuesLessons';
-import { Section26_AdditionalInfo as PC4_Section26, Section27_Submission as PC4_Section27 } from './components/sections/pc4_projects/Section26_27_Submission';
+import { Section3_AuthoritiesResponsible as PC4_Section3 } from './components/sections/pc4_projects/Section3_AuthoritiesResponsible';
+import { Section4_DateOfApprovalForum as PC4_Section4 } from './components/sections/pc4_projects/Section4_DateOfApprovalForum';
+import { Section7_Schedule as PC4_Section5 } from './components/sections/pc4_projects/Section7_Schedule';
+import { Section6_TotalCost as PC4_Section6 } from './components/sections/pc4_projects/Section6_TotalCost';
+import { Section7_FinancingOfProject as PC4_Section7 } from './components/sections/pc4_projects/Section7_FinancingOfProject';
+import { Section8_ProjectAccounts as PC4_Section8 } from './components/sections/pc4_projects/Section8_ProjectAccounts';
+import { Section9_FinancialPhasing as PC4_Section9 } from './components/sections/pc4_projects/Section9_FinancialPhasing';
+import { Section10_PhysicalTargets as PC4_Section10 } from './components/sections/pc4_projects/Section10_PhysicalTargets';
+import { Section11_ItemWisePlannedActual as PC4_Section11 } from './components/sections/pc4_projects/Section11_ItemWisePlannedActual';
+import { Section12_RecurringCostAfterCompletion as PC4_Section12 } from './components/sections/pc4_projects/Section12_RecurringCostAfterCompletion';
+import { Section13_AchievementOfObjectives as PC4_Section13 } from './components/sections/pc4_projects/Section13_AchievementOfObjectives';
+import { Section14_YearWiseIncome as PC4_Section14 } from './components/sections/pc4_projects/Section14_YearWiseIncome';
+import { Section15_ResultBasedMonitoring as PC4_Section15 } from './components/sections/pc4_projects/Section15_ResultBasedMonitoring';
+import { Section16_ProjectDirectors as PC4_Section16 } from './components/sections/pc4_projects/Section16_ProjectDirectors';
+import { Section17_AssetsResponsibility as PC4_Section17 } from './components/sections/pc4_projects/Section17_AssetsResponsibility';
+import { Section18_ImpactAfterCompletion as PC4_Section18 } from './components/sections/pc4_projects/Section18_ImpactAfterCompletion';
+import { Section19_SustainabilityMechanism as PC4_Section19 } from './components/sections/pc4_projects/Section19_20_Assets';
+import {
+  Section21_ImpactEvaluation as PC4_Section21,
+  Section22_ImpactAnalysis as PC4_Section22,
+  Section23_Suggestions as PC4_Section23Nav,
+  Section23_EconomicAnalysis as PC4_Section23,
+} from './components/sections/pc4_projects/Section21_23_Impact';
+import { Section24_Certificate as PC4_Section24, Section25_ProjectAppraisalDocumentation as PC4_Section25 } from './components/sections/pc4_projects/Section24_25_IssuesLessons';
 
 // PC-4 Programs
 import { Section1_Identification as PC4P_Section1 } from './components/sections/pc4_programs/Section1_Identification';
@@ -298,14 +307,12 @@ const PC4FormContent = () => {
     case 17: return <PC4_Section17 />;
     case 18: return <PC4_Section18 />;
     case 19: return <PC4_Section19 />;
-    case 20: return <PC4_Section20 />;
+    case 20: return <PC4_Section23 />;
     case 21: return <PC4_Section21 />;
     case 22: return <PC4_Section22 />;
-    case 23: return <PC4_Section23 />;
+    case 23: return <PC4_Section23Nav />;
     case 24: return <PC4_Section24 />;
     case 25: return <PC4_Section25 />;
-    case 26: return <PC4_Section26 />;
-    case 27: return <PC4_Section27 />;
     default: return <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
       <p style={{ color: 'hsl(var(--text-muted))', fontSize: '0.9375rem' }}>
         Section {currentSection} is under development.

@@ -1,39 +1,71 @@
 import React from 'react';
 import { useForm } from '../../../context/FormContext';
+import { FileUpload } from '../../ui/FormElements';
+import { RTEditor } from '../../ui/RTEditor';
+
+type SimpleFileMeta = { name: string; size: string; type: string; date: string };
+
+const normalizeSimpleFiles = (list: unknown): SimpleFileMeta[] =>
+  ((list as (SimpleFileMeta & { title?: string })[]) || []).map((f) => ({
+    name: f.name || f.title || 'File',
+    size: f.size ?? '',
+    type: f.type ?? '',
+    date: f.date ?? '',
+  }));
 
 export const Section21_ImpactEvaluation: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc4.s21;
 
-  const handleUpdate = (updates: any) => {
+  const handleUpdate = (updates: Record<string, unknown>) => {
     updateSection('pc4', { s21: { ...data, ...updates } });
   };
 
-  const impactFields = [
-    { id: 'social', label: 'Social Impact (e.g. Health, Education)' },
-    { id: 'economic', label: 'Economic Impact (e.g. Income, Growth)' },
-    { id: 'environmental', label: 'Environmental Impact' },
-    { id: 'technological', label: 'Technological Impact' },
-    { id: 'regional', label: 'Regional Development Impact' },
-    { id: 'sectoral', label: 'Sectoral Development Impact' },
-    { id: 'employment', label: 'Employment Generation Impact' }
-  ];
+  const attachments = normalizeSimpleFiles(data.attachments);
+
+  const orgHtml = typeof data.organizationalManagementHtml === 'string' ? data.organizationalManagementHtml : '';
+  const capHtml = typeof data.capacityDepartmentHtml === 'string' ? data.capacityDepartmentHtml : '';
+  const decHtml = typeof data.decisionMakingProcessHtml === 'string' ? data.decisionMakingProcessHtml : '';
+  const otherHtml = typeof data.anyOtherHtml === 'string' ? data.anyOtherHtml : '';
 
   return (
-    <div className="card">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-        {impactFields.map((field) => (
-          <div key={field.id}>
-            <label className="label">{field.label}</label>
-            <textarea 
-              className="input" 
-              style={{ minHeight: '100px', paddingTop: '0.5rem' }} 
-              placeholder={`Describe the ${field.label.toLowerCase()} of the project...`}
-              value={data[field.id as keyof typeof data]}
-              onChange={(e) => handleUpdate({ [field.id]: e.target.value })}
-            />
-          </div>
-        ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <div className="card">
+        <RTEditor
+          label="Organizational management"
+          value={orgHtml}
+          onChange={(v) => handleUpdate({ organizationalManagementHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Capacity of the department concerned"
+          value={capHtml}
+          onChange={(v) => handleUpdate({ capacityDepartmentHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Decision making process"
+          value={decHtml}
+          onChange={(v) => handleUpdate({ decisionMakingProcessHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor label="Any other" value={otherHtml} onChange={(v) => handleUpdate({ anyOtherHtml: v })} />
+      </div>
+
+      <div className="card">
+        <FileUpload
+          label="Attachment(s)"
+          files={attachments}
+          onUpload={(files) => handleUpdate({ attachments: files })}
+          onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload supporting documents"
+        />
       </div>
     </div>
   );
@@ -43,27 +75,155 @@ export const Section22_ImpactAnalysis: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc4.s22;
 
-  const handleUpdate = (updates: any) => {
+  const handleUpdate = (updates: Record<string, unknown>) => {
     updateSection('pc4', { s22: { ...data, ...updates } });
   };
 
+  const attachments = normalizeSimpleFiles(data.attachments);
+
+  const idHtml = typeof data.projectIdentificationHtml === 'string' ? data.projectIdentificationHtml : '';
+  const prepHtml = typeof data.projectPreparationHtml === 'string' ? data.projectPreparationHtml : '';
+  const apprHtml = typeof data.projectApprovalHtml === 'string' ? data.projectApprovalHtml : '';
+  const finHtml = typeof data.projectFinancingHtml === 'string' ? data.projectFinancingHtml : '';
+  const implHtml = typeof data.projectImplementationHtml === 'string' ? data.projectImplementationHtml : '';
+
   return (
-    <div className="card">
-      <div style={{}}>
-        <p style={{ fontSize: '0.875rem', color: 'hsl(var(--text-muted))', marginBottom: '1rem' }}>
-          Provide a detailed analysis of the project's overall impact on the target population and sector.
-        </p>
-        <textarea 
-          className="input" 
-          style={{ minHeight: '400px', paddingTop: '0.75rem', lineHeight: '1.6' }} 
-          placeholder="Enter detailed impact analysis..."
-          value={data.impactAnalysis}
-          onChange={(e) => handleUpdate({ impactAnalysis: e.target.value })}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <div className="card">
+        <RTEditor
+          label="Project identification"
+          value={idHtml}
+          onChange={(v) => handleUpdate({ projectIdentificationHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Project preparation"
+          value={prepHtml}
+          onChange={(v) => handleUpdate({ projectPreparationHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Project approval"
+          value={apprHtml}
+          onChange={(v) => handleUpdate({ projectApprovalHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Project financing"
+          value={finHtml}
+          onChange={(v) => handleUpdate({ projectFinancingHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <RTEditor
+          label="Project implementation"
+          value={implHtml}
+          onChange={(v) => handleUpdate({ projectImplementationHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <FileUpload
+          label="Attachment(s)"
+          files={attachments}
+          onUpload={(files) => handleUpdate({ attachments: files })}
+          onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload supporting documents"
         />
       </div>
     </div>
   );
 };
+
+export const Section23_Suggestions: React.FC = () => {
+  const { formData, updateSection } = useForm();
+  const data = (formData.pc4.suggestions || {}) as Record<string, unknown>;
+
+  const handleUpdate = (updates: Record<string, unknown>) => {
+    updateSection('pc4', { suggestions: { ...data, ...updates } });
+  };
+
+  const html = typeof data.suggestionsHtml === 'string' ? data.suggestionsHtml : '';
+  const attachments = normalizeSimpleFiles(data.attachments);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <div className="card">
+        <RTEditor
+          label="Suggestions for future planning and implementation of similar projects"
+          value={html}
+          onChange={(v) => handleUpdate({ suggestionsHtml: v })}
+        />
+      </div>
+
+      <div className="card">
+        <FileUpload
+          label="Attachment(s)"
+          files={attachments}
+          onUpload={(files) => handleUpdate({ attachments: files })}
+          onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
+          description="Upload supporting documents"
+        />
+      </div>
+    </div>
+  );
+};
+
+function parseRawAmount(s: string): number {
+  const n = parseFloat(s);
+  return Number.isFinite(n) ? n : 0;
+}
+
+/** Read-only helper: raw amount divided by 1,000,000 (same pattern as item-wise / recurring sections). */
+function formatPointMillionLabel(rawStr: string): string {
+  const raw = parseRawAmount(rawStr);
+  if (raw === 0) return '—';
+  const m = raw / 1_000_000;
+  const t = m.toFixed(6).replace(/\.?0+$/, '');
+  return t === '' ? '0' : t;
+}
+
+function StackedAmountWithPointValue({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+      <input
+        type="number"
+        step="any"
+        className="input"
+        style={{ background: '#fff', width: '100%', fontSize: '0.875rem' }}
+        placeholder="0"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      <input
+        type="text"
+        readOnly
+        className="input"
+        style={{
+          background: 'hsl(var(--bg-main))',
+          width: '100%',
+          fontSize: '0.75rem',
+          cursor: 'default',
+        }}
+        value={formatPointMillionLabel(value)}
+        aria-label="Value in millions (derived)"
+      />
+    </div>
+  );
+}
 
 export const Section23_EconomicAnalysis: React.FC = () => {
   const { formData, updateSection } = useForm();
@@ -81,78 +241,106 @@ export const Section23_EconomicAnalysis: React.FC = () => {
 
   const sections = [
     {
-      title: 'a) Financial Analysis',
+      key: 'financial',
+      title: 'Financial',
+      showRsMillion: true,
       metrics: [
-        { id: 'npvFinancial', label: 'Net Present Value (NPV)' },
-        { id: 'bcrFinancial', label: 'Benefit Cost Ratio (BCR)' },
-        { id: 'ifrr', label: 'Internal Financial Rate of Return (IFRR)' }
-      ]
+        { id: 'npvFinancial', label: 'Net present value (NPV)' },
+        { id: 'bcrFinancial', label: 'Benefit cost ratio (BCR)' },
+        { id: 'ifrr', label: 'Internal Financial Rate of Return (IFRR)' },
+        { id: 'unitCost', label: 'Unit cost analysis' },
+      ],
     },
     {
-      title: 'b) Economic Analysis',
+      key: 'economic',
+      title: 'Economic',
+      showRsMillion: false,
       metrics: [
-        { id: 'npvEconomic', label: 'Net Present Value (NPV)' },
-        { id: 'bcrEconomic', label: 'Benefit Cost Ratio (BCR)' },
-        { id: 'ierr', label: 'Internal Economic Rate of Return (IERR)' }
-      ]
+        { id: 'npvEconomic', label: 'Net present value (NPV)' },
+        { id: 'bcrEconomic', label: 'Benefit cost ratio (BCR)' },
+        { id: 'ierr', label: 'Internal Economic Rate of Return (IERR)' },
+      ],
     },
-    {
-      title: 'c) Others',
-      metrics: [
-        { id: 'unitCost', label: 'Unit Cost' }
-      ]
-    }
   ];
 
   return (
-    <div className="card">
-      <div className="table-responsive">
-        <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '1.5rem 0.825rem', marginTop: '-0.825rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}>
-          <thead>
-            <tr>
-              <th style={{ width: '40%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Analysis Metric</th>
-              <th style={{ width: '30%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>As per PC-I</th>
-              <th style={{ width: '30%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>After Completion</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sections.map((section, sIdx) => (
-              <React.Fragment key={sIdx}>
-                <tr style={{ background: 'hsl(var(--bg-main) / 0.4)' }}>
-                  <td colSpan={3} style={{ padding: '0.75rem 1.5rem', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--primary))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    {section.title}
-                  </td>
-                </tr>
-                {section.metrics.map((m) => (
-                  <tr key={m.id}>
-                    <td style={{ paddingLeft: '2rem', paddingRight: '1rem', color: 'hsl(var(--text-main))', fontSize: '0.875rem', fontWeight: 500 }}>
-                      • {m.label}
-                    </td>
-                    <td style={{ padding: '0' }}>
-                      <input 
-                        className="input" 
-                        style={{ background: '#fff', fontSize: '0.875rem' }} 
-                        placeholder="0.00" 
-                        value={data[m.id as keyof typeof data]?.pci || ''} 
-                        onChange={(e) => updateField(m.id, 'pci', e.target.value)} 
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+      {sections.map((block) => (
+        <React.Fragment key={block.key}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              justifyContent: 'space-between',
+              gap: '1rem',
+              flexWrap: 'wrap',
+            }}
+          >
+            <h3
+              style={{
+                fontSize: '1.125rem',
+                fontWeight: 700,
+                margin: 0,
+                color: 'hsl(var(--text-main))',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              {block.title}
+            </h3>
+            {block.showRsMillion ? (
+              <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--text-muted))' }}>
+                (Rs. Million)
+              </span>
+            ) : null}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {block.metrics.map((m) => {
+              const row = data[m.id as keyof typeof data] as { pci?: string; completion?: string } | undefined;
+              return (
+                <div key={m.id} className="card" style={{ padding: '1rem 1.25rem' }}>
+                  <p
+                    style={{
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      margin: '0 0 1rem',
+                      color: 'hsl(var(--text-main))',
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {m.label}
+                  </p>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '1rem',
+                    }}
+                  >
+                    <div>
+                      <label className="label" style={{ fontSize: '0.75rem', marginBottom: '0.35rem' }}>
+                        As per PC-I
+                      </label>
+                      <StackedAmountWithPointValue
+                        value={row?.pci ?? ''}
+                        onChange={(v) => updateField(m.id, 'pci', v)}
                       />
-                    </td>
-                    <td style={{ padding: '0' }}>
-                      <input 
-                        className="input" 
-                        style={{ background: '#fff', fontSize: '0.875rem' }} 
-                        placeholder="0.00" 
-                        value={data[m.id as keyof typeof data]?.completion || ''} 
-                        onChange={(e) => updateField(m.id, 'completion', e.target.value)} 
+                    </div>
+                    <div>
+                      <label className="label" style={{ fontSize: '0.75rem', marginBottom: '0.35rem' }}>
+                        After completion
+                      </label>
+                      <StackedAmountWithPointValue
+                        value={row?.completion ?? ''}
+                        onChange={(v) => updateField(m.id, 'completion', v)}
                       />
-                    </td>
-                  </tr>
-                ))}
-              </React.Fragment>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
