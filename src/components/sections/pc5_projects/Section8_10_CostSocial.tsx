@@ -37,11 +37,20 @@ export const Section8_SocialBenefits: React.FC = () => {
         <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '1rem 0.75rem', marginTop: '-1rem', marginLeft: '-1rem', width: 'calc(100% + 1rem)' }}>
           <thead>
             <tr>
-              <th style={{ width: '25%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Benefit Description</th>
-              <th style={{ width: '20%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Target Group</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Planned</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Actual</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Extent Met (%)</th>
+              {[
+                { code: 'PC-V-8.1', label: 'Benefit Description', w: '25%' },
+                { code: 'PC-V-8.2', label: 'Target Group', w: '20%' },
+                { code: 'PC-V-8.3', label: 'Planned Target', w: '15%' },
+                { code: 'PC-V-8.4', label: 'Actual Achievement', w: '15%' },
+                { code: 'PC-V-8.5', label: 'Extent Met (%)', w: '15%' },
+              ].map(({ code, label, w }) => (
+                <th key={code} style={{ width: w, background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left', verticalAlign: 'bottom' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>[{code}]</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>{label}</span>
+                  </div>
+                </th>
+              ))}
               <th style={{ width: '50px' }}></th>
             </tr>
           </thead>
@@ -76,7 +85,7 @@ export const Section9_ClimateResilience: React.FC = () => {
     updateSection('pc5', { s9: { ...data, ...updates } });
   };
 
-  const renderClimateTable = (title: string, dataKey: 'adaptation' | 'mitigation', icon: React.ReactNode) => {
+  const renderClimateTable = (title: string, dataKey: 'adaptation' | 'mitigation', icon: React.ReactNode, prefixNo: number) => {
     const items = data[dataKey] || [];
     const updateItem = (idx: number, updates: any) => {
       const newItems = [...items];
@@ -101,10 +110,19 @@ export const Section9_ClimateResilience: React.FC = () => {
           <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '0.75rem' }}>
             <thead>
               <tr>
-                <th style={{ width: '40%', fontSize: '0.65rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Activity Description</th>
-                <th style={{ width: '20%', fontSize: '0.65rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Planned</th>
-                <th style={{ width: '20%', fontSize: '0.65rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Actual</th>
-                <th style={{ width: '15%', fontSize: '0.65rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Extent Met (%)</th>
+                {[
+                  { code: `PC-V-9.${prefixNo}`, label: 'Activity Description', w: '40%' },
+                  { code: `PC-V-9.${prefixNo + 1}`, label: 'Planned', w: '20%' },
+                  { code: `PC-V-9.${prefixNo + 2}`, label: 'Actual', w: '20%' },
+                  { code: `PC-V-9.${prefixNo + 3}`, label: 'Extent Met (%)', w: '15%' },
+                ].map(({ code, label, w }) => (
+                  <th key={code} style={{ width: w, background: 'transparent', border: 'none', paddingBottom: '0.4rem', textAlign: 'left', verticalAlign: 'bottom' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                      <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>[{code}]</span>
+                      <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>{label}</span>
+                    </div>
+                  </th>
+                ))}
                 <th style={{ width: '5%' }}></th>
               </tr>
             </thead>
@@ -132,14 +150,14 @@ export const Section9_ClimateResilience: React.FC = () => {
     <div className="card">
       <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'hsl(var(--primary))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2.5rem' }}>Climate Resilience Performance</h3>
       
-      {renderClimateTable('Adaptation', 'adaptation', <ShieldCheck size={18} color="hsl(var(--primary))" />)}
-      {renderClimateTable('Mitigation', 'mitigation', <ShieldCheck size={18} color="hsl(var(--success))" />)}
+      {renderClimateTable('Adaptation', 'adaptation', <ShieldCheck size={18} color="hsl(var(--primary))" />, 1)}
+      {renderClimateTable('Mitigation', 'mitigation', <ShieldCheck size={18} color="hsl(var(--success))" />, 5)}
 
       <div style={{ padding: '2rem', background: 'hsl(var(--bg-main) / 0.3)', borderRadius: 'var(--radius-lg)', border: '1px solid hsl(var(--border))' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
           <div>
             <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.25rem' }}>Climate-Induced Disasters</h4>
-            <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>Has the project faced any climate-induced disasters during the reporting year?</p>
+            <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>[PC-V-9.9] Has the project faced any climate-induced disasters during the reporting year?</p>
           </div>
           <div style={{ display: 'flex', background: '#fff', padding: '0.4rem', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--border))' }}>
             {[true, false].map((val) => (
@@ -162,7 +180,7 @@ export const Section9_ClimateResilience: React.FC = () => {
 
         {data.disasterOccurred && (
           <div style={{ animation: 'slideDown 0.3s ease' }}>
-            <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Risks & Mitigation Measures Taken</label>
+            <label className="label">[PC-V-9.10] Risks & Mitigation Measures Taken</label>
             <textarea 
               className="input" 
               style={{ background: '#fff', minHeight: '120px', paddingTop: '0.75rem' }} 
@@ -192,24 +210,24 @@ export const Section10_CostPerUnit: React.FC = () => {
       <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'hsl(var(--primary))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2.5rem' }}>Cost per Unit Performance</h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Unit Type / Definition</label>
+          <label className="label">[PC-V-10.1] Unit Type / Definition</label>
           <input className="input" style={{ background: '#fff' }} placeholder="e.g. Per Kilometer of Road / Per Student" value={data.unitType} onChange={(e) => handleUpdate({ unitType: e.target.value })} />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', alignItems: 'end' }}>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Planned Cost (PKR)</label>
+            <label className="label">[PC-V-10.2] Planned Cost per Unit (PKR)</label>
             <input type="number" className="input" style={{ background: '#fff' }} placeholder="0.00" value={data.plannedCost} onChange={(e) => handleUpdate({ plannedCost: e.target.value })} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Actual Cost (PKR)</label>
+            <label className="label">[PC-V-10.3] Actual Cost per Unit (PKR)</label>
             <input type="number" className="input" style={{ background: '#fff' }} placeholder="0.00" value={data.actualCost} onChange={(e) => handleUpdate({ actualCost: e.target.value })} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Variance</label>
+            <label className="label">[PC-V-10.4] Unit Cost Variance</label>
             <div className="input" style={{ background: 'hsl(var(--bg-main) / 0.3)', display: 'flex', alignItems: 'center', fontWeight: 700, color: Number(variance) > 0 ? 'hsl(var(--error))' : 'hsl(var(--success))' }}>{variance}</div>
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Weighted Cost of Capital (%)</label>
+            <label className="label">[PC-V-10.5] Weighted Cost of Capital (%)</label>
             <input type="number" className="input" style={{ background: '#fff' }} placeholder="0.00" value={data.wacc} onChange={(e) => handleUpdate({ wacc: e.target.value })} />
           </div>
         </div>

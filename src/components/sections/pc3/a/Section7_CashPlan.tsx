@@ -25,14 +25,14 @@ export const Section7_CashPlan: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', maxWidth: '1000px' }}>
-          <InputField label="Q1 Requirement (Rs. M)" type="number" value={data.q1} onChange={(e: any) => handleChange('q1', e.target.value)} />
-          <InputField label="Q2 Requirement (Rs. M)" type="number" value={data.q2} onChange={(e: any) => handleChange('q2', e.target.value)} />
-          <InputField label="Q3 Requirement (Rs. M)" type="number" value={data.q3} onChange={(e: any) => handleChange('q3', e.target.value)} />
-          <InputField label="Q4 Requirement (Rs. M)" type="number" value={data.q4} onChange={(e: any) => handleChange('q4', e.target.value)} />
+          <InputField label="[PC-III(a)-4.1] Q1 Requirement (Rs. M)" type="number" value={data.q1} onChange={(e: any) => handleChange('q1', e.target.value)} />
+          <InputField label="[PC-III(a)-4.2] Q2 Requirement (Rs. M)" type="number" value={data.q2} onChange={(e: any) => handleChange('q2', e.target.value)} />
+          <InputField label="[PC-III(a)-4.3] Q3 Requirement (Rs. M)" type="number" value={data.q3} onChange={(e: any) => handleChange('q3', e.target.value)} />
+          <InputField label="[PC-III(a)-4.4] Q4 Requirement (Rs. M)" type="number" value={data.q4} onChange={(e: any) => handleChange('q4', e.target.value)} />
           
           <div style={{ position: 'relative' }}>
             <InputField 
-              label="Annual Total Requirement" 
+              label="[PC-III(a)-4.5] Annual Total Requirement" 
               type="number"
               value={data.annualTotal}
               disabled

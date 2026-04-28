@@ -42,9 +42,16 @@ export const Section8_Indicators: React.FC = () => {
             borderBottom: '1px solid hsl(var(--border))',
             background: 'hsl(var(--bg-main) / 0.2)'
           }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Indicator Name</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Quantified Value</div>
-            <div></div>
+          {[
+            { code: 'PC-III(a)-5.1', label: 'Indicator Name' },
+            { code: 'PC-III(a)-5.2', label: 'Quantified Value' },
+          ].map(({ code, label }) => (
+            <div key={code} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+              <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>[{code}]</span>
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>{label}</span>
+            </div>
+          ))}
+          <div />
           </div>
 
           <div className="divide-y divide-border">

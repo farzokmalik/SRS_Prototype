@@ -188,7 +188,7 @@ const initialFormState: FormState = {
     s8: { indicators: [] }
   },
   pc3b: {
-    s1: { projectName: '', month: '', year: '' },
+    s1: { projectId: '', projectName: '', month: '', year: '' },
     s2: { psdpFunding: '', cashPlanReq: '', releases: '', expenditure: '' },
     s3: { physicalStatus: [], narrative: '' },
     s4: { indicators: [] },

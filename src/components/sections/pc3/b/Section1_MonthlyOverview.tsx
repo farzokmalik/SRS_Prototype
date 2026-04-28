@@ -12,7 +12,7 @@ const YEARS = ['2023', '2024', '2025', '2026', '2027'];
 export const Section1_MonthlyOverview: React.FC = () => {
   const { formData, updateSection } = useForm();
   
-  const s1 = formData.pc3b?.s1 || { projectName: '', month: '', year: '' };
+  const s1 = formData.pc3b?.s1 || { projectId: '', projectName: '', month: '', year: '' };
   const s2 = formData.pc3b?.s2 || { psdpFunding: '500.00', cashPlanReq: '125.00', releases: '', expenditure: '' };
 
   const handleUpdate = (sectionKey: string, updates: any) => {
@@ -27,25 +27,39 @@ export const Section1_MonthlyOverview: React.FC = () => {
         <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'hsl(var(--text-muted))', marginBottom: '1.25rem', textTransform: 'uppercase' }}>
           Reporting Context
         </h3>
-        <div className="space-y-6">
-          <InputField 
-            label="Project Name" 
+         <InputField 
+            label="[PC-III(b)-1.1] Project Name" 
             placeholder="Search or enter project name"
             value={s1.projectName}
             onChange={(e: any) => handleUpdate('s1', { projectName: e.target.value })}
             required
           />
           
+        <div className="space-y-6">
+          <SelectField 
+            label="[PC-III(b)-1.2] Project ID" 
+            required 
+            value={s1.projectId}
+            onChange={(e: any) => handleUpdate('s1', { projectId: e.target.value })}
+            options={[
+              { value: 'PRJ-001', label: 'PRJ-001' },
+              { value: 'PRJ-002', label: 'PRJ-002' },
+              { value: 'PRJ-003', label: 'PRJ-003' },
+              { value: 'PRJ-004', label: 'PRJ-004' },
+              { value: 'PRJ-005', label: 'PRJ-005' }
+            ]}
+          />
+         
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
             <SelectField 
-              label="Reporting Month" 
+              label="[PC-III(b)-1.3] Reporting Month" 
               value={s1.month}
               onChange={(e: any) => handleUpdate('s1', { month: e.target.value })}
               options={MONTHS.map(m => ({ value: m, label: m }))}
               required
             />
             <SelectField 
-              label="Reporting Year" 
+              label="[PC-III(b)-1.4] Reporting Year" 
               value={s1.year}
               onChange={(e: any) => handleUpdate('s1', { year: e.target.value })}
               options={YEARS.map(y => ({ value: y, label: y }))}
@@ -63,7 +77,7 @@ export const Section1_MonthlyOverview: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1000px' }}>
           <div style={{ position: 'relative' }}>
             <InputField 
-              label="PSDP Funding (Rs. Million)" 
+              label="[PC-III(b)-1.5] PSDP Funding (Rs. Million)" 
               value={s2.psdpFunding}
               disabled
               style={{ background: 'hsl(var(--bg-main) / 0.5)' }}
@@ -73,7 +87,7 @@ export const Section1_MonthlyOverview: React.FC = () => {
           
           <div style={{ position: 'relative' }}>
             <InputField 
-              label="Qtr Cash Plan Requirement" 
+              label="[PC-III(b)-1.6] Qtr Cash Plan Requirement" 
               value={s2.cashPlanReq}
               disabled
               style={{ background: 'hsl(var(--bg-main) / 0.5)' }}
@@ -82,7 +96,7 @@ export const Section1_MonthlyOverview: React.FC = () => {
           </div>
 
           <InputField 
-            label="Releases During Month (Rs. M)" 
+            label="[PC-III(b)-1.7] Releases During Month (Rs. M)" 
             type="number"
             placeholder="0.00"
             value={s2.releases}
@@ -90,7 +104,7 @@ export const Section1_MonthlyOverview: React.FC = () => {
           />
 
           <InputField 
-            label="Expenditure During Month (Rs. M)" 
+            label="[PC-III(b)-1.8] Expenditure During Month (Rs. M)" 
             type="number"
             placeholder="0.00"
             value={s2.expenditure}

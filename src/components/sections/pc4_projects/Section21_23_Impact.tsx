@@ -32,7 +32,7 @@ export const Section21_ImpactEvaluation: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
         <RTEditor
-          label="Organizational management"
+          label="[PC-IV-21.1] Organizational management"
           value={orgHtml}
           onChange={(v) => handleUpdate({ organizationalManagementHtml: v })}
         />
@@ -40,7 +40,7 @@ export const Section21_ImpactEvaluation: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Capacity of the department concerned"
+          label="[PC-IV-21.2] Capacity of the department concerned"
           value={capHtml}
           onChange={(v) => handleUpdate({ capacityDepartmentHtml: v })}
         />
@@ -48,19 +48,19 @@ export const Section21_ImpactEvaluation: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Decision making process"
+          label="[PC-IV-21.3] Decision making process"
           value={decHtml}
           onChange={(v) => handleUpdate({ decisionMakingProcessHtml: v })}
         />
       </div>
 
       <div className="card">
-        <RTEditor label="Any other" value={otherHtml} onChange={(v) => handleUpdate({ anyOtherHtml: v })} />
+        <RTEditor label="[PC-IV-21.4] Any other" value={otherHtml} onChange={(v) => handleUpdate({ anyOtherHtml: v })} />
       </div>
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-21.5] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
@@ -91,7 +91,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
         <RTEditor
-          label="Project identification"
+          label="[PC-IV-22.1] Project identification"
           value={idHtml}
           onChange={(v) => handleUpdate({ projectIdentificationHtml: v })}
         />
@@ -99,7 +99,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Project preparation"
+          label="[PC-IV-22.2] Project preparation"
           value={prepHtml}
           onChange={(v) => handleUpdate({ projectPreparationHtml: v })}
         />
@@ -107,7 +107,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Project approval"
+          label="[PC-IV-22.3] Project approval"
           value={apprHtml}
           onChange={(v) => handleUpdate({ projectApprovalHtml: v })}
         />
@@ -115,7 +115,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Project financing"
+          label="[PC-IV-22.4] Project financing"
           value={finHtml}
           onChange={(v) => handleUpdate({ projectFinancingHtml: v })}
         />
@@ -123,7 +123,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Project implementation"
+          label="[PC-IV-22.5] Project implementation"
           value={implHtml}
           onChange={(v) => handleUpdate({ projectImplementationHtml: v })}
         />
@@ -131,7 +131,7 @@ export const Section22_ImpactAnalysis: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-22.6] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
@@ -157,7 +157,7 @@ export const Section23_Suggestions: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
         <RTEditor
-          label="Suggestions for future planning and implementation of similar projects"
+          label="[PC-IV-23.1] Suggestions for future planning and implementation of similar projects"
           value={html}
           onChange={(v) => handleUpdate({ suggestionsHtml: v })}
         />
@@ -165,7 +165,7 @@ export const Section23_Suggestions: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-23.2] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
@@ -245,10 +245,10 @@ export const Section23_EconomicAnalysis: React.FC = () => {
       title: 'Financial',
       showRsMillion: true,
       metrics: [
-        { id: 'npvFinancial', label: 'Net present value (NPV)' },
-        { id: 'bcrFinancial', label: 'Benefit cost ratio (BCR)' },
-        { id: 'ifrr', label: 'Internal Financial Rate of Return (IFRR)' },
-        { id: 'unitCost', label: 'Unit cost analysis' },
+        { id: 'npvFinancial', label: 'Net present value (NPV)', pciNo: '20.1', compNo: '20.2' },
+        { id: 'bcrFinancial', label: 'Benefit cost ratio (BCR)', pciNo: '20.3', compNo: '20.4' },
+        { id: 'ifrr', label: 'Internal Financial Rate of Return (IFRR)', pciNo: '20.5', compNo: '20.6' },
+        { id: 'unitCost', label: 'Unit cost analysis', pciNo: '20.7', compNo: '20.8' },
       ],
     },
     {
@@ -256,9 +256,9 @@ export const Section23_EconomicAnalysis: React.FC = () => {
       title: 'Economic',
       showRsMillion: false,
       metrics: [
-        { id: 'npvEconomic', label: 'Net present value (NPV)' },
-        { id: 'bcrEconomic', label: 'Benefit cost ratio (BCR)' },
-        { id: 'ierr', label: 'Internal Economic Rate of Return (IERR)' },
+        { id: 'npvEconomic', label: 'Net present value (NPV)', pciNo: '20.9', compNo: '20.10' },
+        { id: 'bcrEconomic', label: 'Benefit cost ratio (BCR)', pciNo: '20.11', compNo: '20.12' },
+        { id: 'ierr', label: 'Internal Economic Rate of Return (IERR)', pciNo: '20.13', compNo: '20.14' },
       ],
     },
   ];
@@ -318,7 +318,7 @@ export const Section23_EconomicAnalysis: React.FC = () => {
                   >
                     <div>
                       <label className="label" style={{ fontSize: '0.75rem', marginBottom: '0.35rem' }}>
-                        As per PC-I
+                        {`[PC-IV-${(m as any).pciNo}] As per PC-I`}
                       </label>
                       <StackedAmountWithPointValue
                         value={row?.pci ?? ''}
@@ -327,7 +327,7 @@ export const Section23_EconomicAnalysis: React.FC = () => {
                     </div>
                     <div>
                       <label className="label" style={{ fontSize: '0.75rem', marginBottom: '0.35rem' }}>
-                        After completion
+                        {`[PC-IV-${(m as any).compNo}] After completion`}
                       </label>
                       <StackedAmountWithPointValue
                         value={row?.completion ?? ''}

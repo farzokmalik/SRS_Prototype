@@ -32,36 +32,36 @@ export const Section18_ImpactAfterCompletion: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
-        <RTEditor label="Financial" value={financial} onChange={(v) => handleUpdate({ financialHtml: v })} />
+        <RTEditor label="[PC-IV-18.1] Financial Impact" value={financial} onChange={(v) => handleUpdate({ financialHtml: v })} />
       </div>
 
       <div className="card">
-        <RTEditor label="Economic" value={economic} onChange={(v) => handleUpdate({ economicHtml: v })} />
+        <RTEditor label="[PC-IV-18.2] Economic Impact" value={economic} onChange={(v) => handleUpdate({ economicHtml: v })} />
       </div>
 
       <div className="card">
         <RTEditor
-          label="Social (Education, Health, Employment, Area Development Etc.)"
+          label="[PC-IV-18.3] Social Impact (Education, Health, Employment, Area Development Etc.)"
           value={social}
           onChange={(v) => handleUpdate({ socialHtml: v })}
         />
       </div>
 
       <div className="card">
-        <RTEditor label="Environment" value={environment} onChange={(v) => handleUpdate({ environmentHtml: v })} />
+        <RTEditor label="[PC-IV-18.4] Environment Impact" value={environment} onChange={(v) => handleUpdate({ environmentHtml: v })} />
       </div>
 
       <div className="card">
-        <RTEditor label="Technological" value={technological} onChange={(v) => handleUpdate({ technologicalHtml: v })} />
+        <RTEditor label="[PC-IV-18.5] Technological" value={technological} onChange={(v) => handleUpdate({ technologicalHtml: v })} />
       </div>
 
       <div className="card">
-        <RTEditor label="Any other" value={anyOther} onChange={(v) => handleUpdate({ anyOtherHtml: v })} />
+        <RTEditor label="[PC-IV-18.6] Any Other" value={anyOther} onChange={(v) => handleUpdate({ anyOtherHtml: v })} />
       </div>
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-18.7] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ impactAttachments: files })}
           onRemove={(i) =>

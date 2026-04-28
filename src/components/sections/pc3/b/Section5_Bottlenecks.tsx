@@ -72,7 +72,7 @@ export const Section5_Bottlenecks: React.FC = () => {
         <div className="space-y-8">
           {/* Predefined Grid */}
           <div className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)', padding: '1.5rem' }}>
-            <h5 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', color: 'hsl(var(--text-main))' }}>Predefined Categories</h5>
+            <h5 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', color: 'hsl(var(--text-main))' }}>[PC-III(b)-4.1] Predefined Categories</h5>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }}>
               {PREDEFINED_BOTTLENECKS.map((opt, i) => (
                 <label key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', fontSize: '0.9rem' }}>
@@ -90,7 +90,7 @@ export const Section5_Bottlenecks: React.FC = () => {
 
           {/* Custom Options / Add More */}
           <div className="card" style={{ background: 'hsl(var(--bg-main) / 0.1)', border: '1px solid hsl(var(--border) / 0.5)', padding: '1.5rem' }}>
-             <h5 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', color: 'hsl(var(--text-main))' }}>Custom Bottlenecks</h5>
+             <h5 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', color: 'hsl(var(--text-main))' }}>[PC-III(b)-4.2] Custom Bottlenecks</h5>
              
              {/* Custom List */}
              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem', marginBottom: (data.customOptions?.length || 0) > 0 ? '2rem' : '0' }}>
@@ -147,7 +147,7 @@ export const Section5_Bottlenecks: React.FC = () => {
             }}
           >
             <TextAreaField 
-              label="General Remarks / Action Taken"
+              label="[PC-III(b)-4.3] General Remarks / Action Taken"
               placeholder={isAnyChecked ? "Describe actions taken to resolve the identified issues..." : "Select at least one problem to enable remarks..."}
               rows={8}
               value={data.remarks}

@@ -28,7 +28,7 @@ export const Section19_SustainabilityMechanism: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
         <RTEditor
-          label="Mechanism for sustainability of activities after completion"
+          label="[PC-IV-19.1] Mechanism for sustainability of activities after completion"
           value={html}
           onChange={(v) => handleUpdate({ sustainabilityHtml: v })}
         />
@@ -36,7 +36,7 @@ export const Section19_SustainabilityMechanism: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-19.2] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}

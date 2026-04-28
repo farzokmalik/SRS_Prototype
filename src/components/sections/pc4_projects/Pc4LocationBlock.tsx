@@ -146,13 +146,13 @@ export const Pc4LocationBlock: React.FC = () => {
       </h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <MultiSelectDropdown
-          label="District"
+          label="[PC-IV-1.5] District(s)"
           options={ALL_DISTRICTS}
           value={data.districts}
           onChange={(next) => handleUpdate({ districts: next })}
         />
         <MultiSelectDropdown
-          label="Tehsil"
+          label="[PC-IV-1.6] Tehsil(s)"
           options={TEHSIL_OPTIONS}
           value={data.tehsils}
           onChange={(next) => handleUpdate({ tehsils: next })}

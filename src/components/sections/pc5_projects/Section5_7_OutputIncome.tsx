@@ -2,6 +2,18 @@ import React from 'react';
 import { useForm } from '../../../context/FormContext';
 import { Plus, Trash2 } from 'lucide-react';
 
+// ── Helper: renders a two-line header cell (code + label) ──────────────
+const TH: React.FC<{ code: string; label: string }> = ({ code, label }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+    <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
+      [{code}]
+    </span>
+    <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>
+      {label}
+    </span>
+  </div>
+);
+
 export const Section5_PhysicalOutput: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc5.s5;
@@ -37,11 +49,11 @@ export const Section5_PhysicalOutput: React.FC = () => {
         <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '1rem 0.75rem', marginTop: '-1rem', marginLeft: '-1rem', width: 'calc(100% + 1rem)' }}>
           <thead>
             <tr>
-              <th style={{ width: '30%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Output Item / Facility</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Unit</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Planned Qty</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Actual Qty</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Variance</th>
+              <th style={{ width: '30%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-5.1" label="Output Item / Facility" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-5.2" label="Unit" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-5.3" label="Planned Qty" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-5.4" label="Actual Qty" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-5.5" label="Variance" /></th>
               <th style={{ width: '50px' }}></th>
             </tr>
           </thead>
@@ -114,11 +126,11 @@ export const Section6_ProjectIncome: React.FC = () => {
         <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '1rem 0.75rem', marginTop: '-1rem', marginLeft: '-1rem', width: 'calc(100% + 1rem)' }}>
           <thead>
             <tr>
-              <th style={{ width: '25%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Source / Type</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Planned (M)</th>
-              <th style={{ width: '25%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Assumptions</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Actual (M)</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Variance</th>
+              <th style={{ width: '25%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-6.1" label="Source / Type" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-6.2" label="Planned (M)" /></th>
+              <th style={{ width: '25%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-6.3" label="Assumptions" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-6.4" label="Actual (M)" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-6.5" label="Variance" /></th>
               <th style={{ width: '50px' }}></th>
             </tr>
           </thead>
@@ -199,10 +211,10 @@ export const Section7_EconomicBenefits: React.FC = () => {
         <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '1rem 0.75rem', marginTop: '-1rem', marginLeft: '-1rem', width: 'calc(100% + 1rem)' }}>
           <thead>
             <tr>
-              <th style={{ width: '40%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Benefit Description</th>
-              <th style={{ width: '20%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Unit</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Planned</th>
-              <th style={{ width: '15%', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', paddingBottom: '0.5rem', textAlign: 'left' }}>Actual</th>
+              <th style={{ width: '40%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-7.1" label="Benefit Description" /></th>
+              <th style={{ width: '20%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-7.2" label="Unit" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-7.3" label="Planned" /></th>
+              <th style={{ width: '15%', background: 'transparent', border: 'none', paddingBottom: '0.5rem', textAlign: 'left' }}><TH code="PC-V-7.4" label="Actual" /></th>
               <th style={{ width: '50px' }}></th>
             </tr>
           </thead>

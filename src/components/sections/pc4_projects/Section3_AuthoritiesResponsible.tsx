@@ -42,13 +42,13 @@ export const Section3_AuthoritiesResponsible: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           <SelectField
-            label="Executing Agency"
+            label="[PC-IV-3.2] Executing Agency"
             value={data.executingAgency ?? ''}
             onChange={(e) => handleUpdate({ executingAgency: e.target.value })}
             options={AGENCY_OPTIONS}
           />
           <SelectField
-            label="Sponsoring Agency"
+            label="[PC-IV-3.1] Sponsoring Agency"
             value={data.sponsoringAgency ?? ''}
             onChange={(e) => handleUpdate({ sponsoringAgency: e.target.value })}
             options={AGENCY_OPTIONS}
@@ -60,7 +60,7 @@ export const Section3_AuthoritiesResponsible: React.FC = () => {
             options={FEDERAL_MINISTRY_OPTIONS}
           />
           <SelectField
-            label="Operation & Maintenance Agency"
+            label="[PC-IV-3.3] Operation & Maintenance Agency"
             value={data.omAgency ?? ''}
             onChange={(e) => handleUpdate({ omAgency: e.target.value })}
             options={OM_AGENCY_OPTIONS}

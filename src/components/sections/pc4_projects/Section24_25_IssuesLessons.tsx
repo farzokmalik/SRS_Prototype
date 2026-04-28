@@ -31,20 +31,20 @@ export const Section24_Certificate: React.FC = () => {
         </label>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
           <InputField
-            label="Focal Person Name"
+            label="[PC-IV-24.1] Focal Person Name"
             placeholder="Full name"
             value={data.focalPersonName}
             onChange={(e) => handleUpdate({ focalPersonName: e.target.value })}
           />
           <InputField
-            label="Designation"
+            label="[PC-IV-24.2] Designation"
             placeholder="Designation"
             value={data.designation}
             onChange={(e) => handleUpdate({ designation: e.target.value })}
           />
           <div style={{ gridColumn: '1 / -1' }}>
             <InputField
-              label="Email"
+              label="[PC-IV-24.3] Email"
               type="email"
               placeholder="email@example.com"
               value={data.email}
@@ -52,20 +52,20 @@ export const Section24_Certificate: React.FC = () => {
             />
           </div>
           <InputField
-            label="Tel. No."
+            label="[PC-IV-24.4] Tel. No."
             placeholder="Telephone"
             value={data.tel}
             onChange={(e) => handleUpdate({ tel: e.target.value })}
           />
           <InputField
-            label="Fax No."
+            label="[PC-IV-24.5] Fax No."
             placeholder="Fax"
             value={data.fax}
             onChange={(e) => handleUpdate({ fax: e.target.value })}
           />
           <div style={{ gridColumn: '1 / -1' }}>
             <TextAreaField
-              label="Address"
+              label="[PC-IV-24.6] Address"
               placeholder="Postal address"
               rows={4}
               value={data.address}
@@ -78,7 +78,7 @@ export const Section24_Certificate: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Attachment(s)"
+          label="[PC-IV-24.7] Attachment(s)"
           files={attachments}
           onUpload={(files) => handleUpdate({ attachments: files })}
           onRemove={(i) => handleUpdate({ attachments: attachments.filter((_: unknown, j: number) => j !== i) })}
@@ -88,7 +88,7 @@ export const Section24_Certificate: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Annexure(s)"
+          label="[PC-IV-24.8] Annexure(s)"
           files={annexures}
           onUpload={(files) => handleUpdate({ annexures: files })}
           onRemove={(i) => handleUpdate({ annexures: annexures.filter((_: unknown, j: number) => j !== i) })}
@@ -144,20 +144,22 @@ export const Section25_ProjectAppraisalDocumentation: React.FC = () => {
     titleKey: string,
     files: FileMeta[],
     filesKey: string,
+    titleNo: string,
+    attachNo: string,
   ) => (
     <div className="card">
       <label className="label" style={{ marginBottom: '1rem', display: 'block' }}>
         {sectionLabel}
       </label>
       <InputField
-        label="Title"
+        label={`[PC-IV-${titleNo}] Title`}
         placeholder="Enter a title for this item"
         value={titleValue}
         onChange={(e) => handleUpdate({ [titleKey]: e.target.value })}
       />
       <div style={{ marginTop: '1.25rem' }}>
         <FileUpload
-          label="Attachment(s)"
+          label={`[PC-IV-${attachNo}] Attachment(s)`}
           files={files}
           onUpload={(next) => handleUpdate({ [filesKey]: next })}
           onRemove={(i) => handleUpdate({ [filesKey]: files.filter((_: unknown, j: number) => j !== i) })}
@@ -169,15 +171,17 @@ export const Section25_ProjectAppraisalDocumentation: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-      {block('A. MoMs of approval forum', momsForumTitle, 'momsForumTitle', momsForumFiles, 'momsForumAttachments')}
+      {block('A. MoMs of approval forum', momsForumTitle, 'momsForumTitle', momsForumFiles, 'momsForumAttachments', '25.1', '25.2')}
       {block(
         'B. Administrative approval',
         adminTitle,
         'administrativeApprovalTitle',
         adminFiles,
         'administrativeApprovalAttachments',
+        '25.3',
+        '25.4'
       )}
-      {block('C. Issuance letter', issuanceTitle, 'issuanceTitle', issuanceFiles, 'issuanceAttachments')}
+      {block('C. Issuance letter', issuanceTitle, 'issuanceTitle', issuanceFiles, 'issuanceAttachments', '25.5', '25.6')}
     </div>
   );
 };

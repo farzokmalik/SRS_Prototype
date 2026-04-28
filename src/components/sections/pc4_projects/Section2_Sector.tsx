@@ -60,13 +60,13 @@ export const Section2_Sector: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           <SelectField
-            label="Sector"
+            label="[PC-IV-2.1] Sector"
             value={data.sector ?? ''}
             onChange={(e) => handleUpdate({ sector: e.target.value, subSector: '' })}
             options={Object.keys(SECTOR_OPTIONS).map((s) => ({ value: s, label: s }))}
           />
           <SelectField
-            label="Sub-Sector"
+            label="[PC-IV-2.2] Sub-Sector"
             disabled={!data.sector}
             value={data.subSector ?? ''}
             onChange={(e) => handleUpdate({ subSector: e.target.value })}

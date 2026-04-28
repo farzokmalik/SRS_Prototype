@@ -11,11 +11,11 @@ export const Section14_LessonsLearned: React.FC = () => {
   };
 
   const fields = [
-    { key: 'operation', label: 'Operation', placeholder: 'Lessons learned regarding project operations...' },
-    { key: 'maintenance', label: 'Maintenance', placeholder: 'Maintenance strategy effectiveness and insights...' },
-    { key: 'marketing', label: 'Marketing', placeholder: 'Marketing strategy outcomes and adjustments...' },
-    { key: 'management', label: 'Management', placeholder: 'Managerial performance and organizational insights...' },
-    { key: 'climate', label: 'Climate Resilience', placeholder: 'Resilience outcomes and any maladaptation issues observed...' },
+    { key: 'operation',   label: '[PC-V-14.1] Project Operation',   placeholder: 'Lessons learned regarding project operations...' },
+    { key: 'maintenance', label: '[PC-V-14.2] Maintenance Strategy',  placeholder: 'Maintenance strategy effectiveness and insights...' },
+    { key: 'marketing',   label: '[PC-V-14.3] Marketing Strategy',    placeholder: 'Marketing strategy outcomes and adjustments...' },
+    { key: 'management',  label: '[PC-V-14.4] Managerial Management', placeholder: 'Managerial performance and organizational insights...' },
+    { key: 'climate',     label: '[PC-V-14.5] Climate Resilience',    placeholder: 'Resilience outcomes and any maladaptation issues observed...' },
   ];
 
   return (
@@ -24,7 +24,7 @@ export const Section14_LessonsLearned: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         {fields.map((f) => (
           <div key={f.key}>
-            <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>{f.label}</label>
+            <label className="label">{f.label}</label>
             <textarea 
               className="input" 
               style={{ background: '#fff', minHeight: '100px', paddingTop: '0.75rem' }} 
@@ -67,7 +67,7 @@ export const Section15_ManagementChanges: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h4 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'hsl(var(--primary))' }}>Changes in Project Management</h4>
-            <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>Has there been any change in the project management during the reporting period?</p>
+            <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>[PC-V-15.1] Has there been any change in the project management during the reporting period?</p>
           </div>
           <div style={{ display: 'flex', background: 'hsl(var(--bg-main) / 0.5)', padding: '0.4rem', borderRadius: 'var(--radius-md)' }}>
             {[true, false].map((val) => (
@@ -105,16 +105,16 @@ export const Section15_ManagementChanges: React.FC = () => {
               )}
               {data.changes.map((c: any, idx: number) => (
                 <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.5fr 1fr 40px', gap: '1rem', alignItems: 'center', padding: '1rem', background: '#fff', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius-md)' }}>
-                  <input className="input" placeholder="Name" value={c.name} onChange={(e) => updateChange(idx, { name: e.target.value })} />
-                  <input className="input" placeholder="Designation" value={c.designation} onChange={(e) => updateChange(idx, { designation: e.target.value })} />
-                  <input type="date" className="input" value={c.date} onChange={(e) => updateChange(idx, { date: e.target.value })} />
+                  <input className="input" placeholder="[PC-V-15.3] Name" value={c.name} onChange={(e) => updateChange(idx, { name: e.target.value })} />
+                  <input className="input" placeholder="[PC-V-15.4] Designation" value={c.designation} onChange={(e) => updateChange(idx, { designation: e.target.value })} />
+                  <input type="date" className="input" value={c.date} onChange={(e) => updateChange(idx, { date: e.target.value })} title="[PC-V-15.5] Date of Change" />
                   <button onClick={() => removeChange(idx)} style={{ color: 'hsl(var(--error))', border: 'none', background: 'transparent', cursor: 'pointer' }}><Trash2 size={16} /></button>
                 </div>
               ))}
             </div>
 
             <div>
-              <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Justification for Personnel Changes</label>
+              <label className="label">[PC-V-15.2] Justification for Personnel Changes</label>
               <textarea 
                 className="input" 
                 style={{ background: '#fff', minHeight: '100px', paddingTop: '0.75rem' }} 
@@ -141,6 +141,7 @@ export const Section16_Suggestions: React.FC = () => {
   return (
     <div className="card">
       <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'hsl(var(--primary))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2rem' }}>Suggestions for Improvement</h3>
+      <label className="label" style={{ marginBottom: '0.75rem' }}>[PC-V-16.1] Comprehensive Suggestions</label>
       <textarea 
         className="input" 
         style={{ background: '#fff', minHeight: '250px', paddingTop: '1rem', fontSize: '0.9375rem' }} 
@@ -166,20 +167,20 @@ export const Section17_Submission: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <User size={12} /> Name of Reporting Officer
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              <User size={12} /> [PC-V-17.1] Name of Reporting Officer
             </label>
             <input className="input" placeholder="Full name" value={data.name} onChange={(e) => handleUpdate({ name: e.target.value })} style={{ background: '#fff' }} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              Designation
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              [PC-V-17.2] Designation
             </label>
             <input className="input" placeholder="Official designation" value={data.designation} onChange={(e) => handleUpdate({ designation: e.target.value })} style={{ background: '#fff' }} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Calendar size={12} /> Date of Reporting
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              <Calendar size={12} /> [PC-V-17.3] Date of Reporting
             </label>
             <input type="date" className="input" value={data.date} onChange={(e) => handleUpdate({ date: e.target.value })} style={{ background: '#fff' }} />
           </div>
@@ -187,20 +188,20 @@ export const Section17_Submission: React.FC = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Phone size={12} /> Telephone Number
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              <Phone size={12} /> [PC-V-17.4] Telephone Number
             </label>
             <input className="input" placeholder="+92 XXX XXXXXXX" value={data.telephone} onChange={(e) => handleUpdate({ telephone: e.target.value })} style={{ background: '#fff' }} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Mail size={12} /> Email Address
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              <Mail size={12} /> [PC-V-17.5] Email Address
             </label>
             <input type="email" className="input" placeholder="officer@department.gov.pk" value={data.email} onChange={(e) => handleUpdate({ email: e.target.value })} style={{ background: '#fff' }} />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-              Signature / Stamp
+            <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem' }}>
+              [PC-V-17.6] Signature / Stamp
             </label>
             <div style={{ height: '100px', border: '2px dashed hsl(var(--border))', borderRadius: 'var(--radius-lg)', background: 'hsl(var(--bg-main) / 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--text-muted))', fontSize: '0.75rem' }}>
               Drop signature image or click to upload

@@ -152,7 +152,7 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
                 options={PCI_FORM_OPTIONS}
               />
               <InputField
-                label="Approved date"
+                label="[PC-IV-4.2] Approved date"
                 type="date"
                 value={row.approvedDate}
                 onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
@@ -164,7 +164,7 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
                 options={FINANCIAL_YEAR_OPTIONS}
               />
               <SelectField
-                label="Forum"
+                label="[PC-IV-4.1] Forum"
                 value={row.forum}
                 onChange={(e) => patchRow(idx, { forum: e.target.value })}
                 options={FORUM_OPTIONS}
