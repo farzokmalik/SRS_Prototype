@@ -31,7 +31,7 @@ export const Section3_PhysicalStatus: React.FC = () => {
     <div className="space-y-6">
       <div className="card shadow-sm">
         <TextAreaField 
-          label="Physical Highlights (Monthly Narrative)" 
+          label="[PC-III(b)-2.1] Physical Highlights (Monthly Narrative)" 
           placeholder="Describe the major physical achievements during this month..."
           rows={6}
           value={data.narrative}
@@ -60,10 +60,17 @@ export const Section3_PhysicalStatus: React.FC = () => {
             borderBottom: '1px solid hsl(var(--border))',
             background: 'hsl(var(--bg-main) / 0.2)'
           }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Item Description</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Unit</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>Quantity Achieved</div>
-            <div></div>
+          {[  
+            { code: 'PC-III(b)-2.2', label: 'Item Description' },
+            { code: 'PC-III(b)-2.3', label: 'Unit' },
+            { code: 'PC-III(b)-2.4', label: 'Qty Achieved' },
+          ].map(({ code, label }) => (
+            <div key={code} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+              <span style={{ fontSize: '0.58rem', fontWeight: 700, color: 'hsl(var(--primary))', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>[{code}]</span>
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>{label}</span>
+            </div>
+          ))}
+          <div />
           </div>
 
           <div className="divide-y divide-border">

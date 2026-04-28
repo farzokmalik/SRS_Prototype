@@ -27,10 +27,19 @@ export const Section1_Overview: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+       <div className="card shadow-sm">
+        <InputField 
+          label="[PC-III(a)-1.1] Project Name" 
+          placeholder="Enter the full name of the project as per PC-I"
+          value={s1.projectName}
+          onChange={(e: any) => handleUpdate('s1', { projectName: e.target.value })}
+          required
+        />
+      </div>
       {/* Project ID Selection */}
       <div className="card shadow-sm">
         <SelectField 
-          label="Project ID" 
+          label="[PC-III(a)-1.2] Project ID" 
           required 
           value={s1.projectId}
           onChange={(e: any) => handleUpdate('s1', { projectId: e.target.value })}
@@ -45,20 +54,12 @@ export const Section1_Overview: React.FC = () => {
       </div>
 
       {/* Project Basic Info */}
-      <div className="card shadow-sm">
-        <InputField 
-          label="Project Name" 
-          placeholder="Enter the full name of the project as per PC-I"
-          value={s1.projectName}
-          onChange={(e: any) => handleUpdate('s1', { projectName: e.target.value })}
-          required
-        />
-      </div>
+     
 
       {/* Capital Cost */}
       <div className="card shadow-sm">
         <InputField 
-          label="Approved Capital Cost (Rs. Million)" 
+          label="[PC-III(a)-1.3] Approved Capital Cost (Rs. Million)" 
           type="number"
           placeholder="0.00"
           value={s2.capitalCost}
@@ -75,14 +76,14 @@ export const Section1_Overview: React.FC = () => {
         <div className="space-y-4">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <InputField 
-              label="Actual" 
+              label="[PC-III(a)-1.4] Actual" 
               type="number" 
               placeholder="0.00" 
               value={s3.actual} 
               onChange={(e: any) => handleUpdate('s3', { actual: e.target.value })} 
             />
             <InputField 
-              label="Accrued" 
+              label="[PC-III(a)-1.5] Accrued" 
               type="number" 
               placeholder="0.00" 
               value={s3.accrued} 
@@ -91,7 +92,7 @@ export const Section1_Overview: React.FC = () => {
           </div>
           <div style={{ position: 'relative' }}>
             <InputField 
-              label="Total Expenditure (Rs. Million)" 
+              label="[PC-III(a)-1.6] Total Expenditure (Rs. Million)" 
               type="number"
               value={s3.total}
               disabled
@@ -109,21 +110,21 @@ export const Section1_Overview: React.FC = () => {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <InputField 
-            label="Total Allocation" 
+            label="[PC-III(a)-1.7] Total Allocation" 
             type="number" 
             placeholder="0.00" 
             value={s4.total} 
             onChange={(e: any) => handleUpdate('s4', { total: e.target.value })} 
           />
           <InputField 
-            label="Local Component" 
+            label="[PC-III(a)-1.8] Local Component" 
             type="number" 
             placeholder="0.00" 
             value={s4.local} 
             onChange={(e: any) => handleUpdate('s4', { local: e.target.value })} 
           />
           <InputField 
-            label="FEC component" 
+            label="[PC-III(a)-1.9] FEC Component" 
             type="number" 
             placeholder="0.00" 
             value={s4.fec} 

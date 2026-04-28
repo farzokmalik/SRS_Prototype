@@ -14,7 +14,7 @@ export const Section6_Approval: React.FC = () => {
     <div className="card">
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <SelectField 
-          label="Approval Forum" 
+          label="[PC-IV-4.1] Approval Forum" 
           required 
           value={data.approvalForum}
           onChange={(e) => handleUpdate({ approvalForum: e.target.value })}
@@ -28,7 +28,7 @@ export const Section6_Approval: React.FC = () => {
         />
         <div />
         <InputField 
-          label="Original Approval Date" 
+          label="[PC-IV-4.2] Original Approval Date" 
           type="date" 
           required 
           value={data.originalDate}

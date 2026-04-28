@@ -202,16 +202,16 @@ export const Section9_FinancialPhasing: React.FC = () => {
 
   const fmtRawLine = (n: number) => (n === 0 ? '—' : String(n));
 
-  const lfGroups: { key: LFKey; title: string }[] = [
-    { key: 'pciPhasing', title: 'PC-I phasing' },
-    { key: 'adpAllocation', title: 'ADP allocation' },
-    { key: 'pdReleases', title: 'P&D releases' },
-    { key: 'controllingReleases', title: 'Controlling releases' },
-    { key: 'expenditure', title: 'Expenditure' },
-    { key: 'lapsableFunds', title: 'Lapsable funds' },
+  const lfGroups: { key: LFKey; title: string; localNo: string; foreignNo: string }[] = [
+    { key: 'pciPhasing', title: 'PC-I phasing', localNo: '9.3', foreignNo: '9.4' },
+    { key: 'adpAllocation', title: 'ADP allocation', localNo: '9.5', foreignNo: '9.6' },
+    { key: 'pdReleases', title: 'P&D releases', localNo: '9.7', foreignNo: '9.8' },
+    { key: 'controllingReleases', title: 'Controlling releases', localNo: '9.9', foreignNo: '9.10' },
+    { key: 'expenditure', title: 'Expenditure', localNo: '9.11', foreignNo: '9.12' },
+    { key: 'lapsableFunds', title: 'Lapsable funds', localNo: '9.13', foreignNo: '9.14' },
   ];
 
-  const renderLFBlock = (idx: number, key: LFKey, title: string) => {
+  const renderLFBlock = (idx: number, key: LFKey, title: string, localNo: string, foreignNo: string) => {
     const lf = rows[idx][key];
     return (
       <div key={key}>
@@ -225,11 +225,11 @@ export const Section9_FinancialPhasing: React.FC = () => {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
           <div className="input-group" style={{ marginBottom: 0 }}>
-            <label className="label">Local</label>
+            <label className="label">{`[PC-IV-${localNo}] Local`}</label>
             <StackedRawMillionInput raw={lf.local} onChange={(v) => patchLF(idx, key, { local: v })} />
           </div>
           <div className="input-group" style={{ marginBottom: 0 }}>
-            <label className="label">Foreign</label>
+            <label className="label">{`[PC-IV-${foreignNo}] Foreign`}</label>
             <StackedRawMillionInput raw={lf.foreign} onChange={(v) => patchLF(idx, key, { foreign: v })} />
           </div>
           <div className="input-group" style={{ marginBottom: 0 }}>
@@ -305,20 +305,20 @@ export const Section9_FinancialPhasing: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '0.5rem' }}>
                 <InputField
-                  label="Year / phase"
+                  label="[PC-IV-9.1] Year / phase"
                   placeholder="e.g. 2024-25"
                   value={row.yearPhase}
                   onChange={(e) => patchRow(idx, { yearPhase: e.target.value })}
                 />
                 <InputField
-                  label="Object code"
+                  label="[PC-IV-9.2] Object code"
                   placeholder="e.g. To Others"
                   value={row.objectCode}
                   onChange={(e) => patchRow(idx, { objectCode: e.target.value })}
                 />
               </div>
 
-              {lfGroups.map(({ key, title }) => renderLFBlock(idx, key, title))}
+              {lfGroups.map(({ key, title, localNo, foreignNo }) => renderLFBlock(idx, key, title, localNo, foreignNo))}
             </div>
           ))}
         </div>
@@ -343,7 +343,7 @@ export const Section9_FinancialPhasing: React.FC = () => {
             borderBottom: '1px solid hsl(var(--border))',
           }}
         >
-          Total
+          [PC-IV-9.15] Total
         </p>
         <div
           style={{

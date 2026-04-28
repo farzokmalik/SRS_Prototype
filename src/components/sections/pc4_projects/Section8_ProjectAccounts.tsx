@@ -9,11 +9,11 @@ const LAPSABLE_OPTIONS = [
 ];
 
 const NATURE_ROWS = [
-  { key: 'pla', label: 'PLA' },
-  { key: 'assignment', label: 'Assignment Account' },
-  { key: 'current', label: 'Current Account' },
-  { key: 'saving', label: 'Saving Account' },
-  { key: 'other', label: 'Other' },
+  { key: 'pla', label: 'PLA', dateNo: '8.1', lapNo: '8.2' },
+  { key: 'assignment', label: 'Assignment Account', dateNo: '8.3', lapNo: '8.4' },
+  { key: 'current', label: 'Current Account', dateNo: '8.5', lapNo: '8.6' },
+  { key: 'saving', label: 'Saving Account', dateNo: '8.7', lapNo: '8.8' },
+  { key: 'other', label: 'Other', dateNo: '8.9', lapNo: '8.10' },
 ] as const;
 
 type NatureKey = (typeof NATURE_ROWS)[number]['key'];
@@ -80,7 +80,7 @@ export const Section8_ProjectAccounts: React.FC = () => {
       <div>
         <h3 style={sectionTitleStyle}>Nature of account</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {NATURE_ROWS.map(({ key, label }) => (
+          {NATURE_ROWS.map(({ key, label, dateNo, lapNo }) => (
             <div key={key} className="card" style={accountCardStyle}>
               <p
                 style={{
@@ -96,14 +96,14 @@ export const Section8_ProjectAccounts: React.FC = () => {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '28rem' }}>
                 <InputField
-                  label="Date of opening"
+                  label={`[PC-IV-${dateNo}] Date of opening`}
                   type="date"
                   description="mm/dd/yyyy"
                   value={nature[key].dateOpened}
                   onChange={(e) => patchNature(key, { dateOpened: e.target.value })}
                 />
                 <div className="input-group" style={{ marginBottom: 0 }}>
-                  <label className="label">Lapsable / Non-lapsable</label>
+                  <label className="label">{`[PC-IV-${lapNo}] Lapsable / Non-lapsable`}</label>
                   <select
                     className="select"
                     style={{ width: '100%', minHeight: '42px', background: '#fff' }}
@@ -127,14 +127,14 @@ export const Section8_ProjectAccounts: React.FC = () => {
         <h3 style={{ ...sectionTitleStyle, marginBottom: '1.25rem' }}>Status of account</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <TextAreaField
-            label="If closed, mention the date"
+            label="[PC-IV-8.11] If closed, mention the date"
             placeholder="e.g. account closed on …"
             rows={3}
             value={typeof data.closedDate === 'string' ? data.closedDate : ''}
             onChange={(e) => handleUpdate({ closedDate: e.target.value })}
           />
           <TextAreaField
-            label="If not closed, mention reasons thereof and tentative closure date"
+            label="[PC-IV-8.12] If not closed, mention reasons thereof and tentative closure date"
             placeholder="Reasons and tentative closure date"
             rows={4}
             value={typeof data.notClosedReasonsTentativeDate === 'string' ? data.notClosedReasonsTentativeDate : ''}

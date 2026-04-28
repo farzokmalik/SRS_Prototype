@@ -13,8 +13,18 @@ export const Section1_Identification: React.FC = () => {
   return (
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div>
+          <label className="label">[PC-V-1.1] Project Name</label>
+          <input 
+            className="input" 
+            placeholder="Enter the official project title..."
+            value={data.projectName}
+            onChange={(e) => handleUpdate({ projectName: e.target.value })}
+          />
+        </div>
+
         <SelectField 
-          label="Project ID" 
+          label="[PC-V-1.2] Project ID" 
           required 
           value={data.projectId}
           onChange={(e) => handleUpdate({ projectId: e.target.value })}
@@ -26,23 +36,12 @@ export const Section1_Identification: React.FC = () => {
             { value: 'PRJ-005', label: 'PRJ-005' }
           ]}
         />
-        <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Project Name</label>
-          <input 
-            className="input" 
-            style={{ background: '#fff' }}
-            placeholder="Enter the official project title..."
-            value={data.projectName}
-            onChange={(e) => handleUpdate({ projectName: e.target.value })}
-          />
-        </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
           <div>
-            <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Reporting Financial Year</label>
+            <label className="label">[PC-V-1.3] Reporting Financial Year</label>
             <select 
               className="select" 
-              style={{ background: '#fff' }}
               value={data.reportingYear}
               onChange={(e) => handleUpdate({ reportingYear: e.target.value })}
             >
@@ -55,7 +54,7 @@ export const Section1_Identification: React.FC = () => {
             </select>
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Year Number after Completion</label>
+            <label className="label">[PC-V-1.4] Year Number after Completion</label>
             <div style={{ display: 'flex', gap: '1rem' }}>
               {[1, 2, 3, 4, 5].map((num) => (
                 <button
@@ -98,10 +97,10 @@ export const Section2_Objectives: React.FC = () => {
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Objectives and Scope (as per PC-I)</label>
+          <label className="label">[PC-V-2.1] Objectives and Scope (as per PC-I)</label>
           <textarea 
             className="input" 
-            style={{ background: 'hsl(var(--bg-main) / 0.3)', minHeight: '120px', paddingTop: '0.75rem' }}
+            style={{ minHeight: '120px', paddingTop: '0.75rem' }}
             placeholder="Pre-filled objectives from PC-I..."
             value={data.objectives}
             onChange={(e) => handleUpdate({ objectives: e.target.value })}
@@ -110,10 +109,10 @@ export const Section2_Objectives: React.FC = () => {
         </div>
 
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Extent to which Objectives have been met</label>
+          <label className="label">[PC-V-2.2] Extent to which Objectives have been met</label>
           <textarea 
             className="input" 
-            style={{ background: '#fff', minHeight: '120px', paddingTop: '0.75rem' }}
+            style={{ minHeight: '120px', paddingTop: '0.75rem' }}
             placeholder="Describe the accomplishments relative to the stated objectives..."
             value={data.extentMet}
             onChange={(e) => handleUpdate({ extentMet: e.target.value })}
@@ -121,7 +120,7 @@ export const Section2_Objectives: React.FC = () => {
         </div>
 
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Impact Assessment Status</label>
+          <label className="label">[PC-V-2.3] Impact Assessment Status</label>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             {['Fully met', 'Partially met', 'Not met'].map((status) => (
               <label key={status} style={{ 

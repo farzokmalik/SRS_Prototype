@@ -258,7 +258,7 @@ export const Section17_AssetsResponsibility: React.FC = () => {
               </div>
 
               <div className="input-group" style={{ marginBottom: '1.25rem' }}>
-                <label className="label">Indicate agency</label>
+                <label className="label">[PC-IV-17.1] Indicate agency</label>
                 <select
                   className="select"
                   style={{ width: '100%', minHeight: '42px', background: '#fff' }}
@@ -275,13 +275,13 @@ export const Section17_AssetsResponsibility: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }}>
                 <InputField
-                  label="Item"
+                  label="[PC-IV-17.2] Item"
                   placeholder="Item"
                   value={row.item}
                   onChange={(e) => patchRow(idx, { item: e.target.value })}
                 />
                 <InputField
-                  label="Description"
+                  label="[PC-IV-17.3] Description"
                   placeholder="Description"
                   value={row.description}
                   onChange={(e) => patchRow(idx, { description: e.target.value })}
@@ -289,7 +289,7 @@ export const Section17_AssetsResponsibility: React.FC = () => {
               </div>
 
               <div className="input-group" style={{ marginBottom: '1.25rem' }}>
-                <label className="label">Specification</label>
+                <label className="label">[PC-IV-17.4] Specification</label>
                 <textarea
                   className="input"
                   rows={3}
@@ -300,7 +300,7 @@ export const Section17_AssetsResponsibility: React.FC = () => {
               </div>
 
               <div className="input-group" style={{ marginBottom: '1.25rem' }}>
-                <label className="label">Location</label>
+                <label className="label">[PC-IV-17.5] Physical Location</label>
                 <textarea
                   className="input"
                   rows={3}
@@ -312,13 +312,13 @@ export const Section17_AssetsResponsibility: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }}>
                 <InputField
-                  label="Unit"
+                  label="[PC-IV-17.6] Unit"
                   placeholder="Unit"
                   value={row.unit}
                   onChange={(e) => patchRow(idx, { unit: e.target.value })}
                 />
                 <InputField
-                  label="Quantity"
+                  label="[PC-IV-17.7] Quantity"
                   type="number"
                   step="any"
                   placeholder="0"
@@ -329,11 +329,11 @@ export const Section17_AssetsResponsibility: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
                 <div className="input-group">
-                  <label className="label">Cost (Rs.)</label>
+                  <label className="label">[PC-IV-17.8] Cost (Rs.)</label>
                   <StackedCostInput raw={row.costRupee} onChange={(v) => patchRow(idx, { costRupee: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Total (Rs.)</label>
+                  <label className="label">[PC-IV-17.9] Total Value (Rs.)</label>
                   <StackedTotalDisplay qty={row.quantity} cost={row.costRupee} />
                 </div>
               </div>

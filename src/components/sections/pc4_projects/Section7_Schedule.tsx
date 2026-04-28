@@ -166,13 +166,13 @@ export const Section7_Schedule: React.FC = () => {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <InputField
-                label="Start date"
+                label="[PC-IV-7.1] Commencement date"
                 type="date"
                 value={row.actualStart}
                 onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
               />
               <InputField
-                label="End date"
+                label="[PC-IV-7.2] Completion date"
                 type="date"
                 value={row.actualEnd}
                 onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}

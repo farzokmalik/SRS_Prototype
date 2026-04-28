@@ -33,7 +33,7 @@ export const Section3_RecurringCost: React.FC = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Planned Cost (PKR Million)</label>
+            <label className="label">[PC-V-3.1] Planned Cost (PKR Million)</label>
             <input 
               type="number" 
               className="input" 
@@ -44,7 +44,7 @@ export const Section3_RecurringCost: React.FC = () => {
             />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Actual Cost (PKR Million)</label>
+            <label className="label">[PC-V-3.2] Actual Cost (PKR Million)</label>
             <input 
               type="number" 
               className="input" 
@@ -55,7 +55,7 @@ export const Section3_RecurringCost: React.FC = () => {
             />
           </div>
           <div>
-            <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Variance</label>
+            <label className="label">[PC-V-3.3] Overall Cost Variance</label>
             <div className="input" style={{ 
               background: 'hsl(var(--bg-main) / 0.3)', 
               display: 'flex', 
@@ -92,15 +92,15 @@ export const Section3_RecurringCost: React.FC = () => {
               }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 48px', gap: '1.25rem', alignItems: 'end' }}>
                   <div>
-                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Component Name</label>
+                    <label className="label">[PC-V-3.4] Component Name</label>
                     <input className="input" style={{ background: '#fff' }} placeholder="e.g. Salaries" value={c.name} onChange={(e) => updateComponent(idx, { name: e.target.value })} />
                   </div>
                   <div>
-                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Planned (M)</label>
+                    <label className="label">[PC-V-3.5] Component Planned Cost (M)</label>
                     <input type="number" className="input" style={{ background: '#fff' }} placeholder="0.00" value={c.planned} onChange={(e) => updateComponent(idx, { planned: e.target.value })} />
                   </div>
                   <div>
-                    <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Actual (M)</label>
+                    <label className="label">[PC-V-3.6] Component Actual Cost (M)</label>
                     <input type="number" className="input" style={{ background: '#fff' }} placeholder="0.00" value={c.actual} onChange={(e) => updateComponent(idx, { actual: e.target.value })} />
                   </div>
                   <button 
@@ -173,7 +173,7 @@ export const Section4_Manpower: React.FC = () => {
             }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 1fr 1fr 1fr 48px', gap: '1.25rem', alignItems: 'end' }}>
                 <div>
-                  <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Category</label>
+                  <label className="label">[PC-V-4.1] Staff Category</label>
                   <select className="select" style={{ background: '#fff' }} value={staff.category} onChange={(e) => updateStaff(idx, { category: e.target.value })}>
                     <option value="Administrative">Administrative</option>
                     <option value="Technical">Technical</option>
@@ -182,19 +182,19 @@ export const Section4_Manpower: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Designation</label>
+                  <label className="label">[PC-V-4.2] Designation</label>
                   <input className="input" style={{ background: '#fff' }} placeholder="e.g. Director" value={staff.designation} onChange={(e) => updateStaff(idx, { designation: e.target.value })} />
                 </div>
                 <div>
-                  <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Planned</label>
+                  <label className="label">[PC-V-4.3] Planned Staffing</label>
                   <input type="number" className="input" style={{ background: '#fff' }} placeholder="0" value={staff.planned} onChange={(e) => updateStaff(idx, { planned: e.target.value })} />
                 </div>
                 <div>
-                  <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Actual</label>
+                  <label className="label">[PC-V-4.4] Actual Staffing</label>
                   <input type="number" className="input" style={{ background: '#fff' }} placeholder="0" value={staff.actual} onChange={(e) => updateStaff(idx, { actual: e.target.value })} />
                 </div>
                 <div>
-                  <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Variance</label>
+                  <label className="label">[PC-V-4.5] Manpower Variance</label>
                   <div className="input" style={{ 
                     background: 'hsl(var(--bg-main) / 0.3)', 
                     display: 'flex', 

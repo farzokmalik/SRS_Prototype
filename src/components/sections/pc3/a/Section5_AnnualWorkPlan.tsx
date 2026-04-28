@@ -450,7 +450,7 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
             {selectedNode.planData && (
               <div style={{ marginBottom: '2.5rem' }}>
                 <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'hsl(var(--primary))', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid hsl(var(--border))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  PC-I Financial Metadata (Read-Only)
+                  [PC-III(a)-2.1] PC-I Financial Metadata (Read-Only)
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
                   {[
@@ -473,7 +473,7 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
                 {/* Object Codes Summary (Read-Only) */}
                 {selectedNode.planData.objectCodes.length > 0 && (
                   <div style={{ marginTop: '1.5rem' }}>
-                    <h4 style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--primary))', marginBottom: '0.75rem' }}>Object Codes from PC-I</h4>
+                    <h4 style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--primary))', marginBottom: '0.75rem' }}>[PC-III(a)-2.2] Object Codes from PC-I</h4>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                       {selectedNode.planData.objectCodes.map(obj => {
                         const objTotal = obj.details.reduce((s, d) => s + (parseFloat(d.localCost) || 0) + (parseFloat(d.foreignCost) || 0), 0);
@@ -548,8 +548,8 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
                     <div style={{ padding: '1.25rem' }}>
                       {/* Description + Unit row */}
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px', gap: '1.25rem', marginBottom: '1.5rem' }}>
-                        <InputField label="Item Description" placeholder="e.g. Earth Work, Pipe Laying, Structure..." value={aw.description} onChange={e => updateAW(selectedNode.id, aw.id, { description: e.target.value })} />
-                        <InputField label="Unit of Measurement" placeholder="e.g. M3, Km, No." value={aw.unit} onChange={e => updateAW(selectedNode.id, aw.id, { unit: e.target.value })} />
+                        <InputField label="[PC-III(a)-2.3] Item Description" placeholder="e.g. Earth Work, Pipe Laying, Structure..." value={aw.description} onChange={e => updateAW(selectedNode.id, aw.id, { description: e.target.value })} />
+                        <InputField label="[PC-III(a)-2.4] Unit of Measurement" placeholder="e.g. M3, Km, No." value={aw.unit} onChange={e => updateAW(selectedNode.id, aw.id, { unit: e.target.value })} />
                       </div>
 
                       {/* 4 Quarters */}
@@ -581,19 +581,19 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
 
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>Unit</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.5] Unit</label>
                                   <input className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder={aw.unit || 'Unit'} value={qd.unit} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { unit: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>PC-I Qty</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.6] PC-I Qty</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.pciQty} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { pciQty: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>Achievement</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.7] Achievement</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.achievement} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { achievement: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>CY Target</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.8] CY Target</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.target} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { target: e.target.value })} />
                                 </div>
                               </div>

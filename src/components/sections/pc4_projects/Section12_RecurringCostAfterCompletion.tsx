@@ -185,7 +185,7 @@ export const Section12_RecurringCostAfterCompletion: React.FC = () => {
 
       <div className="card">
         <RTEditor
-          label="Management structure manpower requirements information"
+          label="[PC-IV-12.1] Management structure manpower requirements information"
           value={html}
           onChange={(v) => handleUpdate({ managementManpowerHtml: v })}
         />
@@ -252,7 +252,7 @@ export const Section12_RecurringCostAfterCompletion: React.FC = () => {
               </div>
 
               <InputField
-                label="Components"
+                label="[PC-IV-12.2] Recurring Component"
                 placeholder="e.g. A05270"
                 value={row.component}
                 onChange={(e) => patchRow(idx, { component: e.target.value })}
@@ -261,11 +261,11 @@ export const Section12_RecurringCostAfterCompletion: React.FC = () => {
               <p style={{ ...sectionLabelStyle, marginTop: '1.25rem' }}>PC-I estimates</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                 <div className="input-group">
-                  <label className="label">Local</label>
+                  <label className="label">[PC-IV-12.3] Local</label>
                   <StackedRawMillionInput raw={row.pciLocal} onChange={(v) => patchRow(idx, { pciLocal: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">FEC</label>
+                  <label className="label">[PC-IV-12.4] FEC</label>
                   <StackedRawMillionInput raw={row.pciFec} onChange={(v) => patchRow(idx, { pciFec: v })} />
                 </div>
                 <div className="input-group">
@@ -277,11 +277,11 @@ export const Section12_RecurringCostAfterCompletion: React.FC = () => {
               <p style={sectionLabelStyle}>Actual expenditure</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                 <div className="input-group">
-                  <label className="label">Local</label>
+                  <label className="label">[PC-IV-12.5] Local</label>
                   <StackedRawMillionInput raw={row.actualLocal} onChange={(v) => patchRow(idx, { actualLocal: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">FEC</label>
+                  <label className="label">[PC-IV-12.6] FEC</label>
                   <StackedRawMillionInput raw={row.actualFec} onChange={(v) => patchRow(idx, { actualFec: v })} />
                 </div>
                 <div className="input-group">

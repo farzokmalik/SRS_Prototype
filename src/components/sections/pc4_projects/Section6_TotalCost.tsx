@@ -349,7 +349,7 @@ export const Section6_TotalCost: React.FC = () => {
 
               <p style={{ ...sectionLabelStyle, marginTop: 0 }}>PC-I cost (approved)</p>
               <div className="input-group">
-                <label className="label">Total cost</label>
+                <label className="label">[PC-IV-6.1] Total cost</label>
                 <select
                   className="select"
                   style={{
@@ -370,23 +370,23 @@ export const Section6_TotalCost: React.FC = () => {
               <p style={{ ...sectionLabelStyle, marginTop: '1.25rem' }}>Approved cost breakdown</p>
               <div style={breakdownGridStyle}>
                 <div className="input-group">
-                  <label className="label">Local — capital</label>
+                  <label className="label">[PC-IV-6.2] Local — capital</label>
                   <StackedRawMillionInput raw={pci.localCapital} onChange={(v) => patchPci(idx, { localCapital: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Local — revenue</label>
+                  <label className="label">[PC-IV-6.3] Local — revenue</label>
                   <StackedRawMillionInput raw={pci.localRevenue} onChange={(v) => patchPci(idx, { localRevenue: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Foreign — capital</label>
+                  <label className="label">[PC-IV-6.4] Foreign — capital</label>
                   <StackedRawMillionInput raw={pci.foreignCapital} onChange={(v) => patchPci(idx, { foreignCapital: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Foreign — revenue</label>
+                  <label className="label">[PC-IV-6.5] Foreign — revenue</label>
                   <StackedRawMillionInput raw={pci.foreignRevenue} onChange={(v) => patchPci(idx, { foreignRevenue: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Total</label>
+                  <label className="label">[PC-IV-6.6] Total</label>
                   <ReadOnlyStackedTotal rawStr={pciLineStr} />
                 </div>
               </div>
@@ -394,27 +394,27 @@ export const Section6_TotalCost: React.FC = () => {
               <p style={{ ...sectionLabelStyle, marginTop: '1.5rem' }}>Actual expenditure</p>
               <div style={breakdownGridStyle}>
                 <div className="input-group">
-                  <label className="label">Total (Rs.)</label>
+                  <label className="label">[PC-IV-6.7] Total (Rs.)</label>
                   <StackedRawMillionInput raw={row.totalRupee} onChange={(v) => patchActual(idx, { totalRupee: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Local — capital</label>
+                  <label className="label">[PC-IV-6.8] Local — capital</label>
                   <StackedRawMillionInput raw={row.localCapital} onChange={(v) => patchActual(idx, { localCapital: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Local — revenue</label>
+                  <label className="label">[PC-IV-6.9] Local — revenue</label>
                   <StackedRawMillionInput raw={row.localRevenue} onChange={(v) => patchActual(idx, { localRevenue: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Foreign — capital</label>
+                  <label className="label">[PC-IV-6.10] Foreign — capital</label>
                   <StackedRawMillionInput raw={row.foreignCapital} onChange={(v) => patchActual(idx, { foreignCapital: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Foreign — revenue</label>
+                  <label className="label">[PC-IV-6.11] Foreign — revenue</label>
                   <StackedRawMillionInput raw={row.foreignRevenue} onChange={(v) => patchActual(idx, { foreignRevenue: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">Total</label>
+                  <label className="label">[PC-IV-6.12] Total</label>
                   <ReadOnlyStackedTotal rawStr={rowLineStr} />
                 </div>
               </div>

@@ -13,7 +13,7 @@ export const Section11_Marketing: React.FC = () => {
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Marketing Strategies (as per PC-I)</label>
+          <label className="label">[PC-V-11.1] Marketing Strategies (as per PC-I)</label>
           <textarea 
             className="input" 
             style={{ background: 'hsl(var(--bg-main) / 0.3)', minHeight: '120px', paddingTop: '0.75rem' }} 
@@ -27,7 +27,7 @@ export const Section11_Marketing: React.FC = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.25rem' }}>Difference from PC-I</h4>
-              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>Do the current marketing activities differ significantly from what was planned in PC-I?</p>
+              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>[PC-V-11.2] Do the current marketing activities differ significantly from what was planned in PC-I?</p>
             </div>
             <div style={{ display: 'flex', background: '#fff', padding: '0.4rem', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--border))' }}>
               {[true, false].map((val) => (
@@ -50,7 +50,7 @@ export const Section11_Marketing: React.FC = () => {
 
           {data.differsFromPCI && (
             <div style={{ marginTop: '1.5rem', animation: 'slideDown 0.3s ease' }}>
-              <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Details of Changes</label>
+              <label className="label">[PC-V-11.3] Details of Strategy Changes</label>
               <textarea 
                 className="input" 
                 style={{ background: '#fff', minHeight: '100px', paddingTop: '0.75rem' }} 
@@ -78,7 +78,7 @@ export const Section12_Maintenance: React.FC = () => {
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Maintenance Arrangements Made</label>
+          <label className="label">[PC-V-12.1] Maintenance Arrangements Made</label>
           <textarea 
             className="input" 
             style={{ background: '#fff', minHeight: '120px', paddingTop: '0.75rem' }} 
@@ -92,7 +92,7 @@ export const Section12_Maintenance: React.FC = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.25rem' }}>Annual Maintenance Performance</h4>
-              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>Was the planned annual maintenance carried out during the reporting year?</p>
+              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>[PC-V-12.2] Was the planned annual maintenance carried out during the reporting year?</p>
             </div>
             <div style={{ display: 'flex', background: '#fff', padding: '0.4rem', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--border))' }}>
               {[true, false].map((val) => (
@@ -115,7 +115,7 @@ export const Section12_Maintenance: React.FC = () => {
 
           {!data.annualMaintenance && (
             <div style={{ marginTop: '1.5rem', animation: 'slideDown 0.3s ease' }}>
-              <label className="label" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>Reasons for Non-Performance</label>
+              <label className="label">[PC-V-12.3] Reasons for Non-Performance</label>
               <textarea 
                 className="input" 
                 style={{ background: '#fff', minHeight: '100px', paddingTop: '0.75rem' }} 
@@ -144,7 +144,7 @@ export const Section13_OutputTargets: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
           <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.25rem', color: 'hsl(var(--primary))' }}>Project Output Targets Achievement</h4>
-          <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>To what extent have the output targets for the reporting financial year been achieved?</p>
+          <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>[PC-V-13.1] To what extent have the output targets for the reporting financial year been achieved?</p>
         </div>
 
         <div style={{ display: 'flex', gap: '1.5rem' }}>
@@ -174,7 +174,7 @@ export const Section13_OutputTargets: React.FC = () => {
 
         {(data.status === 'No' || data.status === 'Partially') && (
           <div style={{ animation: 'slideDown 0.3s ease' }}>
-            <label className="label" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>Reasons for Shortfall</label>
+            <label className="label">[PC-V-13.2] Reasons for Shortfall</label>
             <textarea 
               className="input" 
               style={{ background: '#fff', minHeight: '120px', paddingTop: '0.75rem' }} 
