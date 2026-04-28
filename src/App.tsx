@@ -32,6 +32,7 @@ import { Section19_FocusOnMarginalisation } from './components/sections/pc1_proj
 import { PC2Section1_Overview } from './components/pc2/PC2Section1_Overview';
 import { PC2Section3_Location } from './components/pc2/PC2Section3_Location';
 import { PC2Section4_Funding } from './components/pc2/PC2Section4_Funding';
+import { PC2Section5_Objectives } from './components/pc2/PC2Section5_Objectives';
 import { PC2Section6_Description } from './components/pc2/PC2Section6_Description';
 import { PC2Section7_CostEstimation } from './components/pc2/PC2Section7_CostEstimation';
 import { PC2Section8_StudyTORS } from './components/pc2/PC2Section8_StudyTORS';
@@ -191,7 +192,7 @@ const PC2FormContent = () => {
     case 1:  return <PC2Section1_Overview />;
     case 2:  return <PC2Section3_Location />;
     case 3:  return <PC2Section4_Funding />;
-    case 4:  return <Section5_Objectives />;
+    case 4:  return <PC2Section5_Objectives />;
     case 5:  return <PC2Section6_Description />;
     case 6:  return <PC2Section7_CostEstimation />;
     case 7:  return <PC2Section8_StudyTORS />;
