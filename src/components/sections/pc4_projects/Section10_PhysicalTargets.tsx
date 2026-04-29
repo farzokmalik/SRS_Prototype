@@ -136,7 +136,7 @@ export const Section10_PhysicalTargets: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
                 <InputField
-                  label="[PC-IV-10.1] Items (as per PC-I)"
+                  label="[PC-IV-10.1] Items"
                   placeholder="Item description"
                   value={row.item}
                   onChange={(e) => patchRow(idx, { item: e.target.value })}
@@ -156,7 +156,7 @@ export const Section10_PhysicalTargets: React.FC = () => {
                   onChange={(e) => patchRow(idx, { quantity: e.target.value })}
                 />
                 <div className="input-group">
-                  <label className="label">[PC-IV-10.4] Actual achievements</label>
+                  <label className="label">[PC-IV-10.4] Actual Achievements</label>
                   <select
                     className="select"
                     style={{ width: '100%', minHeight: '42px', background: '#fff' }}

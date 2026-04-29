@@ -220,12 +220,6 @@ const sectionLabelStyle: React.CSSProperties = {
   margin: '1.25rem 0 0.75rem',
 };
 
-const breakdownGridStyle: React.CSSProperties = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(9.5rem, 1fr))',
-  gap: '1rem',
-};
-
 export const Section6_TotalCost: React.FC = () => {
   const { formData, updateSection } = useForm();
   const data = formData.pc4.s6 as Record<string, unknown>;
@@ -348,14 +342,16 @@ export const Section6_TotalCost: React.FC = () => {
               </div>
 
               <p style={{ ...sectionLabelStyle, marginTop: 0 }}>PC-I cost (approved)</p>
-              <div className="input-group">
-                <label className="label">[PC-IV-6.1] Total cost</label>
+              <div className="input-group" style={{ marginBottom: '1.25rem' }}>
+                <label className="label" style={{ fontWeight: 600, fontSize: '0.8125rem' }}>[PC-IV-6.1] Cost Kind</label>
                 <select
                   className="select"
                   style={{
                     width: '100%',
-                    minHeight: '42px',
+                    maxWidth: '320px',
+                    minHeight: '40px',
                     backgroundColor: '#fff',
+                    borderRadius: '8px',
                   }}
                   value={pci.costKind}
                   onChange={(e) => patchPci(idx, { costKind: e.target.value })}
@@ -367,56 +363,54 @@ export const Section6_TotalCost: React.FC = () => {
                   ))}
                 </select>
               </div>
-              <p style={{ ...sectionLabelStyle, marginTop: '1.25rem' }}>Approved cost breakdown</p>
-              <div style={breakdownGridStyle}>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.2] Local — capital</label>
-                  <StackedRawMillionInput raw={pci.localCapital} onChange={(v) => patchPci(idx, { localCapital: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.3] Local — revenue</label>
-                  <StackedRawMillionInput raw={pci.localRevenue} onChange={(v) => patchPci(idx, { localRevenue: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.4] Foreign — capital</label>
-                  <StackedRawMillionInput raw={pci.foreignCapital} onChange={(v) => patchPci(idx, { foreignCapital: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.5] Foreign — revenue</label>
-                  <StackedRawMillionInput raw={pci.foreignRevenue} onChange={(v) => patchPci(idx, { foreignRevenue: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.6] Total</label>
-                  <ReadOnlyStackedTotal rawStr={pciLineStr} />
-                </div>
+
+              <div className="table-responsive" style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
+                <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '0.4rem 0.4rem', width: '100%', minWidth: '800px', marginLeft: '-0.4rem' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '20%' }}>[PC-IV-6.2] Local — capital</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '20%' }}>[PC-IV-6.3] Local — revenue</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '20%' }}>[PC-IV-6.4] Foreign — capital</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '20%' }}>[PC-IV-6.5] Foreign — revenue</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '20%' }}>[PC-IV-6.6] Total Approved Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><StackedRawMillionInput raw={pci.localCapital} onChange={(v) => patchPci(idx, { localCapital: v })} /></td>
+                      <td><StackedRawMillionInput raw={pci.localRevenue} onChange={(v) => patchPci(idx, { localRevenue: v })} /></td>
+                      <td><StackedRawMillionInput raw={pci.foreignCapital} onChange={(v) => patchPci(idx, { foreignCapital: v })} /></td>
+                      <td><StackedRawMillionInput raw={pci.foreignRevenue} onChange={(v) => patchPci(idx, { foreignRevenue: v })} /></td>
+                      <td><ReadOnlyStackedTotal rawStr={pciLineStr} /></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
               <p style={{ ...sectionLabelStyle, marginTop: '1.5rem' }}>Actual expenditure</p>
-              <div style={breakdownGridStyle}>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.7] Total (Rs.)</label>
-                  <StackedRawMillionInput raw={row.totalRupee} onChange={(v) => patchActual(idx, { totalRupee: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.8] Local — capital</label>
-                  <StackedRawMillionInput raw={row.localCapital} onChange={(v) => patchActual(idx, { localCapital: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.9] Local — revenue</label>
-                  <StackedRawMillionInput raw={row.localRevenue} onChange={(v) => patchActual(idx, { localRevenue: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.10] Foreign — capital</label>
-                  <StackedRawMillionInput raw={row.foreignCapital} onChange={(v) => patchActual(idx, { foreignCapital: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.11] Foreign — revenue</label>
-                  <StackedRawMillionInput raw={row.foreignRevenue} onChange={(v) => patchActual(idx, { foreignRevenue: v })} />
-                </div>
-                <div className="input-group">
-                  <label className="label">[PC-IV-6.12] Total</label>
-                  <ReadOnlyStackedTotal rawStr={rowLineStr} />
-                </div>
+              <div className="table-responsive" style={{ overflowX: 'auto' }}>
+                <table className="table" style={{ borderCollapse: 'separate', borderSpacing: '0.4rem 0.4rem', width: '100%', minWidth: '960px', marginLeft: '-0.4rem' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.7] Total (Rs.)</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.8] Local — capital</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.9] Local — revenue</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.10] Foreign — capital</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.11] Foreign — revenue</th>
+                      <th style={{ background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'left', paddingBottom: '0.5rem', width: '16.6%' }}>[PC-IV-6.12] Total Actual Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><StackedRawMillionInput raw={row.totalRupee} onChange={(v) => patchActual(idx, { totalRupee: v })} /></td>
+                      <td><StackedRawMillionInput raw={row.localCapital} onChange={(v) => patchActual(idx, { localCapital: v })} /></td>
+                      <td><StackedRawMillionInput raw={row.localRevenue} onChange={(v) => patchActual(idx, { localRevenue: v })} /></td>
+                      <td><StackedRawMillionInput raw={row.foreignCapital} onChange={(v) => patchActual(idx, { foreignCapital: v })} /></td>
+                      <td><StackedRawMillionInput raw={row.foreignRevenue} onChange={(v) => patchActual(idx, { foreignRevenue: v })} /></td>
+                      <td><ReadOnlyStackedTotal rawStr={rowLineStr} /></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           );
@@ -425,7 +419,7 @@ export const Section6_TotalCost: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Annexures"
+          label="[PC-IV-6.13] Annexures"
           files={annexures}
           onUpload={(files) => handleUpdate({ annexures: files })}
           onRemove={(i) => handleUpdate({ annexures: annexures.filter((_: unknown, j: number) => j !== i) })}

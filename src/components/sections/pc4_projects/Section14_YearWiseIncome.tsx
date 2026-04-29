@@ -109,44 +109,44 @@ export const Section14_YearWiseIncome: React.FC = () => {
               )}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-              <div className="input-group">
-                <label className="label">As estimated in the PC-I</label>
-                <textarea
-                  className="input"
-                  rows={4}
-                  placeholder="As estimated in the PC-I…"
-                  value={row.asEstimatedInPci}
-                  onChange={(e) => patchRow(idx, { asEstimatedInPci: e.target.value })}
-                  style={{
-                    width: '100%',
-                    minHeight: '5rem',
-                    resize: 'vertical',
-                    fontSize: '0.8125rem',
-                    lineHeight: 1.5,
-                    paddingTop: '0.5rem',
-                  }}
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+                <div className="input-group">
+                  <label className="label">[PC-IV-14.1] Estimated Income</label>
+                  <textarea
+                    className="input"
+                    rows={4}
+                    placeholder="Income as estimated in PC-I…"
+                    value={row.asEstimatedInPci}
+                    onChange={(e) => patchRow(idx, { asEstimatedInPci: e.target.value })}
+                    style={{
+                      width: '100%',
+                      minHeight: '5rem',
+                      resize: 'vertical',
+                      fontSize: '0.8125rem',
+                      lineHeight: 1.5,
+                      paddingTop: '0.5rem',
+                    }}
+                  />
+                </div>
+                <div className="input-group">
+                  <label className="label">[PC-IV-14.2] Actual Income</label>
+                  <textarea
+                    className="input"
+                    rows={4}
+                    placeholder="Actual income generated after completion…"
+                    value={row.actual}
+                    onChange={(e) => patchRow(idx, { actual: e.target.value })}
+                    style={{
+                      width: '100%',
+                      minHeight: '5rem',
+                      resize: 'vertical',
+                      fontSize: '0.8125rem',
+                      lineHeight: 1.5,
+                      paddingTop: '0.5rem',
+                    }}
+                  />
+                </div>
               </div>
-              <div className="input-group">
-                <label className="label">Actual</label>
-                <textarea
-                  className="input"
-                  rows={4}
-                  placeholder="Actual income or achievement…"
-                  value={row.actual}
-                  onChange={(e) => patchRow(idx, { actual: e.target.value })}
-                  style={{
-                    width: '100%',
-                    minHeight: '5rem',
-                    resize: 'vertical',
-                    fontSize: '0.8125rem',
-                    lineHeight: 1.5,
-                    paddingTop: '0.5rem',
-                  }}
-                />
-              </div>
-            </div>
           </div>
         ))}
       </div>

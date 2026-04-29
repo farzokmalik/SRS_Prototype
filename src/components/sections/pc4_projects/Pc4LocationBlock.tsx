@@ -158,19 +158,19 @@ export const Pc4LocationBlock: React.FC = () => {
           onChange={(next) => handleUpdate({ tehsils: next })}
         />
         <MultiSelectDropdown
-          label="NA (National Assembly)"
+          label="[PC-IV-1.7] NA (National Assembly)"
           options={NA_SEATS}
           value={data.na}
           onChange={(next) => handleUpdate({ na: next })}
         />
         <MultiSelectDropdown
-          label="PP (Provincial Assembly)"
+          label="[PC-IV-1.8] PP (Provincial Assembly)"
           options={PP_SEATS}
           value={data.pp}
           onChange={(next) => handleUpdate({ pp: next })}
         />
         <MultiSelectDropdown
-          label="Union Council"
+          label="[PC-IV-1.9] Union Council"
           options={UNION_COUNCIL_OPTIONS}
           value={data.unionCouncils}
           onChange={(next) => handleUpdate({ unionCouncils: next })}
@@ -178,13 +178,13 @@ export const Pc4LocationBlock: React.FC = () => {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
         <InputField
-          label="Latitude"
+          label="[PC-IV-1.10] Latitude"
           placeholder="Enter Latitude (1.00–10.00)"
           value={data.latitude}
           onChange={(e) => handleUpdate({ latitude: e.target.value })}
         />
         <InputField
-          label="Longitude"
+          label="[PC-IV-1.11] Longitude"
           placeholder="Enter Longitude (1.00–10.00)"
           value={data.longitude}
           onChange={(e) => handleUpdate({ longitude: e.target.value })}

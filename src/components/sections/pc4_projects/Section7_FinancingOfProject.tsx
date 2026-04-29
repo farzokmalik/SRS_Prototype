@@ -127,7 +127,7 @@ export const Section7_FinancingOfProject: React.FC = () => {
                     paddingBottom: '0.5rem',
                   }}
                 >
-                  Financing of the project
+                  [PC-IV-7.1] Source of Financing
                 </th>
                 <th
                   style={{
@@ -143,7 +143,7 @@ export const Section7_FinancingOfProject: React.FC = () => {
                     paddingBottom: '0.5rem',
                   }}
                 >
-                  Local
+                  [PC-IV-7.2] Local
                 </th>
                 <th
                   style={{
@@ -159,7 +159,7 @@ export const Section7_FinancingOfProject: React.FC = () => {
                     paddingBottom: '0.5rem',
                   }}
                 >
-                  Foreign
+                  [PC-IV-7.3] Foreign
                 </th>
                 <th
                   style={{
@@ -175,7 +175,7 @@ export const Section7_FinancingOfProject: React.FC = () => {
                     paddingBottom: '0.5rem',
                   }}
                 >
-                  Total
+                  [PC-IV-7.4] Total
                 </th>
                 <th
                   style={{

@@ -6,6 +6,7 @@ import { FileUpload, InputField } from '../../ui/FormElements';
 type ScheduleRow = {
   actualStart: string;
   actualEnd: string;
+  totalDuration: string;
   extensionStart: string;
   extensionEnd: string;
 };
@@ -13,6 +14,7 @@ type ScheduleRow = {
 const emptyRow = (): ScheduleRow => ({
   actualStart: '',
   actualEnd: '',
+  totalDuration: '',
   extensionStart: '',
   extensionEnd: '',
 });
@@ -83,13 +85,13 @@ export const Section7_Schedule: React.FC = () => {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           <InputField
-            label="Start date"
+            label="[PC-IV-5.1] As per PC-I Start Date"
             type="date"
             value={data.pciStartDate ?? ''}
             onChange={(e) => handleUpdate({ pciStartDate: e.target.value })}
           />
           <InputField
-            label="End date"
+            label="[PC-IV-5.2] As per PC-I End Date"
             type="date"
             value={data.pciEndDate ?? ''}
             onChange={(e) => handleUpdate({ pciEndDate: e.target.value })}
@@ -164,20 +166,27 @@ export const Section7_Schedule: React.FC = () => {
             >
               Actual
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-              <InputField
-                label="[PC-IV-7.1] Commencement date"
-                type="date"
-                value={row.actualStart}
-                onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
-              />
-              <InputField
-                label="[PC-IV-7.2] Completion date"
-                type="date"
-                value={row.actualEnd}
-                onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
-              />
-            </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
+                <InputField
+                  label="[PC-IV-5.3] Actual Commencement date"
+                  type="date"
+                  value={row.actualStart}
+                  onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
+                />
+                <InputField
+                  label="[PC-IV-5.4] Actual Completion date"
+                  type="date"
+                  value={row.actualEnd}
+                  onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
+                />
+                <InputField
+                  label="Total Duration"
+                  placeholder="e.g. 24 Months"
+                  readOnly
+                  value={row.totalDuration ?? ''}
+                  onChange={() => {}}
+                />
+              </div>
 
             <p
               style={{
@@ -193,13 +202,13 @@ export const Section7_Schedule: React.FC = () => {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <InputField
-                label="Start date"
+                label="[PC-IV-5.5] Extensions Start Date"
                 type="date"
                 value={row.extensionStart}
                 onChange={(e) => patchRow(idx, { extensionStart: e.target.value })}
               />
               <InputField
-                label="End date"
+                label="[PC-IV-5.6] Extensions End Date"
                 type="date"
                 value={row.extensionEnd}
                 onChange={(e) => patchRow(idx, { extensionEnd: e.target.value })}
@@ -212,11 +221,11 @@ export const Section7_Schedule: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Annexures"
+          label="[PC-IV-5.7] Annexures"
           files={annexures}
           onUpload={(files) => handleUpdate({ annexures: files })}
           onRemove={(i) => handleUpdate({ annexures: annexures.filter((_: unknown, j: number) => j !== i) })}
-          description="Add annexures"
+          description="Upload annexures"
         />
       </div>
     </div>

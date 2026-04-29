@@ -111,11 +111,11 @@ export const Section13_AchievementOfObjectives: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
                 <div className="input-group">
-                  <label className="label">As contained in the PC-I</label>
+                  <label className="label">[PC-IV-13.1] Objectives (PC-I)</label>
                   <textarea
                     className="input"
                     rows={4}
-                    placeholder="As per PC-I…"
+                    placeholder="As contained in the original PC-I…"
                     value={row.asContainedInPci}
                     onChange={(e) => patchRow(idx, { asContainedInPci: e.target.value })}
                     style={{
@@ -129,11 +129,11 @@ export const Section13_AchievementOfObjectives: React.FC = () => {
                   />
                 </div>
                 <div className="input-group">
-                  <label className="label">Actual achievement</label>
+                  <label className="label">[PC-IV-13.2] Achievement Result</label>
                   <textarea
                     className="input"
                     rows={4}
-                    placeholder="Describe actual achievement…"
+                    placeholder="Detailed description of actual achievement…"
                     value={row.actualAchievement}
                     onChange={(e) => patchRow(idx, { actualAchievement: e.target.value })}
                     style={{

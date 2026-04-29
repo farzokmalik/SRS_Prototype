@@ -113,7 +113,7 @@ export const Section16_ProjectDirectors: React.FC = () => {
               </div>
 
               <div className="input-group" style={{ marginBottom: '1.25rem' }}>
-                <label className="label">[PC-IV-16.1] Name &amp; designation</label>
+                <label className="label">[PC-IV-16.1] Name &amp; Designation</label>
                 <textarea
                   className="input"
                   rows={3}
@@ -126,13 +126,13 @@ export const Section16_ProjectDirectors: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1rem' }}>
                 <InputField
-                  label="[PC-IV-16.2] From"
+                  label="[PC-IV-16.2] Role Duration — From"
                   type="date"
                   value={row.fromDate}
                   onChange={(e) => patchRow(idx, { fromDate: e.target.value })}
                 />
                 <InputField
-                  label="[PC-IV-16.3] To"
+                  label="[PC-IV-16.3] Role Duration — To"
                   type="date"
                   value={row.toDate}
                   onChange={(e) => patchRow(idx, { toDate: e.target.value })}
@@ -155,7 +155,7 @@ export const Section16_ProjectDirectors: React.FC = () => {
                   onChange={(e) => patchRow(idx, { present: e.target.checked })}
                   style={{ width: '1.15rem', height: '1.15rem', accentColor: 'hsl(var(--accent))', cursor: 'pointer' }}
                 />
-                [PC-IV-16.4] Present (currently in role)
+                [PC-IV-16.4] Current Status
               </label>
             </div>
           ))}
