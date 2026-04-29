@@ -207,7 +207,7 @@ export const Section15_ResultBasedMonitoring: React.FC = () => {
             <p style={outcomeLabelStyle}>Outcome</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <div className="input-group">
-                <label className="label">[PC-IV-15.3] Baseline indicators</label>
+                <label className="label">[PC-IV-15.3] Baseline Indicators</label>
                 <input
                   className="input"
                   value={row.baselineIndicators}
@@ -216,7 +216,7 @@ export const Section15_ResultBasedMonitoring: React.FC = () => {
                 />
               </div>
               <div className="input-group">
-                <label className="label">[PC-IV-15.4] Targets after completion of project</label>
+                <label className="label">[PC-IV-15.4] Future Targets</label>
                 <input
                   className="input"
                   value={row.targetsAfterCompletion}
@@ -227,7 +227,7 @@ export const Section15_ResultBasedMonitoring: React.FC = () => {
             </div>
 
             <div className="input-group" style={{ marginTop: '1.25rem' }}>
-              <label className="label">[PC-IV-15.5] Target impact</label>
+              <label className="label">[PC-IV-15.5] Target Impact</label>
               <textarea
                 className="input"
                 rows={3}
@@ -249,7 +249,7 @@ export const Section15_ResultBasedMonitoring: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="[PC-IV-15.6] Attachment(s)"
+          label="[PC-IV-15.6] Supporting Evidence"
           files={fileUploadList}
           onUpload={(files) => persistAttachmentsFromFileList(files)}
           onRemove={(i) =>

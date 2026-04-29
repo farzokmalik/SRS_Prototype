@@ -10,9 +10,9 @@ const LAPSABLE_OPTIONS = [
 
 const NATURE_ROWS = [
   { key: 'pla', label: 'PLA', dateNo: '8.1', lapNo: '8.2' },
-  { key: 'assignment', label: 'Assignment Account', dateNo: '8.3', lapNo: '8.4' },
-  { key: 'current', label: 'Current Account', dateNo: '8.5', lapNo: '8.6' },
-  { key: 'saving', label: 'Saving Account', dateNo: '8.7', lapNo: '8.8' },
+  { key: 'assignment', label: 'Assignment', dateNo: '8.3', lapNo: '8.4' },
+  { key: 'current', label: 'Current', dateNo: '8.5', lapNo: '8.6' },
+  { key: 'saving', label: 'Saving', dateNo: '8.7', lapNo: '8.8' },
   { key: 'other', label: 'Other', dateNo: '8.9', lapNo: '8.10' },
 ] as const;
 
@@ -96,14 +96,14 @@ export const Section8_ProjectAccounts: React.FC = () => {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '28rem' }}>
                 <InputField
-                  label={`[PC-IV-${dateNo}] Date of opening`}
+                  label={`[PC-IV-${dateNo}] ${label} — Date of opening`}
                   type="date"
                   description="mm/dd/yyyy"
                   value={nature[key].dateOpened}
                   onChange={(e) => patchNature(key, { dateOpened: e.target.value })}
                 />
                 <div className="input-group" style={{ marginBottom: 0 }}>
-                  <label className="label">{`[PC-IV-${lapNo}] Lapsable / Non-lapsable`}</label>
+                  <label className="label">{`[PC-IV-${lapNo}] ${label} — Lapsable / Non-lapsable`}</label>
                   <select
                     className="select"
                     style={{ width: '100%', minHeight: '42px', background: '#fff' }}

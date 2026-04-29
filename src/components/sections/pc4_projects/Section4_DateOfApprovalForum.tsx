@@ -146,46 +146,27 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
               </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.25rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
                 <SelectField
-                  label="PC-I"
+                  label="[PC-IV-4.1] PC-I"
                   value={row.pcIForm}
                   onChange={(e) => patchRow(idx, { pcIForm: e.target.value })}
                   options={PCI_FORM_OPTIONS}
                 />
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
                 <SelectField
-                  label="[PC-IV-4.1] Forum"
+                  label="[PC-IV-4.2] Approval Forum"
                   value={row.forum}
                   onChange={(e) => patchRow(idx, { forum: e.target.value })}
                   options={FORUM_OPTIONS}
-                />
-                <InputField
-                  label="[PC-IV-4.2] Approved date"
-                  type="date"
-                  value={row.approvedDate}
-                  onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
                 />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
                 <SelectField
-                  label="[PC-IV-4.3] Project Status"
-                  value={row.projectStatus ?? ''}
-                  onChange={(e) => patchRow(idx, { projectStatus: e.target.value })}
-                  options={[
-                    { value: 'Ongoing', label: 'Ongoing' },
-                    { value: 'Completed', label: 'Completed' },
-                    { value: 'Closed', label: 'Closed' },
-                    { value: 'Dropped', label: 'Dropped' },
-                  ]}
-                />
-                <InputField
-                  label="Financial year"
-                  placeholder="e.g. 2024-25"
+                  label="[PC-IV-4.3] Financial year"
                   value={row.financialYear}
                   onChange={(e) => patchRow(idx, { financialYear: e.target.value })}
+                  options={FINANCIAL_YEAR_OPTIONS}
                 />
               </div>
             </div>
@@ -202,18 +183,38 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
             >
               Gestation
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }}>
               <InputField
-                label="Start date"
+                label="[PC-IV-4.4] Gestation Start Date"
                 type="date"
                 value={row.gestationStart}
                 onChange={(e) => patchRow(idx, { gestationStart: e.target.value })}
               />
               <InputField
-                label="End date"
+                label="[PC-IV-4.5] Gestation End Date"
                 type="date"
                 value={row.gestationEnd}
                 onChange={(e) => patchRow(idx, { gestationEnd: e.target.value })}
+              />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
+               <InputField
+                  label="[PC-IV-4.6] Date of Approval"
+                  type="date"
+                  value={row.approvedDate}
+                  onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
+                />
+              <SelectField
+                label="[PC-IV-4.7] Project Status"
+                value={row.projectStatus ?? ''}
+                onChange={(e) => patchRow(idx, { projectStatus: e.target.value })}
+                options={[
+                  { value: 'Ongoing', label: 'Ongoing' },
+                  { value: 'Completed', label: 'Completed' },
+                  { value: 'Closed', label: 'Closed' },
+                  { value: 'Dropped', label: 'Dropped' },
+                ]}
               />
             </div>
 
@@ -231,13 +232,13 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <InputField
-                label="Amount"
+                label="[PC-IV-4.8] Amount"
                 placeholder="e.g. 55422096"
                 value={row.totalCost}
                 onChange={(e) => patchRow(idx, { totalCost: e.target.value })}
               />
               <InputField
-                label="Amount (millions)"
+                label="[PC-IV-4.9] Amount (millions)"
                 placeholder="e.g. 55.422096"
                 value={row.totalCostMillions}
                 onChange={(e) => patchRow(idx, { totalCostMillions: e.target.value })}
@@ -250,11 +251,11 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
 
       <div className="card">
         <FileUpload
-          label="Annexures"
+          label="[PC-IV-4.10] Annexures"
           files={annexures}
           onUpload={(files) => handleUpdate({ annexures: files })}
           onRemove={(i) => handleUpdate({ annexures: annexures.filter((_: unknown, j: number) => j !== i) })}
-          description="Add annexures"
+          description="Upload annexures"
         />
       </div>
     </div>

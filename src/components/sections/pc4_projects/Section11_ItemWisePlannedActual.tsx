@@ -266,13 +266,13 @@ export const Section11_ItemWisePlannedActual: React.FC = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '0.25rem' }}>
                 <InputField
-                  label="[PC-IV-11.1] Items (as per PC-I)"
+                  label="[PC-IV-11.1] Items"
                   placeholder="Item description"
                   value={row.item}
                   onChange={(e) => patchRow(idx, { item: e.target.value })}
                 />
                 <div className="input-group">
-                  <label className="label">[PC-IV-11.2] Object code</label>
+                  <label className="label">[PC-IV-11.2] Object Code</label>
                   <select
                     className="select"
                     style={{ width: '100%', minHeight: '42px', background: '#fff' }}
@@ -291,11 +291,11 @@ export const Section11_ItemWisePlannedActual: React.FC = () => {
               <p style={{ ...sectionLabelStyle, marginTop: '1rem' }}>PC-I estimates</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                 <div className="input-group">
-                  <label className="label">[PC-IV-11.3] Local</label>
+                  <label className="label">[PC-IV-11.3] PC-I Estimates — Local</label>
                   <StackedRawMillionInput raw={row.pciLocal} onChange={(v) => patchRow(idx, { pciLocal: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">[PC-IV-11.4] FEC</label>
+                  <label className="label">[PC-IV-11.4] PC-I Estimates — FEC</label>
                   <StackedRawMillionInput raw={row.pciFec} onChange={(v) => patchRow(idx, { pciFec: v })} />
                 </div>
                 <div className="input-group">
@@ -307,11 +307,11 @@ export const Section11_ItemWisePlannedActual: React.FC = () => {
               <p style={sectionLabelStyle}>Actual expenditure</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                 <div className="input-group">
-                  <label className="label">[PC-IV-11.5] Local</label>
+                  <label className="label">[PC-IV-11.5] Actual Expenditure — Local</label>
                   <StackedRawMillionInput raw={row.actualLocal} onChange={(v) => patchRow(idx, { actualLocal: v })} />
                 </div>
                 <div className="input-group">
-                  <label className="label">[PC-IV-11.6] FEC</label>
+                  <label className="label">[PC-IV-11.6] Actual Expenditure — FEC</label>
                   <StackedRawMillionInput raw={row.actualFec} onChange={(v) => patchRow(idx, { actualFec: v })} />
                 </div>
                 <div className="input-group">
@@ -335,7 +335,7 @@ export const Section11_ItemWisePlannedActual: React.FC = () => {
             borderBottom: '1px solid hsl(var(--border))',
           }}
         >
-          [PC-IV-11.7] Total
+          [PC-IV-11.7] Total Auto-Generated
         </p>
         <p style={{ ...sectionLabelStyle, margin: '0 0 0.75rem' }}>PC-I estimates</p>
         <div

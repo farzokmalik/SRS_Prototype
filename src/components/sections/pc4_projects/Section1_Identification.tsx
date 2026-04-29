@@ -28,7 +28,7 @@ export const Section1_Identification: React.FC = () => {
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <InputField 
-          label="[PC-IV-1.1] Project Name (Must match PC-I)" 
+          label="[PC-IV-1.1] Project Title" 
           placeholder="Enter the full name of the project" 
           required 
           value={data.projectName}
@@ -55,7 +55,7 @@ export const Section1_Identification: React.FC = () => {
           options={ADMIN_DEPARTMENT_OPTIONS}
         />
         <SelectField
-          label="[PC-IV-1.4] Location Type"
+          label="[PC-IV-1.4] Location type"
           value={data.locationType ?? ''}
           onChange={(e) => handleUpdate({ locationType: e.target.value })}
           options={LOCATION_TYPE_OPTIONS}

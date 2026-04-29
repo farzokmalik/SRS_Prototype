@@ -157,7 +157,7 @@ export const Section23_Suggestions: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
         <RTEditor
-          label="[PC-IV-23.1] Suggestions for future planning and implementation of similar projects"
+          label="[PC-IV-23.1] Future Lessons"
           value={html}
           onChange={(v) => handleUpdate({ suggestionsHtml: v })}
         />
