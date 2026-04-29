@@ -6,6 +6,7 @@ import { FileUpload, InputField } from '../../ui/FormElements';
 type ScheduleRow = {
   actualStart: string;
   actualEnd: string;
+  totalDuration: string;
   extensionStart: string;
   extensionEnd: string;
 };
@@ -13,6 +14,7 @@ type ScheduleRow = {
 const emptyRow = (): ScheduleRow => ({
   actualStart: '',
   actualEnd: '',
+  totalDuration: '',
   extensionStart: '',
   extensionEnd: '',
 });
@@ -164,20 +166,27 @@ export const Section7_Schedule: React.FC = () => {
             >
               Actual
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-              <InputField
-                label="[PC-IV-7.1] Commencement date"
-                type="date"
-                value={row.actualStart}
-                onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
-              />
-              <InputField
-                label="[PC-IV-7.2] Completion date"
-                type="date"
-                value={row.actualEnd}
-                onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
-              />
-            </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
+                <InputField
+                  label="[PC-IV-7.1] Commencement date"
+                  type="date"
+                  value={row.actualStart}
+                  onChange={(e) => patchRow(idx, { actualStart: e.target.value })}
+                />
+                <InputField
+                  label="[PC-IV-7.2] Completion date"
+                  type="date"
+                  value={row.actualEnd}
+                  onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
+                />
+                <InputField
+                  label="[PC-IV-7.3] Total Duration"
+                  placeholder="e.g. 24 Months"
+                  readOnly
+                  value={row.totalDuration ?? ''}
+                  onChange={() => {}}
+                />
+              </div>
 
             <p
               style={{

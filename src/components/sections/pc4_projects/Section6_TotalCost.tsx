@@ -349,7 +349,7 @@ export const Section6_TotalCost: React.FC = () => {
 
               <p style={{ ...sectionLabelStyle, marginTop: 0 }}>PC-I cost (approved)</p>
               <div className="input-group">
-                <label className="label">[PC-IV-6.1] Total cost</label>
+                <label className="label">[PC-IV-6.1] Cost Kind</label>
                 <select
                   className="select"
                   style={{

@@ -29,6 +29,7 @@ const emptyApprovalRow = () => ({
   gestationStart: '',
   gestationEnd: '',
   forum: '',
+  projectStatus: '',
   totalCost: '',
   totalCostMillions: '',
 });
@@ -144,31 +145,49 @@ export const Section4_DateOfApprovalForum: React.FC = () => {
                 )}
               </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-              <SelectField
-                label="PC-I"
-                value={row.pcIForm}
-                onChange={(e) => patchRow(idx, { pcIForm: e.target.value })}
-                options={PCI_FORM_OPTIONS}
-              />
-              <InputField
-                label="[PC-IV-4.2] Approved date"
-                type="date"
-                value={row.approvedDate}
-                onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
-              />
-              <SelectField
-                label="Financial year"
-                value={row.financialYear}
-                onChange={(e) => patchRow(idx, { financialYear: e.target.value })}
-                options={FINANCIAL_YEAR_OPTIONS}
-              />
-              <SelectField
-                label="[PC-IV-4.1] Forum"
-                value={row.forum}
-                onChange={(e) => patchRow(idx, { forum: e.target.value })}
-                options={FORUM_OPTIONS}
-              />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.25rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <SelectField
+                  label="PC-I"
+                  value={row.pcIForm}
+                  onChange={(e) => patchRow(idx, { pcIForm: e.target.value })}
+                  options={PCI_FORM_OPTIONS}
+                />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
+                <SelectField
+                  label="[PC-IV-4.1] Forum"
+                  value={row.forum}
+                  onChange={(e) => patchRow(idx, { forum: e.target.value })}
+                  options={FORUM_OPTIONS}
+                />
+                <InputField
+                  label="[PC-IV-4.2] Approved date"
+                  type="date"
+                  value={row.approvedDate}
+                  onChange={(e) => patchRow(idx, { approvedDate: e.target.value })}
+                />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.25rem' }}>
+                <SelectField
+                  label="[PC-IV-4.3] Project Status"
+                  value={row.projectStatus ?? ''}
+                  onChange={(e) => patchRow(idx, { projectStatus: e.target.value })}
+                  options={[
+                    { value: 'Ongoing', label: 'Ongoing' },
+                    { value: 'Completed', label: 'Completed' },
+                    { value: 'Closed', label: 'Closed' },
+                    { value: 'Dropped', label: 'Dropped' },
+                  ]}
+                />
+                <InputField
+                  label="Financial year"
+                  placeholder="e.g. 2024-25"
+                  value={row.financialYear}
+                  onChange={(e) => patchRow(idx, { financialYear: e.target.value })}
+                />
+              </div>
             </div>
 
             <p
