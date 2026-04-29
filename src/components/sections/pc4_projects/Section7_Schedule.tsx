@@ -180,7 +180,7 @@ export const Section7_Schedule: React.FC = () => {
                   onChange={(e) => patchRow(idx, { actualEnd: e.target.value })}
                 />
                 <InputField
-                  label="Total Duration"
+                  label="[PC-IV-5.8]Total Duration"
                   placeholder="e.g. 24 Months"
                   readOnly
                   value={row.totalDuration ?? ''}

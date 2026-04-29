@@ -107,7 +107,10 @@ export const Section15_ManagementChanges: React.FC = () => {
                 <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.5fr 1fr 40px', gap: '1rem', alignItems: 'center', padding: '1rem', background: '#fff', border: '1px solid hsl(var(--border))', borderRadius: 'var(--radius-md)' }}>
                   <input className="input" placeholder="[PC-V-15.3] Name" value={c.name} onChange={(e) => updateChange(idx, { name: e.target.value })} />
                   <input className="input" placeholder="[PC-V-15.4] Designation" value={c.designation} onChange={(e) => updateChange(idx, { designation: e.target.value })} />
-                  <input type="date" className="input" value={c.date} onChange={(e) => updateChange(idx, { date: e.target.value })} title="[PC-V-15.5] Date of Change" />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', letterSpacing: '0.02em' }}>[PC-V-15.5] DATE</span>
+                    <input type="date" className="input" style={{ padding: '0.4rem 0.6rem', height: '38px' }} value={c.date} onChange={(e) => updateChange(idx, { date: e.target.value })} />
+                  </div>
                   <button onClick={() => removeChange(idx)} style={{ color: 'hsl(var(--error))', border: 'none', background: 'transparent', cursor: 'pointer' }}><Trash2 size={16} /></button>
                 </div>
               ))}

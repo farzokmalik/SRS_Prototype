@@ -27,9 +27,11 @@ export interface FormState {
   pc4p: any;
   pc5: any;
   pc5p: any;
+  reappropriationTransactions: any[];
 }
 
 const initialFormState: FormState = {
+  reappropriationTransactions: [],
   section1: {
     projectId: '',
     projectTitle: '',
@@ -741,6 +743,7 @@ interface FormContextType {
   updateSection: (section: keyof FormState, data: any) => void;
   currentSection: number;
   setSection: (section: number) => void;
+  setTransactions: (transactions: any[]) => void;
   dirtySections: number[];
   visitedSections: number[];
 }
@@ -765,6 +768,13 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }));
   };
 
+  const setTransactions = (transactions: any[]) => {
+    setFormData(prev => ({
+      ...prev,
+      reappropriationTransactions: transactions
+    }));
+  };
+
   const handleSetSection = (num: number) => {
     if (!visitedSections.includes(num)) {
       setVisitedSections(prev => [...prev, num]);
@@ -778,6 +788,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
       updateSection, 
       currentSection, 
       setSection: handleSetSection,
+      setTransactions,
       dirtySections,
       visitedSections
     }}>

@@ -98,6 +98,7 @@ import { Section1_Identification as PC4_Section1 } from './components/sections/p
 import { Section2_Sector as PC4_Section2 } from './components/sections/pc4_projects/Section2_Sector';
 import { Section3_AuthoritiesResponsible as PC4_Section3 } from './components/sections/pc4_projects/Section3_AuthoritiesResponsible';
 import { Section4_DateOfApprovalForum as PC4_Section4 } from './components/sections/pc4_projects/Section4_DateOfApprovalForum';
+import { ReAppropriationPage } from './components/re_appropriation/ReAppropriationPage';
 import { Section7_Schedule as PC4_Section5 } from './components/sections/pc4_projects/Section7_Schedule';
 import { Section6_TotalCost as PC4_Section6 } from './components/sections/pc4_projects/Section6_TotalCost';
 import { Section7_FinancingOfProject as PC4_Section7 } from './components/sections/pc4_projects/Section7_FinancingOfProject';
@@ -499,6 +500,19 @@ const PC5_PROGRAMS_CONFIG = {
   totalSections: PC5_PROGRAMS_SECTIONS.length,
 };
 
+const REAPPROPRIATION_CONFIG = {
+  label: 'FINANCIALS',
+  title: 'Fund Management',
+  breadcrumb: 'Re-Appropriation',
+  sections: [
+    { id: 1, title: 'Surrender of Funds' },
+    { id: 2, title: 'Pool Ledger' },
+    { id: 3, title: 'Re-Appropriation (Allocation)' },
+    { id: 4, title: 'Departmental Report' },
+  ],
+  totalSections: 4,
+};
+
 const PC1Page = () => (
   <FormConfigProvider config={PC1_CONFIG}>
     <DashboardLayout>
@@ -637,6 +651,13 @@ function App() {
             <Route path="/pc-4-programs" element={<ProtectedRoute><PC4ProgramPage /></ProtectedRoute>} />
             <Route path="/pc-5" element={<ProtectedRoute><PC5Page /></ProtectedRoute>} />
             <Route path="/pc-5-programs" element={<ProtectedRoute><PC5ProgramPage /></ProtectedRoute>} />
+            <Route path="/re-appropriation" element={
+              <ProtectedRoute>
+                <FormConfigProvider config={REAPPROPRIATION_CONFIG}>
+                  <ReAppropriationPage />
+                </FormConfigProvider>
+              </ProtectedRoute>
+            } />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
