@@ -305,7 +305,7 @@ export const Section12_RecurringCostAfterCompletion: React.FC = () => {
             borderBottom: '1px solid hsl(var(--border))',
           }}
         >
-          Total
+          [PC-IV-12.7] Total
         </p>
         <p style={{ ...sectionLabelStyle, margin: '0 0 0.75rem' }}>PC-I estimates</p>
         <div

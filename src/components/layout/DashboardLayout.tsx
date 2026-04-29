@@ -11,7 +11,7 @@ import {
   Send
 } from 'lucide-react';
 
-export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const DashboardLayout: React.FC<{ children: React.ReactNode; hideFooter?: boolean }> = ({ children, hideFooter }) => {
   const { currentSection, setSection } = useForm();
   const { breadcrumb, sections, totalSections } = useFormConfig();
   const activeSection = sections.find(s => s.id === currentSection);
@@ -114,53 +114,55 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
         </div>
 
         {/* Sticky Footer Progress */}
-        <footer className="glass" style={{ 
-          padding: '1.25rem 2.5rem', 
-          borderTop: '1px solid hsl(var(--border))', 
-          display: 'flex', 
-          justifyContent: 'flex-end', 
-          alignItems: 'center',
-          position: 'sticky',
-          bottom: 0,
-          zIndex: 90
-        }}>
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <button 
-              className="btn btn-secondary" 
-              onClick={prevSection} 
-              disabled={currentSection === 1}
-              style={{ padding: '0.625rem 1.25rem' }}
-            >
-              Previous
-            </button>
-            
-            <button 
-              className="btn btn-secondary" 
-              onClick={() => alert("Draft saved successfully!")}
-              style={{ padding: '0.625rem 1.25rem' }}
-            >
-              <Save size={18} /> Save as draft
-            </button>
-
-            {currentSection < totalSections ? (
+        {!hideFooter && (
+          <footer className="glass" style={{ 
+            padding: '1.25rem 2.5rem', 
+            borderTop: '1px solid hsl(var(--border))', 
+            display: 'flex', 
+            justifyContent: 'flex-end', 
+            alignItems: 'center',
+            position: 'sticky',
+            bottom: 0,
+            zIndex: 90
+          }}>
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
               <button 
-                className="btn btn-primary" 
-                onClick={nextSection}
-                style={{ padding: '0.625rem 1.5rem' }}
+                className="btn btn-secondary" 
+                onClick={prevSection} 
+                disabled={currentSection === 1}
+                style={{ padding: '0.625rem 1.25rem' }}
               >
-                Next Section <ChevronRight size={18} />
+                Previous
               </button>
-            ) : (
+              
               <button 
-                className="btn btn-primary" 
-                onClick={() => alert("Application submitted successfully!")}
-                style={{ padding: '0.625rem 1.5rem', background: 'hsl(var(--accent))' }}
+                className="btn btn-secondary" 
+                onClick={() => alert("Draft saved successfully!")}
+                style={{ padding: '0.625rem 1.25rem' }}
               >
-                Submit Application <Send size={18} />
+                <Save size={18} /> Save as draft
               </button>
-            )}
-          </div>
-        </footer>
+  
+              {currentSection < totalSections ? (
+                <button 
+                  className="btn btn-primary" 
+                  onClick={nextSection}
+                  style={{ padding: '0.625rem 1.5rem' }}
+                >
+                  Next Section <ChevronRight size={18} />
+                </button>
+              ) : (
+                <button 
+                  className="btn btn-primary" 
+                  onClick={() => alert("Application submitted successfully!")}
+                  style={{ padding: '0.625rem 1.5rem', background: 'hsl(var(--accent))' }}
+                >
+                  Submit Application <Send size={18} />
+                </button>
+              )}
+            </div>
+          </footer>
+        )}
       </main>
     </div>
   );

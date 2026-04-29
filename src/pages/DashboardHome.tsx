@@ -11,6 +11,7 @@ import {
   Bell,
   LogOut,
   LayoutGrid,
+  Database,
 } from 'lucide-react';
 
 const PC_FORMS = [
@@ -85,9 +86,18 @@ const PC_FORMS = [
       { label: 'Programs', path: '/pc-5-programs' },
       { label: 'Projects', path: '/pc-5' },
     ]
-  },
- 
-];
+    },
+    {
+      id: 're-appropriation',
+      path: '/re-appropriation',
+      label: 'Financials',
+      title: 'Project Re-Appropriation',
+      description: 'Manage fund surrenders and allocations through the centralized Surrender Pool. Track in-flow and out-flow ledger.',
+      sections: 3,
+      icon: Database,
+      available: true,
+    },
+  ];
 
 export const DashboardHome: React.FC = () => {
   const navigate = useNavigate();
