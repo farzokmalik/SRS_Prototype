@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, ArrowDownToLine, ArrowUpFromLine, CheckCircle2, X } from 'lucide-react';
+import { Plus, ArrowDownToLine, CheckCircle2, X } from 'lucide-react';
 import { InputField, SelectField, TextAreaField } from '../ui/FormElements';
 import { useForm } from '../../context/FormContext';
 
 interface ReappRow {
   id: string;
+  gsNo: string;
+  mainSector: string;
   sector: string;
   projectName: string;
+  schemeType: string;
   grantNumber: string;
   loaNumber: string;
   objectCode: string;
@@ -32,21 +35,15 @@ export const SurrenderForm: React.FC = () => {
   const [rows, setRows] = useState<ReappRow[]>([
     {
       id: '1',
+      gsNo: '76',
+      mainSector: 'Social Sectors',
       sector: 'Agriculture',
       projectName: 'Punjab Solar Energy Optimization Project',
+      schemeType: 'Ongoing',
       grantNumber: 'Grant 12',
       loaNumber: 'LOA-2024-001',
       objectCode: 'A01101 - Basic Pay',
       amount: '5000000',
-    },
-    {
-      id: '2',
-      sector: 'Agriculture',
-      projectName: 'Punjab Solar Energy Optimization Project',
-      grantNumber: 'Grant 12',
-      loaNumber: 'LOA-2024-001',
-      objectCode: 'A03901 - Stationary',
-      amount: '2500000',
     }
   ]);
   
@@ -79,7 +76,9 @@ export const SurrenderForm: React.FC = () => {
       source: rows[0]?.projectName || 'Development Project',
       target: `Surrender Pool (${rows[0]?.sector || 'General'})`,
       amount: totalReapp,
-      status: 'Completed'
+      status: 'Completed',
+      sector: rows[0]?.sector || 'General',
+      objectCode: rows[0]?.objectCode || '---'
     };
 
     const transactions = Array.isArray(formData.reappropriationTransactions) 
@@ -92,21 +91,6 @@ export const SurrenderForm: React.FC = () => {
     setShowTable(false);
   };
 
-  const addRow = () => {
-    setRows([...rows, {
-      id: Math.random().toString(36).substr(2, 9),
-      sector: '',
-      projectName: '',
-      grantNumber: '',
-      loaNumber: '',
-      objectCode: '',
-      amount: '',
-    }]);
-  };
-
-  const removeRow = (id: string) => {
-    setRows(rows.filter(r => r.id !== id));
-  };
 
   const updateRow = (id: string, updates: Partial<ReappRow>) => {
     setRows(rows.map(r => r.id === id ? { ...r, ...updates } : r));
@@ -173,7 +157,7 @@ export const SurrenderForm: React.FC = () => {
                 className="btn btn-primary" 
                 onClick={() => {
                   setShowSuccess(false);
-                  setSection(2); // Navigate to Ledger
+                  setSection(3); // Navigate to Pool Ledger
                 }}
                 style={{ width: '100%', padding: '0.875rem', fontSize: '1rem' }}
               >
@@ -194,9 +178,9 @@ export const SurrenderForm: React.FC = () => {
       {/* Source Selection */}
       <section className="card">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+          {/* <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
             <ArrowUpFromLine size={18} />
-          </div>
+          </div> */}
           <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Source Selection (Project to Surrender From)</h3>
         </div>
 
@@ -217,121 +201,84 @@ export const SurrenderForm: React.FC = () => {
         </div>
       </section>
 
-      {/* Re-appropriation Rows */}
+      {/* Re-appropriation Details Section */}
       {showTable && (
         <>
           <section className="card" style={{ padding: '2rem', animation: 'fadeIn 0.4s ease-out' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 600 }}>Re-Appropriation Details</h3>
-          <button onClick={addRow} className="btn btn-secondary" style={{ fontSize: '0.8125rem', padding: '0.5rem 1rem' }}>
-            <Plus size={16} /> Add Re-Appropriation
-          </button>
-        </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+                <Plus size={18} />
+              </div>
+              <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Project Details to Surrender</h3>
+            </div>
 
-        {rows.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '3rem', border: '2px dashed hsl(var(--border))', borderRadius: 'var(--radius-md)', color: 'hsl(var(--text-muted))' }}>
-            <p>No re-appropriation rows added. Click the button above to add one.</p>
-          </div>
-        ) : (
-          <div className="table-responsive" style={{ overflowX: 'auto' }}>
-            <table className="table" style={{ width: '100%', minWidth: '1000px', borderCollapse: 'separate', borderSpacing: '0 0.75rem' }}>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Type</th>
-                  <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Sector</th>
-                  <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Project Name</th>
-                  <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Grant / LOA / Object</th>
-                  <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Amount</th>
-                  <th style={{ textAlign: 'center', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.id} style={{ background: 'hsl(var(--error) / 0.03)', border: '1px solid hsl(var(--error) / 0.1)', boxShadow: 'var(--shadow-sm)' }}>
-                    <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '100px' }}>
-                      <span style={{ 
-                        fontSize: '0.65rem', 
-                        fontWeight: 800, 
-                        color: 'hsl(var(--error))', 
-                        background: 'hsl(var(--error) / 0.1)', 
-                        padding: '0.25rem 0.5rem', 
-                        borderRadius: 'var(--radius-sm)',
-                        textTransform: 'uppercase'
-                      }}>
-                        Surrender
-                      </span>
-                    </td>
-                    <td style={{ padding: '1rem', width: '180px' }}>
-                      <select 
-                        className="select" 
-                        value={row.sector}
-                        onChange={(e) => updateRow(row.id, { sector: e.target.value })}
-                        style={{ fontSize: '0.8125rem', background: 'transparent' }}
-                      >
-                        <option value="">Select Sector</option>
-                        {SECTOR_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
-                      </select>
-                    </td>
-                    <td style={{ padding: '1rem', width: '220px' }}>
-                      <select 
-                        className="select" 
-                        value={row.projectName}
-                        onChange={(e) => updateRow(row.id, { projectName: e.target.value })}
-                        style={{ fontSize: '0.8125rem', background: 'transparent' }}
-                      >
-                        <option value="">Select Project</option>
-                        {PROJECT_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
-                      </select>
-                    </td>
-                    <td style={{ padding: '1rem' }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
-                        <select className="select" style={{ fontSize: '0.75rem', background: 'transparent' }} value={row.grantNumber} onChange={(e) => updateRow(row.id, { grantNumber: e.target.value })}>
-                          <option value="">Grant</option>
-                          {GRANT_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
-                        </select>
-                        <select className="select" style={{ fontSize: '0.75rem', background: 'transparent' }} value={row.loaNumber} onChange={(e) => updateRow(row.id, { loaNumber: e.target.value })}>
-                          <option value="">LOA</option>
-                          <option value="LOA-2024-001">LOA-2024-001</option>
-                          <option value="LOA-2024-005">LOA-2024-005</option>
-                        </select>
-                        <select className="select" style={{ fontSize: '0.75rem', background: 'transparent' }} value={row.objectCode} onChange={(e) => updateRow(row.id, { objectCode: e.target.value })}>
-                          <option value="">Object</option>
-                          {OBJECT_CODE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
-                        </select>
-                      </div>
-                    </td>
-                    <td style={{ padding: '1rem', width: '150px' }}>
-                      <input 
-                        type="number" 
-                        className="input" 
-                        placeholder="0.00"
-                        value={row.amount}
-                        onChange={(e) => updateRow(row.id, { amount: e.target.value })}
-                        style={{ fontSize: '0.8125rem', fontWeight: 600, background: 'transparent', border: '1px solid hsl(var(--error) / 0.2)' }}
-                      />
-                    </td>
-                    <td style={{ padding: '1rem', borderTopRightRadius: 'var(--radius-md)', borderBottomRightRadius: 'var(--radius-md)', textAlign: 'center' }}>
-                      <button onClick={() => removeRow(row.id)} className="btn btn-secondary" style={{ padding: '0.4rem', color: 'hsl(var(--error))', background: 'transparent' }} title="Remove Row">
-                        <Trash2 size={16} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {/* Total Row */}
-                <tr style={{ background: 'hsl(var(--error) / 0.08)', borderRadius: 'var(--radius-md)' }}>
-                  <td colSpan={4} style={{ padding: '1rem', textAlign: 'right', fontWeight: 700, fontSize: '0.875rem', color: 'hsl(var(--error))' }}>
-                    Total Surrender Amount:
-                  </td>
-                  <td style={{ padding: '1rem', fontWeight: 800, fontSize: '0.875rem', color: 'hsl(var(--error))' }}>
-                    Rs. {totalReapp.toLocaleString()}
-                  </td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+              <InputField 
+                label="GS No." 
+                placeholder="Enter GS No."
+                value={rows[0].gsNo}
+                onChange={(e) => updateRow(rows[0].id, { gsNo: e.target.value })}
+              />
+              
+              <SelectField 
+                label="Main Sector"
+                value={rows[0].mainSector}
+                onChange={(e) => updateRow(rows[0].id, { mainSector: e.target.value })}
+                options={['Social Sectors', 'Infrastructure Sectors', 'Production Sectors', 'Services Sectors']}
+              />
+
+              <SelectField 
+                label="Sector"
+                value={rows[0].sector}
+                onChange={(e) => updateRow(rows[0].id, { sector: e.target.value })}
+                options={SECTOR_OPTIONS}
+              />
+
+              <SelectField 
+                label="Project Name"
+                value={rows[0].projectName}
+                onChange={(e) => updateRow(rows[0].id, { projectName: e.target.value })}
+                options={PROJECT_OPTIONS}
+              />
+
+              <SelectField 
+                label="Scheme Type"
+                value={rows[0].schemeType}
+                onChange={(e) => updateRow(rows[0].id, { schemeType: e.target.value })}
+                options={['Ongoing', 'New']}
+              />
+
+              <SelectField 
+                label="Grant Number"
+                value={rows[0].grantNumber}
+                onChange={(e) => updateRow(rows[0].id, { grantNumber: e.target.value })}
+                options={GRANT_OPTIONS}
+              />
+
+              <SelectField 
+                label="LOA Number"
+                value={rows[0].loaNumber}
+                onChange={(e) => updateRow(rows[0].id, { loaNumber: e.target.value })}
+                options={['LOA-2024-001', 'LOA-2024-005']}
+              />
+
+              <SelectField 
+                label="Object Code"
+                value={rows[0].objectCode}
+                onChange={(e) => updateRow(rows[0].id, { objectCode: e.target.value })}
+                options={OBJECT_CODE_OPTIONS}
+              />
+
+              <InputField 
+                label="Amount to Surrender (Rs.)"
+                type="number"
+                placeholder="0.00"
+                value={rows[0].amount}
+                onChange={(e) => updateRow(rows[0].id, { amount: e.target.value })}
+                style={{ fontWeight: 700, color: 'hsl(var(--error))' }}
+              />
+            </div>
+          </section>
 
       {/* Surrender Details */}
       <section className="card">
@@ -342,9 +289,8 @@ export const SurrenderForm: React.FC = () => {
           <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Surrender Details</h3>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <InputField label="Available Balance" value="Rs. 45,000,000" readOnly style={{ background: 'hsl(var(--bg-main))', fontWeight: 600, color: 'hsl(var(--success))' }} />
             <InputField 
               label="Surrender Amount" 
               type="number" 
@@ -354,15 +300,16 @@ export const SurrenderForm: React.FC = () => {
               required 
             />
           </div>
-          <TextAreaField 
-            label="Reason for Surrender" 
-            placeholder="Explain why these funds are being surrendered to the pool..." 
-            rows={5}
-            value={surrenderDetails.reason}
-            onChange={(e) => setSurrenderDetails({ ...surrenderDetails, reason: e.target.value })}
-            required
-          />
         </div>
+
+        <TextAreaField 
+          label="Reason for Surrender" 
+          placeholder="Explain why these funds are being surrendered to the pool..." 
+          rows={4}
+          value={surrenderDetails.reason}
+          onChange={(e) => setSurrenderDetails({ ...surrenderDetails, reason: e.target.value })}
+          required
+        />
 
         <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
           <button 

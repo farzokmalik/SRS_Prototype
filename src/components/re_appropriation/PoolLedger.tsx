@@ -1,66 +1,156 @@
 import React from 'react';
-import { History, TrendingUp, TrendingDown, BookOpen } from 'lucide-react';
+import { History, TrendingUp, X } from 'lucide-react';
 
 import { useForm } from '../../context/FormContext';
 
 export const PoolLedger: React.FC = () => {
   const { formData } = useForm();
+  const [showReport, setShowReport] = React.useState(false);
+  
   const transactions = Array.isArray(formData.reappropriationTransactions) 
     ? formData.reappropriationTransactions 
     : [];
 
-  // Calculate stats from dynamic data
-  const totalSurrenders = transactions
-    .filter((t: any) => t.type === 'Surrender')
-    .reduce((acc: number, curr: any) => acc + curr.amount, 0);
-    
-  const totalAllocations = transactions
-    .filter((t: any) => t.type === 'Allocation')
-    .reduce((acc: number, curr: any) => acc + curr.amount, 0);
-    
-  const currentBalance = totalSurrenders - totalAllocations;
+  const surrenders = transactions.filter(t => t.type === 'Surrender');
+  const allocations = transactions.filter(t => t.type === 'Allocation');
 
   return (
     <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      {/* Stats Overview */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
-        <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ width: '48px', height: '48px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
-            <BookOpen size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Current Pool Balance</p>
-            <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {currentBalance.toLocaleString()}</h3>
+      {/* Report Modal / Overlay */}
+      {showReport && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.5)',
+          zIndex: 10000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2rem',
+          backdropFilter: 'blur(4px)'
+        }}>
+          <div className="card" style={{
+            width: '100%',
+            maxWidth: '1000px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            padding: '3rem',
+            background: '#fff',
+            position: 'relative',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          }}>
+            <button 
+              onClick={() => setShowReport(false)}
+              style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
+            >
+              <X size={24} />
+            </button>
+
+            {/* Formal Report Header */}
+            <div style={{ textAlign: 'center', marginBottom: '3rem', borderBottom: '2px solid #000', paddingBottom: '1.5rem' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Government of the Punjab</h2>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Planning & Development Board</h3>
+              <h4 style={{ fontSize: '1rem', fontWeight: 600, textTransform: 'uppercase', color: 'hsl(var(--text-muted))' }}>Re-Appropriation (Surrender & Allocation) Statement</h4>
+              <div style={{ marginTop: '1rem', fontSize: '0.875rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+                <span><strong>Date:</strong> {new Date().toLocaleDateString()}</span>
+                <span><strong>Fiscal Year:</strong> 2024-25</span>
+              </div>
+            </div>
+
+            {/* Summary Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
+              <div style={{ padding: '1.5rem', background: 'hsl(var(--success) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--success) / 0.1)' }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--success))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Surrenders (Savings)</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>Rs. {surrenders.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}</p>
+              </div>
+              <div style={{ padding: '1.5rem', background: 'hsl(var(--error) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--error) / 0.1)' }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--error))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Allocations (Excess)</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>Rs. {allocations.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}</p>
+              </div>
+            </div>
+
+            {/* Formal Table */}
+            <div style={{ border: '1px solid #000', marginBottom: '3rem' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8125rem' }}>
+                <thead>
+                  <tr style={{ background: '#f2f2f2', borderBottom: '1px solid #000' }}>
+                    <th colSpan={4} style={{ padding: '0.75rem', textAlign: 'center', borderRight: '1.5px solid #000', fontWeight: 700, textTransform: 'uppercase' }}>Savings / Surrenders</th>
+                    <th colSpan={4} style={{ padding: '0.75rem', textAlign: 'center', fontWeight: 700, textTransform: 'uppercase' }}>Excess / Allocations</th>
+                  </tr>
+                  <tr style={{ background: '#fafafa', borderBottom: '1.5px solid #000' }}>
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Sector</th>
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd', width: '20%' }}>Scheme</th>
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Object</th>
+                    <th style={{ padding: '0.6rem', borderRight: '1.5px solid #000', textAlign: 'right' }}>Amount</th>
+                    
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Sector</th>
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd', width: '20%' }}>Scheme</th>
+                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Object</th>
+                    <th style={{ padding: '0.6rem', textAlign: 'right' }}>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.from({ length: Math.max(surrenders.length, allocations.length, 1) }).map((_, idx) => (
+                    <tr key={idx} style={{ borderBottom: '1px solid #ddd' }}>
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{surrenders[idx]?.sector || ''}</td>
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd', fontSize: '0.75rem' }}>{surrenders[idx]?.source || ''}</td>
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{surrenders[idx]?.objectCode || ''}</td>
+                      <td style={{ padding: '0.6rem', borderRight: '1.5px solid #000', textAlign: 'right', fontWeight: 600 }}>
+                        {surrenders[idx] ? surrenders[idx].amount.toLocaleString() : ''}
+                      </td>
+                      
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{allocations[idx]?.sector || ''}</td>
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd', fontSize: '0.75rem' }}>{allocations[idx]?.target || ''}</td>
+                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{allocations[idx]?.objectCode || ''}</td>
+                      <td style={{ padding: '0.6rem', textAlign: 'right', fontWeight: 600 }}>
+                        {allocations[idx] ? allocations[idx].amount.toLocaleString() : ''}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Signature Section */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem', marginTop: '4rem', textAlign: 'center' }}>
+              <div style={{ borderTop: '1px solid #000', paddingTop: '0.5rem', fontSize: '0.75rem', fontWeight: 700 }}>Prepared By<br/><span style={{ fontWeight: 400, color: 'hsl(var(--text-muted))' }}>Section Officer</span></div>
+              <div style={{ borderTop: '1px solid #000', paddingTop: '0.5rem', fontSize: '0.75rem', fontWeight: 700 }}>Verified By<br/><span style={{ fontWeight: 400, color: 'hsl(var(--text-muted))' }}>Deputy Director</span></div>
+              <div style={{ borderTop: '1px solid #000', paddingTop: '0.5rem', fontSize: '0.75rem', fontWeight: 700 }}>Approved By<br/><span style={{ fontWeight: 400, color: 'hsl(var(--text-muted))' }}>Director General</span></div>
+            </div>
+
+            <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+              <button className="btn btn-secondary" onClick={() => setShowReport(false)}>Close Preview</button>
+              <button className="btn btn-primary" onClick={() => window.print()} style={{ background: 'hsl(var(--success))' }}>Print Report</button>
+            </div>
           </div>
         </div>
-        <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ width: '48px', height: '48px', background: 'hsl(var(--success) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--success))' }}>
-            <TrendingUp size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Total Surrenders</p>
-            <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {totalSurrenders.toLocaleString()}</h3>
-          </div>
-        </div>
-        <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-          <div style={{ width: '48px', height: '48px', background: 'hsl(var(--error) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--error))' }}>
-            <TrendingDown size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Total Allocations</p>
-            <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {totalAllocations.toLocaleString()}</h3>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* Ledger Table */}
       <section className="card" style={{ padding: '0' }}>
         <div style={{ padding: '1.5rem', borderBottom: '1px solid hsl(var(--border))', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <History size={20} color="hsl(var(--accent))" />
-            <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Pool Ledger (In-flow & Out-flow)</h3>
+            <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+              <History size={18} />
+            </div>
+            <h3 style={{ fontSize: '1.125rem', margin: 0, fontWeight: 700 }}>Pool Ledger (In-flow & Out-flow)</h3>
           </div>
-         
+          
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            {/* <button className="btn btn-secondary" style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <History size={14} /> View Logs
+            </button> */}
+            <button 
+              className="btn btn-primary" 
+              onClick={() => setShowReport(true)}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'hsl(var(--success))' }}
+            >
+              <TrendingUp size={14} /> Generate Report
+            </button>
+          </div>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -69,6 +159,8 @@ export const PoolLedger: React.FC = () => {
               <tr style={{ background: 'hsl(var(--bg-main))' }}>
                 <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Date</th>
                 <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Type</th>
+                <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Sector</th>
+                <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Object Code</th>
                 <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Source</th>
                 <th style={{ padding: '1rem 1.5rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Target</th>
                 <th style={{ padding: '1rem 1.5rem', textAlign: 'right', fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase' }}>Amount</th>
@@ -90,6 +182,12 @@ export const PoolLedger: React.FC = () => {
                     }}>
                       {item.type}
                     </span>
+                  </td>
+                  <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.875rem', fontWeight: 600, color: 'hsl(var(--primary))' }}>
+                    {item.sector || 'N/A'}
+                  </td>
+                  <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.8125rem', color: 'hsl(var(--text-muted))' }}>
+                    {item.objectCode || '---'}
                   </td>
                   <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.875rem', fontWeight: 500 }}>{item.source}</td>
                   <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.875rem', fontWeight: 500 }}>{item.target}</td>
