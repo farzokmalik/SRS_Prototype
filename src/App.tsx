@@ -506,9 +506,9 @@ const REAPPROPRIATION_CONFIG = {
   breadcrumb: 'Re-Appropriation',
   sections: [
     { id: 1, title: 'Surrender of Funds' },
-    { id: 2, title: 'Pool Ledger' },
-    { id: 3, title: 'Re-Appropriation (Allocation)' },
-    { id: 4, title: 'Departmental Report' },
+    { id: 2, title: 'Re-Appropriation (Allocation)' },
+    { id: 3, title: 'Pool Ledger' },
+    //  { id: 4, title: 'Departmental Report' },
   ],
   totalSections: 4,
 };

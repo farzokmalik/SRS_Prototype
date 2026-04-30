@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, Database, Target, CheckCircle2, X } from 'lucide-react';
-import { SelectField } from '../ui/FormElements';
+import { Plus, Trash2, CheckCircle2, X } from 'lucide-react';
 import { useForm } from '../../context/FormContext';
 
 interface TargetRow {
@@ -26,36 +25,15 @@ const OBJECT_CODE_OPTIONS = ['A01101 - Basic Pay', 'A03901 - Stationary', 'A1300
 
 export const ReAppropriationForm: React.FC = () => {
   const { formData, setTransactions, setSection } = useForm();
-  const [showTable, setShowTable] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastAmount, setLastAmount] = useState(0);
   
-  // Dynamically calculate pool options from global transactions
+  // Calculate total transactions for context
   const transactions = Array.isArray(formData.reappropriationTransactions) 
     ? formData.reappropriationTransactions 
     : [];
 
-  // Aggregate balances by Pool/Target
-  const poolBalances = transactions.reduce((acc: any, t: any) => {
-    const poolName = t.type === 'Surrender' ? t.target : t.source;
-    if (!acc[poolName]) acc[poolName] = 0;
-    
-    if (t.type === 'Surrender') {
-      acc[poolName] += t.amount;
-    } else {
-      acc[poolName] -= t.amount;
-    }
-    return acc;
-  }, {});
-
-  const dynamicPoolOptions = Object.entries(poolBalances)
-    .filter(([_, bal]: any) => bal > 0)
-    .map(([name, bal]: any) => ({
-      value: name,
-      label: `${name} - [Bal: Rs. ${bal.toLocaleString()}]`
-    }));
-
-  const [selectedPool, setSelectedPool] = useState(dynamicPoolOptions[0]?.value || '');
+  const [selectedPool] = useState('Global Surrender Pool');
   const [rows, setRows] = useState<TargetRow[]>([
     {
       id: '1',
@@ -68,10 +46,6 @@ export const ReAppropriationForm: React.FC = () => {
     }
   ]);
   
-  const handleGetDetails = () => {
-    setShowTable(true);
-  };
-
   const addRow = () => {
     setRows([...rows, {
       id: Math.random().toString(36).substr(2, 9),
@@ -108,13 +82,14 @@ export const ReAppropriationForm: React.FC = () => {
         source: selectedPool,
         target: row.projectName || 'Development Project',
         amount: parseFloat(row.amount),
-        status: 'Completed'
+        status: 'Completed',
+        sector: row.sector || 'General',
+        objectCode: row.objectCode || '---'
       }));
 
     setTransactions([...transactions, ...newTransactions]);
     setLastAmount(totalAmount);
     setShowSuccess(true);
-    setShowTable(false);
   };
 
   return (
@@ -178,7 +153,7 @@ export const ReAppropriationForm: React.FC = () => {
                 className="btn btn-primary" 
                 onClick={() => {
                   setShowSuccess(false);
-                  setSection(2); // Navigate to Ledger
+                  setSection(3); // Navigate to Pool Ledger
                 }}
                 style={{ width: '100%', padding: '0.875rem', fontSize: '1rem' }}
               >
@@ -196,41 +171,12 @@ export const ReAppropriationForm: React.FC = () => {
         </div>
       )}
 
-      {/* Pool Selection */}
-      <section className="card">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
-            <Database size={18} />
-          </div>
-          <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Pool Selection</h3>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '1.5rem', alignItems: 'flex-end', maxWidth: '800px' }}>
-          <SelectField 
-            label="Source Pool" 
-            value={selectedPool}
-            onChange={(e) => setSelectedPool(e.target.value)}
-            options={dynamicPoolOptions}
-            description="Select the source pool categorized by Funding Type, Grant, and Object Code."
-            required
-          />
-          <button 
-            className="btn btn-primary" 
-            onClick={handleGetDetails}
-            style={{ height: '42px', marginBottom: '1.5rem', minWidth: '160px' }}
-          >
-            Get Pool Details
-          </button>
-        </div>
-      </section>
-
       {/* Target & Allocation Details */}
-      {showTable && (
-        <section className="card" style={{ padding: '2rem', animation: 'fadeIn 0.4s ease-out' }}>
+      <section className="card" style={{ padding: '2rem', animation: 'fadeIn 0.4s ease-out' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-          <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+          {/* <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
             <Target size={18} />
-          </div>
+          </div> */}
           <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Target Allocation Details</h3>
         </div>
 
@@ -240,7 +186,9 @@ export const ReAppropriationForm: React.FC = () => {
               <tr>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Target Sector</th>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Project Name</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Grant / LOA / Object</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Grant Number</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>LOA Number</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Object Code</th>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Allocation Amount</th>
                 <th style={{ textAlign: 'center', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}></th>
               </tr>
@@ -248,7 +196,7 @@ export const ReAppropriationForm: React.FC = () => {
             <tbody>
               {rows.map((row) => (
                 <tr key={row.id} style={{ background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-                  <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '200px' }}>
+                  <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '180px' }}>
                     <select 
                       className="select" 
                       value={row.sector}
@@ -259,7 +207,7 @@ export const ReAppropriationForm: React.FC = () => {
                       {SECTOR_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </td>
-                  <td style={{ padding: '1rem', width: '250px' }}>
+                  <td style={{ padding: '1rem', width: '220px' }}>
                     <select 
                       className="select" 
                       value={row.projectName}
@@ -270,24 +218,26 @@ export const ReAppropriationForm: React.FC = () => {
                       {PROJECT_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
                     </select>
                   </td>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
-                      <select className="select" style={{ fontSize: '0.75rem' }} value={row.grantNumber} onChange={(e) => updateRow(row.id, { grantNumber: e.target.value })}>
-                        <option value="">Grant</option>
-                        {GRANT_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
-                      </select>
-                      <select className="select" style={{ fontSize: '0.75rem' }} value={row.loaNumber} onChange={(e) => updateRow(row.id, { loaNumber: e.target.value })}>
-                        <option value="">LOA</option>
-                        <option value="LOA-2024-001">LOA-2024-001</option>
-                        <option value="LOA-2024-005">LOA-2024-005</option>
-                      </select>
-                      <select className="select" style={{ fontSize: '0.75rem' }} value={row.objectCode} onChange={(e) => updateRow(row.id, { objectCode: e.target.value })}>
-                        <option value="">Object</option>
-                        {OBJECT_CODE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
-                      </select>
-                    </div>
+                  <td style={{ padding: '1rem', width: '130px' }}>
+                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.grantNumber} onChange={(e) => updateRow(row.id, { grantNumber: e.target.value })}>
+                      <option value="">Grant</option>
+                      {GRANT_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+                    </select>
                   </td>
-                  <td style={{ padding: '1rem', width: '200px' }}>
+                  <td style={{ padding: '1rem', width: '130px' }}>
+                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.loaNumber} onChange={(e) => updateRow(row.id, { loaNumber: e.target.value })}>
+                      <option value="">LOA</option>
+                      <option value="LOA-2024-001">LOA-2024-001</option>
+                      <option value="LOA-2024-005">LOA-2024-005</option>
+                    </select>
+                  </td>
+                  <td style={{ padding: '1rem', width: '150px' }}>
+                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.objectCode} onChange={(e) => updateRow(row.id, { objectCode: e.target.value })}>
+                      <option value="">Object</option>
+                      {OBJECT_CODE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                  </td>
+                  <td style={{ padding: '1rem', width: '180px' }}>
                     <input 
                       type="number" 
                       className="input" 
@@ -310,7 +260,7 @@ export const ReAppropriationForm: React.FC = () => {
               ))}
               {/* Total Row */}
               <tr style={{ background: 'hsl(var(--bg-main) / 0.5)', borderRadius: 'var(--radius-md)' }}>
-                <td colSpan={3} style={{ padding: '1rem', textAlign: 'right', fontWeight: 700, fontSize: '0.875rem' }}>
+                <td colSpan={5} style={{ padding: '1rem', textAlign: 'right', fontWeight: 700, fontSize: '0.875rem' }}>
                   Total Allocation Amount:
                 </td>
                 <td style={{ padding: '1rem', fontWeight: 700, fontSize: '0.875rem', color: 'hsl(var(--primary))' }}>
@@ -341,7 +291,6 @@ export const ReAppropriationForm: React.FC = () => {
           </div>
         </div>
         </section>
-      )}
     </div>
   );
 };
