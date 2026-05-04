@@ -4,6 +4,7 @@ import { useForm } from '../../context/FormContext';
 
 interface TargetRow {
   id: string;
+  projectId: string;
   sector: string;
   projectName: string;
   grantNumber: string;
@@ -20,6 +21,7 @@ const PROJECT_OPTIONS = [
   'Punjab Solar Energy Optimization Project', 'Smart Agriculture Initiative Phase II', 'Healthcare Infrastructure Expansion', 'Rural Road Connectivity Program'
 ];
 
+const PROJECT_ID_OPTIONS = ['PID-2024-001', 'PID-2024-076', 'PID-2025-012', 'PID-2025-088'];
 const GRANT_OPTIONS = ['Grant 12', 'Grant 15', 'Grant 21', 'Grant 36'];
 const OBJECT_CODE_OPTIONS = ['A01101 - Basic Pay', 'A03901 - Stationary', 'A13001 - Transport', 'A05270 - Others'];
 
@@ -37,6 +39,7 @@ export const ReAppropriationForm: React.FC = () => {
   const [rows, setRows] = useState<TargetRow[]>([
     {
       id: '1',
+      projectId: 'PID-2024-076',
       sector: 'Health',
       projectName: 'Healthcare Infrastructure Expansion',
       grantNumber: 'Grant 21',
@@ -49,6 +52,7 @@ export const ReAppropriationForm: React.FC = () => {
   const addRow = () => {
     setRows([...rows, {
       id: Math.random().toString(36).substr(2, 9),
+      projectId: '',
       sector: '',
       projectName: '',
       grantNumber: '',
@@ -184,6 +188,7 @@ export const ReAppropriationForm: React.FC = () => {
           <table className="table" style={{ width: '100%', minWidth: '1000px', borderCollapse: 'separate', borderSpacing: '0 0.75rem' }}>
             <thead>
               <tr>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Project ID</th>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Target Sector</th>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Project Name</th>
                 <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Grant Number</th>
@@ -196,7 +201,18 @@ export const ReAppropriationForm: React.FC = () => {
             <tbody>
               {rows.map((row) => (
                 <tr key={row.id} style={{ background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-                  <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '180px' }}>
+                  <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '150px' }}>
+                    <select 
+                      className="select" 
+                      value={row.projectId}
+                      onChange={(e) => updateRow(row.id, { projectId: e.target.value })}
+                      style={{ fontSize: '0.8125rem' }}
+                    >
+                      <option value="">Select ID</option>
+                      {PROJECT_ID_OPTIONS.map(id => <option key={id} value={id}>{id}</option>)}
+                    </select>
+                  </td>
+                  <td style={{ padding: '1rem', width: '180px' }}>
                     <select 
                       className="select" 
                       value={row.sector}
