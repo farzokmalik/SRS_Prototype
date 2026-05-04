@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Plus, ArrowDownToLine, CheckCircle2, X } from 'lucide-react';
+import { Plus, CheckCircle2, X } from 'lucide-react';
 import { InputField, SelectField, TextAreaField } from '../ui/FormElements';
 import { useForm } from '../../context/FormContext';
 
 interface ReappRow {
   id: string;
+  projectId: string;
   gsNo: string;
   mainSector: string;
   sector: string;
@@ -24,6 +25,7 @@ const PROJECT_OPTIONS = [
   'Punjab Solar Energy Optimization Project', 'Smart Agriculture Initiative Phase II', 'Healthcare Infrastructure Expansion', 'Rural Road Connectivity Program'
 ];
 
+const PROJECT_ID_OPTIONS = ['PID-2024-001', 'PID-2024-076', 'PID-2025-012', 'PID-2025-088'];
 const GRANT_OPTIONS = ['Grant 12', 'Grant 15', 'Grant 21', 'Grant 36'];
 const OBJECT_CODE_OPTIONS = ['A01101 - Basic Pay', 'A03901 - Stationary', 'A13001 - Transport', 'A05270 - Others'];
 
@@ -35,6 +37,7 @@ export const SurrenderForm: React.FC = () => {
   const [rows, setRows] = useState<ReappRow[]>([
     {
       id: '1',
+      projectId: 'PID-2024-001',
       gsNo: '76',
       mainSector: 'Social Sectors',
       sector: 'Agriculture',
@@ -50,17 +53,11 @@ export const SurrenderForm: React.FC = () => {
   const [surrenderDetails, setSurrenderDetails] = useState({
     year: '2024-25',
     costType: 'Local',
-    surrenderAmount: '',
     reason: 'Project optimization and redistribution of unutilized funds from personnel and operational heads.',
   });
 
   // Calculate total from rows in real-time
   const totalReapp = rows.reduce((sum, row) => sum + (parseFloat(row.amount) || 0), 0);
-
-  // Sync surrenderAmount with totalReapp
-  React.useEffect(() => {
-    setSurrenderDetails(prev => ({ ...prev, surrenderAmount: totalReapp.toString() }));
-  }, [totalReapp]);
 
   const handleGetDetails = () => {
     setShowTable(true);
@@ -213,6 +210,13 @@ export const SurrenderForm: React.FC = () => {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+              <SelectField 
+                label="Project ID" 
+                value={rows[0].projectId}
+                onChange={(e) => updateRow(rows[0].id, { projectId: e.target.value })}
+                options={PROJECT_ID_OPTIONS}
+              />
+
               <InputField 
                 label="GS No." 
                 placeholder="Enter GS No."
@@ -278,39 +282,23 @@ export const SurrenderForm: React.FC = () => {
                 style={{ fontWeight: 700, color: 'hsl(var(--error))' }}
               />
             </div>
+             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+          <TextAreaField 
+            label="Reason for Surrender" 
+            placeholder="Explain why these funds are being surrendered to the pool..." 
+            rows={4}
+            value={surrenderDetails.reason}
+            onChange={(e) => setSurrenderDetails({ ...surrenderDetails, reason: e.target.value })}
+            required
+          />
+        </div>
+
           </section>
 
       {/* Surrender Details */}
-      <section className="card">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
-            <ArrowDownToLine size={18} />
-          </div>
-          <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Surrender Details</h3>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <InputField 
-              label="Surrender Amount" 
-              type="number" 
-              placeholder="Enter amount to surrender" 
-              value={surrenderDetails.surrenderAmount}
-              onChange={(e) => setSurrenderDetails({ ...surrenderDetails, surrenderAmount: e.target.value })}
-              required 
-            />
-          </div>
-        </div>
-
-        <TextAreaField 
-          label="Reason for Surrender" 
-          placeholder="Explain why these funds are being surrendered to the pool..." 
-          rows={4}
-          value={surrenderDetails.reason}
-          onChange={(e) => setSurrenderDetails({ ...surrenderDetails, reason: e.target.value })}
-          required
-        />
-
+      <section>
+       
+       
         <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
           <button 
             className="btn btn-primary" 
