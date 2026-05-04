@@ -16,7 +16,7 @@ export const Section6_StrategicAlignment: React.FC = () => {
         
         <div style={{ maxWidth: '1200px' }}>
           <TextAreaField 
-            label="[PC-N-6.1] Sector Plan Alignment" 
+            label="[PCN-6.1] Sector Plan Alignment" 
             rows={5}
             placeholder="Explain how this project aligns with the sectoral plans and provincial strategies..."
             value={data.sectorPlanAlignment}

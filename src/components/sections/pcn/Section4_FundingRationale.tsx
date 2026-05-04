@@ -16,7 +16,7 @@ export const Section4_FundingRationale: React.FC = () => {
         
         <div className="space-y-6" style={{ maxWidth: '800px' }}>
           <RadioGroup 
-            label="[PC-N-4.1] Does this project qualify for ADP Funding?"
+            label="[PCN-4.1] Does this project qualify for ADP Funding?"
             name="adpFunding"
             options={[
               { label: 'Yes', value: 'Yes' },
@@ -29,7 +29,7 @@ export const Section4_FundingRationale: React.FC = () => {
           {data.adpFunding === 'Yes' && (
             <div className="animate-fade-in">
               <TextAreaField 
-                label="[PC-N-4.2] Justification for ADP Funding" 
+                label="[PCN-4.2] Justification for ADP Funding" 
                 rows={4}
                 placeholder="Explain why this project is a priority for ADP allocation..."
                 value={data.justification}

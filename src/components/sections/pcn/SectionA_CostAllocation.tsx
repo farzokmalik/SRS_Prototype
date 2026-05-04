@@ -21,14 +21,14 @@ export const SectionA_CostAllocation: React.FC = () => {
           <table className="form-table">
             <thead>
               <tr>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.1] Local Cost</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.2] Foreign Cost</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.3] Cap.</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.4] Rev.</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.5] Total</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.6] TF 2027-28</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.7] TF 2028-29</th>
-                <th style={{ textAlign: 'center' }}>[PC-N-A.8] TF Beyond 29-30</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.1] Local Cost</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.2] Foreign Cost</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.3] Cap.</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.4] Rev.</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.5] Total</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.6] TF 2027-28</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.7] TF 2028-29</th>
+                <th style={{ textAlign: 'center' }}>[PCN-A.8] TF Beyond 29-30</th>
               </tr>
             </thead>
             <tbody>

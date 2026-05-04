@@ -22,7 +22,7 @@ export const Section15_GrowthStrategy: React.FC = () => {
         
         <div className="space-y-8" style={{ maxWidth: '1200px' }}>
           <MultiCheckGroup 
-            label="[PC-N-15.1] Applicable Growth Strategy Areas"
+            label="[PCN-15.1] Applicable Growth Strategy Areas"
             options={GROWTH_AREAS}
             value={data.applicableAreas}
             onChange={(val) => handleChange('applicableAreas', val)}
@@ -30,7 +30,7 @@ export const Section15_GrowthStrategy: React.FC = () => {
           />
 
           <TextAreaField 
-            label="[PC-N-15.2] Alignment Reason & Justification" 
+            label="[PCN-15.2] Alignment Reason & Justification" 
             rows={8}
             placeholder="Provide a detailed explanation of how the project aligns with the selected growth strategy areas..."
             value={data.alignmentReason}

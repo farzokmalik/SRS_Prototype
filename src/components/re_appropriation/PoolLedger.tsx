@@ -8,6 +8,7 @@ export const PoolLedger: React.FC = () => {
   const [showReport, setShowReport] = React.useState(false);
   const [selectedTransaction, setSelectedTransaction] = React.useState<any>(null);
   const [showSingleReport, setShowSingleReport] = React.useState(false);
+  const [reportType, setReportType] = React.useState<'surrender' | 'allocation'>('surrender');
   
   const transactions = Array.isArray(formData.reappropriationTransactions) 
     ? formData.reappropriationTransactions 
@@ -231,22 +232,30 @@ export const PoolLedger: React.FC = () => {
             <div style={{ textAlign: 'center', marginBottom: '3rem', borderBottom: '2px solid #000', paddingBottom: '1.5rem' }}>
               <h2 style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Government of the Punjab</h2>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Planning & Development Board</h3>
-              <h4 style={{ fontSize: '1rem', fontWeight: 600, textTransform: 'uppercase', color: 'hsl(var(--text-muted))' }}>Re-Appropriation (Surrender & Allocation) Statement</h4>
+              <h4 style={{ fontSize: '1rem', fontWeight: 600, textTransform: 'uppercase', color: 'hsl(var(--text-muted))' }}>
+                {reportType === 'surrender' ? 'Surrender (Savings) Statement' : 'Allocation (Excess) Statement'}
+              </h4>
               <div style={{ marginTop: '1rem', fontSize: '0.875rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
                 <span><strong>Date:</strong> {new Date().toLocaleDateString()}</span>
                 <span><strong>Fiscal Year:</strong> 2024-25</span>
               </div>
             </div>
 
-            {/* Summary Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
-              <div style={{ padding: '1.5rem', background: 'hsl(var(--success) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--success) / 0.1)' }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--success))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Surrenders (Savings)</p>
-                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>Rs. {surrenders.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}</p>
-              </div>
-              <div style={{ padding: '1.5rem', background: 'hsl(var(--error) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--error) / 0.1)' }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--error))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Allocations (Excess)</p>
-                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>Rs. {allocations.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}</p>
+            {/* Summary Card */}
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{ 
+                padding: '1.5rem', 
+                background: reportType === 'surrender' ? 'hsl(var(--success) / 0.05)' : 'hsl(var(--error) / 0.05)', 
+                borderRadius: 'var(--radius-md)', 
+                border: reportType === 'surrender' ? '1px solid hsl(var(--success) / 0.1)' : '1px solid hsl(var(--error) / 0.1)',
+                textAlign: 'center'
+              }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: reportType === 'surrender' ? 'hsl(var(--success))' : 'hsl(var(--error))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  {reportType === 'surrender' ? 'Total Savings (Surrenders)' : 'Total Excess (Allocations)'}
+                </p>
+                <p style={{ fontSize: '2rem', fontWeight: 800 }}>
+                  Rs. {(reportType === 'surrender' ? surrenders : allocations).reduce((acc, t) => acc + t.amount, 0).toLocaleString()}
+                </p>
               </div>
             </div>
 
@@ -254,40 +263,29 @@ export const PoolLedger: React.FC = () => {
             <div style={{ border: '1px solid #000', marginBottom: '3rem' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8125rem' }}>
                 <thead>
-                  <tr style={{ background: '#f2f2f2', borderBottom: '1px solid #000' }}>
-                    <th colSpan={4} style={{ padding: '0.75rem', textAlign: 'center', borderRight: '1.5px solid #000', fontWeight: 700, textTransform: 'uppercase' }}>Savings / Surrenders</th>
-                    <th colSpan={4} style={{ padding: '0.75rem', textAlign: 'center', fontWeight: 700, textTransform: 'uppercase' }}>Excess / Allocations</th>
-                  </tr>
-                  <tr style={{ background: '#fafafa', borderBottom: '1.5px solid #000' }}>
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Sector</th>
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd', width: '20%' }}>Scheme</th>
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Object</th>
-                    <th style={{ padding: '0.6rem', borderRight: '1.5px solid #000', textAlign: 'right' }}>Amount</th>
-                    
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Sector</th>
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd', width: '20%' }}>Scheme</th>
-                    <th style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>Object</th>
-                    <th style={{ padding: '0.6rem', textAlign: 'right' }}>Amount</th>
+                  <tr style={{ background: '#f2f2f2', borderBottom: '1.5px solid #000' }}>
+                    <th style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>Sector</th>
+                    <th style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>{reportType === 'surrender' ? 'Source Scheme' : 'Target Scheme'}</th>
+                    <th style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>Object Code</th>
+                    <th style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>Date</th>
+                    <th style={{ padding: '0.75rem', textAlign: 'right' }}>Amount (Rs.)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.from({ length: Math.max(surrenders.length, allocations.length, 1) }).map((_, idx) => (
+                  {(reportType === 'surrender' ? surrenders : allocations).map((item, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid #ddd' }}>
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{surrenders[idx]?.sector || ''}</td>
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd', fontSize: '0.75rem' }}>{surrenders[idx]?.source || ''}</td>
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{surrenders[idx]?.objectCode || ''}</td>
-                      <td style={{ padding: '0.6rem', borderRight: '1.5px solid #000', textAlign: 'right', fontWeight: 600 }}>
-                        {surrenders[idx] ? surrenders[idx].amount.toLocaleString() : ''}
-                      </td>
-                      
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{allocations[idx]?.sector || ''}</td>
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd', fontSize: '0.75rem' }}>{allocations[idx]?.target || ''}</td>
-                      <td style={{ padding: '0.6rem', borderRight: '1px solid #ddd' }}>{allocations[idx]?.objectCode || ''}</td>
-                      <td style={{ padding: '0.6rem', textAlign: 'right', fontWeight: 600 }}>
-                        {allocations[idx] ? allocations[idx].amount.toLocaleString() : ''}
-                      </td>
+                      <td style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>{item.sector}</td>
+                      <td style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>{reportType === 'surrender' ? item.source : item.target}</td>
+                      <td style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>{item.objectCode}</td>
+                      <td style={{ padding: '0.75rem', borderRight: '1px solid #ddd' }}>{formatDate(item.date)}</td>
+                      <td style={{ padding: '0.75rem', textAlign: 'right', fontWeight: 600 }}>{item.amount.toLocaleString()}</td>
                     </tr>
                   ))}
+                  {((reportType === 'surrender' ? surrenders : allocations).length === 0) && (
+                    <tr>
+                      <td colSpan={5} style={{ padding: '2rem', textAlign: 'center', color: 'hsl(var(--text-muted))' }}>No records found for this period.</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -322,11 +320,18 @@ export const PoolLedger: React.FC = () => {
           
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button 
-              className="btn btn-primary" 
-              onClick={() => setShowReport(true)}
-              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'hsl(var(--success))' }}
+              className="btn btn-secondary" 
+              onClick={() => { setReportType('surrender'); setShowReport(true); }}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--success))', border: '1px solid hsl(var(--success) / 0.2)' }}
             >
-              <TrendingUp size={14} /> Generate Full Report
+              <TrendingUp size={14} /> Surrender Report
+            </button>
+            <button 
+              className="btn btn-secondary" 
+              onClick={() => { setReportType('allocation'); setShowReport(true); }}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--error))', border: '1px solid hsl(var(--error) / 0.2)' }}
+            >
+              <TrendingUp size={14} /> Allocation Report
             </button>
           </div>
         </div>

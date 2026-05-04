@@ -37,7 +37,7 @@ export const Section2_ProponentInfo: React.FC = () => {
           {/* Main Context Area */}
           <div className="grid grid-cols-1 gap-6">
             <TextAreaField 
-              label="[PC-N-2.1] Background & Rationale" 
+              label="[PCN-2.1] Background & Rationale" 
               rows={5}
               placeholder="Provide strategic context and justification for this intervention..."
               value={sectionData.background || ''}
@@ -45,7 +45,7 @@ export const Section2_ProponentInfo: React.FC = () => {
             />
 
             <TextAreaField 
-              label="[PC-N-2.2] Specific Crop Health Benefits" 
+              label="[PCN-2.2] Specific Crop Health Benefits" 
               rows={4}
               placeholder="Explain how this project directly impacts agricultural productivity..."
               value={sectionData.cropHealth || ''}
@@ -57,7 +57,7 @@ export const Section2_ProponentInfo: React.FC = () => {
 
           {/* Attachments Area */}
           <FileUpload 
-            label="[PC-N-2.3] Image / Figure Upload" 
+            label="[PCN-2.3] Image / Figure Upload" 
             description="Attach technical diagrams, proponent charts, or geographical figures (Max 10MB per file)"
             files={sectionData.attachments || []}
             onUpload={(files) => handleChange('attachments', files)}
@@ -97,9 +97,9 @@ export const Section2_ProponentInfo: React.FC = () => {
                 borderBottom: '1px solid hsl(var(--border))',
                 background: 'hsl(var(--bg-main) / 0.2)'
               }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.4] Nutrient / Parameter</div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.5] Value</div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PC-N-2.6] Unit</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PCN-2.4] Nutrient / Parameter</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PCN-2.5] Value</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'hsl(var(--text-muted))' }}>[PCN-2.6] Unit</div>
                 <div></div>
               </div>
 

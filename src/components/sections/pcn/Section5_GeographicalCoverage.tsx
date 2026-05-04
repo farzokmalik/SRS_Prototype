@@ -21,7 +21,7 @@ export const Section5_GeographicalCoverage: React.FC = () => {
         
         <div className="space-y-6" style={{ maxWidth: '800px' }}>
           <RadioGroup 
-            label="[PC-N-5.1] Coverage Selection"
+            label="[PCN-5.1] Coverage Selection"
             name="coverageType"
             options={[
               { label: 'Whole Province', value: 'Whole Province' },
@@ -34,7 +34,7 @@ export const Section5_GeographicalCoverage: React.FC = () => {
           {data.type === 'Specific Districts' && (
             <div className="animate-fade-in card" style={{ background: 'hsl(var(--bg-main) / 0.3)', border: '1px dotted hsl(var(--border))' }}>
               <MultiCheckGroup 
-                label="[PC-N-5.2] Select Districts"
+                label="[PCN-5.2] Select Districts"
                 options={DISTRICTS}
                 value={data.districts}
                 onChange={(val) => handleChange('districts', val)}

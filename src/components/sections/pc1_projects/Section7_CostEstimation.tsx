@@ -351,12 +351,20 @@ export const Section7_CostEstimation: React.FC = () => {
               : <FileText size={15} style={{ color: 'hsl(220,80%,55%)', flexShrink: 0 }} />
             }
 
-            <span style={{
-              fontSize: '0.7rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
-              background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
-            }}>[PC-I-7.1] {node.level}</span>
+            {depth === 0 && (
+              <span style={{
+                fontSize: '0.7rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
+                background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
+              }}>[PC-I-7.1] {node.level}</span>
+            )}
+            {depth > 0 && (
+               <span style={{
+                fontSize: '0.7rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
+                background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
+              }}>{node.level}</span>
+            )}
 
-            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--text-muted))' }}>[PC-I-7.2]</span>
+            {depth === 0 && <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'hsl(var(--text-muted))' }}>[PC-I-7.2]</span>}
             <EditableTitle
               value={node.title}
               onChange={v => patchNode(node.id, { title: v })}
@@ -375,7 +383,9 @@ export const Section7_CostEstimation: React.FC = () => {
                 fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
                 background: 'hsl(220,80%,93%)', color: 'hsl(220,80%,45%)',
                 padding: '1px 5px', borderRadius: 3, flexShrink: 0
-              }}>[PC-I-7.3] Dict</span>
+              }}>
+                {depth === 0 ? '[PC-I-7.3] Dict' : 'Dict'}
+              </span>
             )}
           </div>
 
@@ -878,9 +888,9 @@ export const Section7_CostEstimation: React.FC = () => {
                                     fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase',
                                     color: 'hsl(var(--text-muted))',
                                   }}>
-                                    <div>[PC-I-7.13] Financial Year</div>
-                                    <div>[PC-I-7.14] Local Estimate (M)</div>
-                                    <div>[PC-I-7.15] Foreign Estimate (M)</div>
+                                    <div>Financial Year</div>
+                                    <div>Local Estimate (M)</div>
+                                    <div>Foreign Estimate (M)</div>
                                     <div style={{ textAlign: 'center' }}>Local Details</div>
                                     <div style={{ textAlign: 'center' }}>Foreign Details</div>
                                     <div />

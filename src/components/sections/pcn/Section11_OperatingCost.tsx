@@ -17,11 +17,11 @@ export const Section11_OperatingCost: React.FC = () => {
       <div className="card shadow-sm">
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
-          <InputField label="[PC-N-11.1] Maintenance Cost" type="number" value={data.maintenance} onChange={(e: any) => handleChange('maintenance', e.target.value)} />
-          <InputField label="[PC-N-11.2] HR Cost" type="number" value={data.hr} onChange={(e: any) => handleChange('hr', e.target.value)} />
-          <InputField label="[PC-N-11.3] Operational Cost" type="number" value={data.operation} onChange={(e: any) => handleChange('operation', e.target.value)} />
-          <InputField label="[PC-N-11.4] Repairs Cost" type="number" value={data.repairs} onChange={(e: any) => handleChange('repairs', e.target.value)} />
-          <InputField label="[PC-N-11.5] Others" type="number" value={data.others} onChange={(e: any) => handleChange('others', e.target.value)} />
+          <InputField label="[PCN-11.1] Maintenance Cost" type="number" value={data.maintenance} onChange={(e: any) => handleChange('maintenance', e.target.value)} />
+          <InputField label="[PCN-11.2] HR Cost" type="number" value={data.hr} onChange={(e: any) => handleChange('hr', e.target.value)} />
+          <InputField label="[PCN-11.3] Operational Cost" type="number" value={data.operation} onChange={(e: any) => handleChange('operation', e.target.value)} />
+          <InputField label="[PCN-11.4] Repairs Cost" type="number" value={data.repairs} onChange={(e: any) => handleChange('repairs', e.target.value)} />
+          <InputField label="[PCN-11.5] Others" type="number" value={data.others} onChange={(e: any) => handleChange('others', e.target.value)} />
         </div>
       </div>
     </div>

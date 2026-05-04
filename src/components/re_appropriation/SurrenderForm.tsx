@@ -95,6 +95,21 @@ export const SurrenderForm: React.FC = () => {
 
   return (
     <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative' }}>
+      {/* Primary Project ID Selection - Full Row */}
+      <section className="card" style={{ borderLeft: '4px solid hsl(var(--primary))' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+          <h3 style={{ fontSize: '1.125rem', margin: 0, fontWeight: 700 }}>Project Identification</h3>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+          <SelectField 
+            label="Select Project ID" 
+            value={rows[0].projectId}
+            onChange={(e) => updateRow(rows[0].id, { projectId: e.target.value })}
+            options={PROJECT_ID_OPTIONS}
+          />
+        </div>
+      </section>
+
       {/* Success Modal */}
       {showSuccess && (
         <div style={{
@@ -210,13 +225,6 @@ export const SurrenderForm: React.FC = () => {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
-              <SelectField 
-                label="Project ID" 
-                value={rows[0].projectId}
-                onChange={(e) => updateRow(rows[0].id, { projectId: e.target.value })}
-                options={PROJECT_ID_OPTIONS}
-              />
-
               <InputField 
                 label="GS No." 
                 placeholder="Enter GS No."

@@ -174,11 +174,20 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
               : <FileText size={15} style={{ color: 'hsl(220,80%,55%)', flexShrink: 0 }} />
             }
 
-            <span style={{
-              fontSize: '0.65rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
-              background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
-            }}>{node.level}</span>
+            {depth === 0 && (
+              <span style={{
+                fontSize: '0.65rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
+                background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
+              }}>[PC-I-7.1] {node.level}</span>
+            )}
+            {depth > 0 && (
+               <span style={{
+                fontSize: '0.65rem', fontWeight: 700, color: 'hsl(220,20%,60%)',
+                background: 'hsl(220,20%,94%)', padding: '1px 5px', borderRadius: 3, flexShrink: 0
+              }}>{node.level}</span>
+            )}
 
+            {depth === 0 && <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--text-muted))' }}>[PC-I-7.2]</span>}
             <span style={{
               fontWeight: node.type === 'summary' ? 700 : 500,
               fontSize: '0.875rem',
@@ -548,8 +557,8 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
                     <div style={{ padding: '1.25rem' }}>
                       {/* Description + Unit row */}
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px', gap: '1.25rem', marginBottom: '1.5rem' }}>
-                        <InputField label="[PC-III(a)-2.3] Item Description" placeholder="e.g. Earth Work, Pipe Laying, Structure..." value={aw.description} onChange={e => updateAW(selectedNode.id, aw.id, { description: e.target.value })} />
-                        <InputField label="[PC-III(a)-2.4] Unit of Measurement" placeholder="e.g. M3, Km, No." value={aw.unit} onChange={e => updateAW(selectedNode.id, aw.id, { unit: e.target.value })} />
+                        <InputField label="Item Description" placeholder="e.g. Earth Work, Pipe Laying, Structure..." value={aw.description} onChange={e => updateAW(selectedNode.id, aw.id, { description: e.target.value })} />
+                        <InputField label="Unit of Measurement" placeholder="e.g. M3, Km, No." value={aw.unit} onChange={e => updateAW(selectedNode.id, aw.id, { unit: e.target.value })} />
                       </div>
 
                       {/* 4 Quarters */}
@@ -581,19 +590,19 @@ export const Section5_AnnualWorkPlan: React.FC = () => {
 
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.5] Unit</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>Unit</label>
                                   <input className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder={aw.unit || 'Unit'} value={qd.unit} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { unit: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.6] PC-I Qty</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>PC-I Qty</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.pciQty} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { pciQty: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.7] Achievement</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>Achievement</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.achievement} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { achievement: e.target.value })} />
                                 </div>
                                 <div>
-                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>[PC-III(a)-2.8] CY Target</label>
+                                  <label style={{ fontSize: '0.6rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.25rem' }}>CY Target</label>
                                   <input type="number" className="input" style={{ background: '#fff', fontSize: '0.8rem', padding: '0.4rem 0.6rem' }} placeholder="0" value={qd.target} onChange={e => updateQuarter(selectedNode.id, aw.id, q, { target: e.target.value })} />
                                 </div>
                               </div>
