@@ -31,18 +31,7 @@ export const PoolStatsCards: React.FC = () => {
         </div>
       </div>
 
-      {/* Current Balance Card (Now Second) */}
-      <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
-          <BookOpen size={24} />
-        </div>
-        <div>
-          <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Current Pool Balance</p>
-          <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {currentBalance.toLocaleString()}</h3>
-        </div>
-      </div>
-
-      {/* Total Allocations Card */}
+      {/* Total Allocations Card (Now Second) */}
       <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
         <div style={{ width: '48px', height: '48px', background: 'hsl(var(--error) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--error))' }}>
           <TrendingDown size={24} />
@@ -50,6 +39,17 @@ export const PoolStatsCards: React.FC = () => {
         <div>
           <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Total Allocations</p>
           <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {totalAllocations.toLocaleString()}</h3>
+        </div>
+      </div>
+
+      {/* Current Balance Card (Now Third) */}
+      <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+          <BookOpen size={24} />
+        </div>
+        <div>
+          <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'hsl(var(--text-muted))', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Current Pool Balance</p>
+          <h3 style={{ fontSize: '1.5rem', margin: 0 }}>Rs. {currentBalance.toLocaleString()}</h3>
         </div>
       </div>
     </div>

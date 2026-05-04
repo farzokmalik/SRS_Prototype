@@ -17,8 +17,8 @@ import {
 const PC_FORMS = [
    {
     id: 'pcn',
-    path: '/pc-n',
-    label: 'PC-N',
+    path: '/PCN',
+    label: 'PCN',
     title: 'Project Concept Note',
     description: 'Specialised intervention concept note for strategic alignment, crop health, and geographical coverage proposals.',
     sections: 16,

@@ -5,7 +5,6 @@ import { useForm } from '../../context/FormContext';
 import { useFormConfig } from '../../context/FormConfigContext';
 import { 
   Bell, 
-  Search, 
   ChevronRight,
   Save,
   Send
@@ -56,21 +55,6 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode; hideFooter?:
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <div style={{ position: 'relative' }}>
-              <Search style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} size={16} color="hsl(var(--text-muted))" />
-              <input 
-                placeholder="Search sections..." 
-                style={{ 
-                  padding: '0.5rem 1rem 0.5rem 2.25rem', 
-                  borderRadius: 'var(--radius-full)', 
-                  border: '1px solid hsl(var(--border))',
-                  fontSize: '0.875rem',
-                  width: '240px',
-                  background: 'rgba(0,0,0,0.02)',
-                  outline: 'none'
-                }} 
-              />
-            </div>
             <button className="btn" style={{ padding: '0.5rem', background: 'transparent' }}><Bell size={20} color="hsl(var(--text-muted))" /></button>
             <div style={{ height: '32px', width: '1px', background: 'hsl(var(--border))' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>

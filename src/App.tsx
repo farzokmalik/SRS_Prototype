@@ -42,7 +42,7 @@ import { PC2Section11_StudiesUndertaken } from './components/pc2/PC2Section11_St
 import { PC2Section12_ManagementManpower } from './components/pc2/PC2Section12_ManagementManpower';
 import { PC2Section14_InitialScrutinyChecklist } from './components/pc2/PC2Section14_InitialScrutinyChecklist';
 
-// PC-N Sections
+// PCN Sections
 import { Section1_ProjectTitle as PCN_Section1 } from './components/sections/pcn/Section1_ProjectTitle';
 import { Section2_ProponentInfo as PCN_Section2 } from './components/sections/pcn/Section2_ProponentInfo';
 import { Section3_GoalsObjectives as PCN_Section3 } from './components/sections/pcn/Section3_GoalsObjectives';
@@ -445,9 +445,9 @@ const PC1_PROGRAMS_CONFIG = {
 };
 
 const PCN_CONFIG = {
-  label: 'PC-N',
+  label: 'PCN',
   title: 'Project Concept Note',
-  breadcrumb: 'PC-N Application',
+  breadcrumb: 'PCN Application',
   sections: PCN_SECTIONS,
   totalSections: PCN_SECTIONS.length,
 };
@@ -501,7 +501,7 @@ const PC5_PROGRAMS_CONFIG = {
 };
 
 const REAPPROPRIATION_CONFIG = {
-  label: 'FINANCIALS',
+  label: 'Financials',
   title: 'Fund Management',
   breadcrumb: 'Re-Appropriation',
   sections: [
@@ -642,7 +642,7 @@ function App() {
             <Route path="/" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
             <Route path="/pc-1" element={<ProtectedRoute><PC1Page /></ProtectedRoute>} />
             <Route path="/pc-1-programs" element={<ProtectedRoute><PC1ProgramPage /></ProtectedRoute>} />
-            <Route path="/pc-n" element={<ProtectedRoute><PCNPage /></ProtectedRoute>} />
+            <Route path="/PCN" element={<ProtectedRoute><PCNPage /></ProtectedRoute>} />
             <Route path="/pc-3-a" element={<ProtectedRoute><PC3APage /></ProtectedRoute>} />
             <Route path="/pc-3-b" element={<ProtectedRoute><PC3BPage /></ProtectedRoute>} />
             <Route path="/pc-2" element={<ProtectedRoute><PC2Page /></ProtectedRoute>} />

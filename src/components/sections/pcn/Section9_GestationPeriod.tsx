@@ -16,14 +16,14 @@ export const Section9_GestationPeriod: React.FC = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
           <InputField 
-            label="[PC-N-9.1] Start Date" 
+            label="[PCN-9.1] Start Date" 
             type="date"
             value={data.startDate}
             onChange={(e: any) => handleChange('startDate', e.target.value)}
             required
           />
           <InputField 
-            label="[PC-N-9.2] End Date" 
+            label="[PCN-9.2] End Date" 
             type="date"
             value={data.endDate}
             onChange={(e: any) => handleChange('endDate', e.target.value)}

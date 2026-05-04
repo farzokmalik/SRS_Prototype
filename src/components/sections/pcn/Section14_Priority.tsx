@@ -16,7 +16,7 @@ export const Section14_Priority: React.FC = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px' }}>
           <SelectField 
-            label="[PC-N-14.1] Project Priority Level" 
+            label="[PCN-14.1] Project Priority Level" 
             options={[
               { label: 'High', value: 'High' },
               { label: 'Normal', value: 'Normal' },
@@ -27,7 +27,7 @@ export const Section14_Priority: React.FC = () => {
             required
           />
           <InputField 
-            label="[PC-N-14.2] Numeric Rank Field" 
+            label="[PCN-14.2] Numeric Rank Field" 
             type="number"
             placeholder="e.g. 1, 2, 3..."
             value={data.rank}
