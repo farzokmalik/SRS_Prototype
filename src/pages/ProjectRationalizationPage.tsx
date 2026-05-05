@@ -140,14 +140,12 @@ const Section_ProjectSelect: React.FC = () => {
   const { selectedProject, setSelectedProject } = React.useContext(RatCtx);
   return (
     <div className="card" style={{ padding: '1.75rem' }}>
-      <div style={{ maxWidth: '700px' }}>
-        <div className="input-group" style={{ marginBottom: 0 }}>
-          <label className="label">Project Name</label>
-          <select className="select" value={selectedProject} onChange={e => setSelectedProject(e.target.value)} id="rat-project-selector">
-            <option value="">— Select a project to evaluate —</option>
-            {PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
-          </select>
-        </div>
+      <div className="input-group" style={{ marginBottom: 0 }}>
+        <label className="label">Project Name</label>
+        <select className="select" value={selectedProject} onChange={e => setSelectedProject(e.target.value)} id="rat-project-selector">
+          <option value="">— Select a project to evaluate —</option>
+          {PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+        </select>
       </div>
     </div>
   );

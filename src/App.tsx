@@ -9,6 +9,7 @@ import { useForm } from './context/FormContext';
 import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS, PC4_SECTIONS, PC5_SECTIONS, PC4_PROGRAMS_SECTIONS, PC5_PROGRAMS_SECTIONS } from './constants';
 import { ProjectScoringContent, ScoringStateProvider } from './pages/ProjectScoringPage';
 import { RationalizationContent, RatStateProvider } from './pages/ProjectRationalizationPage';
+import { DiagramsPage } from './pages/DiagramsPage';
 
 import { Section1_Overview } from './components/sections/pc1_projects/Section1_Overview';
 import { Section2_RevisionHistory } from './components/sections/pc1_projects/Section20_ Addition of Upward Revision of Development Project';
@@ -703,6 +704,7 @@ function App() {
             <Route path="/pc-5-programs" element={<ProtectedRoute><PC5ProgramPage /></ProtectedRoute>} />
             <Route path="/project-scoring" element={<ProtectedRoute><ScoringPage /></ProtectedRoute>} />
             <Route path="/project-rationalization" element={<ProtectedRoute><RationalizationPage /></ProtectedRoute>} />
+            <Route path="/diagrams" element={<ProtectedRoute><DiagramsPage /></ProtectedRoute>} />
             <Route path="/re-appropriation" element={
               <ProtectedRoute>
                 <FormConfigProvider config={REAPPROPRIATION_CONFIG}>

@@ -12,6 +12,7 @@ import {
   LogOut,
   LayoutGrid,
   Database,
+  Network,
 } from 'lucide-react';
 
 const PC_FORMS = [
@@ -115,6 +116,15 @@ const PC_FORMS = [
       description: 'Assess ongoing projects across 7 factors covering authorization, strategic alignment, and community impact to determine continuation or termination.',
       sections: 7,
       icon: ClipboardCheck,
+      available: true,
+    },
+    {
+      id: 'diagrams',
+      path: '/diagrams',
+      label: 'Documentation',
+      title: 'Diagrams & Workflows',
+      description: 'Technical blueprints and process flows for the SRS Prototype, including data flow and database schemas.',
+      icon: Network,
       available: true,
     },
   ];
