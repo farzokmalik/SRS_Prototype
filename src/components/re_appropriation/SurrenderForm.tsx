@@ -102,7 +102,7 @@ export const SurrenderForm: React.FC = () => {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
           <SelectField 
-            label="Select Project ID" 
+            label="[RA-1.1] Select Project ID" 
             value={rows[0].projectId}
             onChange={(e) => updateRow(rows[0].id, { projectId: e.target.value })}
             options={PROJECT_ID_OPTIONS}
@@ -198,13 +198,13 @@ export const SurrenderForm: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', alignItems: 'flex-end' }}>
           <SelectField 
-            label="Year" 
+            label="[RA-1.2] Year" 
             value={surrenderDetails.year}
             onChange={(e) => setSurrenderDetails({ ...surrenderDetails, year: e.target.value })}
             options={['2023-24', '2024-25', '2025-26']}
           />
           <SelectField 
-            label="Funding Cost Type" 
+            label="[RA-1.3] Funding Cost Type" 
             value={surrenderDetails.costType}
             onChange={(e) => setSurrenderDetails({ ...surrenderDetails, costType: e.target.value })}
             options={['Local', 'Foreign']}
@@ -226,63 +226,63 @@ export const SurrenderForm: React.FC = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
               <InputField 
-                label="GS No." 
+                label="[RA-1.4] GS No." 
                 placeholder="Enter GS No."
                 value={rows[0].gsNo}
                 onChange={(e) => updateRow(rows[0].id, { gsNo: e.target.value })}
               />
               
               <SelectField 
-                label="Main Sector"
+                label="[RA-1.5] Main Sector"
                 value={rows[0].mainSector}
                 onChange={(e) => updateRow(rows[0].id, { mainSector: e.target.value })}
                 options={['Social Sectors', 'Infrastructure Sectors', 'Production Sectors', 'Services Sectors']}
               />
 
               <SelectField 
-                label="Sector"
+                label="[RA-1.6] Sector"
                 value={rows[0].sector}
                 onChange={(e) => updateRow(rows[0].id, { sector: e.target.value })}
                 options={SECTOR_OPTIONS}
               />
 
               <SelectField 
-                label="Project Name"
+                label="[RA-1.7] Project Name"
                 value={rows[0].projectName}
                 onChange={(e) => updateRow(rows[0].id, { projectName: e.target.value })}
                 options={PROJECT_OPTIONS}
               />
 
               <SelectField 
-                label="Scheme Type"
+                label="[RA-1.8] Scheme Type"
                 value={rows[0].schemeType}
                 onChange={(e) => updateRow(rows[0].id, { schemeType: e.target.value })}
                 options={['Ongoing', 'New']}
               />
 
               <SelectField 
-                label="Grant Number"
+                label="[RA-1.9] Grant Number"
                 value={rows[0].grantNumber}
                 onChange={(e) => updateRow(rows[0].id, { grantNumber: e.target.value })}
                 options={GRANT_OPTIONS}
               />
 
               <SelectField 
-                label="LOA Number"
+                label="[RA-1.10] LOA Number"
                 value={rows[0].loaNumber}
                 onChange={(e) => updateRow(rows[0].id, { loaNumber: e.target.value })}
                 options={['LOA-2024-001', 'LOA-2024-005']}
               />
 
               <SelectField 
-                label="Object Code"
+                label="[RA-1.11] Object Code"
                 value={rows[0].objectCode}
                 onChange={(e) => updateRow(rows[0].id, { objectCode: e.target.value })}
                 options={OBJECT_CODE_OPTIONS}
               />
 
               <InputField 
-                label="Amount to Surrender (Rs.)"
+                label="[RA-1.12] Amount to Surrender (Rs.)"
                 type="number"
                 placeholder="0.00"
                 value={rows[0].amount}
@@ -292,7 +292,7 @@ export const SurrenderForm: React.FC = () => {
             </div>
              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <TextAreaField 
-            label="Reason for Surrender" 
+            label="[RA-1.13] Reason for Surrender" 
             placeholder="Explain why these funds are being surrendered to the pool..." 
             rows={4}
             value={surrenderDetails.reason}

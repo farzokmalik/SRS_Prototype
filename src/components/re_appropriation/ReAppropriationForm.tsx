@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, CheckCircle2, X } from 'lucide-react';
+import { Plus, Trash2, CheckCircle2, X, AlertTriangle } from 'lucide-react';
 import { useForm } from '../../context/FormContext';
 
 interface TargetRow {
@@ -28,6 +28,8 @@ const OBJECT_CODE_OPTIONS = ['A01101 - Basic Pay', 'A03901 - Stationary', 'A1300
 export const ReAppropriationForm: React.FC = () => {
   const { formData, setTransactions, setSection } = useForm();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [lastAmount, setLastAmount] = useState(0);
   const [primaryProjectId, setPrimaryProjectId] = useState('PID-2024-076');
   
@@ -35,6 +37,10 @@ export const ReAppropriationForm: React.FC = () => {
   const transactions = Array.isArray(formData.reappropriationTransactions) 
     ? formData.reappropriationTransactions 
     : [];
+  
+  const poolBalance = transactions.reduce((acc, t) => {
+    return t.type === 'Surrender' ? acc + t.amount : acc - t.amount;
+  }, 0);
 
   const [selectedPool] = useState('Global Surrender Pool');
   const [rows, setRows] = useState<TargetRow[]>([
@@ -77,6 +83,12 @@ export const ReAppropriationForm: React.FC = () => {
     const totalAmount = rows.reduce((acc, curr) => acc + (parseFloat(curr.amount) || 0), 0);
     if (totalAmount <= 0) return;
 
+    if (totalAmount > poolBalance) {
+      setErrorMessage(`Insufficient funds in pool. Available balance is Rs. ${poolBalance.toLocaleString()}, but you are trying to allocate Rs. ${totalAmount.toLocaleString()}.`);
+      setShowError(true);
+      return;
+    }
+
     // Create a transaction for each row
     const newTransactions = rows
       .filter(row => parseFloat(row.amount) > 0)
@@ -99,6 +111,72 @@ export const ReAppropriationForm: React.FC = () => {
 
   return (
     <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative' }}>
+      {/* Error Modal */}
+      {showError && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.1)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2rem',
+          backdropFilter: 'blur(4px)'
+        }}>
+          <div className="card" style={{
+            width: '100%',
+            maxWidth: '450px',
+            padding: '3rem 2.5rem',
+            textAlign: 'center',
+            position: 'relative',
+            border: '1px solid hsl(var(--error) / 0.2)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            background: '#fff',
+            animation: 'scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}>
+            <button 
+              onClick={() => setShowError(false)}
+              style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'transparent', border: 'none', color: 'hsl(var(--text-muted))', cursor: 'pointer', padding: '0.5rem' }}
+            >
+              <X size={20} />
+            </button>
+            
+            <div style={{ 
+              width: '88px', 
+              height: '88px', 
+              background: 'hsl(var(--error) / 0.1)', 
+              borderRadius: 'var(--radius-full)', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              color: 'hsl(var(--error))',
+              margin: '0 auto 1.5rem',
+            }}>
+              <AlertTriangle size={44} strokeWidth={2.5} />
+            </div>
+            
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 750, marginBottom: '0.75rem', color: 'hsl(var(--error))', letterSpacing: '-0.02em' }}>Insufficient Funds</h2>
+            <p style={{ color: 'hsl(var(--text-muted))', fontSize: '1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
+              {errorMessage}
+            </p>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <button 
+                className="btn btn-primary" 
+                onClick={() => setShowError(false)}
+                style={{ width: '100%', padding: '0.875rem', fontSize: '1rem', background: 'hsl(var(--error))' }}
+              >
+                Adjust Amounts
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Success Modal */}
       {showSuccess && (
         <div style={{
@@ -183,7 +261,7 @@ export const ReAppropriationForm: React.FC = () => {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label className="label" style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', fontWeight: 700 }}>Target Project ID</label>
+            <label className="label" style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', fontWeight: 700 }}>[RA-2.1] Target Project ID</label>
             <select 
               className="select" 
               value={primaryProjectId}
@@ -203,19 +281,25 @@ export const ReAppropriationForm: React.FC = () => {
           {/* <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
             <Target size={18} />
           </div> */}
-          <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Target Allocation Details</h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Target Allocation Details</h3>
+            <div style={{ padding: '0.5rem 1rem', background: 'hsl(var(--primary) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--primary) / 0.1)' }}>
+              <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: 700, textTransform: 'uppercase', marginRight: '0.75rem' }}>Available Pool Balance:</span>
+              <span style={{ fontWeight: 800, color: 'hsl(var(--primary))' }}>Rs. {poolBalance.toLocaleString()}</span>
+            </div>
+          </div>
         </div>
 
         <div className="table-responsive" style={{ overflowX: 'auto' }}>
           <table className="table" style={{ width: '100%', minWidth: '1000px', borderCollapse: 'separate', borderSpacing: '0 0.75rem' }}>
             <thead>
               <tr>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Target Sector</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Project Name</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Grant Number</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>LOA Number</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Object Code</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>Allocation Amount</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.2] Target Sector</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.3] Project Name</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.4] Grant Number</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.5] LOA Number</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.6] Object Code</th>
+                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.7] Allocation Amount</th>
                 <th style={{ textAlign: 'center', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}></th>
               </tr>
             </thead>
