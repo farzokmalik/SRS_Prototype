@@ -87,7 +87,7 @@ const PC_FORMS = [
       { label: 'Projects', path: '/pc-5' },
     ]
     },
-    {
+  {
       id: 're-appropriation',
       path: '/re-appropriation',
       label: 'Financials',
@@ -95,6 +95,26 @@ const PC_FORMS = [
       description: 'Manage fund surrenders and allocations through the centralized Surrender Pool. Track in-flow and out-flow ledger.',
       sections: 3,
       icon: Database,
+      available: true,
+    },
+    {
+      id: 'project-scoring',
+      path: '/project-scoring',
+      label: 'Evaluation',
+      title: 'Project Selection Scoring',
+      description: 'Evaluate and score project proposals across 9 weighted factors for ADP inclusion based on strategic alignment, readiness & community impact.',
+      sections: 10,
+      icon: ClipboardCheck,
+      available: true,
+    },
+    {
+      id: 'project-rationalization',
+      path: '/project-rationalization',
+      label: 'Evaluation',
+      title: 'Project Rationalization Scoring',
+      description: 'Assess ongoing projects across 7 factors covering authorization, strategic alignment, and community impact to determine continuation or termination.',
+      sections: 7,
+      icon: ClipboardCheck,
       available: true,
     },
   ];

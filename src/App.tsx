@@ -7,6 +7,8 @@ import { DashboardHome } from './pages/DashboardHome';
 import { LoginPage } from './pages/LoginPage';
 import { useForm } from './context/FormContext';
 import { PC1_SECTIONS, PC2_SECTIONS, PCN_SECTIONS, PC3A_SECTIONS, PC3B_SECTIONS, PC4_SECTIONS, PC5_SECTIONS, PC4_PROGRAMS_SECTIONS, PC5_PROGRAMS_SECTIONS } from './constants';
+import { ProjectScoringContent, ScoringStateProvider } from './pages/ProjectScoringPage';
+import { RationalizationContent, RatStateProvider } from './pages/ProjectRationalizationPage';
 
 import { Section1_Overview } from './components/sections/pc1_projects/Section1_Overview';
 import { Section2_RevisionHistory } from './components/sections/pc1_projects/Section20_ Addition of Upward Revision of Development Project';
@@ -500,6 +502,54 @@ const PC5_PROGRAMS_CONFIG = {
   totalSections: PC5_PROGRAMS_SECTIONS.length,
 };
 
+const SCORING_CONFIG = {
+  label: 'Evaluation',
+  title: 'Project Selection Scoring',
+  breadcrumb: 'Project Scoring',
+  sections: [
+    { id: 1, title: 'Select Project' },
+    { id: 2, title: 'Strategic Factors' },
+    { id: 3, title: 'Implementation Readiness' },
+    { id: 4, title: 'Community & Political' },
+    { id: 5, title: 'Score Summary' },
+  ],
+  totalSections: 5,
+};
+
+const ScoringPage = () => (
+  <FormConfigProvider config={SCORING_CONFIG}>
+    <ScoringStateProvider>
+      <DashboardLayout>
+        <ProjectScoringContent />
+      </DashboardLayout>
+    </ScoringStateProvider>
+  </FormConfigProvider>
+);
+
+const RATIONALIZATION_CONFIG = {
+  label: 'Evaluation',
+  title: 'Project Rationalization Scoring',
+  breadcrumb: 'Project Rationalization',
+  sections: [
+    { id: 1, title: 'Select Project' },
+    { id: 2, title: 'Authorization & Performance' },
+    { id: 3, title: 'Strategic Alignment' },
+    { id: 4, title: 'Integration & Impact' },
+    { id: 5, title: 'Score Summary' },
+  ],
+  totalSections: 5,
+};
+
+const RationalizationPage = () => (
+  <FormConfigProvider config={RATIONALIZATION_CONFIG}>
+    <RatStateProvider>
+      <DashboardLayout>
+        <RationalizationContent />
+      </DashboardLayout>
+    </RatStateProvider>
+  </FormConfigProvider>
+);
+
 const REAPPROPRIATION_CONFIG = {
   label: 'Financials',
   title: 'Fund Management',
@@ -651,6 +701,8 @@ function App() {
             <Route path="/pc-4-programs" element={<ProtectedRoute><PC4ProgramPage /></ProtectedRoute>} />
             <Route path="/pc-5" element={<ProtectedRoute><PC5Page /></ProtectedRoute>} />
             <Route path="/pc-5-programs" element={<ProtectedRoute><PC5ProgramPage /></ProtectedRoute>} />
+            <Route path="/project-scoring" element={<ProtectedRoute><ScoringPage /></ProtectedRoute>} />
+            <Route path="/project-rationalization" element={<ProtectedRoute><RationalizationPage /></ProtectedRoute>} />
             <Route path="/re-appropriation" element={
               <ProtectedRoute>
                 <FormConfigProvider config={REAPPROPRIATION_CONFIG}>

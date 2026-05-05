@@ -554,9 +554,9 @@ export const Section7_CostEstimation: React.FC = () => {
         borderRadius: 'var(--radius-lg)',
       }}>
         {[
-          { label: 'Total Project Cost', value: totalCost, color: 'hsla(217, 76%, 53%, 1.00)' },
-          { label: 'Local Component', value: totalLocal, color: 'hsla(217, 76%, 53%, 1.00)' },
-          { label: 'Foreign Component', value: totalForeign, color: 'hsla(217, 76%, 53%, 1.00)'},
+          { label: '[PC-I-7.1] Total Project Cost', value: totalCost, color: 'hsla(217, 76%, 53%, 1.00)' },
+          { label: '[PC-I-7.2] Local Component', value: totalLocal, color: 'hsla(217, 76%, 53%, 1.00)' },
+          { label: '[PC-I-7.3] Foreign Component', value: totalForeign, color: 'hsla(217, 76%, 53%, 1.00)'},
         ].map((item, i) => (
           <div key={i} style={{
             padding: '1.25rem 1.5rem',
@@ -888,11 +888,11 @@ export const Section7_CostEstimation: React.FC = () => {
                                     fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase',
                                     color: 'hsl(var(--text-muted))',
                                   }}>
-                                    <div>Financial Year</div>
-                                    <div>Local Estimate (M)</div>
-                                    <div>Foreign Estimate (M)</div>
-                                    <div style={{ textAlign: 'center' }}>Local Details</div>
-                                    <div style={{ textAlign: 'center' }}>Foreign Details</div>
+                                    <div>[PC-I-7.12.1] Financial Year</div>
+                                    <div>[PC-I-7.12.1.2] Local Estimate (M)</div>
+                                    <div>[PC-I-7.12.3] Foreign Estimate (M)</div>
+                                    <div style={{ textAlign: 'center' }}>[PC-I-7.12.4] Local Details</div>
+                                    <div style={{ textAlign: 'center' }}>[PC-I-7.12.5] Foreign Details</div>
                                     <div />
                                   </div>
                                   {obj.details.map(d => (
