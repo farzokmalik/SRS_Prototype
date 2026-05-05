@@ -1,66 +1,66 @@
 import React, { useState, useMemo } from 'react';
 import { useForm } from '../context/FormContext';
-import { AlertTriangle, XCircle, CheckCircle2, BarChart3 } from 'lucide-react';
+import { AlertTriangle, XCircle, CheckCircle2, BarChart3, Info } from 'lucide-react';
 import '../styles/ProjectScoring.css';
 
 /* ───────── Types ───────── */
 interface Option { score: number; label: string; explanation: string; }
-interface Factor { id: string; name: string; displayNum: string; weight: number; minScore: number | null; options: Option[]; }
+interface Factor { id: string; name: string; question: string; displayNum: string; weight: number; minScore: number | null; options: Option[]; }
 
 /* ───────── Data ───────── */
 const AUTH_PERF_FACTORS: Factor[] = [
-  { id:'r1', name:'Approval Status', displayNum:'1', weight:0.20, minScore:2, options:[
-    {score:4,label:'Fully approved',explanation:'The project has completed all required approvals, including feasibility studies, technical and financial evaluations, and sanctioning by relevant authorities.'},
-    {score:2,label:'Pending approval',explanation:'The project has initiated the approval process but is awaiting formal sanctioning.'},
-    {score:0,label:'Not approved',explanation:'The project has not undergone any formal approval process or is included in the plan without adequate documentation.'},
+  { id:'r1', name:'Approval Status', question:'Indicate whether the project has formal approval.', displayNum:'1', weight:0.20, minScore:2, options:[
+    {score:4,label:'Fully approved',explanation:'The project has completed all required approvals, including feasibility studies, technical and financial evaluations, and sanctioning by relevant authorities. Example: A road construction project approved under the Punjab Annual Development Plan with detailed documentation.'},
+    {score:2,label:'Pending approval',explanation:'The project has initiated the approval process but is awaiting formal sanctioning. Example: A hospital project with submitted feasibility reports under review.'},
+    {score:0,label:'Not approved',explanation:'The project has not undergone any formal approval process or is included in the plan without adequate documentation. Example: A housing project added to the development plan without a feasibility study or technical review.'},
   ]},
-  { id:'r2', name:'Implementation Status', displayNum:'2', weight:0.20, minScore:2, options:[
-    {score:4,label:'On track',explanation:'The project is progressing smoothly, meeting its planned milestones, timelines, and budget without significant issues.'},
-    {score:3,label:'Minor issues',explanation:'The project is progressing but faces minor challenges that can be addressed without significant restructuring.'},
-    {score:2,label:'Moderate issues',explanation:'The project is experiencing moderate challenges, such as timeline slippage or cost escalations, requiring targeted interventions.'},
-    {score:1,label:'Significant issues',explanation:'The project is experiencing major delays, cost overruns, or mismanagement, requiring significant restructuring to continue.'},
-    {score:0,label:'Severely underperforming',explanation:'The project is not progressing meaningfully or is at a standstill, with no clear path for resolution.'},
+  { id:'r2', name:'Implementation Status', question:'Include milestones, timelines, and budgets.', displayNum:'2', weight:0.20, minScore:2, options:[
+    {score:4,label:'On track',explanation:'The project is progressing smoothly, meeting its planned milestones, timelines, and budget without significant issues. Example: A school construction project achieving 80% completion as per the project schedule.'},
+    {score:3,label:'Minor issues',explanation:'The project is progressing but faces minor challenges that can be addressed without significant restructuring. Example: A road rehabilitation project with minor delays due to material shortages but is on budget.'},
+    {score:2,label:'Moderate issues',explanation:'The project is experiencing moderate challenges, such as timeline slippage or cost escalations, requiring targeted interventions. Example: A healthcare facility project delayed due to contractor issues but salvageable with re-planning.'},
+    {score:1,label:'Significant issues',explanation:'The project is experiencing major delays, cost overruns, or mismanagement, requiring significant restructuring to continue. Example: A stalled irrigation project with unresolved design flaws.'},
+    {score:0,label:'Severely underperforming',explanation:'The project is not progressing meaningfully or is at a standstill, with no clear path for resolution. Example: A completely stalled housing project with no work completed for 12 months.'},
   ]},
 ];
 
 const STRATEGIC_FACTORS: Factor[] = [
-  { id:'r3', name:'Alignment with Development Goals', displayNum:'3', weight:0.15, minScore:null, options:[
-    {score:4,label:'Fully aligned',explanation:'The project explicitly supports one or more high-priority goals from the Punjab Growth Strategy or equivalent documents with clear, measurable targets.'},
-    {score:3,label:'Substantially aligned',explanation:'The project supports a strategic goal but may not address a top priority or lacks direct measurable outcomes.'},
-    {score:2,label:'Moderately aligned',explanation:'The project has some relevance to strategic goals but lacks a strong connection or measurable impact.'},
-    {score:1,label:'Marginally aligned',explanation:'The project has a weak or peripheral link to strategic goals and limited developmental impact.'},
-    {score:0,label:'Not aligned',explanation:'The project does not contribute to any strategic goals in the Punjab Growth Strategy or equivalent documents.'},
+  { id:'r3', name:'Alignment with Development Goals', question:'Cite specific goals in the Punjab Growth Strategy.', displayNum:'3', weight:0.15, minScore:null, options:[
+    {score:4,label:'Fully aligned',explanation:'The project explicitly supports one or more high-priority goals from the Punjab Growth Strategy or equivalent documents. Clear evidence, such as references to goals, sections, or specific targets, is provided. Example: A maternal health initiative linked to Ensuring a Healthy Punjab Strategy with measurable outcome targets – reduce maternal mortality rate of 180 per 100,000 live births by 20% in 5 years.'},
+    {score:3,label:'Substantially aligned',explanation:'The project supports a strategic goal but may not address a top priority or lacks direct measurable outcomes. References are provided but may need additional clarity. Example: A road construction project improving connectivity but not targeting underserved areas.'},
+    {score:2,label:'Moderately aligned',explanation:'The project has some relevance to strategic goals but lacks a strong connection or measurable impact. Goal references are vague or indirect. Example: A skills training program indirectly linked to the employment goal without focusing on target demographics.'},
+    {score:1,label:'Marginally aligned',explanation:'The project has a weak or peripheral link to strategic goals and limited developmental impact. Minimal or unclear goal references. Example: A beautification project in a well-served urban area with no alignment to strategic needs.'},
+    {score:0,label:'Not aligned',explanation:'The project does not contribute to any strategic goals in the Punjab Growth Strategy or equivalent documents. No references or evidence provided. Example: A luxury development project in direct conflict with equity or poverty-reduction goals.'},
   ]},
-  { id:'r4', name:'Economic / Social Returns', displayNum:'4', weight:0.10, minScore:null, options:[
-    {score:4,label:'Very high returns',explanation:'The project is expected to deliver significant, measurable economic and/or social benefits.'},
-    {score:3,label:'High returns',explanation:'The project delivers notable benefits but with some limitations in scale or scope.'},
-    {score:2,label:'Moderate returns',explanation:'The project generates some benefits, but its impact is limited or not well-documented.'},
-    {score:1,label:'Low returns',explanation:'The project\'s benefits are minimal, localized, or difficult to quantify.'},
-    {score:0,label:'No returns',explanation:'The project has no discernible economic or social benefits.'},
+  { id:'r4', name:'Economic / Social Returns', question:'Provide evidence of measurable benefits.', displayNum:'4', weight:0.10, minScore:null, options:[
+    {score:4,label:'Very high returns',explanation:'The project is expected to deliver significant, measurable economic and/or social benefits. Example: A rural electrification project expected to increase household incomes by 30% and improve access to education and healthcare.'},
+    {score:3,label:'High returns',explanation:'The project delivers notable benefits but with some limitations in scale or scope. Example: A public transit project reducing commuting time for urban workers without significant expansion into underserved areas.'},
+    {score:2,label:'Moderate returns',explanation:'The project generates some benefits, but its impact is limited or not well-documented. Example: A digital literacy program with limited outreach or unmeasured long-term impacts.'},
+    {score:1,label:'Low returns',explanation:'The project’s benefits are minimal, localized, or difficult to quantify. Example: A landscaping project in a city centre with limited economic or social value.'},
+    {score:0,label:'No returns',explanation:'The project has no discernible economic or social benefits. Example: A stalled infrastructure project that does not deliver any service improvements.'},
   ]},
 ];
 
 const INTEGRATION_FACTORS: Factor[] = [
-  { id:'r5', name:'Programmatic Alignment', displayNum:'5', weight:0.15, minScore:null, options:[
-    {score:4,label:'Strongly programmatic',explanation:'The project is a core component of a broader program, creating significant synergies with other initiatives.'},
-    {score:3,label:'Moderately programmatic',explanation:'The project supports a broader initiative but with less direct integration or limited coordination.'},
-    {score:2,label:'Mildly programmatic',explanation:'The project has some relevance to other initiatives but operates independently with limited synergies.'},
-    {score:1,label:'Weakly programmatic',explanation:'The project is loosely related to other initiatives but lacks tangible connections or impact.'},
-    {score:0,label:'Stand-alone',explanation:'The project is entirely independent, with no connection to broader programs or strategies.'},
+  { id:'r5', name:'Programmatic Alignment', question:'Describe synergies with other initiatives.', displayNum:'5', weight:0.15, minScore:null, options:[
+    {score:4,label:'Strongly programmatic',explanation:'The project is a core component of a broader program, creating significant synergies with other initiatives. Example: A feeder road network project designed to complement a major highway initiative, improving regional connectivity.'},
+    {score:3,label:'Moderately programmatic',explanation:'The project supports a broader initiative but with less direct integration or limited coordination. Example: A standalone training program aligned with a national employment strategy but not formally linked to other projects.'},
+    {score:2,label:'Mildly programmatic',explanation:'The project has some relevance to other initiatives but operates independently with limited synergies. Example: A small water supply project in an area without integrated sanitation initiatives.'},
+    {score:1,label:'Weakly programmatic',explanation:'The project is loosely related to other initiatives but lacks tangible connections or impact. Example: A community park project with no alignment to urban planning goals.'},
+    {score:0,label:'Stand-alone',explanation:'The project is entirely independent, with no connection to broader programs or strategies. Example: A one-off cultural event unrelated to developmental goals.'},
   ]},
-  { id:'r6', name:'Community Needs', displayNum:'6', weight:0.10, minScore:null, options:[
-    {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes.'},
-    {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment.'},
-    {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand.'},
-    {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection.'},
-    {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities.'},
+  { id:'r6', name:'Community Needs', question:'Detail stakeholder engagement or needs assessments.', displayNum:'6', weight:0.10, minScore:null, options:[
+    {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes. Example: A flood protection project requested by affected communities during consultations.'},
+    {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment. Example: A health clinic addressing general healthcare gaps but with no direct engagement from the community.'},
+    {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand. Example: A small road improvement project initiated without consulting local residents.'},
+    {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection. Example: A community center built without evidence of usage demand.'},
+    {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities. Example: A project driven by administrative priorities with no local relevance.'},
   ]},
-  { id:'r7', name:'Equity Aspects', displayNum:'7', weight:0.10, minScore:null, options:[
-    {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities.'},
-    {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations.'},
-    {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups.'},
-    {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations.'},
-    {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups.'},
+  { id:'r7', name:'Equity Aspects', question:'Highlight contributions to underserved areas.', displayNum:'7', weight:0.10, minScore:null, options:[
+    {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities. Example: A water supply project in rural South Punjab providing access to clean water for villages without prior service.'},
+    {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations. Example: A vocational training program targeting women in rural areas but with limited geographic reach.'},
+    {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups. Example: An urban road expansion project improving traffic flow but not targeting underprivileged neighbourhoods.'},
+    {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations. Example: A city beautification project that does not address basic needs.'},
+    {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups. Example: A luxury infrastructure project in a wealthy area while ignoring pressing needs in deprived regions.'},
   ]},
 ];
 
@@ -102,9 +102,8 @@ const FactorQuestion: React.FC<{
       <span className="scoring-factor-num">{factor.displayNum}</span>
       <div>
         <h4 className="scoring-factor-name">{factor.name}</h4>
-        <span className="scoring-factor-meta">
-          Weight: {(factor.weight * 100).toFixed(0)}%
-        </span>
+        <p className="scoring-factor-question">{factor.question}</p>
+          {/* Weight label removed per user request */}
       </div>
     </div>
     <div className="scoring-options">
@@ -132,14 +131,78 @@ interface RatState {
   setAnswers: React.Dispatch<React.SetStateAction<Record<string, number | null>>>;
   submitted: boolean;
   setSubmitted: (v: boolean) => void;
+  viewMode: 'internal' | 'external';
+  setViewMode: (v: 'internal' | 'external') => void;
 }
 
 const RatCtx = React.createContext<RatState>(null!);
 
 const Section_ProjectSelect: React.FC = () => {
-  const { selectedProject, setSelectedProject } = React.useContext(RatCtx);
+  const { selectedProject, setSelectedProject, viewMode, setViewMode } = React.useContext(RatCtx);
   return (
     <div className="card" style={{ padding: '1.75rem' }}>
+      <div style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <label className="label" style={{ marginBottom: '0.5rem', display: 'block' }}>Evaluation Perspective</label>
+          <div style={{ 
+            display: 'inline-flex', 
+            background: 'hsl(var(--bg-main))', 
+            padding: '0.25rem', 
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid hsl(var(--border))'
+          }}>
+            <button 
+              className="tooltip-trigger"
+              onClick={() => setViewMode('internal')}
+              style={{
+                padding: '0.5rem 1rem',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                borderRadius: 'calc(var(--radius-md) - 2px)',
+                border: 'none',
+                cursor: 'pointer',
+                background: viewMode === 'internal' ? 'white' : 'transparent',
+                color: viewMode === 'internal' ? 'hsl(var(--accent))' : 'hsl(var(--text-muted))',
+                boxShadow: viewMode === 'internal' ? 'var(--shadow-sm)' : 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Internal View
+              <div className="tooltip">This will be selected automatically based on role in future</div>
+            </button>
+            <button 
+              className="tooltip-trigger"
+              onClick={() => setViewMode('external')}
+              style={{
+                padding: '0.5rem 1rem',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                borderRadius: 'calc(var(--radius-md) - 2px)',
+                border: 'none',
+                cursor: 'pointer',
+                background: viewMode === 'external' ? 'white' : 'transparent',
+                color: viewMode === 'external' ? 'hsl(var(--accent))' : 'hsl(var(--text-muted))',
+                boxShadow: viewMode === 'external' ? 'var(--shadow-sm)' : 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              External View
+              <div className="tooltip">This will be selected automatically based on role in future</div>
+            </button>
+          </div>
+        </div>
+        <div style={{ color: 'hsl(var(--accent))', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Info size={16} />
+          <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>Selection based on role profiling</span>
+        </div>
+      </div>
+
       <div className="input-group" style={{ marginBottom: 0 }}>
         <label className="label">Project Name</label>
         <select className="select" value={selectedProject} onChange={e => setSelectedProject(e.target.value)} id="rat-project-selector">
@@ -151,7 +214,7 @@ const Section_ProjectSelect: React.FC = () => {
   );
 };
 
-const SectionFactors: React.FC<{ factors: Factor[]; catColor: string; catWeight: string }> = ({ factors, catColor, catWeight }) => {
+const SectionFactors: React.FC<{ factors: Factor[]; catColor: string }> = ({ factors, catColor }) => {
   const { answers, setAnswers } = React.useContext(RatCtx);
   const handleSelect = (factorId: string, score: number) => setAnswers(prev => ({ ...prev, [factorId]: score }));
 
@@ -160,7 +223,7 @@ const SectionFactors: React.FC<{ factors: Factor[]; catColor: string; catWeight:
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
         <div style={{ width: 14, height: 14, borderRadius: 4, background: catColor, flexShrink: 0 }} />
         <div>
-          <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: 500 }}>Category Weight: {catWeight}</p>
+          {/* Category Weight removed per user request */}
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -275,7 +338,7 @@ const Section_Results: React.FC = () => {
               <span style={{ fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ width: 10, height: 10, borderRadius: '50%', background: cat.color, display: 'inline-block' }} /> {cat.name}
               </span>
-              <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>{cs.total.toFixed(2)} / {cs.maxPossible.toFixed(2)}</span>
+              <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>Performance Score: {cs.total.toFixed(2)}</span>
             </div>
             <div className="scoring-progress-track" style={{ height: '8px' }}>
               <div className="scoring-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
@@ -284,7 +347,7 @@ const Section_Results: React.FC = () => {
               {cs.factors.map(f => (
                 <div key={f.name} className="scoring-factor-result-row">
                   <span>{f.name}</span>
-                  <span style={{ fontWeight: 600 }}>{f.score} / 4 <span style={{ color: 'hsl(var(--text-muted))', fontWeight: 400, fontSize: '0.75rem' }}>(weighted: {f.weighted.toFixed(2)})</span></span>
+                  <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
                 </div>
               ))}
             </div>
@@ -306,8 +369,9 @@ export const RatStateProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [selectedProject, setSelectedProject] = useState('');
   const [answers, setAnswers] = useState<Record<string, number | null>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [viewMode, setViewMode] = useState<'internal' | 'external'>('internal');
 
-  const ctx: RatState = { selectedProject, setSelectedProject, answers, setAnswers, submitted, setSubmitted };
+  const ctx: RatState = { selectedProject, setSelectedProject, answers, setAnswers, submitted, setSubmitted, viewMode, setViewMode };
 
   return <RatCtx.Provider value={ctx}>{children}</RatCtx.Provider>;
 };
@@ -318,9 +382,9 @@ export const RationalizationContent: React.FC = () => {
 
   switch (currentSection) {
     case 1: return <Section_ProjectSelect />;
-    case 2: return <SectionFactors factors={AUTH_PERF_FACTORS} catColor="#EF4444" catWeight="40%" />;
-    case 3: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" catWeight="25%" />;
-    case 4: return <SectionFactors factors={INTEGRATION_FACTORS} catColor="#8B5CF6" catWeight="35%" />;
+    case 2: return <SectionFactors factors={AUTH_PERF_FACTORS} catColor="#EF4444" />;
+    case 3: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" />;
+    case 4: return <SectionFactors factors={INTEGRATION_FACTORS} catColor="#8B5CF6" />;
     case 5: return <Section_Results />;
     default: return <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>Section under development.</div>;
   }

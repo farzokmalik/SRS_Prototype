@@ -133,7 +133,7 @@ export const SurrenderForm: React.FC = () => {
             padding: '3rem 2.5rem',
             textAlign: 'center',
             position: 'relative',
-            border: '1px solid hsl(var(--success) / 0.2)',
+            border: '1px solid hsl(var(--error) / 0.2)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
             background: '#fff',
             animation: 'scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -148,12 +148,12 @@ export const SurrenderForm: React.FC = () => {
             <div style={{ 
               width: '88px', 
               height: '88px', 
-              background: 'hsl(var(--success) / 0.1)', 
+              background: 'hsl(var(--error) / 0.1)', 
               borderRadius: 'var(--radius-full)', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center', 
-              color: 'hsl(var(--success))',
+              color: 'hsl(var(--error))',
               margin: '0 auto 1.5rem',
             }}>
               <CheckCircle2 size={44} strokeWidth={2.5} />
@@ -161,7 +161,7 @@ export const SurrenderForm: React.FC = () => {
             
             <h2 style={{ fontSize: '1.75rem', fontWeight: 750, marginBottom: '0.75rem', color: 'hsl(var(--primary))', letterSpacing: '-0.02em' }}>Surrender Successful</h2>
             <p style={{ color: 'hsl(var(--text-muted))', fontSize: '1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
-              Your surrender of <span style={{ fontWeight: 700, color: 'hsl(var(--success))' }}>Rs. {lastAmount.toLocaleString()}</span> has been processed and added to the global pool.
+              Your surrender of <span style={{ fontWeight: 700, color: 'hsl(var(--error))' }}>Rs. {lastAmount.toLocaleString()}</span> has been processed and added to the global pool.
             </p>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

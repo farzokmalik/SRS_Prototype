@@ -225,9 +225,17 @@ export const DashboardHome: React.FC = () => {
             const hasVariants = 'variants' in pc && pc.variants;
 
             return (
-              <div
-                key={pc.id}
-                className="card"
+              <React.Fragment key={pc.id}>
+                {pc.id === 'diagrams' && (
+                  <div style={{ 
+                    gridColumn: '1 / -1', 
+                    borderTop: '1px solid hsl(var(--border))', 
+                    margin: '2.5rem 0 1.5rem',
+                    opacity: 0.6
+                  }} />
+                )}
+                <div
+                  className="card"
                 style={{
                   position: 'relative',
                   borderRadius: 'var(--radius-lg)',
@@ -354,6 +362,7 @@ export const DashboardHome: React.FC = () => {
                   )}
                 </div>
               </div>
+            </React.Fragment>
             );
           })}
         </div>

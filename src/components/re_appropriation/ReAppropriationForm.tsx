@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, CheckCircle2, X, AlertTriangle } from 'lucide-react';
+import { CheckCircle2, X, AlertTriangle } from 'lucide-react';
+import { InputField, SelectField } from '../ui/FormElements';
 import { useForm } from '../../context/FormContext';
 
 interface TargetRow {
@@ -56,25 +57,6 @@ export const ReAppropriationForm: React.FC = () => {
     }
   ]);
   
-  const addRow = () => {
-    setRows([...rows, {
-      id: Math.random().toString(36).substr(2, 9),
-      projectId: '',
-      sector: '',
-      projectName: '',
-      grantNumber: '',
-      loaNumber: '',
-      objectCode: '',
-      amount: '',
-    }]);
-  };
-
-  const removeRow = (id: string) => {
-    if (rows.length > 1) {
-      setRows(rows.filter(r => r.id !== id));
-    }
-  };
-
   const updateRow = (id: string, updates: Partial<TargetRow>) => {
     setRows(rows.map(r => r.id === id ? { ...r, ...updates } : r));
   };
@@ -277,130 +259,72 @@ export const ReAppropriationForm: React.FC = () => {
 
       {/* Target & Allocation Details */}
       <section className="card" style={{ padding: '2rem', animation: 'fadeIn 0.4s ease-out' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-          {/* <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
-            <Target size={18} />
-          </div> */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-            <h3 style={{ fontSize: '1.125rem', margin: 0 }}>Target Allocation Details</h3>
-            <div style={{ padding: '0.5rem 1rem', background: 'hsl(var(--primary) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--primary) / 0.1)' }}>
+            <h3 style={{ fontSize: '1.125rem', margin: 0, fontWeight: 700 }}>Target Allocation Details</h3>
+            {/* <div style={{ padding: '0.5rem 1rem', background: 'hsl(var(--primary) / 0.05)', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--primary) / 0.1)' }}>
               <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: 700, textTransform: 'uppercase', marginRight: '0.75rem' }}>Available Pool Balance:</span>
               <span style={{ fontWeight: 800, color: 'hsl(var(--primary))' }}>Rs. {poolBalance.toLocaleString()}</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
-        <div className="table-responsive" style={{ overflowX: 'auto' }}>
-          <table className="table" style={{ width: '100%', minWidth: '1000px', borderCollapse: 'separate', borderSpacing: '0 0.75rem' }}>
-            <thead>
-              <tr>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.2] Target Sector</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.3] Project Name</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.4] Grant Number</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.5] LOA Number</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.6] Object Code</th>
-                <th style={{ textAlign: 'left', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}>[RA-2.7] Allocation Amount</th>
-                <th style={{ textAlign: 'center', fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', padding: '0 1rem' }}></th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id} style={{ background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-                  <td style={{ padding: '1rem', borderTopLeftRadius: 'var(--radius-md)', borderBottomLeftRadius: 'var(--radius-md)', width: '180px' }}>
-                    <select 
-                      className="select" 
-                      value={row.sector}
-                      onChange={(e) => updateRow(row.id, { sector: e.target.value })}
-                      style={{ fontSize: '0.8125rem' }}
-                    >
-                      <option value="">Select Sector</option>
-                      {SECTOR_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </td>
-                  <td style={{ padding: '1rem', width: '220px' }}>
-                    <select 
-                      className="select" 
-                      value={row.projectName}
-                      onChange={(e) => updateRow(row.id, { projectName: e.target.value })}
-                      style={{ fontSize: '0.8125rem' }}
-                    >
-                      <option value="">Select Project</option>
-                      {PROJECT_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
-                    </select>
-                  </td>
-                  <td style={{ padding: '1rem', width: '130px' }}>
-                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.grantNumber} onChange={(e) => updateRow(row.id, { grantNumber: e.target.value })}>
-                      <option value="">Grant</option>
-                      {GRANT_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
-                    </select>
-                  </td>
-                  <td style={{ padding: '1rem', width: '130px' }}>
-                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.loaNumber} onChange={(e) => updateRow(row.id, { loaNumber: e.target.value })}>
-                      <option value="">LOA</option>
-                      <option value="LOA-2024-001">LOA-2024-001</option>
-                      <option value="LOA-2024-005">LOA-2024-005</option>
-                    </select>
-                  </td>
-                  <td style={{ padding: '1rem', width: '150px' }}>
-                    <select className="select" style={{ fontSize: '0.8125rem' }} value={row.objectCode} onChange={(e) => updateRow(row.id, { objectCode: e.target.value })}>
-                      <option value="">Object</option>
-                      {OBJECT_CODE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
-                    </select>
-                  </td>
-                  <td style={{ padding: '1rem', width: '180px' }}>
-                    <input 
-                      type="number" 
-                      className="input" 
-                      placeholder="0.00"
-                      value={row.amount}
-                      onChange={(e) => updateRow(row.id, { amount: e.target.value })}
-                      style={{ fontSize: '0.8125rem', fontWeight: 600 }}
-                    />
-                  </td>
-                  <td style={{ padding: '1rem', borderTopRightRadius: 'var(--radius-md)', borderBottomRightRadius: 'var(--radius-md)', textAlign: 'center' }}>
-                    <button 
-                      onClick={() => removeRow(row.id)} 
-                      className="btn btn-secondary" 
-                      style={{ padding: '0.4rem', color: 'hsl(var(--error))', visibility: rows.length > 1 ? 'visible' : 'hidden' }}
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {/* Total Row */}
-              <tr style={{ background: 'hsl(var(--bg-main) / 0.5)', borderRadius: 'var(--radius-md)' }}>
-                <td colSpan={5} style={{ padding: '1rem', textAlign: 'right', fontWeight: 700, fontSize: '0.875rem' }}>
-                  Total Allocation Amount:
-                </td>
-                <td style={{ padding: '1rem', fontWeight: 700, fontSize: '0.875rem', color: 'hsl(var(--primary))' }}>
-                  Rs. {rows.reduce((acc, curr) => acc + (parseFloat(curr.amount) || 0), 0).toLocaleString()}
-                </td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+          <SelectField 
+            label="[RA-2.2] Target Sector"
+            value={rows[0].sector}
+            onChange={(e) => updateRow(rows[0].id, { sector: e.target.value })}
+            options={SECTOR_OPTIONS}
+          />
+          <SelectField 
+            label="[RA-2.3] Project Name"
+            value={rows[0].projectName}
+            onChange={(e) => updateRow(rows[0].id, { projectName: e.target.value })}
+            options={PROJECT_OPTIONS}
+          />
+          <SelectField 
+            label="[RA-2.4] Grant Number"
+            value={rows[0].grantNumber}
+            onChange={(e) => updateRow(rows[0].id, { grantNumber: e.target.value })}
+            options={GRANT_OPTIONS}
+          />
+          <SelectField 
+            label="[RA-2.5] LOA Number"
+            value={rows[0].loaNumber}
+            onChange={(e) => updateRow(rows[0].id, { loaNumber: e.target.value })}
+            options={['LOA-2024-001', 'LOA-2024-005']}
+          />
+          <SelectField 
+            label="[RA-2.6] Object Code"
+            value={rows[0].objectCode}
+            onChange={(e) => updateRow(rows[0].id, { objectCode: e.target.value })}
+            options={OBJECT_CODE_OPTIONS}
+          />
+          <InputField 
+            label="[RA-2.7] Allocation Amount (Rs.)"
+            type="number"
+            placeholder="0.00"
+            value={rows[0].amount}
+            onChange={(e) => updateRow(rows[0].id, { amount: e.target.value })}
+            style={{ fontWeight: 700, color: 'hsl(var(--primary))' }}
+          />
         </div>
 
-        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <button onClick={addRow} className="btn btn-secondary" style={{ fontSize: '0.8125rem' }}>
-            <Plus size={16} /> Add Multiple Rows
-          </button>
-          
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', paddingTop: '1.5rem', borderTop: '1px solid hsl(var(--border))' }}>
           <div style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '0.875rem', color: 'hsl(var(--text-muted))', marginBottom: '0.5rem' }}>
-              Total Re-Appropriation: <span style={{ fontWeight: 700, color: 'hsl(var(--primary))' }}>Rs. {rows.reduce((acc, curr) => acc + (parseFloat(curr.amount) || 0), 0).toLocaleString()}</span>
+            <p style={{ fontSize: '0.875rem', color: 'hsl(var(--text-muted))', marginBottom: '1rem' }}>
+              Total Re-Appropriation: <span style={{ fontWeight: 700, color: 'hsl(var(--primary))' }}>Rs. {(parseFloat(rows[0].amount) || 0).toLocaleString()}</span>
             </p>
             <button 
               className="btn btn-primary" 
               onClick={handleSubmit}
-              style={{ background: 'hsl(var(--success))', minWidth: '220px' }}
+              style={{ background: 'hsl(var(--success))', minWidth: '240px', padding: '0.875rem' }}
             >
               Submit Re-Appropriation
             </button>
           </div>
         </div>
-        </section>
+      </section>
     </div>
   );
 };

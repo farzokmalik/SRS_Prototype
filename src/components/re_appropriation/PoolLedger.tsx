@@ -75,7 +75,7 @@ export const PoolLedger: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', fontWeight: 700, margin: 0 }}>Type</p>
-                <p style={{ fontSize: '1rem', fontWeight: 700, margin: 0, color: transaction.type === 'Surrender' ? 'hsl(var(--success))' : 'hsl(var(--error))' }}>{transaction.type}</p>
+                <p style={{ fontSize: 16, fontWeight: 700, margin: 0, color: transaction.type === 'Surrender' ? 'hsl(var(--error))' : 'hsl(var(--success))' }}>{transaction.type}</p>
              </div>
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', textTransform: 'uppercase', fontWeight: 700, margin: 0 }}>Amount</p>
@@ -245,12 +245,12 @@ export const PoolLedger: React.FC = () => {
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{ 
                 padding: '1.5rem', 
-                background: reportType === 'surrender' ? 'hsl(var(--success) / 0.05)' : 'hsl(var(--error) / 0.05)', 
+                background: reportType === 'surrender' ? 'hsl(var(--error) / 0.05)' : 'hsl(var(--success) / 0.05)', 
                 borderRadius: 'var(--radius-md)', 
-                border: reportType === 'surrender' ? '1px solid hsl(var(--success) / 0.1)' : '1px solid hsl(var(--error) / 0.1)',
+                border: reportType === 'surrender' ? '1px solid hsl(var(--error) / 0.1)' : '1px solid hsl(var(--success) / 0.1)',
                 textAlign: 'center'
               }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: reportType === 'surrender' ? 'hsl(var(--success))' : 'hsl(var(--error))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 700, color: reportType === 'surrender' ? 'hsl(var(--error))' : 'hsl(var(--success))', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                   {reportType === 'surrender' ? 'Total Savings (Surrenders)' : 'Total Excess (Allocations)'}
                 </p>
                 <p style={{ fontSize: '2rem', fontWeight: 800 }}>
@@ -322,14 +322,14 @@ export const PoolLedger: React.FC = () => {
             <button 
               className="btn btn-secondary" 
               onClick={() => { setReportType('surrender'); setShowReport(true); }}
-              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--success))', border: '1px solid hsl(var(--success) / 0.2)' }}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--error))', border: '1px solid hsl(var(--error) / 0.2)' }}
             >
               <TrendingUp size={14} /> Surrender Report
             </button>
             <button 
               className="btn btn-secondary" 
               onClick={() => { setReportType('allocation'); setShowReport(true); }}
-              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--error))', border: '1px solid hsl(var(--error) / 0.2)' }}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--success))', border: '1px solid hsl(var(--success) / 0.2)' }}
             >
               <TrendingUp size={14} /> Allocation Report
             </button>
@@ -360,8 +360,8 @@ export const PoolLedger: React.FC = () => {
                       fontWeight: 700, 
                       padding: '0.25rem 0.6rem', 
                       borderRadius: 'var(--radius-sm)',
-                      background: item.type === 'Surrender' ? 'hsl(var(--success) / 0.1)' : 'hsl(var(--error) / 0.1)',
-                      color: item.type === 'Surrender' ? 'hsl(var(--success))' : 'hsl(var(--error))',
+                      background: item.type === 'Surrender' ? 'hsl(var(--error) / 0.1)' : 'hsl(var(--success) / 0.1)',
+                      color: item.type === 'Surrender' ? 'hsl(var(--error))' : 'hsl(var(--success))',
                     }}>
                       {item.type}
                     </span>
@@ -374,7 +374,7 @@ export const PoolLedger: React.FC = () => {
                   </td>
                   <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.875rem', fontWeight: 500 }}>{item.source}</td>
                   <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.875rem', fontWeight: 500 }}>{item.target}</td>
-                  <td style={{ padding: '1.25rem 1.5rem', textAlign: 'right', fontSize: '0.875rem', fontWeight: 700, color: item.type === 'Surrender' ? 'hsl(var(--success))' : 'hsl(var(--error))' }}>
+                  <td style={{ padding: '1.25rem 1.5rem', textAlign: 'right', fontSize: '0.875rem', fontWeight: 700, color: item.type === 'Surrender' ? 'hsl(var(--error))' : 'hsl(var(--success))' }}>
                     {item.type === 'Surrender' ? '+' : '-'} Rs. {item.amount.toLocaleString()}
                   </td>
                   <td style={{ padding: '1.25rem 1.5rem', textAlign: 'center' }}>

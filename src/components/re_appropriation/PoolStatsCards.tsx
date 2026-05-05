@@ -22,7 +22,7 @@ export const PoolStatsCards: React.FC = () => {
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
       {/* Total Surrenders Card (Now First) */}
       <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--success) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--success))' }}>
+        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--error) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--error))' }}>
           <TrendingUp size={24} />
         </div>
         <div>
@@ -33,7 +33,7 @@ export const PoolStatsCards: React.FC = () => {
 
       {/* Total Allocations Card (Now Second) */}
       <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--error) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--error))' }}>
+        <div style={{ width: '48px', height: '48px', background: 'hsl(var(--success) / 0.1)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--success))' }}>
           <TrendingDown size={24} />
         </div>
         <div>
