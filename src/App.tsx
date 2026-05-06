@@ -512,9 +512,10 @@ const SCORING_CONFIG = {
     { id: 2, title: 'Strategic Factors' },
     { id: 3, title: 'Implementation Readiness' },
     { id: 4, title: 'Community & Political' },
-    { id: 5, title: 'Score Summary' },
+    { id: 5, title: 'Supporting Documents' },
+    { id: 6, title: 'Score Summary' },
   ],
-  totalSections: 5,
+  totalSections: 6,
 };
 
 const ScoringPage = () => (
@@ -536,9 +537,10 @@ const RATIONALIZATION_CONFIG = {
     { id: 2, title: 'Authorization & Performance' },
     { id: 3, title: 'Strategic Alignment' },
     { id: 4, title: 'Integration & Impact' },
-    { id: 5, title: 'Score Summary' },
+    { id: 5, title: 'Supporting Documents' },
+    { id: 6, title: 'Score Summary' },
   ],
-  totalSections: 5,
+  totalSections: 6,
 };
 
 const RationalizationPage = () => (

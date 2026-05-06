@@ -90,19 +90,12 @@
 }
 
 .scoring-factor-num {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: hsl(var(--bg-main));
-  border: 1.5px solid hsl(var(--border));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: hsl(var(--text-muted));
-  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: hsl(var(--primary));
   font-family: 'Outfit', sans-serif;
+  margin-right: 0.5rem;
+  display: inline-block;
 }
 
 .scoring-factor-name {
@@ -299,6 +292,54 @@
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+}
+
+
+.factor-violation {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.factor-violation-icon {
+  color: #EF4444;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.factor-violation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.factor-violation-title {
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: #B91C1C;
+}
+
+.factor-violation-text {
+  font-size: 0.8125rem;
+  color: #991B1B;
+  line-height: 1.5;
+}
+
+.factor-violation-action {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #7F1D1D;
+  background: #FEE2E2;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 @keyframes fadeIn {

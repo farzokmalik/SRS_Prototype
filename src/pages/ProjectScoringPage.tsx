@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useForm } from '../context/FormContext';
-import { AlertTriangle, XCircle, CheckCircle2, BarChart3, Info } from 'lucide-react';
+import { AlertTriangle, XCircle, CheckCircle2, BarChart3, Info, Sparkles, Paperclip, Upload } from 'lucide-react';
 import '../styles/ProjectScoring.css';
 
 /* ───────── Types ───────── */
@@ -9,21 +9,21 @@ interface Factor { id: string; name: string; question: string; displayNum: strin
 
 /* ───────── Data ───────── */
 const STRATEGIC_FACTORS: Factor[] = [
-  { id:'f1', name:'Alignment with Development Goals', question:'Cite specific goals and targets from Punjab Growth Strategy.', displayNum:'1', weight:0.20, minScore:2, options:[
+  { id:'f1', name:'Alignment with Development Goals', question:'Cite specific goals and targets from Punjab Growth Strategy.', displayNum:'[PS-2.1]', weight:0.20, minScore:2, options:[
     {score:4,label:'Fully aligned',explanation:'The project explicitly supports one or more high-priority goals from the Punjab Growth Strategy or equivalent documents. Clear evidence, such as references to goals, sections, or specific targets, is provided. Example: A maternal health initiative linked to Ensuring a Healthy Punjab Strategy with measurable outcome targets – reduce maternal mortality rate of 180 per 100,000 live births by 20% in 5 years.'},
     {score:3,label:'Substantially aligned',explanation:'The project supports a strategic goal but may not address a top priority or lacks direct measurable outcomes. References are provided but may need additional clarity. Example: A road construction project improving connectivity but not targeting underserved areas.'},
     {score:2,label:'Moderately aligned',explanation:'The project has some relevance to strategic goals but lacks a strong connection or measurable impact. Goal references are vague or indirect. Example: A skills training program indirectly linked to the employment goal without focusing on target demographics.'},
     {score:1,label:'Marginally aligned',explanation:'The project has a weak or peripheral link to strategic goals and limited developmental impact. Minimal or unclear goal references. Example: A beautification project in a well-served urban area with no alignment to strategic needs.'},
     {score:0,label:'Not aligned',explanation:'The project does not contribute to any strategic goals in the Punjab Growth Strategy or equivalent documents. No references or evidence provided. Example: A luxury development project in direct conflict with equity or poverty-reduction goals.'},
   ]},
-  { id:'f2', name:'Economic / Social Returns', question:'Provide evidence of quantified benefits.', displayNum:'2', weight:0.10, minScore:null, options:[
+  { id:'f2', name:'Economic / Social Returns', question:'Provide evidence of quantified benefits.', displayNum:'[PS-2.2]', weight:0.10, minScore:null, options:[
     {score:4,label:'Very high returns',explanation:'The project is expected to deliver significant, measurable economic and/or social benefits. Example: A rural electrification project expected to increase household incomes by 20% in 3 years.'},
     {score:3,label:'High returns',explanation:'The project delivers notable benefits but with some limitations in scale or scope. Example: A public transit project reducing commuting time for urban workers without significant expansion into underserved areas.'},
     {score:2,label:'Moderate returns',explanation:'The project generates some benefits, but its impact is limited or not well-documented. Example: A digital literacy program with limited outreach or unmeasured long-term impacts.'},
     {score:1,label:'Low returns',explanation:'The project’s benefits are minimal, localized, or difficult to quantify. Example: A landscaping project in a city centre with limited economic or social value.'},
     {score:0,label:'No returns',explanation:'The project has no discernible economic or social benefits. Example: A stalled infrastructure project that does not deliver any service improvements.'},
   ]},
-  { id:'f3', name:'Programmatic Alignment', question:'Document linkages with other initiatives.', displayNum:'3', weight:0.05, minScore:null, options:[
+  { id:'f3', name:'Programmatic Alignment', question:'Document linkages with other initiatives.', displayNum:'[PS-2.3]', weight:0.05, minScore:null, options:[
     {score:4,label:'Strongly programmatic',explanation:'The project is a core component of a broader program, creating significant synergies with other initiatives. Example: A feeder road network project designed to complement a major highway initiative, improving regional connectivity.'},
     {score:3,label:'Moderately programmatic',explanation:'The project supports a broader initiative but with less direct integration or limited synergies. Example: A standalone training program aligned with a national employment strategy but not formally linked to other projects.'},
     {score:2,label:'Mildly programmatic',explanation:'The project has some relevance to other initiatives but operates independently with limited synergies. Example: A small water supply project in an area without integrated sanitation initiatives.'},
@@ -33,21 +33,21 @@ const STRATEGIC_FACTORS: Factor[] = [
 ];
 
 const IMPLEMENTATION_FACTORS: Factor[] = [
-  { id:'f4', name:'Quality of Preparation & Risk Assessment', question:'Reference feasibility studies and technical validations.', displayNum:'4', weight:0.20, minScore:2, options:[
+  { id:'f4', name:'Quality of Preparation & Risk Assessment', question:'Reference feasibility studies and technical validations.', displayNum:'[PS-3.1]', weight:0.20, minScore:2, options:[
     {score:4,label:'Excellent',explanation:'The project preparation is thorough, with high-quality feasibility studies and concept notes adhering fully to PDB guidelines, including comprehensive technical design validation and environmental impact assessment. Example: A hydropower project with detailed site surveys, technical design analysis including structural safety considerations, environmental impact studies covering both construction and operational phases, cost analysis, and implementation plans.'},
     {score:3,label:'Above average',explanation:'Preparatory work is generally strong but may lack detail in technical design validation or environmental assessment aspects. Example: An education project with a solid feasibility study and basic environmental screening, but limited analysis of building design specifications or recurring operational parameters.'},
     {score:2,label:'Average',explanation:'The project preparation is adequate but includes gaps in technical documentation or environmental considerations. Example: A sanitation project with incomplete environmental impact assessment or technical design specifications that require further development.'},
     {score:1,label:'Below average',explanation:'Preparatory work is weak, with significant omissions in required documentation, technical design validation, or environmental impact studies. Example: A road project with no formal technical analysis of structural requirements or environmental screening.'},
     {score:0,label:'Poor',explanation:'The project has no meaningful preparatory work, feasibility studies, technical design validation, or environmental assessment. Example: A proposed IT infrastructure project submitted with only a concept note and no supporting technical or environmental documentation.'},
   ]},
-  { id:'f5', name:'Implementation Feasibility', question:'Detail operational readiness and capacity.', displayNum:'5', weight:0.10, minScore:2, options:[
+  { id:'f5', name:'Implementation Feasibility', question:'Detail operational readiness and capacity.', displayNum:'[PS-3.2]', weight:0.10, minScore:2, options:[
     {score:4,label:'Highly feasible',explanation:'All implementation prerequisites are secured and institutional capacity is fully demonstrated. Example: A housing project with complete land acquisition, defined procurement plans, and implementing agency with proven track record of managing similar projects, adequate technical staff, and established project management systems. The agency demonstrates strong financial management capacity and previous successful project delivery.'},
     {score:3,label:'Feasible with minor gaps',explanation:'Most implementation requirements are in place and institutional capacity is largely adequate. Example: An irrigation project with secured land and most permits, implementing agency with relevant experience but requiring some capacity enhancement in specific technical areas or project management aspects.'},
     {score:2,label:'Moderately feasible',explanation:'Several prerequisites are incomplete and institutional capacity shows notable gaps. Example: A hospital project with partial land acquisition and implementing agency lacking key technical positions or project management experience for healthcare infrastructure.'},
     {score:1,label:'Feasible with major gaps',explanation:'Key prerequisites are missing and institutional capacity is significantly limited. Example: A highway project without finalized land acquisition and implementing agency with minimal experience in large infrastructure projects, inadequate technical staffing, and weak project management systems.'},
     {score:0,label:'Not feasible',explanation:'The project lacks fundamental prerequisites and implementing agency demonstrates insufficient capacity. Example: A power plant project with no secured land and implementing agency lacking essential technical expertise, management systems, and relevant project experience.'},
   ]},
-  { id:'f6', name:'Affordability & Financing', question:'Outline financial sustainability evidence.', displayNum:'6', weight:0.10, minScore:2, options:[
+  { id:'f6', name:'Affordability & Financing', question:'Outline financial sustainability evidence.', displayNum:'[PS-3.3]', weight:0.10, minScore:2, options:[
     {score:4,label:'Fully affordable',explanation:'The project is well within the departmental budget ceiling and has a clear, sustainable long-term financing plan. Example: A local governance reform project fully funded through provincial budgetary allocations with no dependency on external grants.'},
     {score:3,label:'Affordable with minor gaps',explanation:'The project is within budget limits but has minor uncertainties in long-term operational funding. Example: A vocational training program with secured capital costs but requiring further clarity on long-term maintenance budgets.'},
     {score:2,label:'Moderately affordable',explanation:'The project exceeds budget ceilings or has significant funding uncertainties but is still partially financed. Example: An industrial estate development project requiring substantial external financing with no firm commitments.'},
@@ -57,28 +57,28 @@ const IMPLEMENTATION_FACTORS: Factor[] = [
 ];
 
 const COMMUNITY_FACTORS: Factor[] = [
-  { id:'f7', name:'Community Needs', question:'Document stakeholder consultations.', displayNum:'7', weight:0.10, minScore:null, options:[
+  { id:'f7', name:'Community Needs', question:'Document stakeholder consultations.', displayNum:'[PS-4.1]', weight:0.10, minScore:null, options:[
     {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes. Example: A flood protection project requested by affected communities during consultations – stakeholder register has been developed based on participatory planning sessions.'},
     {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment. Example: A health clinic addressing general healthcare gaps but with no direct engagement from the community.'},
     {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand. Example: A small road improvement project initiated without consulting local residents.'},
     {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection. Example: A community centre built without evidence of usage demand.'},
     {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities. Example: A project driven by administrative priorities with no local relevance.'},
   ]},
-  { id:'f8', name:'Equity Aspects', question:'Analyse distribution of benefits.', displayNum:'8', weight:0.07, minScore:null, options:[
+  { id:'f8', name:'Equity Aspects', question:'Analyse distribution of benefits.', displayNum:'[PS-4.2]', weight:0.07, minScore:null, options:[
     {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities. Example: A water supply project in rural South Punjab providing access to clean water for villages without prior service – improving population’s access to clean drinking water from 48.1% to 60% in 4 years.'},
     {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations. Example: A vocational training program targeting women in rural areas but with limited geographic reach.'},
     {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups. Example: An urban road expansion project improving traffic flow but not targeting underprivileged neighbourhoods.'},
     {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations. Example: A city beautification project that does not address basic needs.'},
     {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups. Example: A infrastructure project in a wealthy area while ignoring pressing needs in deprived regions.'},
   ]},
-  { id:'f9a', name:'Political Viability & Governance (Macro)', question:'Assess institutional arrangements.', displayNum:'9a', weight:0.04, minScore:null, options:[
+  { id:'f9a', name:'Political Viability & Governance (Macro)', question:'Assess institutional arrangements.', displayNum:'[PS-4.3]', weight:0.04, minScore:null, options:[
     {score:4,label:'Excellent alignment',explanation:'The project is politically viable, strengthens governance, and promotes institutional reforms or capacity building. Example: A health program introducing district-level accountability mechanisms for service delivery.'},
     {score:3,label:'Good alignment',explanation:'The project aligns with governance objectives and has some potential to improve institutional relationships. Example: A renewable energy project engaging multiple provincial agencies but with limited public engagement.'},
     {score:2,label:'Moderate alignment',explanation:'The project has some alignment with governance or reform objectives but lacks significant systemic impact. Example: An urban development project improving infrastructure without addressing institutional bottlenecks.'},
     {score:1,label:'Weak alignment',explanation:'The project is weakly aligned with governance objectives and risks creating institutional conflicts. Example: A large infrastructure project bypassing local government input and control.'},
     {score:0,label:'No alignment or adverse impact',explanation:'The project creates governance challenges or institutional conflicts without offering systemic benefits. Example: A politically driven project with no alignment to development priorities or institutional structures.'},
   ]},
-  { id:'f9b', name:'Community-Level Analysis (Micro)', question:'Assess community-level dynamics.', displayNum:'9b', weight:0.04, minScore:null, options:[
+  { id:'f9b', name:'Community-Level Analysis (Micro)', question:'Assess community-level dynamics.', displayNum:'[PS-4.4]', weight:0.04, minScore:null, options:[
     {score:4,label:'Comprehensive analysis',explanation:'The project team has fully identified winners and losers, designed awareness campaigns for beneficiaries, and devised strategies to mitigate resistance from adversely affected groups. Example: A resettlement project with stakeholder consultations, compensation plans, and a community engagement framework.'},
     {score:3,label:'Good analysis',explanation:'The project team has identified beneficiaries and adverse groups, but strategies to address resistance are incomplete. Example: An infrastructure project with public consultations but limited follow-up engagement.'},
     {score:2,label:'Moderate analysis',explanation:'The project identifies beneficiaries and adverse groups, but plans for community engagement are vague. Example: A dam construction project mentioning displaced groups but lacking detailed compensation mechanisms.'},
@@ -123,12 +123,18 @@ const FactorQuestion: React.FC<{
   <div className="scoring-factor-block">
     <div className="scoring-factor-header">
       <span className="scoring-factor-num">{factor.displayNum}</span>
-      <div>
-        <h4 className="scoring-factor-name">{factor.name}</h4>
-        <p className="scoring-factor-question">{factor.question}</p>
-        <span className="scoring-factor-meta">
-          {/* Weight label removed per user request */}
-        </span>
+      <div style={{ flex: 1 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <h4 className="scoring-factor-name">
+              {factor.name}
+              <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--accent))', marginLeft: '0.75rem', background: 'hsl(var(--accent-soft))', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                Weight: {(factor.weight * 100).toFixed(0)}%
+              </span>
+            </h4>
+            <p className="scoring-factor-question">{factor.question}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div className="scoring-options">
@@ -165,7 +171,8 @@ interface ScoringState {
 const ScoringCtx = React.createContext<ScoringState>(null!);
 
 const Section_ProjectSelect: React.FC = () => {
-  const { selectedProject, setSelectedProject, viewMode, setViewMode } = React.useContext(ScoringCtx);
+  const { selectedProject, setSelectedProject, viewMode, setViewMode, setAnswers } = React.useContext(ScoringCtx);
+  const { setSection } = useForm();
   return (
     <div className="card" style={{ padding: '1.75rem' }}>
       <div style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -197,8 +204,8 @@ const Section_ProjectSelect: React.FC = () => {
                 transition: 'all 0.2s ease'
               }}
             >
-              Internal View
-              <div className="tooltip">This will be selected automatically based on role in future</div>
+              Department Review
+              <div className="tooltip">Internal Departmental Evaluation Perspective</div>
             </button>
             <button 
               className="tooltip-trigger"
@@ -219,8 +226,8 @@ const Section_ProjectSelect: React.FC = () => {
                 transition: 'all 0.2s ease'
               }}
             >
-              External View
-              <div className="tooltip">This will be selected automatically based on role in future</div>
+              PND Review
+              <div className="tooltip">Planning & Development Board External Audit</div>
             </button>
           </div>
         </div>
@@ -230,12 +237,125 @@ const Section_ProjectSelect: React.FC = () => {
         </div>
       </div>
 
-      <div className="input-group" style={{ marginBottom: 0 }}>
-        <label className="label">Project Name</label>
-        <select className="select" value={selectedProject} onChange={e => setSelectedProject(e.target.value)} id="project-selector">
-          <option value="">— Select a project to evaluate —</option>
-          {PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
-        </select>
+      <div style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '2rem' }}>
+        <div className="input-group" style={{ marginBottom: 0, flex: 1 }}>
+          <label className="label" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span className="scoring-factor-num">[PS-1.1]</span>
+            Project Name
+          </label>
+          <select className="select" value={selectedProject} onChange={e => setSelectedProject(e.target.value)} id="project-selector">
+            <option value="">— Select a project to evaluate —</option>
+            {PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+          </select>
+        </div>
+
+        {viewMode === 'external' && (
+          <button 
+            className="btn btn-primary"
+            onClick={() => {
+              if (!selectedProject) {
+                alert("Please select a project first.");
+                return;
+              }
+              const newAnswers: Record<string, number> = {};
+              ALL_FACTORS.forEach(f => {
+                const randomOption = f.options[Math.floor(Math.random() * f.options.length)];
+                newAnswers[f.id] = randomOption.score;
+              });
+              setAnswers(newAnswers);
+              setSection(6);
+            }}
+            style={{ 
+              padding: '0.75rem 1.5rem', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.75rem',
+              background: 'hsl(var(--accent))',
+              color: 'white',
+              border: 'none',
+              boxShadow: '0 4px 12px hsl(var(--accent) / 0.25)',
+              fontWeight: 600,
+              cursor: 'pointer'
+            }}
+          >
+            <Sparkles size={18} color="white" />
+            <span style={{ color: 'white' }}>Instant AI Review</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const Section_Attachments: React.FC = () => {
+  const [files, setFiles] = React.useState<Record<string, File | null>>({});
+
+  const handleFileChange = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFiles(prev => ({ ...prev, [id]: file }));
+  };
+
+  return (
+    <div className="card" style={{ padding: '2rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
+        <div style={{ width: '32px', height: '32px', background: 'hsl(var(--accent-soft))', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'hsl(var(--accent))' }}>
+          <Paperclip size={18} />
+        </div>
+        <div>
+          <h3 style={{ fontSize: '1.125rem', margin: 0, fontWeight: 700 }}>
+            <span className="scoring-factor-num">[PS-5.1]</span>
+            Supporting Documents
+          </h3>
+          <p style={{ fontSize: '0.8125rem', color: 'hsl(var(--text-muted))', margin: 0 }}>Attach proof of feasibility, technical validations, and stakeholder consultations.</p>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+        {[
+          { label: 'Complete PC-I Form', id: 'pci', desc: 'Adhering to prescribed ADP format' },
+          { label: 'Feasibility Study', id: 'feasibility', desc: 'Including technical design validation' },
+          { label: 'Environmental Impact Assessment', id: 'eia', desc: 'Where applicable' },
+          { label: 'Cost Estimates & Financing Plan', id: 'finance', desc: 'Detailed breakdown and sustainability' },
+          { label: 'Land Acquisition Status', id: 'land', desc: 'Supported by documentation' },
+          { label: 'Procurement Strategy', id: 'procurement', desc: 'Timeline and method' },
+          { label: 'Implementation Schedule', id: 'schedule', desc: 'Defined milestones' },
+          { label: 'Risk Assessment & Mitigation', id: 'risk', desc: 'Strategies and assessment' },
+          { label: 'Technical Approvals', id: 'approvals', desc: 'Regulatory permits and technical sanctions' },
+        ].map(doc => (
+          <div key={doc.id} 
+            onClick={() => document.getElementById(`file-${doc.id}`)?.click()}
+            style={{ 
+              border: files[doc.id] ? '2px solid hsl(var(--success))' : '2px dashed hsl(var(--border))', 
+              borderRadius: 'var(--radius-lg)', 
+              padding: '2rem', 
+              textAlign: 'center',
+              background: files[doc.id] ? 'hsl(var(--success-soft))' : 'hsl(var(--bg-main) / 0.3)',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer',
+              position: 'relative'
+            }}
+          >
+            <input 
+              type="file" 
+              id={`file-${doc.id}`} 
+              style={{ display: 'none' }} 
+              onChange={(e) => handleFileChange(doc.id, e)} 
+            />
+            {files[doc.id] ? (
+              <CheckCircle2 size={24} color="hsl(var(--success))" style={{ marginBottom: '1rem' }} />
+            ) : (
+              <Upload size={24} color="hsl(var(--text-muted))" style={{ marginBottom: '1rem' }} />
+            )}
+            <p style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.25rem' }}>{doc.label}</p>
+            {doc.desc && <p style={{ fontSize: '0.7rem', color: files[doc.id] ? 'hsl(var(--success))' : 'hsl(var(--accent))', marginBottom: '0.5rem', fontWeight: 500 }}>{doc.desc}</p>}
+            
+            {files[doc.id] ? (
+              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--success))', fontWeight: 600 }}>{files[doc.id]?.name}</p>
+            ) : (
+              <p style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))' }}>Click to upload or drag and drop</p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -269,7 +389,7 @@ const Section_Results: React.FC = () => {
   const results = useMemo(() => {
     if (!allAnswered) return null;
     let totalWeightedScore = 0;
-    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { name: string; score: number; weight: number; weighted: number }[] }> = {};
+    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { name: string; score: number; weight: number; weighted: number; minScore: number | null }[] }> = {};
     const minScoreViolations: string[] = [];
 
     for (const f of ALL_FACTORS) {
@@ -281,7 +401,7 @@ const Section_Results: React.FC = () => {
       if (!categoryScores[catName]) categoryScores[catName] = { total: 0, maxPossible: 0, factors: [] };
       categoryScores[catName].total += weighted;
       categoryScores[catName].maxPossible += 4 * f.weight;
-      categoryScores[catName].factors.push({ name: f.name, score, weight: f.weight, weighted });
+      categoryScores[catName].factors.push({ name: f.name, score, weight: f.weight, weighted, minScore: f.minScore });
       if (f.minScore !== null && score < f.minScore) minScoreViolations.push(f.name);
     }
     return { totalWeightedScore, categoryScores, classification: getClassification(totalWeightedScore), minScoreViolations };
@@ -366,9 +486,22 @@ const Section_Results: React.FC = () => {
             </div>
             <div style={{ marginTop: '0.75rem' }}>
               {cs.factors.map(f => (
-                <div key={f.name} className="scoring-factor-result-row">
-                  <span>{f.name}</span>
-                  <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
+                <div key={f.name} style={{ marginBottom: '1rem' }}>
+                  <div className="scoring-factor-result-row" style={{ borderBottom: f.minScore !== null && f.score < f.minScore ? 'none' : '' }}>
+                    <span>{f.name}</span>
+                    <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
+                  </div>
+                  {f.minScore !== null && f.score < f.minScore && (
+                    <div className="factor-violation" style={{ marginTop: '0.25rem', padding: '0.75rem' }}>
+                      <AlertTriangle className="factor-violation-icon" size={14} />
+                      <div className="factor-violation-content">
+                        <span className="factor-violation-title" style={{ fontSize: '0.75rem' }}>Critical Compliance Warning</span>
+                        <p className="factor-violation-text" style={{ fontSize: '0.7rem' }}>
+                          Min score of {f.minScore} not met. <strong>Required Action:</strong> Mandatory revision of project documentation or implementation strategy is required.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -406,7 +539,8 @@ export const ProjectScoringContent: React.FC = () => {
     case 2: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" />;
     case 3: return <SectionFactors factors={IMPLEMENTATION_FACTORS} catColor="#10B981" />;
     case 4: return <SectionFactors factors={COMMUNITY_FACTORS} catColor="#8B5CF6" />;
-    case 5: return <Section_Results />;
+    case 5: return <Section_Attachments />;
+    case 6: return <Section_Results />;
     default: return <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>Section under development.</div>;
   }
 };
