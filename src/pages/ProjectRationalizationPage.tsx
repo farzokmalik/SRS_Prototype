@@ -5,63 +5,126 @@ import '../styles/ProjectScoring.css';
 
 /* ───────── Types ───────── */
 interface Option { score: number; label: string; explanation: string; }
-interface Factor { id: string; name: string; question: string; displayNum: string; weight: number; minScore: number | null; options: Option[]; }
+interface Factor { id: string; name: string; description: string; question: string; displayNum: string; weight: number; minScore: number | null; options: Option[]; }
 
 /* ───────── Data ───────── */
 const AUTH_PERF_FACTORS: Factor[] = [
-  { id:'r1', name:'Approval Status', question:'Indicate whether the project has formal approval.', displayNum:'[PR-2.1]', weight:0.20, minScore:2, options:[
-    {score:4,label:'Fully approved',explanation:'The project has completed all required approvals, including feasibility studies, technical and financial evaluations, and sanctioning by relevant authorities. Example: A road construction project approved under the Punjab Annual Development Plan with detailed documentation.'},
-    {score:2,label:'Pending approval',explanation:'The project has initiated the approval process but is awaiting formal sanctioning. Example: A hospital project with submitted feasibility reports under review.'},
-    {score:0,label:'Not approved',explanation:'The project has not undergone any formal approval process or is included in the plan without adequate documentation. Example: A housing project added to the development plan without a feasibility study or technical review.'},
-  ]},
-  { id:'r2', name:'Implementation Status', question:'Include milestones, timelines, and budgets.', displayNum:'[PR-2.2]', weight:0.20, minScore:2, options:[
-    {score:4,label:'On track',explanation:'The project is progressing smoothly, meeting its planned milestones, timelines, and budget without significant issues. Example: A school construction project achieving 80% completion as per the project schedule.'},
-    {score:3,label:'Minor issues',explanation:'The project is progressing but faces minor challenges that can be addressed without significant restructuring. Example: A road rehabilitation project with minor delays due to material shortages but is on budget.'},
-    {score:2,label:'Moderate issues',explanation:'The project is experiencing moderate challenges, such as timeline slippage or cost escalations, requiring targeted interventions. Example: A healthcare facility project delayed due to contractor issues but salvageable with re-planning.'},
-    {score:1,label:'Significant issues',explanation:'The project is experiencing major delays, cost overruns, or mismanagement, requiring significant restructuring to continue. Example: A stalled irrigation project with unresolved design flaws.'},
-    {score:0,label:'Severely underperforming',explanation:'The project is not progressing meaningfully or is at a standstill, with no clear path for resolution. Example: A completely stalled housing project with no work completed for 12 months.'},
-  ]},
+  { 
+    id:'r1', 
+    name:'Approval Status', 
+    description: 'This factor evaluates whether the project has undergone proper approval processes as required by public investment management protocols. Fully approved projects score higher, as they demonstrate adherence to governance and quality standards, while unapproved projects score lower due to the risks of inefficiency and lack of accountability.',
+    question:'Indicate whether the project has formal approval.', 
+    displayNum:'[PR-2.1]', 
+    weight:0.20, 
+    minScore:2, 
+    options:[
+      {score:4,label:'Fully approved',explanation:'The project has completed all required approvals, including feasibility studies, technical and financial evaluations, and sanctioning by relevant authorities. Example: A road construction project approved under the Punjab Annual Development Plan with detailed documentation.'},
+      {score:2,label:'Pending approval',explanation:'The project has initiated the approval process but is awaiting formal sanctioning. Example: A hospital project with submitted feasibility reports under review.'},
+      {score:0,label:'Not approved',explanation:'The project has not undergone any formal approval process or is included in the plan without adequate documentation. Example: A housing project added to the development plan without a feasibility study or technical review.'},
+    ]
+  },
+  { 
+    id:'r2', 
+    name:'Implementation Status', 
+    description: 'This factor assesses the progress and performance of a project during its implementation phase. Projects that are on track, meeting milestones, and staying within budget will score higher, while those facing significant delays, cost overruns, or performance issues will score lower.',
+    question:'Include milestones, timelines, and budgets.', 
+    displayNum:'[PR-2.2]', 
+    weight:0.20, 
+    minScore:2, 
+    options:[
+      {score:4,label:'On track',explanation:'The project is progressing smoothly, meeting its planned milestones, timelines, and budget without significant issues. Example: A school construction project achieving 80% completion as per the project schedule.'},
+      {score:3,label:'Minor issues',explanation:'The project is progressing but faces minor challenges that can be addressed without significant restructuring. Example: A road rehabilitation project with minor delays due to material shortages but is on budget.'},
+      {score:2,label:'Moderate issues',explanation:'The project is experiencing moderate challenges, such as timeline slippage or cost escalations, requiring targeted interventions. Example: A healthcare facility project delayed due to contractor issues but salvageable with re-planning.'},
+      {score:1,label:'Significant issues',explanation:'The project is experiencing major delays, cost overruns, or mismanagement, requiring significant restructuring to continue. Example: A stalled irrigation project with unresolved design flaws.'},
+      {score:0,label:'Severely underperforming',explanation:'The project is not progressing meaningfully or is at a standstill, with no clear path for resolution. Example: A completely stalled housing project with no work completed for 12 months.'},
+    ]
+  },
 ];
 
 const STRATEGIC_FACTORS: Factor[] = [
-  { id:'r3', name:'Social Returns / Alignment', question:'Outline evidence of social benefits.', displayNum:'[PR-3.1]', weight:0.20, minScore:2, options:[
-    {score:4,label:'Very high returns',explanation:'The project is expected to deliver significant social benefits, such as poverty reduction, improved health, or increased equity. Example: A maternal health project expected to reduce maternal mortality by 20% in five years.'},
-    {score:3,label:'High returns',explanation:'The project delivers notable social benefits but with some limitations in scale or impact. Example: A public health project addressing primary healthcare needs but not targeting marginalized groups.'},
-    {score:2,label:'Moderate returns',explanation:'The project has some social benefits, but its impact is limited or not well-documented. Example: A community centre project with unmeasured long-term social outcomes.'},
-    {score:1,label:'Low returns',explanation:'The project’s social benefits are minimal, localized, or difficult to quantify. Example: A city beautification project with limited social impact.'},
-    {score:0,label:'No returns',explanation:'The project has no discernible social benefits or is in conflict with social goals. Example: A project promoting exclusionary practices or ignoring marginalized needs.'},
-  ]},
-  { id:'r4', name:'Sectoral Priority', question:'Align project with sectoral strategies.', displayNum:'[PR-3.2]', weight:0.10, minScore:null, options:[
-    {score:4,label:'High priority',explanation:'The project aligns with top-priority sectoral strategies and addresses critical gaps in service delivery. Example: A water supply project in a region with severe water scarcity.'},
-    {score:3,label:'Medium priority',explanation:'The project aligns with sectoral strategies but may not be a top priority. Example: A road improvement project in an area with adequate connectivity.'},
-    {score:2,label:'Low priority',explanation:'The project has limited alignment with sectoral strategies or addresses less critical needs. Example: A community hall project in a well-served urban area.'},
-    {score:1,label:'Very low priority',explanation:'The project has weak alignment with sectoral strategies and limited sectoral impact. Example: A project unrelated to any sectoral goals or priorities.'},
-    {score:0,label:'Not a priority',explanation:'The project is in conflict with sectoral goals or priorities. Example: A luxury project in direct conflict with poverty reduction goals.'},
-  ]},
+  { 
+    id:'r3', 
+    name:'Alignment with Development Goals', 
+    description: 'This factor measures how well a project aligns with the specific strategic goals outlined in the Punjab Growth Strategy, SDGs, Vision 2025, or sectoral plans. Respondents must explicitly reference the relevant goal(s) from these documents and provide evidence of the project’s contribution. Projects that directly target high-priority goals or measurable outcomes will receive higher scores.',
+    question:'Cite specific goals in the Punjab Growth Strategy.', 
+    displayNum:'[PR-3.1]', 
+    weight:0.15, 
+    minScore:null, 
+    options:[
+      {score:4,label:'Fully aligned',explanation:'The project explicitly supports one or more high-priority goals from the Punjab Growth Strategy or equivalent documents. Clear evidence, such as references to goals, sections, or specific targets, is provided. Example: A maternal health initiative linked to Goal 3.1 of the Punjab Growth Strategy with measurable outcome targets.'},
+      {score:3,label:'Substantially aligned',explanation:'The project supports a strategic goal but may not address a top priority or lacks direct measurable outcomes. References are provided but may need additional clarity. Example: A road construction project improving connectivity but not targeting underserved areas.'},
+      {score:2,label:'Moderately aligned',explanation:'The project has some relevance to strategic goals but lacks a strong connection or measurable impact. Goal references are vague or indirect. Example: A skills training program indirectly linked to the employment goal without focusing on target demographics.'},
+      {score:1,label:'Marginally aligned',explanation:'The project has a weak or peripheral link to strategic goals and limited developmental impact. Minimal or unclear goal references. Example: A beautification project in a well-served urban area with no alignment to strategic needs.'},
+      {score:0,label:'Not aligned',explanation:'The project does not contribute to any strategic goals in the Punjab Growth Strategy or equivalent documents. No references or evidence provided. Example: A luxury development project in direct conflict with equity or poverty-reduction goals.'},
+    ]
+  },
+  { 
+    id:'r4', 
+    name:'Economic/Social Returns', 
+    description: 'This factor evaluates the anticipated economic and social benefits derived from the project. High-scoring projects provide substantial, measurable improvements in areas such as employment, income generation, public service delivery, or social equity. Projects with minimal or no demonstrable benefits score lower.',
+    question:'Provide evidence of measurable benefits.', 
+    displayNum:'[PR-3.2]', 
+    weight:0.10, 
+    minScore:null, 
+    options:[
+      {score:4,label:'Very high returns',explanation:'The project is expected to deliver significant, measurable economic and/or social benefits. Example: A rural electrification project expected to increase household incomes by 30% and improve access to education and healthcare.'},
+      {score:3,label:'High returns',explanation:'The project delivers notable benefits but with some limitations in scale or scope. Example: A public transit project reducing commuting time for urban workers without significant expansion into underserved areas.'},
+      {score:2,label:'Moderate returns',explanation:'The project generates some benefits, but its impact is limited or not well-documented. Example: A digital literacy program with limited outreach or unmeasured long-term impacts.'},
+      {score:1,label:'Low returns',explanation:'The project’s benefits are minimal, localized, or difficult to quantify. Example: A landscaping project in a city centre with limited economic or social value.'},
+      {score:0,label:'No returns',explanation:'The project has no discernible economic or social benefits. Example: A stalled infrastructure project that does not deliver any service improvements.'},
+    ]
+  },
 ];
 
 const INTEGRATION_FACTORS: Factor[] = [
-  { id:'r5', name:'Vertical & Horizontal Integration', question:'Cite synergies with other projects.', displayNum:'[PR-4.1]', weight:0.20, minScore:null, options:[
-    {score:4,label:'Strongly integrated',explanation:'The project is well-integrated with other initiatives, creating significant synergies and maximizing development impact. Example: A highway project designed to complement a major transport hub and regional development plan.'},
-    {score:3,label:'Moderately integrated',explanation:'The project has some level of integration with other initiatives, but synergies may be limited. Example: A schools project aligned with an education strategy but not formally linked to other projects.'},
-    {score:2,label:'Weakly integrated',explanation:'The project has limited integration with other initiatives and operates largely independently. Example: A water supply project in an area without integrated sanitation initiatives.'},
-    {score:1,label:'Not integrated',explanation:'The project is not integrated with other initiatives and lacks synergies. Example: A standalone project unrelated to any other development plans.'},
-    {score:0,label:'In conflict',explanation:'The project is in conflict with other initiatives or development plans. Example: A project promoting exclusionary practices or ignoring marginalized needs.'},
-  ]},
-  { id:'r6', name:'Financial Viability & Impact', question:'Analyze cost-benefit or sustainability.', displayNum:'[PR-4.2]', weight:0.10, minScore:null, options:[
-    {score:4,label:'Very high impact',explanation:'The project has high financial viability and is expected to deliver significant economic impact. Example: An industrial zone project with high investment potential and job creation.'},
-    {score:3,label:'High impact',explanation:'The project has good financial viability and is expected to deliver notable economic impact. Example: A transit project reducing commuting time and improving productivity.'},
-    {score:2,label:'Moderate impact',explanation:'The project has some level of financial viability and economic impact, but it may be limited. Example: A small market project with some revenue generation potential.'},
-    {score:1,label:'Low impact',explanation:'The project has limited financial viability and economic impact. Example: A community hall project with limited revenue generation.'},
-    {score:0,label:'No impact',explanation:'The project has no discernible financial viability or economic impact. Example: A project with high maintenance costs and no revenue potential.'},
-  ]},
-  { id:'r7', name:'Equity Aspects', question:'Highlight contributions to underserved areas.', displayNum:'[PR-4.3]', weight:0.10, minScore:null, options:[
-    {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities. Example: A water supply project in rural South Punjab providing access to clean water for villages without prior service.'},
-    {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations. Example: A vocational training program targeting women in rural areas but with limited geographic reach.'},
-    {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups. Example: An urban road expansion project improving traffic flow but not targeting underprivileged neighbourhoods.'},
-    {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations. Example: A city beautification project that does not address basic needs.'},
-    {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups. Example: A luxury infrastructure project in a wealthy area while ignoring pressing needs in deprived regions.'},
-  ]},
+  { 
+    id:'r5', 
+    name:'Programmatic Alignment', 
+    description: 'This factor assesses whether the project is part of a broader program or complements other projects to maximize developmental impact. Projects that are well-integrated into larger initiatives or leverage synergies score higher, while isolated, stand-alone projects with no connection to broader strategies score lower.',
+    question:'Describe synergies with other initiatives.', 
+    displayNum:'[PR-4.1]', 
+    weight:0.15, 
+    minScore:null, 
+    options:[
+      {score:4,label:'Strongly programmatic',explanation:'The project is a core component of a broader program, creating significant synergies with other initiatives. Example: A feeder road network project designed to complement a major highway initiative, improving regional connectivity.'},
+      {score:3,label:'Moderately programmatic',explanation:'The project supports a broader initiative but with less direct integration or limited coordination. Example: A standalone training program aligned with a national employment strategy but not formally linked to other projects.'},
+      {score:2,label:'Mildly programmatic',explanation:'The project has some relevance to other initiatives but operates independently with limited synergies. Example: A small water supply project in an area without integrated sanitation initiatives.'},
+      {score:1,label:'Weakly programmatic',explanation:'The project is loosely related to other initiatives but lacks tangible connections or impact. Example: A community park project with no alignment to urban planning goals.'},
+      {score:0,label:'Stand-alone',explanation:'The project is entirely independent, with no connection to broader programs or strategies. Example: A one-off cultural event unrelated to developmental goals.'},
+    ]
+  },
+  { 
+    id:'r6', 
+    name:'Community Needs', 
+    description: 'This factor evaluates how well the project addresses the genuine needs and priorities of the community it aims to serve. Projects developed through robust stakeholder engagement or that respond to critical community demands score higher, while those lacking relevance to local needs score lower.',
+    question:'Detail stakeholder engagement or needs assessments.', 
+    displayNum:'[PR-4.2]', 
+    weight:0.10, 
+    minScore:null, 
+    options:[
+      {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes. Example: A flood protection project requested by affected communities during consultations.'},
+      {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment. Example: A health clinic addressing general healthcare gaps but with no direct engagement from the community.'},
+      {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand. Example: A small road improvement project initiated without consulting local residents.'},
+      {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection. Example: A community center built without evidence of usage demand.'},
+      {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities. Example: A project driven by administrative priorities with no local relevance.'},
+    ]
+  },
+  { 
+    id:'r7', 
+    name:'Equity Aspects', 
+    description: 'This factor assesses the project\'s contribution to reducing regional disparities and promoting inclusivity, particularly in underserved or marginalized areas. Projects targeting historically neglected regions or communities score higher, while those reinforcing existing inequities or providing disproportionate benefits to already advantaged groups score lower.',
+    question:'Highlight contributions to underserved areas.', 
+    displayNum:'[PR-4.3]', 
+    weight:0.10, 
+    minScore:null, 
+    options:[
+      {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities. Example: A water supply project in rural South Punjab providing access to clean water for villages without prior service.'},
+      {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations. Example: A vocational training program targeting women in rural areas but with limited geographic reach.'},
+      {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups. Example: An urban road expansion project improving traffic flow but not targeting underprivileged neighbourhoods.'},
+      {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations. Example: A city beautification project that does not address basic needs.'},
+      {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups. Example: A luxury infrastructure project in a wealthy area while ignoring pressing needs in deprived regions.'},
+    ]
+  },
 ];
 
 const ALL_FACTORS = [...AUTH_PERF_FACTORS, ...STRATEGIC_FACTORS, ...INTEGRATION_FACTORS];
@@ -109,7 +172,12 @@ const FactorQuestion: React.FC<{
                 Weight: {(factor.weight * 100).toFixed(0)}%
               </span>
             </h4>
-            <p className="scoring-factor-question">{factor.question}</p>
+            <p style={{ fontSize: '0.8125rem', color: 'hsl(var(--text-muted))', lineHeight: '1.5', marginBottom: '0.75rem', maxWidth: '800px' }}>
+              {factor.description}
+            </p>
+            <p className="scoring-factor-question">
+              {factor.question}
+            </p>
           </div>
         </div>
       </div>
