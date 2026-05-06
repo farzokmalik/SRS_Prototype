@@ -157,9 +157,10 @@ function getClassification(score: number) {
 /* ───────── Shared option renderer ───────── */
 const FactorQuestion: React.FC<{
   factor: Factor;
+  index: number;
   answers: Record<string, number | null>;
   onSelect: (factorId: string, score: number) => void;
-}> = ({ factor, answers, onSelect }) => (
+}> = ({ factor, index, answers, onSelect }) => (
   <div className="scoring-factor-block">
     <div className="scoring-factor-header">
       <span className="scoring-factor-num">{factor.displayNum}</span>
@@ -167,7 +168,7 @@ const FactorQuestion: React.FC<{
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <h4 className="scoring-factor-name">
-              {factor.name}
+              {index}. {factor.name}
               <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--accent))', marginLeft: '0.75rem', background: 'hsl(var(--accent-soft))', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                 Weight: {(factor.weight * 100).toFixed(0)}%
               </span>
@@ -363,6 +364,7 @@ const Section_Attachments: React.FC = () => {
           { label: 'Budget Utilization Reports', id: 'budget', desc: 'Detailed fund tracking' },
           { label: 'Achievement of Milestones', id: 'milestones', desc: 'Proof of physical progress' },
           { label: 'Stakeholder Feedback', id: 'feedback', desc: 'Summary of community engagement' },
+          { label: 'Other', id: 'other', desc: 'Any other relevant supporting documents' },
         ].map(doc => (
           <div key={doc.id} 
             onClick={() => document.getElementById(`file-${doc.id}`)?.click()}
@@ -403,23 +405,17 @@ const Section_Attachments: React.FC = () => {
   );
 };
 
-const SectionFactors: React.FC<{ factors: Factor[]; catColor: string }> = ({ factors, catColor }) => {
+const SectionFactors: React.FC<{ factors: Factor[]; catColor: string; startIndex?: number }> = ({ factors, startIndex = 1 }) => {
   const { answers, setAnswers } = React.useContext(RatCtx);
   const handleSelect = (factorId: string, score: number) => setAnswers(prev => ({ ...prev, [factorId]: score }));
 
   return (
-    <div className="card" style={{ padding: '1.75rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <div style={{ width: 14, height: 14, borderRadius: 4, background: catColor, flexShrink: 0 }} />
-        <div>
-          {/* Category Weight removed per user request */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      {factors.map((f, idx) => (
+        <div key={f.id} className="card factor-card" style={{ padding: '1.75rem' }}>
+          <FactorQuestion factor={f} index={startIndex + idx} answers={answers} onSelect={handleSelect} />
         </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {factors.map(f => (
-          <FactorQuestion key={f.id} factor={f} answers={answers} onSelect={handleSelect} />
-        ))}
-      </div>
+      ))}
     </div>
   );
 };
@@ -431,7 +427,7 @@ const Section_Results: React.FC = () => {
   const results = useMemo(() => {
     if (!allAnswered) return null;
     let totalWeightedScore = 0;
-    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { name: string; score: number; weight: number; weighted: number; minScore: number | null }[] }> = {};
+    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { name: string; score: number; weight: number; weighted: number; minScore: number | null; displayNum: string }[] }> = {};
     const minScoreViolations: string[] = [];
 
     for (const f of ALL_FACTORS) {
@@ -443,7 +439,7 @@ const Section_Results: React.FC = () => {
       if (!categoryScores[catName]) categoryScores[catName] = { total: 0, maxPossible: 0, factors: [] };
       categoryScores[catName].total += weighted;
       categoryScores[catName].maxPossible += 4 * f.weight;
-      categoryScores[catName].factors.push({ name: f.name, score, weight: f.weight, weighted, minScore: f.minScore });
+      categoryScores[catName].factors.push({ name: f.name, score, weight: f.weight, weighted, minScore: f.minScore, displayNum: f.displayNum });
       if (f.minScore !== null && score < f.minScore) minScoreViolations.push(f.name);
     }
     return { totalWeightedScore, categoryScores, classification: getClassification(totalWeightedScore), minScoreViolations };
@@ -492,70 +488,94 @@ const Section_Results: React.FC = () => {
         <BarChart3 size={20} color="hsl(var(--accent))" /> Rationalization Results
       </h3>
 
-      <div className="scoring-result-overall" style={{ background: results.classification.bg, borderColor: results.classification.color }}>
-        <div>
-          <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', color: results.classification.color, marginBottom: '0.25rem' }}>Classification</p>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: results.classification.color, margin: 0 }}>{results.classification.label}</h3>
-          <p style={{ fontSize: '0.8125rem', color: 'hsl(var(--text-muted))', marginTop: '0.25rem' }}>{results.classification.range}</p>
+      <div style={{ background: results.classification.bg, border: `1px solid ${results.classification.color}`, borderRadius: 'var(--radius-lg)', overflow: 'hidden', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem', borderBottom: `1px solid ${results.classification.color}30` }}>
+          <div>
+            <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', color: results.classification.color, marginBottom: '0.25rem' }}>Classification</p>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: results.classification.color, margin: 0 }}>{results.classification.label}</h3>
+            <p style={{ fontSize: '0.8125rem', color: results.classification.color, opacity: 0.8, marginTop: '0.25rem' }}>{results.classification.range}</p>
+          </div>
+          <div className="scoring-result-score-circle" style={{ borderColor: results.classification.color, color: results.classification.color, margin: 0 }}>
+            <span style={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1 }}>{results.totalWeightedScore.toFixed(2)}</span>
+            <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>/ 4.00</span>
+          </div>
         </div>
-        <div className="scoring-result-score-circle" style={{ borderColor: results.classification.color, color: results.classification.color }}>
-          <span style={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1 }}>{results.totalWeightedScore.toFixed(2)}</span>
-          <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>/ 4.00</span>
+
+        <div style={{ padding: '1.25rem', borderBottom: results.minScoreViolations.length > 0 ? `1px solid ${results.classification.color}20` : 'none' }}>
+          <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: results.classification.color, marginBottom: '0.25rem' }}>Required Action</p>
+          <p style={{ fontSize: '0.9375rem', color: 'hsl(var(--text-main))', margin: 0, fontWeight: 500 }}>{results.classification.action}</p>
         </div>
-      </div>
 
-      {/* Required Action */}
-      <div style={{ padding: '1rem', borderRadius: 'var(--radius-md)', background: results.classification.bg, border: `1px solid ${results.classification.color}30`, marginBottom: '1rem' }}>
-        <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: results.classification.color, marginBottom: '0.25rem' }}>Required Action</p>
-        <p style={{ fontSize: '0.875rem', color: 'hsl(var(--text-main))' }}>{results.classification.action}</p>
-      </div>
-
-      {results.minScoreViolations.length > 0 && (
-        <div className="scoring-violations">
-          <AlertTriangle size={18} /> <strong>Critical Threshold Violations:</strong>&nbsp;{results.minScoreViolations.join(', ')}
-        </div>
-      )}
-
-      <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, margin: '1.5rem 0 1rem' }}>Category Breakdown</h4>
-      {CATEGORIES.map(cat => {
-        const cs = results.categoryScores[cat.name];
-        if (!cs) return null;
-        const pct = (cs.total / cs.maxPossible) * 100;
-        return (
-          <div key={cat.name} className="scoring-cat-result">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: cat.color, display: 'inline-block' }} /> {cat.name}
-              </span>
-              <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>Performance Score: {cs.total.toFixed(2)}</span>
-            </div>
-            <div className="scoring-progress-track" style={{ height: '8px' }}>
-              <div className="scoring-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
-            </div>
-            <div style={{ marginTop: '0.75rem' }}>
-              {cs.factors.map(f => (
-                <div key={f.name} style={{ marginBottom: '1rem' }}>
-                  <div className="scoring-factor-result-row" style={{ borderBottom: f.minScore !== null && f.score < f.minScore ? 'none' : '' }}>
-                    <span>{f.name}</span>
-                    <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
-                  </div>
-                  {f.minScore !== null && f.score < f.minScore && (
-                    <div className="factor-violation" style={{ marginTop: '0.25rem', padding: '0.75rem' }}>
-                      <AlertTriangle className="factor-violation-icon" size={14} />
-                      <div className="factor-violation-content">
-                        <span className="factor-violation-title" style={{ fontSize: '0.75rem' }}>Performance Compliance Warning</span>
-                        <p className="factor-violation-text" style={{ fontSize: '0.7rem' }}>
-                          Min score of {f.minScore} not met. <strong>Required Action:</strong> Immediate project restructuring or remedial action plan required.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+        {results.minScoreViolations.length > 0 && (
+          <div style={{ padding: '1rem', background: 'hsl(var(--error-soft))', borderTop: `1px solid hsl(var(--error) / 0.2)`, display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'hsl(var(--error))' }}>
+            <AlertTriangle size={18} />
+            <div style={{ fontSize: '0.875rem' }}>
+              <strong style={{ fontWeight: 700 }}>Critical Threshold Violations:</strong>&nbsp;{results.minScoreViolations.join(', ')}
             </div>
           </div>
-        );
-      })}
+        )}
+      </div>
+
+      <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, margin: '1.5rem 0 1rem' }}>Category Breakdown</h4>
+      {(() => {
+        let globalFactorIdx = 1;
+        return CATEGORIES.map(cat => {
+          const cs = results.categoryScores[cat.name];
+          if (!cs) return null;
+          const pct = (cs.total / cs.maxPossible) * 100;
+          return (
+            <div key={cat.name} className="scoring-cat-result">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <span style={{ fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: cat.color, display: 'inline-block' }} /> {cat.name}
+                </span>
+                <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>Performance Score: {cs.total.toFixed(2)} / {cs.maxPossible.toFixed(2)}</span>
+              </div>
+              <div className="scoring-progress-track" style={{ height: '8px' }}>
+                <div className="scoring-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
+              </div>
+              <div style={{ marginTop: '0.75rem' }}>
+                {cs.factors.map((f) => {
+                  const currentIdx = globalFactorIdx++;
+                  return (
+                    <div key={f.name} style={{ marginBottom: '1rem' }}>
+                      <div className="scoring-factor-result-row">
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 800, fontSize: '0.75rem', color: 'hsl(var(--primary))', opacity: 0.7 }}>{f.displayNum}</span>
+                          <span style={{ fontWeight: 700 }}>{currentIdx}.</span> {f.name}
+                      {f.minScore !== null && f.score < f.minScore && (
+                        <div className="tooltip-trigger tooltip-error">
+                          <AlertTriangle size={16} color="#EF4444" />
+                          <div className="tooltip" style={{ width: '320px', whiteSpace: 'normal', textAlign: 'left', padding: '1rem', lineHeight: '1.5' }}>
+                            <div style={{ display: 'flex', gap: '0.75rem' }}>
+                              <AlertTriangle size={18} color="white" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <div>
+                                <strong style={{ display: 'block', marginBottom: '0.25rem', color: 'white', fontSize: '0.875rem', letterSpacing: '0.01em' }}>Performance Compliance Warning</strong>
+                                <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>
+                                  Min score of <strong style={{ color: 'white' }}>{f.minScore}</strong> not met for this factor.
+                                </p>
+                                <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+                                  <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', fontWeight: 800, color: 'white', letterSpacing: '0.05em' }}>Required Action</span>
+                                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: 'white', fontWeight: 500 }}>
+                                    Immediate project restructuring or remedial action plan required.
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </span>
+                    <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
+                  </div>
+                </div>
+              );
+            })}
+              </div>
+            </div>
+          );
+        });
+      })()}
 
       <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
         <button className="btn btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); setSelectedProject(''); }} style={{ padding: '0.5rem 1.5rem' }}>
@@ -584,9 +604,9 @@ export const RationalizationContent: React.FC = () => {
 
   switch (currentSection) {
     case 1: return <Section_ProjectSelect />;
-    case 2: return <SectionFactors factors={AUTH_PERF_FACTORS} catColor="#EF4444" />;
-    case 3: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" />;
-    case 4: return <SectionFactors factors={INTEGRATION_FACTORS} catColor="#8B5CF6" />;
+    case 2: return <SectionFactors factors={AUTH_PERF_FACTORS} catColor="#EF4444" startIndex={1} />;
+    case 3: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" startIndex={4} />;
+    case 4: return <SectionFactors factors={INTEGRATION_FACTORS} catColor="#8B5CF6" startIndex={7} />;
     case 5: return <Section_Attachments />;
     case 6: return <Section_Results />;
     default: return <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>Section under development.</div>;

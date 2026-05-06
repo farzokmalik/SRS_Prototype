@@ -68,11 +68,11 @@ const IMPLEMENTATION_FACTORS: Factor[] = [
     weight:0.20, 
     minScore:2, 
     options:[
-      {score:4,label:'Excellent',explanation:'The project preparation is thorough, with high-quality feasibility studies and concept notes adhering fully to PDB guidelines, including comprehensive technical design validation and environmental impact assessment.'},
-      {score:3,label:'Above average',explanation:'Preparatory work is generally strong but may lack detail in technical design validation or environmental assessment aspects.'},
-      {score:2,label:'Average',explanation:'The project preparation is adequate but includes gaps in technical documentation or environmental considerations.'},
-      {score:1,label:'Below average',explanation:'Preparatory work is weak, with significant omissions in required documentation, technical design validation, or environmental impact studies.'},
-      {score:0,label:'Poor',explanation:'The project has no meaningful preparatory work, feasibility studies, technical design validation, or environmental assessment.'},
+      {score:4,label:'Excellent',explanation:'The project preparation is thorough, with high-quality feasibility studies and concept notes adhering fully to PDB guidelines, including comprehensive technical design validation and environmental impact assessment. Example: A hydropower project with detailed site surveys, technical design analysis including structural safety considerations, environmental impact studies covering both construction and operational phases, cost analysis, and implementation plans.'},
+      {score:3,label:'Above average',explanation:'Preparatory work is generally strong but may lack detail in technical design validation or environmental assessment aspects. Example: An education project with a solid feasibility study and basic environmental screening, but limited analysis of building design specifications or recurring operational parameters.'},
+      {score:2,label:'Average',explanation:'The project preparation is adequate but includes gaps in technical documentation or environmental considerations. Example: A sanitation project with incomplete environmental impact assessment or technical design specifications that require further development.'},
+      {score:1,label:'Below average',explanation:'Preparatory work is weak, with significant omissions in required documentation, technical design validation, or environmental impact studies. Example: A road project with no formal technical analysis of structural requirements or environmental screening.'},
+      {score:0,label:'Poor',explanation:'The project has no meaningful preparatory work, feasibility studies, technical design validation, or environmental assessment. Example: A proposed IT infrastructure project submitted with only a concept note and no supporting technical or environmental documentation.'},
     ]
   },
   { 
@@ -84,11 +84,11 @@ const IMPLEMENTATION_FACTORS: Factor[] = [
     weight:0.10, 
     minScore:2, 
     options:[
-      {score:4,label:'Highly feasible',explanation:'All implementation prerequisites are secured and institutional capacity is fully demonstrated. Implementing agency has proven track record and adequate technical staff.'},
-      {score:3,label:'Feasible with minor gaps',explanation:'Most implementation requirements are in place and institutional capacity is largely adequate but may require some enhancement.'},
-      {score:2,label:'Moderately feasible',explanation:'Several prerequisites are incomplete and institutional capacity shows notable gaps.'},
-      {score:1,label:'Feasible with major gaps',explanation:'Key prerequisites are missing and institutional capacity is significantly limited.'},
-      {score:0,label:'Not feasible',explanation:'The project lacks fundamental prerequisites and implementing agency demonstrates insufficient capacity.'},
+      {score:4,label:'Highly feasible',explanation:'All implementation prerequisites are secured and institutional capacity is fully demonstrated. Example: A housing project with complete land acquisition, defined procurement plans, and implementing agency with proven track record of managing similar projects, adequate technical staff, and established project management systems. The agency demonstrates strong financial management capacity and previous successful project delivery.'},
+      {score:3,label:'Feasible with minor gaps',explanation:'Most implementation requirements are in place and institutional capacity is largely adequate. Example: An irrigation project with secured land and most permits, implementing agency with relevant experience but requiring some capacity enhancement in specific technical areas or project management aspects.'},
+      {score:2,label:'Moderately feasible',explanation:'Several prerequisites are incomplete and institutional capacity shows notable gaps. Example: A hospital project with partial land acquisition and implementing agency lacking key technical positions or project management experience for healthcare infrastructure.'},
+      {score:1,label:'Feasible with major gaps',explanation:'Key prerequisites are missing and institutional capacity is significantly limited. Example: A highway project without finalized land acquisition and implementing agency with minimal experience in large infrastructure projects, inadequate technical staffing, and weak project management systems.'},
+      {score:0,label:'Not feasible',explanation:'The project lacks fundamental prerequisites and implementing agency demonstrates insufficient capacity. Example: A power plant project with no secured land and implementing agency lacking essential technical expertise, management systems, and relevant project experience.'},
     ]
   },
   { 
@@ -100,11 +100,11 @@ const IMPLEMENTATION_FACTORS: Factor[] = [
     weight:0.10, 
     minScore:2, 
     options:[
-      {score:4,label:'Fully affordable',explanation:'The project is well within the departmental budget ceiling, fully financed, and has a sustainable long-term funding plan.'},
-      {score:3,label:'Affordable with minor gaps',explanation:'The project is largely within budget limits but has minor financing uncertainties.'},
-      {score:2,label:'Moderately affordable',explanation:'The project exceeds budget ceilings or has significant funding uncertainties but is still partially financed.'},
-      {score:1,label:'Barely affordable',explanation:'The project exceeds budget limits significantly or has major unresolved financing gaps.'},
-      {score:0,label:'Not affordable',explanation:'The project is fiscally unsustainable, with no clear or realistic financing plan.'},
+      {score:4,label:'Fully affordable',explanation:'The project is well within the departmental budget ceiling, fully financed, and has a sustainable long-term funding plan. Example: A renewable energy project with confirmed funding from ADP and external donors.'},
+      {score:3,label:'Affordable with minor gaps',explanation:'The project is largely within budget limits but has minor financing uncertainties. Example: A water supply project requiring minor reallocations to meet full funding needs.'},
+      {score:2,label:'Moderately affordable',explanation:'The project exceeds budget ceilings or has significant funding uncertainties but is still partially financed. Example: An industrial estate development project requiring substantial external financing with no firm commitments.'},
+      {score:1,label:'Barely affordable',explanation:'The project exceeds budget limits significantly or has major unresolved financing gaps. Example: A highway expansion project that depends heavily on yet-to-be-approved donor funding.'},
+      {score:0,label:'Not affordable',explanation:'The project is fiscally unsustainable, with no clear or realistic financing plan. Example: A large-scale urban housing project proposed without secured funds or identified financing sources.'},
     ]
   },
 ];
@@ -119,11 +119,11 @@ const COMMUNITY_FACTORS: Factor[] = [
     weight:0.10, 
     minScore:null, 
     options:[
-      {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes.'},
-      {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment.'},
-      {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand.'},
-      {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection.'},
-      {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities.'},
+      {score:4,label:'Fully demand-driven',explanation:'The project directly addresses well-documented and critical community needs identified through participatory processes. Example: A flood protection project requested by affected communities during consultations – stakeholder register has been developed based on participatory planning sessions.'},
+      {score:3,label:'Substantially demand-driven',explanation:'The project reflects significant community needs but with limited stakeholder input or partial alignment. Example: A health clinic addressing general healthcare gaps but with no direct engagement from the community.'},
+      {score:2,label:'Moderately demand-driven',explanation:'The project has some relevance to community needs but lacks evidence of criticality or direct demand. Example: A small road improvement project initiated without consulting local residents.'},
+      {score:1,label:'Weakly demand-driven',explanation:'The project is loosely linked to community needs and lacks a clear basis for its selection. Example: A community centre built without evidence of usage demand.'},
+      {score:0,label:'Not demand-driven',explanation:'The project does not address any identifiable community needs or priorities. Example: A project driven by administrative priorities with no local relevance.'},
     ]
   },
   { 
@@ -135,11 +135,11 @@ const COMMUNITY_FACTORS: Factor[] = [
     weight:0.07, 
     minScore:null, 
     options:[
-      {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities.'},
-      {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations.'},
-      {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups.'},
-      {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations.'},
-      {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups.'},
+      {score:4,label:'Highly equitable',explanation:'The project directly targets underserved regions or marginalized communities, addressing critical gaps in public service delivery or economic opportunities. Example: A water supply project in rural South Punjab providing access to clean water for villages without prior service – improving population’s access to clean drinking water from 48.1% to 60% in 4 years.'},
+      {score:3,label:'Moderately equitable',explanation:'The project benefits underserved groups but also includes elements that support better-served regions or populations. Example: A vocational training program targeting women in rural areas but with limited geographic reach.'},
+      {score:2,label:'Limited equity impact',explanation:'The project has some relevance to equity but primarily benefits relatively advantaged regions or groups. Example: An urban road expansion project improving traffic flow but not targeting underprivileged neighbourhoods.'},
+      {score:1,label:'Marginally equitable',explanation:'The project has minimal impact on reducing disparities and provides limited benefit to underserved populations. Example: A city beautification project that does not address basic needs.'},
+      {score:0,label:'Reinforces inequities',explanation:'The project exacerbates regional or social disparities, providing disproportionate benefits to already privileged groups. Example: A infrastructure project in a wealthy area while ignoring pressing needs in deprived regions.'},
     ]
   },
   { 
@@ -151,11 +151,11 @@ const COMMUNITY_FACTORS: Factor[] = [
     weight:0.04, 
     minScore:null, 
     options:[
-      {score:4,label:'Excellent alignment',explanation:'The project is politically viable, strengthens governance, and promotes institutional reforms or capacity building.'},
-      {score:3,label:'Good alignment',explanation:'The project aligns with governance objectives and has some potential to improve institutional relationships.'},
-      {score:2,label:'Moderate alignment',explanation:'The project has some alignment with governance or reform objectives but lacks significant systemic impact.'},
-      {score:1,label:'Weak alignment',explanation:'The project is weakly aligned with governance objectives and risks creating institutional conflicts.'},
-      {score:0,label:'No alignment or adverse impact',explanation:'The project creates governance challenges or institutional conflicts without offering systemic benefits.'},
+      {score:4,label:'Excellent alignment',explanation:'The project is politically viable, strengthens governance, and promotes institutional reforms or capacity building. Example: A health program introducing district-level accountability mechanisms for service delivery.'},
+      {score:3,label:'Good alignment',explanation:'The project aligns with governance objectives and has some potential to improve institutional relationships. Example: A renewable energy project engaging multiple provincial agencies but with limited public engagement.'},
+      {score:2,label:'Moderate alignment',explanation:'The project has some alignment with governance or reform objectives but lacks significant systemic impact. Example: An urban development project improving infrastructure without addressing institutional bottlenecks.'},
+      {score:1,label:'Weak alignment',explanation:'The project is weakly aligned with governance objectives and risks creating institutional conflicts. Example: A large infrastructure project bypassing local government input and control.'},
+      {score:0,label:'No alignment or adverse impact',explanation:'The project creates governance challenges or institutional conflicts without offering systemic benefits. Example: A politically driven project with no alignment to development priorities or institutional structures.'},
     ]
   },
   { 
@@ -167,11 +167,11 @@ const COMMUNITY_FACTORS: Factor[] = [
     weight:0.04, 
     minScore:null, 
     options:[
-      {score:4,label:'Comprehensive analysis',explanation:'The project team has fully identified winners and losers, designed awareness campaigns for beneficiaries, and devised strategies to mitigate resistance from adversely affected groups.'},
-      {score:3,label:'Good analysis',explanation:'The project team has identified beneficiaries and adverse groups, but strategies to address resistance are incomplete.'},
-      {score:2,label:'Moderate analysis',explanation:'The project identifies beneficiaries and adverse groups, but plans for community engagement are vague.'},
-      {score:1,label:'Limited analysis',explanation:'Minimal identification of winners and losers, with no clear community management strategies.'},
-      {score:0,label:'No analysis',explanation:'No effort to identify or address community-level dynamics.'},
+      {score:4,label:'Comprehensive analysis',explanation:'The project team has fully identified winners and losers, designed awareness campaigns for beneficiaries, and devised strategies to mitigate resistance from adversely affected groups. Example: A resettlement project with stakeholder consultations, compensation plans, and a community engagement framework.'},
+      {score:3,label:'Good analysis',explanation:'The project team has identified beneficiaries and adverse groups, but strategies to address resistance are incomplete. Example: An infrastructure project with public consultations but limited follow-up engagement.'},
+      {score:2,label:'Moderate analysis',explanation:'The project identifies beneficiaries and adverse groups, but plans for community engagement are vague. Example: A dam construction project mentioning displaced groups but lacking detailed compensation mechanisms.'},
+      {score:1,label:'Limited analysis',explanation:'Minimal identification of winners and losers, with no clear community management strategies. Example: A road project with basic public announcements but no local consultations.'},
+      {score:0,label:'No analysis',explanation:'No effort to identify or address community-level dynamics. Example: A project initiated without community awareness or stakeholder input.'},
     ]
   },
 ];
@@ -196,19 +196,20 @@ const CATEGORIES = [
 ];
 
 function getClassification(score: number) {
-  if (score >= 3.4) return { label: 'Highly Recommended', color: '#10B981', bg: '#ECFDF5', range: '85-100%' };
-  if (score >= 2.8) return { label: 'Recommended', color: '#3B82F6', bg: '#EFF6FF', range: '70-84%' };
-  if (score >= 2.2) return { label: 'Conditionally Recommended', color: '#F59E0B', bg: '#FFFBEB', range: '55-69%' };
-  if (score >= 1.6) return { label: 'Needs Substantial Revision', color: '#F97316', bg: '#FFF7ED', range: '40-54%' };
-  return { label: 'Not Recommended', color: '#EF4444', bg: '#FEF2F2', range: 'Below 40%' };
+  if (score >= 3.4) return { label: 'Highly Recommended', color: '#10B981', bg: '#ECFDF5', range: '85-100%', action: 'Prioritize for ADP inclusion with standard monitoring protocols. Minor refinements may be required.' };
+  if (score >= 2.8) return { label: 'Recommended', color: '#3B82F6', bg: '#EFF6FF', range: '70-84%', action: 'Suitable for ADP inclusion subject to addressing noted improvements. Address gaps in areas scoring below 3.' };
+  if (score >= 2.2) return { label: 'Conditionally Recommended', color: '#F59E0B', bg: '#FFFBEB', range: '55-69%', action: 'May be considered for ADP inclusion with strict conditions and enhanced monitoring. Develop time-bound action plan.' };
+  if (score >= 1.6) return { label: 'Needs Substantial Revision', color: '#F97316', bg: '#FFF7ED', range: '40-54%', action: 'Do not submit for ADP consideration until comprehensive revision addresses core deficiencies. Reassess concept and preparation.' };
+  return { label: 'Not Recommended', color: '#EF4444', bg: '#FEF2F2', range: 'Below 40%', action: 'Do not proceed in current form. Requires fundamental reconceptualization if underlying need remains valid.' };
 }
 
 /* ───────── Shared option renderer ───────── */
 const FactorQuestion: React.FC<{
   factor: Factor;
+  index: string;
   answers: Record<string, number | null>;
   onSelect: (factorId: string, score: number) => void;
-}> = ({ factor, answers, onSelect }) => (
+}> = ({ factor, index, answers, onSelect }) => (
   <div className="scoring-factor-block">
     <div className="scoring-factor-header">
       <span className="scoring-factor-num">{factor.displayNum}</span>
@@ -216,7 +217,7 @@ const FactorQuestion: React.FC<{
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <h4 className="scoring-factor-name">
-              {factor.name}
+              {index}. {factor.name}
               <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'hsl(var(--accent))', marginLeft: '0.75rem', background: 'hsl(var(--accent-soft))', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                 Weight: {(factor.weight * 100).toFixed(0)}%
               </span>
@@ -415,6 +416,7 @@ const Section_Attachments: React.FC = () => {
           { label: 'Implementation Schedule', id: 'schedule', desc: 'Defined milestones' },
           { label: 'Risk Assessment & Mitigation', id: 'risk', desc: 'Strategies and assessment' },
           { label: 'Technical Approvals', id: 'approvals', desc: 'Regulatory permits and technical sanctions' },
+          { label: 'Other', id: 'other', desc: 'Any other relevant supporting documents' },
         ].map(doc => (
           <div key={doc.id} 
             onClick={() => document.getElementById(`file-${doc.id}`)?.click()}
@@ -455,23 +457,22 @@ const Section_Attachments: React.FC = () => {
   );
 };
 
-const SectionFactors: React.FC<{ factors: Factor[]; catColor: string }> = ({ factors, catColor }) => {
+const SectionFactors: React.FC<{ factors: Factor[]; catColor: string; startIndex?: number }> = ({ factors, startIndex = 1 }) => {
   const { answers, setAnswers } = React.useContext(ScoringCtx);
   const handleSelect = (factorId: string, score: number) => setAnswers(prev => ({ ...prev, [factorId]: score }));
 
   return (
-    <div className="card" style={{ padding: '1.75rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <div style={{ width: 14, height: 14, borderRadius: 4, background: catColor, flexShrink: 0 }} />
-        <div>
-          {/* Category Weight removed per user request */}
-        </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {factors.map((f) => (
-          <FactorQuestion key={f.id} factor={f} answers={answers} onSelect={handleSelect} />
-        ))}
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      {factors.map((f, idx) => {
+        let displayIdx = (startIndex + idx).toString();
+        if (f.id === 'f9a') displayIdx = '9a';
+        if (f.id === 'f9b') displayIdx = '9b';
+        return (
+          <div key={f.id} className="card factor-card" style={{ padding: '1.75rem' }}>
+            <FactorQuestion factor={f} index={displayIdx} answers={answers} onSelect={handleSelect} />
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -483,7 +484,7 @@ const Section_Results: React.FC = () => {
   const results = useMemo(() => {
     if (!allAnswered) return null;
     let totalWeightedScore = 0;
-    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { name: string; score: number; weight: number; weighted: number; minScore: number | null }[] }> = {};
+    const categoryScores: Record<string, { total: number; maxPossible: number; factors: { id: string; name: string; score: number; weight: number; weighted: number; minScore: number | null; displayNum: string }[] }> = {};
     const minScoreViolations: string[] = [];
 
     for (const f of ALL_FACTORS) {
@@ -495,7 +496,7 @@ const Section_Results: React.FC = () => {
       if (!categoryScores[catName]) categoryScores[catName] = { total: 0, maxPossible: 0, factors: [] };
       categoryScores[catName].total += weighted;
       categoryScores[catName].maxPossible += 4 * f.weight;
-      categoryScores[catName].factors.push({ name: f.name, score, weight: f.weight, weighted, minScore: f.minScore });
+      categoryScores[catName].factors.push({ id: f.id, name: f.name, score, weight: f.weight, weighted, minScore: f.minScore, displayNum: f.displayNum });
       if (f.minScore !== null && score < f.minScore) minScoreViolations.push(f.name);
     }
     return { totalWeightedScore, categoryScores, classification: getClassification(totalWeightedScore), minScoreViolations };
@@ -544,64 +545,97 @@ const Section_Results: React.FC = () => {
         <BarChart3 size={20} color="hsl(var(--accent))" /> Scoring Results
       </h3>
 
-      <div className="scoring-result-overall" style={{ background: results.classification.bg, borderColor: results.classification.color }}>
-        <div>
-          <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', color: results.classification.color, marginBottom: '0.25rem' }}>Classification</p>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: results.classification.color, margin: 0 }}>{results.classification.label}</h3>
-          <p style={{ fontSize: '0.8125rem', color: 'hsl(var(--text-muted))', marginTop: '0.25rem' }}>{results.classification.range}</p>
+      <div style={{ background: results.classification.bg, border: `1px solid ${results.classification.color}`, borderRadius: 'var(--radius-lg)', overflow: 'hidden', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem', borderBottom: `1px solid ${results.classification.color}30` }}>
+          <div>
+            <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', color: results.classification.color, marginBottom: '0.25rem' }}>Classification</p>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: results.classification.color, margin: 0 }}>{results.classification.label}</h3>
+            <p style={{ fontSize: '0.8125rem', color: results.classification.color, opacity: 0.8, marginTop: '0.25rem' }}>{results.classification.range}</p>
+          </div>
+          <div className="scoring-result-score-circle" style={{ borderColor: results.classification.color, color: results.classification.color, margin: 0 }}>
+            <span style={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1 }}>{results.totalWeightedScore.toFixed(2)}</span>
+            <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>/ 4.00</span>
+          </div>
         </div>
-        <div className="scoring-result-score-circle" style={{ borderColor: results.classification.color, color: results.classification.color }}>
-          <span style={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1 }}>{results.totalWeightedScore.toFixed(2)}</span>
-          <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>/ 4.00</span>
-        </div>
-      </div>
 
-      {results.minScoreViolations.length > 0 && (
-        <div className="scoring-violations">
-          <AlertTriangle size={18} /> <strong>Minimum Score Violations:</strong>&nbsp;{results.minScoreViolations.join(', ')}
+        <div style={{ padding: '1.25rem', borderBottom: results.minScoreViolations.length > 0 ? `1px solid ${results.classification.color}20` : 'none' }}>
+          <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: results.classification.color, marginBottom: '0.25rem' }}>Required Action</p>
+          <p style={{ fontSize: '0.9375rem', color: 'hsl(var(--text-main))', margin: 0, fontWeight: 500 }}>{results.classification.action}</p>
         </div>
-      )}
 
-      <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, margin: '1.5rem 0 1rem' }}>Category Breakdown</h4>
-      {CATEGORIES.map(cat => {
-        const cs = results.categoryScores[cat.name];
-        if (!cs) return null;
-        const pct = (cs.total / cs.maxPossible) * 100;
-        return (
-          <div key={cat.name} className="scoring-cat-result">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <span style={{ fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: cat.color, display: 'inline-block' }} /> {cat.name}
-              </span>
-              <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>Performance Score: {cs.total.toFixed(2)}</span>
-            </div>
-            <div className="scoring-progress-track" style={{ height: '8px' }}>
-              <div className="scoring-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
-            </div>
-            <div style={{ marginTop: '0.75rem' }}>
-              {cs.factors.map(f => (
-                <div key={f.name} style={{ marginBottom: '1rem' }}>
-                  <div className="scoring-factor-result-row" style={{ borderBottom: f.minScore !== null && f.score < f.minScore ? 'none' : '' }}>
-                    <span>{f.name}</span>
-                    <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
-                  </div>
-                  {f.minScore !== null && f.score < f.minScore && (
-                    <div className="factor-violation" style={{ marginTop: '0.25rem', padding: '0.75rem' }}>
-                      <AlertTriangle className="factor-violation-icon" size={14} />
-                      <div className="factor-violation-content">
-                        <span className="factor-violation-title" style={{ fontSize: '0.75rem' }}>Critical Compliance Warning</span>
-                        <p className="factor-violation-text" style={{ fontSize: '0.7rem' }}>
-                          Min score of {f.minScore} not met. <strong>Required Action:</strong> Mandatory revision of project documentation or implementation strategy is required.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+        {results.minScoreViolations.length > 0 && (
+          <div style={{ padding: '1rem', background: 'hsl(var(--error-soft))', borderTop: `1px solid hsl(var(--error) / 0.2)`, display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'hsl(var(--error))' }}>
+            <AlertTriangle size={18} />
+            <div style={{ fontSize: '0.875rem' }}>
+              <strong style={{ fontWeight: 700 }}>Critical Threshold Violations:</strong>&nbsp;{results.minScoreViolations.join(', ')}
             </div>
           </div>
-        );
-      })}
+        )}
+      </div>
+
+      <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, margin: '1.5rem 0 1rem' }}>Category Breakdown</h4>
+      {(() => {
+        let globalFactorIdx = 1;
+        return CATEGORIES.map(cat => {
+          const cs = results.categoryScores[cat.name];
+          if (!cs) return null;
+          const pct = (cs.total / cs.maxPossible) * 100;
+          return (
+            <div key={cat.name} className="scoring-cat-result">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <span style={{ fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: cat.color, display: 'inline-block' }} /> {cat.name}
+                </span>
+                <span style={{ fontWeight: 700, fontSize: '0.875rem', color: cat.color }}>Performance Score: {cs.total.toFixed(2)} / {cs.maxPossible.toFixed(2)}</span>
+              </div>
+              <div className="scoring-progress-track" style={{ height: '8px' }}>
+                <div className="scoring-progress-fill" style={{ width: `${pct}%`, background: cat.color }} />
+              </div>
+              <div style={{ marginTop: '0.75rem' }}>
+                {cs.factors.map((f) => {
+                  const currentIdx = globalFactorIdx++;
+                  let displayIdx = currentIdx.toString();
+                  if (f.id === 'f9a') displayIdx = '9a';
+                  if (f.id === 'f9b') displayIdx = '9b';
+                  return (
+                    <div key={f.name} style={{ marginBottom: '1rem' }}>
+                      <div className="scoring-factor-result-row">
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 800, fontSize: '0.75rem', color: 'hsl(var(--primary))', opacity: 0.7 }}>{f.displayNum}</span>
+                          <span style={{ fontWeight: 700 }}>{displayIdx}.</span> {f.name}
+                      {f.minScore !== null && f.score < f.minScore && (
+                        <div className="tooltip-trigger tooltip-error">
+                          <AlertTriangle size={16} color="#EF4444" />
+                          <div className="tooltip" style={{ width: '320px', whiteSpace: 'normal', textAlign: 'left', padding: '1rem', lineHeight: '1.5' }}>
+                            <div style={{ display: 'flex', gap: '0.75rem' }}>
+                              <AlertTriangle size={18} color="white" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <div>
+                                <strong style={{ display: 'block', marginBottom: '0.25rem', color: 'white', fontSize: '0.875rem', letterSpacing: '0.01em' }}>Critical Compliance Warning</strong>
+                                <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>
+                                  Min score of <strong style={{ color: 'white' }}>{f.minScore}</strong> not met for this factor.
+                                </p>
+                                <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+                                  <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', fontWeight: 800, color: 'white', letterSpacing: '0.05em' }}>Required Action</span>
+                                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: 'white', fontWeight: 500 }}>
+                                    Mandatory revision of project documentation or implementation strategy is required.
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </span>
+                    <span style={{ fontWeight: 600 }}>Score: {f.score} / 4</span>
+                  </div>
+                </div>
+              );
+            })}
+              </div>
+            </div>
+          );
+        });
+      })()}
 
       <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
         <button className="btn btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); setSelectedProject(''); }} style={{ padding: '0.5rem 1.5rem' }}>
@@ -630,9 +664,9 @@ export const ProjectScoringContent: React.FC = () => {
 
   switch (currentSection) {
     case 1: return <Section_ProjectSelect />;
-    case 2: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" />;
-    case 3: return <SectionFactors factors={IMPLEMENTATION_FACTORS} catColor="#10B981" />;
-    case 4: return <SectionFactors factors={COMMUNITY_FACTORS} catColor="#8B5CF6" />;
+    case 2: return <SectionFactors factors={STRATEGIC_FACTORS} catColor="#3B82F6" startIndex={1} />;
+    case 3: return <SectionFactors factors={IMPLEMENTATION_FACTORS} catColor="#10B981" startIndex={4} />;
+    case 4: return <SectionFactors factors={COMMUNITY_FACTORS} catColor="#8B5CF6" startIndex={7} />;
     case 5: return <Section_Attachments />;
     case 6: return <Section_Results />;
     default: return <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>Section under development.</div>;
