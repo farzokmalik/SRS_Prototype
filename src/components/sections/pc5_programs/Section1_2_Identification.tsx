@@ -14,16 +14,16 @@ export const Section1_Identification: React.FC = () => {
     <div className="card">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <SelectField 
-          label="Project ID" 
+          label="Program ID" 
           required 
           value={data.projectId}
           onChange={(e) => handleUpdate({ projectId: e.target.value })}
           options={[
-            { value: 'PRJ-001', label: 'PRJ-001' },
-            { value: 'PRJ-002', label: 'PRJ-002' },
-            { value: 'PRJ-003', label: 'PRJ-003' },
-            { value: 'PRJ-004', label: 'PRJ-004' },
-            { value: 'PRJ-005', label: 'PRJ-005' }
+            { value: 'PR-001', label: 'PR-001' },
+            { value: 'PR-002', label: 'PR-002' },
+            { value: 'PR-003', label: 'PR-003' },
+            { value: 'PR-004', label: 'PR-004' },
+            { value: 'PR-005', label: 'PR-005' }
           ]}
         />
         <div>

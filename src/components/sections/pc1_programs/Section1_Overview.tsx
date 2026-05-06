@@ -105,16 +105,16 @@ export const Section1_Overview: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div className="card" style={{ gridColumn: 'span 2' }}>
           <SelectField 
-            label="Project ID" 
+            label="Program ID" 
             required 
             value={data1.projectId}
             onChange={(e) => handleUpdate1({ projectId: e.target.value })}
             options={[
-              { value: 'PRJ-001', label: 'PRJ-001' },
-              { value: 'PRJ-002', label: 'PRJ-002' },
-              { value: 'PRJ-003', label: 'PRJ-003' },
-              { value: 'PRJ-004', label: 'PRJ-004' },
-              { value: 'PRJ-005', label: 'PRJ-005' }
+              { value: 'PR-001', label: 'PR-001' },
+              { value: 'PR-002', label: 'PR-002' },
+              { value: 'PR-003', label: 'PR-003' },
+              { value: 'PR-004', label: 'PR-004' },
+              { value: 'PR-005', label: 'PR-005' }
             ]}
           />
           <div style={{ marginTop: '1.25rem' }}>
